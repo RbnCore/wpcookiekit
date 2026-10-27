@@ -212,6 +212,10 @@ final class AdminPage {
 			'cookie_limit'   => array( 'err', __( 'En çok 40 özel çerez eklenebilir.', 'cookiekit' ) ),
 			'purged'         => array( 'ok', __( 'Tüm onay kayıtları silindi.', 'cookiekit' ) ),
 			'purge_fail'     => array( 'err', __( 'Onay kayıtları silinemedi: tablo okunamıyor.', 'cookiekit' ) ),
+			'update_checked' => array( 'ok', __( 'Güncelleme kontrolü yapıldı.', 'cookiekit' ) ),
+			'update_is_off'  => array( 'err', __( 'Güncelleme kontrolü kapalı; hiçbir bağlantı kurulmadı.', 'cookiekit' ) ),
+			'update_off'     => array( 'ok', __( 'Güncelleme kontrolü kapatıldı. GitHub’a artık bağlanılmaz.', 'cookiekit' ) ),
+			'update_on'      => array( 'ok', __( 'Güncelleme kontrolü açıldı.', 'cookiekit' ) ),
 			'purge_confirm'  => array( 'err', __( 'Silme onaylanmadı: kutuya SİL yazmanız gerekir. Hiçbir kayıt silinmedi.', 'cookiekit' ) ),
 		);
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız iletiyi seçer, beyaz liste.
@@ -604,6 +608,9 @@ final class AdminPage {
 			echo '<li><b>' . esc_html( $ver ) . '</b> — ' . esc_html( implode( ' ', $items ) ) . '</li>';
 		}
 		echo '</ul></div></section>';
+
+		self::card_open( 'y4', __( 'Güncelleme', 'cookiekit' ), esc_html__( 'Yeni sürümler GitHub’daki resmî yayınlardan gelir.', 'cookiekit' ) );
+		echo '<div class="ck-card__b ck-card__b--pad">' . Updater::render_card() . '</div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Updater::render_card() çıktısı kaçışlıdır.
 	}
 
 	// ───────────────────────── SİHİRBAZ ─────────────────────────

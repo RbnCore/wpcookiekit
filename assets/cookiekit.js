@@ -1,4 +1,4 @@
-/*! CookieKit 0.1.1 — çerez bandı ve tercih paneli. Bağımlılık yok. */
+/*! CookieKit 0.1.2 — çerez bandı ve tercih paneli. Bağımlılık yok. */
 (function () {
 	'use strict';
 

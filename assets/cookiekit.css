@@ -1,4 +1,4 @@
-/*! CookieKit 0.1.1 */
+/*! CookieKit 0.1.2 */
 :root{--cookiekit-bg:var(--fm-bg-surface,#fff);--cookiekit-fg:var(--fm-text,#1b1b1f);--cookiekit-bd:var(--fm-border-strong,#6b6b73);--cookiekit-ac:var(--fm-accent,#0b5fff);--cookiekit-h:0px}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--cookiekit-bg:var(--fm-bg-surface,#1c1c21);--cookiekit-fg:var(--fm-text,#f2f2f5);--cookiekit-bd:var(--fm-border-strong,#9a9aa5);--cookiekit-ac:var(--fm-accent,#8ab0ff)}}
 :root[data-theme=dark]{--cookiekit-bg:var(--fm-bg-surface,#1c1c21);--cookiekit-fg:var(--fm-text,#f2f2f5);--cookiekit-bd:var(--fm-border-strong,#9a9aa5);--cookiekit-ac:var(--fm-accent,#8ab0ff)}

@@ -11,6 +11,11 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 wp_clear_scheduled_hook( 'cookiekit_purge' );
 
+// Güncelleme kaydı: veri silme tercihinden bağımsız, geçici/yardımcı kayıtlardır.
+delete_transient( 'cookiekit_update_release' );
+delete_option( 'cookiekit_update_checked' );
+delete_option( 'cookiekit_update_off' );
+
 $cookiekit_settings = get_option( 'cookiekit_settings', array() );
 if ( is_array( $cookiekit_settings ) && ! empty( $cookiekit_settings['delete_on_uninstall'] ) ) {
 	global $wpdb;
