@@ -1,0 +1,314 @@
+<?php
+/**
+ * Ayar ekranı (Ayarlar → CookieKit): kayıt, doğrulama, yönetici eylemleri, varlıklar.
+ * Görünüm: AdminPage + templates/admin/*.php.
+ *
+ * @package Cookiekit
+ */
+
+declare(strict_types=1);
+
+namespace Cookiekit;
+
+defined( 'ABSPATH' ) || exit;
+
+final class Admin {
+
+	public const SLUG  = 'cookiekit';
+	public const TABS  = array( 'genel', 'gorunum', 'metinler', 'cerezler', 'kayitlar', 'entegrasyon', 'yardim' );
+	public const NOTES = array( 'cookie_added', 'cookie_removed', 'cookie_invalid', 'cookie_limit', 'purged', 'purge_fail', 'purge_confirm' );
+
+	/** Her form sekmesinin yazabildiği alan kümesi: kalanlar eski değerinden aynen taşınır. */
+	private const FORM_TABS = array( 'genel', 'gorunum', 'metinler', 'kurulum' );
+
+	private static string $hook = '';
+
+	/** Eklentinin kendi güvenilir yazımı (wizard_skip): sekme kümesi aranmaz. */
+	private static bool $trusted = false;
+
+	public static function init(): void {
+		if ( ! is_admin() ) {
+			return;
+		}
+		add_action( 'admin_menu', array( self::class, 'menu' ) );
+		add_action( 'admin_init', array( self::class, 'register' ) );
+		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
+		add_action( 'admin_post_cookiekit_csv', array( self::class, 'csv' ) );
+		add_action( 'admin_post_cookiekit_purge_log', array( self::class, 'purge_log' ) );
+		add_action( 'admin_post_cookiekit_cookie_add', array( self::class, 'cookie_add' ) );
+		add_action( 'admin_post_cookiekit_cookie_remove', array( self::class, 'cookie_remove' ) );
+		add_action( 'admin_post_cookiekit_wizard_skip', array( self::class, 'wizard_skip' ) );
+		add_action( 'admin_post_cookiekit_preview', array( self::class, 'preview' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( COOKIEKIT_FILE ), array( self::class, 'links' ) );
+	}
+
+	/** Sayfa adresi. @param array<string,string> $args Ek sorgu parametreleri. */
+	public static function page_url( array $args = array() ): string {
+		return add_query_arg( array_merge( array( 'page' => self::SLUG ), $args ), admin_url( 'options-general.php' ) );
+	}
+
+	/** @param array<int,string> $links */
+	public static function links( array $links ): array {
+		array_unshift( $links, '<a href="' . esc_url( self::page_url() ) . '">' . esc_html__( 'Ayarlar', 'cookiekit' ) . '</a>' );
+		return $links;
+	}
+
+	public static function menu(): void {
+		self::$hook = (string) add_options_page( 'CookieKit — Çerez ve Onay Yöneticisi', 'CookieKit', 'manage_options', self::SLUG, array( AdminPage::class, 'render' ) );
+	}
+
+	public static function register(): void {
+		// Seçenek yoksa update_option sanitize'ı iki kez çağırır; ilk kayıt filtre kurulmadan yapılır.
+		if ( false === get_option( Settings::OPTION ) ) {
+			add_option( Settings::OPTION, Settings::defaults() );
+		}
+		register_setting(
+			'cookiekit_group',
+			Settings::OPTION,
+			array(
+				'type'              => 'array',
+				'sanitize_callback' => array( self::class, 'sanitize' ),
+				'default'           => Settings::defaults(),
+			)
+		);
+	}
+
+	/** Yönetim CSS/JS'i YALNIZ ayar sayfasında yüklenir. */
+	public static function enqueue( string $hook ): void {
+		if ( '' === self::$hook || $hook !== self::$hook ) {
+			return;
+		}
+		wp_enqueue_style( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.css', array(), COOKIEKIT_VERSION );
+		wp_enqueue_script( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.js', array(), COOKIEKIT_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
+	}
+
+	/**
+	 * Yalnız aynı site içi yol ya da aynı alan adlı http(s) adres. Geçersizse null.
+	 *
+	 * @param mixed $value Ham değer.
+	 */
+	public static function url_clean( $value ): ?string {
+		$value = trim( (string) $value );
+		if ( '' === $value ) {
+			return '';
+		}
+		if ( strlen( $value ) > 300 || false !== strpos( $value, '\\' ) || preg_match( '/[\x00-\x1f\x7f]/', $value ) ) {
+			return null;
+		}
+		if ( 0 === strpos( $value, '/' ) ) {
+			return 0 === strpos( $value, '//' ) ? null : '/' . ltrim( sanitize_text_field( $value ), '/' );
+		}
+		$clean = esc_url_raw( $value, array( 'http', 'https' ) );
+		$host  = (string) wp_parse_url( $clean, PHP_URL_HOST );
+		$mine  = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+		return '' !== $clean && '' !== $host && 0 === strcasecmp( $host, $mine ) ? $clean : null;
+	}
+
+	private static function fail( string $id, string $message ): void {
+		add_settings_error( Settings::OPTION, $id, $message, 'error' );
+	}
+
+	/**
+	 * Gizli `_tab` hangi alan kümesini içeriyorsa yalnız onları işler; kalanı eski değerinden taşır.
+	 *
+	 * @param mixed $input Formdan gelen ham değer.
+	 * @return array<string,mixed>
+	 */
+	public static function sanitize( $input ): array {
+		$old = Settings::all();
+		if ( self::$trusted ) {
+			return is_array( $input ) ? $input : $old;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return $old;
+		}
+		$in  = is_array( $input ) ? $input : array();
+		$tab = isset( $in['_tab'] ) ? sanitize_key( (string) $in['_tab'] ) : '';
+		if ( ! in_array( $tab, self::FORM_TABS, true ) ) {
+			self::fail( 'ck-tab', __( 'Form tanınmadı; hiçbir ayar değişmedi.', 'cookiekit' ) );
+			return $old;
+		}
+		$def = Settings::defaults();
+		$out = $old;
+		// Sekme formuna ancak kurulum bittikten (ya da atlandıktan) sonra ulaşılır: kayıt, sihirbazın bittiği anlamına gelir.
+		$out['wizard_done'] = 1;
+
+		if ( 'genel' === $tab ) {
+			foreach ( array( 'enabled', 'show_analytics', 'show_ads', 'log', 'delete_on_uninstall' ) as $flag ) {
+				$out[ $flag ] = empty( $in[ $flag ] ) ? 0 : 1;
+			}
+			$days_raw    = isset( $in['days'] ) ? trim( (string) $in['days'] ) : (string) $old['days'];
+			$days        = absint( $days_raw );
+			$out['days'] = min( 395, max( 30, $days ) );
+			if ( ! ctype_digit( $days_raw ) || $days !== $out['days'] ) {
+				self::fail( 'f-days', __( 'Süre 30 ile 395 gün arasında olmalı; değer düzeltildi.', 'cookiekit' ) );
+			}
+			$out['revision'] = (int) $old['revision'] + ( empty( $in['bump_revision'] ) ? 0 : 1 );
+		}
+
+		if ( 'gorunum' === $tab ) {
+			$pos             = isset( $in['position'] ) ? sanitize_key( (string) $in['position'] ) : '';
+			$out['position'] = in_array( $pos, Settings::POSITIONS, true ) ? $pos : $old['position'];
+			$colors          = array(
+				'color_accent' => 'c-ac',
+				'color_bg'     => 'c-bg',
+				'color_text'   => 'c-fg',
+			);
+			foreach ( $colors as $key => $id ) {
+				$raw = trim( (string) ( $in[ $key ] ?? '' ) );
+				if ( '' === $raw ) {
+					$out[ $key ] = '';
+					continue;
+				}
+				$hex = sanitize_hex_color( $raw );
+				if ( $hex ) {
+					$out[ $key ] = $hex;
+				} else {
+					self::fail( $id, __( 'Geçerli bir renk girin (örn. #0b5fff); eski değer korundu.', 'cookiekit' ) );
+				}
+			}
+		}
+
+		if ( 'metinler' === $tab ) {
+			foreach ( array( 'title' => 80, 'desc' => 500, 'accept' => 30, 'reject' => 30, 'prefs' => 30, 'save' => 40 ) as $key => $max ) {
+				$text        = sanitize_text_field( (string) ( $in[ $key ] ?? '' ) );
+				$out[ $key ] = '' === $text ? $def[ $key ] : mb_substr( $text, 0, $max );
+			}
+		}
+
+		if ( 'metinler' === $tab || 'kurulum' === $tab ) {
+			foreach ( array( 'privacy_url' => 't-priv', 'cookie_url' => 't-cook' ) as $key => $id ) {
+				$clean = self::url_clean( $in[ $key ] ?? '' );
+				if ( null === $clean ) {
+					self::fail( $id, __( 'Adres “/” ile (site içi yol) ya da bu sitenin http(s) adresiyle başlamalı; eski değer korundu.', 'cookiekit' ) );
+				} else {
+					$out[ $key ] = $clean;
+				}
+			}
+		}
+
+		if ( 'kurulum' === $tab ) {
+			$tur = isset( $in['_tur'] ) ? sanitize_key( (string) $in['_tur'] ) : '';
+			if ( in_array( $tur, array( 'reklam', 'analiz' ), true ) ) {
+				$out['show_analytics'] = 1;
+				$out['show_ads']       = 'reklam' === $tur ? 1 : 0;
+			}
+			$out['enabled']     = 1;
+			$out['wizard_done'] = 1;
+		}
+		return $out;
+	}
+
+	/** Eylem yetkisi + nonce; yetkisizse 403. */
+	private static function guard( string $nonce_action ): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+		}
+		check_admin_referer( $nonce_action );
+	}
+
+	private static function back( string $tab, string $note = '' ): void {
+		$args = array( 'tab' => $tab );
+		if ( '' !== $note && in_array( $note, self::NOTES, true ) ) {
+			$args['ck_note'] = $note;
+		}
+		wp_safe_redirect( self::page_url( $args ) );
+		exit;
+	}
+
+	public static function wizard_skip(): void {
+		self::guard( 'cookiekit_wizard_skip' );
+		$all                = Settings::all();
+		$all['wizard_done'] = 1;
+		self::$trusted = true;
+		update_option( Settings::OPTION, $all );
+		self::$trusted = false;
+		self::back( 'genel' );
+	}
+
+	public static function cookie_add(): void {
+		self::guard( 'cookiekit_cookie_add' );
+		$list = Cookies::custom();
+		if ( count( $list ) >= Cookies::CUSTOM_MAX ) {
+			self::back( 'cerezler', 'cookie_limit' );
+		}
+		$row = Cookies::clean_cookie(
+			array(
+				'cat'      => isset( $_POST['cat'] ) ? wp_unslash( $_POST['cat'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- guard() nonce'ı doğruladı; clean_cookie() temizler.
+				'name'     => isset( $_POST['name'] ) ? wp_unslash( $_POST['name'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				'provider' => isset( $_POST['provider'] ) ? wp_unslash( $_POST['provider'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				'purpose'  => isset( $_POST['purpose'] ) ? wp_unslash( $_POST['purpose'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				'duration' => isset( $_POST['duration'] ) ? wp_unslash( $_POST['duration'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			)
+		);
+		if ( null === $row ) {
+			self::back( 'cerezler', 'cookie_invalid' );
+		}
+		$list[] = $row;
+		update_option( Cookies::CUSTOM_OPTION, $list, false );
+		self::back( 'cerezler', 'cookie_added' );
+	}
+
+	public static function cookie_remove(): void {
+		self::guard( 'cookiekit_cookie_remove' );
+		$id   = isset( $_POST['id'] ) ? preg_replace( '/[^a-f0-9]/', '', (string) wp_unslash( $_POST['id'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$left = array();
+		foreach ( Cookies::custom() as $row ) {
+			if ( $row['id'] !== $id ) {
+				$left[] = $row;
+			}
+		}
+		update_option( Cookies::CUSTOM_OPTION, $left, false );
+		self::back( 'cerezler', 'cookie_removed' );
+	}
+
+	public static function purge_log(): void {
+		self::guard( 'cookiekit_purge_log' );
+		$confirm = isset( $_POST['confirm'] ) ? trim( (string) wp_unslash( $_POST['confirm'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( 'SİL' !== mb_strtoupper( $confirm, 'UTF-8' ) && 'SIL' !== strtoupper( $confirm ) ) {
+			self::back( 'kayitlar', 'purge_confirm' );
+		}
+		Log::delete_all();
+		self::back( 'kayitlar', null === Log::count() ? 'purge_fail' : 'purged' );
+	}
+
+	/** Canlı önizleme sayfası (iframe): gerçek cookiekit.css/js, günlüksüz, tıklanamaz. */
+	public static function preview(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+		}
+		check_admin_referer( 'cookiekit_preview' );
+		nocache_headers();
+		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'X-Robots-Tag: noindex' );
+		$base = wp_json_encode( Frontend::preview_config(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+		require COOKIEKIT_DIR . 'templates/admin/preview.php';
+		exit;
+	}
+
+	public static function csv(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html( 'Yetkiniz yok.' ), '', array( 'response' => 403 ) );
+		}
+		check_admin_referer( 'cookiekit_csv' );
+		nocache_headers();
+		header( 'Content-Type: text/csv; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename="cookiekit-onay-kaydi-' . gmdate( 'Ymd-His' ) . '.csv"' );
+		$out = fopen( 'php://output', 'w' );
+		fwrite( $out, "\xEF\xBB\xBF" );
+		fputcsv( $out, array( 'id', 'zaman_utc', 'revizyon', 'karar', 'zorunlu', 'analiz', 'reklam', 'ip_ozeti', 'ua_ozeti', 'sayfa' ), ';', '"', '\\' );
+		$names = array( 'a' => 'kabul', 'r' => 'red', 'c' => 'ozel' );
+		foreach ( Log::export_rows() as $row ) {
+			$mask = (int) $row['categories'];
+			fputcsv(
+				$out,
+				array( $row['id'], $row['created_at'], $row['revision'], $names[ $row['action'] ] ?? 'ozel', $mask & 1 ? 1 : 0, $mask & 2 ? 1 : 0, $mask & 4 ? 1 : 0, $row['ip_hash'], $row['ua_hash'], $row['path'] ),
+				';',
+				'"',
+				'\\'
+			);
+		}
+		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		exit;
+	}
+}

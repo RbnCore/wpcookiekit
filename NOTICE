@@ -1,0 +1,16 @@
+CookieKit — Çerez ve Onay Yöneticisi 0.1.1
+Telif hakkı (c) RBN Bilişim. Lisans: GPL-2.0-or-later (bkz. LICENSE).
+
+ÜÇÜNCÜ TARAF KOD: YOK.
+CookieKit tüm banner, panel, Consent Mode ve kayıt kodunu kendisi içerir; çalışma anında
+hiçbir dış sunucuya istek atmaz, CDN kullanmaz, jQuery gerektirmez.
+
+Not (tasarım kararı): ilk plan, MIT lisanslı orestbida/cookieconsent v3 (self-host) çekirdeğini
+kullanmaktı. Kütüphane çerezi JSON olarak ve "cc_cookie" adıyla yazdığı, bitmask + "cookiekit_consent"
+çerez sözleşmesine uymadığı ve ek CSS/JS ağırlığı getirdiği için kullanılmadı; dolayısıyla
+pakete dahil değildir ve bu dosyada yükümlülük doğurmaz.
+
+Çerez adı, süre ve amaç bilgileri Google'ın "Reklam ve ölçüm çerezleri" referansından
+(https://business.safety.google/adscookies/) ve WordPress çekirdeğinden alınmıştır.
+
+Tarihçe: eklentinin çalışma adı pilot aşamasında "Bekçi" idi; ad CookieKit olarak değişti.
