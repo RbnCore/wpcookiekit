@@ -26,11 +26,12 @@ KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı 
 == Installation ==
 
 1. `cookiekit.zip` dosyasını Eklentiler → Yeni ekle → Eklenti yükle ile yükleyin ve etkinleştirin.
-2. Ayarlar → CookieKit ekranından (Genel, Görünüm, Metinler, Çerezler, Onay kayıtları, Entegrasyon, Yardım sekmeleri) kategorileri, bağlantıları, renkleri ve metinleri düzenleyin; ilk kurulumda 3 adımlı sihirbaz açılır.
+2. RBN Kit → Çerez ve Onay ekranından (Genel, Görünüm, Metinler, Çerezler, Onay kayıtları, Entegrasyon, Yardım sekmeleri) kategorileri, bağlantıları, renkleri ve metinleri düzenleyin; ilk kurulumda 3 adımlı sihirbaz açılır.
 
 == Changelog ==
 
 = 0.1.2 =
+* Menü: ekran artık ortak "RBN Kit" üst menüsünün altında (RBN Kit → Çerez ve Onay); eski Ayarlar adresi yeni adrese yönlenir.
 * GitHub’dan güncelleme: Eklentiler sayfasında Güncelle / güncel, WordPress otomatik güncelleme desteği.
 * Paket SHA-256 ve Ed25519 imzasıyla doğrulanır; Yardım → Güncelleme kartından kontrol kapatılabilir.
 

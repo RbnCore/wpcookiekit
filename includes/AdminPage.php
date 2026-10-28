@@ -1,6 +1,6 @@
 <?php
 /**
- * Ayar ekranının görünümü (Ayarlar → CookieKit). Yazma işleri Admin sınıfındadır.
+ * Ayar ekranının görünümü (RBN Kit → Çerez ve Onay). Yazma işleri Admin sınıfındadır.
  *
  * @package Cookiekit
  */

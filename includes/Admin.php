@@ -1,6 +1,6 @@
 <?php
 /**
- * Ayar ekranı (Ayarlar → CookieKit): kayıt, doğrulama, yönetici eylemleri, varlıklar.
+ * Ayar ekranı (RBN Kit → Çerez ve Onay): kayıt, doğrulama, yönetici eylemleri, varlıklar.
  * Görünüm: AdminPage + templates/admin/*.php.
  *
  * @package Cookiekit
@@ -30,7 +30,9 @@ final class Admin {
 		if ( ! is_admin() ) {
 			return;
 		}
-		add_action( 'admin_menu', array( self::class, 'menu' ) );
+		// Başlıklar çeviri kullanır; `init` öncesi okunursa WP 6.7+ "çok erken yüklendi" uyarısı verir. Yardımcı menüyü öncelik 9'da kurar, kayıt ondan önce.
+		add_action( 'admin_menu', array( self::class, 'menu' ), 5 );
+		add_action( 'admin_menu', array( self::class, 'late' ), 99 );
 		add_action( 'admin_init', array( self::class, 'register' ) );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
 		add_action( 'admin_post_cookiekit_csv', array( self::class, 'csv' ) );
@@ -44,7 +46,7 @@ final class Admin {
 
 	/** Sayfa adresi. @param array<string,string> $args Ek sorgu parametreleri. */
 	public static function page_url( array $args = array() ): string {
-		return add_query_arg( array_merge( array( 'page' => self::SLUG ), $args ), admin_url( 'options-general.php' ) );
+		return add_query_arg( array_merge( array( 'page' => self::SLUG ), $args ), admin_url( 'admin.php' ) );
 	}
 
 	/** @param array<int,string> $links */
@@ -53,8 +55,35 @@ final class Admin {
 		return $links;
 	}
 
+	/** Yan menüde RBN Kit altına kaydolur; `RbnKitMenu` kendi `admin_menu` (öncelik 9) kancasıyla menüyü kurar. */
 	public static function menu(): void {
-		self::$hook = (string) add_options_page( 'CookieKit — Çerez ve Onay Yöneticisi', 'CookieKit', 'manage_options', self::SLUG, array( AdminPage::class, 'render' ) );
+		\RbnKitMenu::add(
+			array(
+				'slug'       => self::SLUG,
+				'title'      => __( 'Çerez ve Onay', 'cookiekit' ),
+				'menu_title' => __( 'Çerez ve Onay', 'cookiekit' ),
+				'cap'        => 'manage_options',
+				'callback'   => array( AdminPage::class, 'render' ),
+				'order'      => 30,
+				'version'    => COOKIEKIT_VERSION,
+			)
+		);
+	}
+
+	/** Ekran kimliği (rbn-kit_page_cookiekit); menü kurulduktan sonra okunur. */
+	public static function late(): void {
+		self::legacy_redirect();
+		self::$hook = \RbnKitMenu::hook( self::SLUG );
+	}
+
+	/** Eski adres (Ayarlar → CookieKit) yer imi kolaylığı için yeni adrese yönlenir; `admin_init` sayfa yetki denetiminden (403) sonra çalıştığından `admin_menu` içinden çağrılır. */
+	private static function legacy_redirect(): void {
+		global $pagenow;
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız yönlendirme.
+		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && self::SLUG === sanitize_key( wp_unslash( $_GET['page'] ) ) ) {
+			wp_safe_redirect( self::page_url( array_diff_key( map_deep( wp_unslash( $_GET ), 'sanitize_text_field' ), array( 'page' => 1 ) ) ), 301 ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			exit;
+		}
 	}
 
 	public static function register(): void {

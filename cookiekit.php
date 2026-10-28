@@ -26,6 +26,8 @@ define( 'COOKIEKIT_FILE', __FILE__ );
 define( 'COOKIEKIT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'COOKIEKIT_URL', plugin_dir_url( __FILE__ ) );
 
+require_once COOKIEKIT_DIR . 'includes/RbnKitMenu.php';
+
 spl_autoload_register(
 	static function ( string $class_name ): void {
 		if ( 0 !== strpos( $class_name, 'Cookiekit\\' ) ) {
