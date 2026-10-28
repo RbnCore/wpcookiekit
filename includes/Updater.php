@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Updater {
 
-	public const REPO         = 'RbnCore/cookiekit';
+	public const REPO         = 'RbnCore/wpcookiekit';
 	public const PLUGIN       = 'cookiekit/cookiekit.php';
 	public const SLUG         = 'cookiekit';
 	public const OPT_OFF      = 'cookiekit_update_off';
@@ -29,7 +29,7 @@ final class Updater {
 	public const MAX_ZIP      = 8388608; // 8 MB.
 	private const TTL_OK      = 43200;   // 12 saat (GitHub: belirteçsiz 60 istek/saat).
 	private const TTL_ERR     = 3600;
-	private const PKG_PREFIX  = 'https://github.com/RbnCore/cookiekit/releases/download/';
+	private const PKG_PREFIX  = 'https://github.com/' . self::REPO . '/releases/download/';
 	private const NOTES_LIMIT = 2000;
 
 	/** Bu istekte doğrulanıp indirilen paketin sürümü; kaynak seçimi bununla karşılaştırır. */

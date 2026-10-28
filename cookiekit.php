@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name:       CookieKit — Cookie and Consent Manager
- * Plugin URI:        https://github.com/RbnCore
+ * Plugin URI:        https://github.com/RbnCore/wpcookiekit
  * Description:       KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and a script-blocking API. Connects to GitHub only to check for updates (can be turned off in the settings).
  * Version:           0.1.2
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            RBN Bilişim
  * Author URI:        https://github.com/RbnCore
- * Update URI:        https://github.com/RbnCore/cookiekit
+ * Update URI:        https://github.com/RbnCore/wpcookiekit
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       cookiekit
