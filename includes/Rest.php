@@ -98,7 +98,7 @@ final class Rest {
 		}
 		$ip = self::client_ip();
 		if ( self::limited( $ip ) ) {
-			return new \WP_Error( 'cookiekit_rate', 'Çok fazla istek.', array( 'status' => 429 ) );
+			return new \WP_Error( 'cookiekit_rate', __( 'Too many requests.', 'cookiekit' ), array( 'status' => 429 ) );
 		}
 		$mask = ( (int) $request['c'] ) | Settings::BIT_NECESSARY;
 		$mask &= Settings::full_mask();

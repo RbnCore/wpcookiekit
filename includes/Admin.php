@@ -51,7 +51,7 @@ final class Admin {
 
 	/** @param array<int,string> $links */
 	public static function links( array $links ): array {
-		array_unshift( $links, '<a href="' . esc_url( self::page_url() ) . '">' . esc_html__( 'Ayarlar', 'cookiekit' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( self::page_url() ) . '">' . esc_html__( 'Settings', 'cookiekit' ) . '</a>' );
 		return $links;
 	}
 
@@ -60,8 +60,8 @@ final class Admin {
 		\RbnKitMenu::add(
 			array(
 				'slug'       => self::SLUG,
-				'title'      => __( 'Çerez ve Onay', 'cookiekit' ),
-				'menu_title' => __( 'Çerez ve Onay', 'cookiekit' ),
+				'title'      => __( 'Cookies and Consent', 'cookiekit' ),
+				'menu_title' => __( 'Cookies and Consent', 'cookiekit' ),
 				'cap'        => 'manage_options',
 				'callback'   => array( AdminPage::class, 'render' ),
 				'version'    => COOKIEKIT_VERSION,
@@ -153,7 +153,7 @@ final class Admin {
 		$in  = is_array( $input ) ? $input : array();
 		$tab = isset( $in['_tab'] ) ? sanitize_key( (string) $in['_tab'] ) : '';
 		if ( ! in_array( $tab, self::FORM_TABS, true ) ) {
-			self::fail( 'ck-tab', __( 'Form tanınmadı; hiçbir ayar değişmedi.', 'cookiekit' ) );
+			self::fail( 'ck-tab', __( 'The form was not recognised; no setting was changed.', 'cookiekit' ) );
 			return $old;
 		}
 		$def = Settings::defaults();
@@ -169,7 +169,7 @@ final class Admin {
 			$days        = absint( $days_raw );
 			$out['days'] = min( 395, max( 30, $days ) );
 			if ( ! ctype_digit( $days_raw ) || $days !== $out['days'] ) {
-				self::fail( 'f-days', __( 'Süre 30 ile 395 gün arasında olmalı; değer düzeltildi.', 'cookiekit' ) );
+				self::fail( 'f-days', __( 'The duration must be between 30 and 395 days; the value was corrected.', 'cookiekit' ) );
 			}
 			$out['revision'] = (int) $old['revision'] + ( empty( $in['bump_revision'] ) ? 0 : 1 );
 		}
@@ -192,7 +192,7 @@ final class Admin {
 				if ( $hex ) {
 					$out[ $key ] = $hex;
 				} else {
-					self::fail( $id, __( 'Geçerli bir renk girin (örn. #0b5fff); eski değer korundu.', 'cookiekit' ) );
+					self::fail( $id, __( 'Enter a valid colour (e.g. #0b5fff); the old value was kept.', 'cookiekit' ) );
 				}
 			}
 		}
@@ -208,7 +208,7 @@ final class Admin {
 			foreach ( array( 'privacy_url' => 't-priv', 'cookie_url' => 't-cook' ) as $key => $id ) {
 				$clean = self::url_clean( $in[ $key ] ?? '' );
 				if ( null === $clean ) {
-					self::fail( $id, __( 'Adres “/” ile (site içi yol) ya da bu sitenin http(s) adresiyle başlamalı; eski değer korundu.', 'cookiekit' ) );
+					self::fail( $id, __( 'The address must start with “/” (a path on this site) or with this site\'s http(s) address; the old value was kept.', 'cookiekit' ) );
 				} else {
 					$out[ $key ] = $clean;
 				}
@@ -230,7 +230,7 @@ final class Admin {
 	/** Eylem yetkisi + nonce; yetkisizse 403. */
 	private static function guard( string $nonce_action ): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( $nonce_action );
 	}
@@ -293,7 +293,7 @@ final class Admin {
 	public static function purge_log(): void {
 		self::guard( 'cookiekit_purge_log' );
 		$confirm = isset( $_POST['confirm'] ) ? trim( (string) wp_unslash( $_POST['confirm'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		if ( 'SİL' !== mb_strtoupper( $confirm, 'UTF-8' ) && 'SIL' !== strtoupper( $confirm ) ) {
+		if ( mb_strtoupper( __( 'DELETE', 'cookiekit' ), 'UTF-8' ) !== mb_strtoupper( $confirm, 'UTF-8' ) && 'SIL' !== strtoupper( $confirm ) ) {
 			self::back( 'kayitlar', 'purge_confirm' );
 		}
 		Log::delete_all();
@@ -303,7 +303,7 @@ final class Admin {
 	/** Canlı önizleme sayfası (iframe): gerçek cookiekit.css/js, günlüksüz, tıklanamaz. */
 	public static function preview(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( 'cookiekit_preview' );
 		nocache_headers();
@@ -316,21 +316,21 @@ final class Admin {
 
 	public static function csv(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html( 'Yetkiniz yok.' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html( __( 'You do not have permission.', 'cookiekit' ) ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( 'cookiekit_csv' );
 		nocache_headers();
 		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="cookiekit-onay-kaydi-' . gmdate( 'Ymd-His' ) . '.csv"' );
+		header( 'Content-Disposition: attachment; filename="' . __( 'cookiekit-consent-log', 'cookiekit' ) . '-' . gmdate( 'Ymd-His' ) . '.csv"' );
 		$out = fopen( 'php://output', 'w' );
 		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, array( 'id', 'zaman_utc', 'revizyon', 'karar', 'zorunlu', 'analiz', 'reklam', 'ip_ozeti', 'ua_ozeti', 'sayfa' ), ';', '"', '\\' );
-		$names = array( 'a' => 'kabul', 'r' => 'red', 'c' => 'ozel' );
+		fputcsv( $out, array( 'id', _x( 'time_utc', 'CSV column header', 'cookiekit' ), _x( 'revision', 'CSV column header', 'cookiekit' ), _x( 'decision', 'CSV column header', 'cookiekit' ), _x( 'essential', 'CSV column header', 'cookiekit' ), _x( 'analytics', 'CSV column header', 'cookiekit' ), _x( 'advertising', 'CSV column header', 'cookiekit' ), _x( 'ip_digest', 'CSV column header', 'cookiekit' ), _x( 'ua_digest', 'CSV column header', 'cookiekit' ), _x( 'page', 'CSV column header', 'cookiekit' ) ), ';', '"', '\\' );
+		$names = array( 'a' => _x( 'accepted', 'CSV decision value', 'cookiekit' ), 'r' => _x( 'rejected', 'CSV decision value', 'cookiekit' ), 'c' => _x( 'custom', 'CSV decision value', 'cookiekit' ) );
 		foreach ( Log::export_rows() as $row ) {
 			$mask = (int) $row['categories'];
 			fputcsv(
 				$out,
-				array( $row['id'], $row['created_at'], $row['revision'], $names[ $row['action'] ] ?? 'ozel', $mask & 1 ? 1 : 0, $mask & 2 ? 1 : 0, $mask & 4 ? 1 : 0, $row['ip_hash'], $row['ua_hash'], $row['path'] ),
+				array( $row['id'], $row['created_at'], $row['revision'], $names[ $row['action'] ] ?? _x( 'custom', 'CSV decision value', 'cookiekit' ), $mask & 1 ? 1 : 0, $mask & 2 ? 1 : 0, $mask & 4 ? 1 : 0, $row['ip_hash'], $row['ua_hash'], $row['path'] ),
 				';',
 				'"',
 				'\\'

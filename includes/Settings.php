@@ -26,6 +26,10 @@ final class Settings {
 	 * @return array<string,mixed>
 	 */
 	public static function defaults(): array {
+		// Called on activation, before plugins_loaded has run; make sure the translations are available.
+		if ( ! is_textdomain_loaded( 'cookiekit' ) && defined( 'COOKIEKIT_FILE' ) ) {
+			load_plugin_textdomain( 'cookiekit', false, dirname( plugin_basename( COOKIEKIT_FILE ) ) . '/languages' );
+		}
 		return array(
 			'enabled'          => 1,
 			'position'         => 'bottom-center',
@@ -41,12 +45,12 @@ final class Settings {
 			'color_text'       => '',
 			'delete_on_uninstall' => 0,
 			'wizard_done'      => 0,
-			'title'            => 'Çerez tercihleriniz',
-			'desc'             => 'Sitenin çalışması için zorunlu çerezler kullanırız. Analiz ve reklam çerezleri yalnızca sizin izninizle kurulur. Tercihlerinizi istediğiniz zaman değiştirebilirsiniz.',
-			'accept'           => 'Kabul et',
-			'reject'           => 'Reddet',
-			'prefs'            => 'Tercihler',
-			'save'             => 'Seçimimi kaydet',
+			'title'            => __( 'Your cookie preferences', 'cookiekit' ),
+			'desc'             => __( 'We use essential cookies to make the site work. Analytics and advertising cookies are only set with your permission. You can change your preferences at any time.', 'cookiekit' ),
+			'accept'           => __( 'Accept', 'cookiekit' ),
+			'reject'           => __( 'Reject', 'cookiekit' ),
+			'prefs'            => __( 'Preferences', 'cookiekit' ),
+			'save'             => __( 'Save my choice', 'cookiekit' ),
 		);
 	}
 

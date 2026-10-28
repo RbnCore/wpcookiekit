@@ -17,7 +17,7 @@ $js  = COOKIEKIT_URL . 'assets/cookiekit.js?ver=' . rawurlencode( COOKIEKIT_VERS
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title><?php echo esc_html__( 'Önizleme', 'cookiekit' ); ?></title>
+<title><?php echo esc_html__( 'Preview', 'cookiekit' ); ?></title>
 <link rel="stylesheet" href="<?php echo esc_url( $css ); ?>">
 <style id="ck-renk"></style>
 <style>

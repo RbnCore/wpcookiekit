@@ -119,15 +119,15 @@ final class Updater {
 	 */
 	public static function verify_signature( string $message, string $sig_b64, string $key_override = '' ) {
 		if ( ! function_exists( 'sodium_crypto_sign_verify_detached' ) ) {
-			return new \WP_Error( 'cookiekit_no_sodium', __( 'Güncelleme reddedildi: sunucuda imza doğrulama (sodium) yok. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_no_sodium', __( 'Update rejected: signature verification (sodium) is missing on the server. The old version was kept.', 'cookiekit' ) );
 		}
 		$key = '' !== $key_override ? $key_override : self::public_key();
 		$sig = base64_decode( trim( $sig_b64 ), true );
 		if ( '' === $key ) {
-			return new \WP_Error( 'cookiekit_no_key', __( 'Güncelleme reddedildi: eklentide geçerli imza anahtarı yok. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_no_key', __( 'Update rejected: the plugin has no valid signature key. The old version was kept.', 'cookiekit' ) );
 		}
 		if ( ! is_string( $sig ) || 64 !== strlen( $sig ) || ! sodium_crypto_sign_verify_detached( $sig, $message, $key ) ) {
-			return new \WP_Error( 'cookiekit_bad_sig', __( 'Güncelleme reddedildi: paket imzası geçersiz. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_sig', __( 'Update rejected: the package signature is invalid. The old version was kept.', 'cookiekit' ) );
 		}
 		return true;
 	}
@@ -140,14 +140,14 @@ final class Updater {
 	public static function check_package( string $file, string $version, string $sha_body, string $sig_b64, string $key_override = '' ) {
 		$size = is_file( $file ) ? (int) filesize( $file ) : 0;
 		if ( $size < 1 || $size > self::MAX_ZIP ) {
-			return new \WP_Error( 'cookiekit_bad_size', __( 'Güncelleme reddedildi: paket boyutu beklenen aralıkta değil. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_size', __( 'Update rejected: the package size is not in the expected range. The old version was kept.', 'cookiekit' ) );
 		}
 		if ( 1 !== preg_match( '/^\s*([0-9a-fA-F]{64})(?:\s|$)/', $sha_body, $m ) ) {
-			return new \WP_Error( 'cookiekit_bad_sha_file', __( 'Güncelleme reddedildi: özet (SHA-256) dosyası okunamadı. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_sha_file', __( 'Update rejected: the digest (SHA-256) file could not be read. The old version was kept.', 'cookiekit' ) );
 		}
 		$actual = (string) hash_file( 'sha256', $file );
 		if ( ! hash_equals( strtolower( $m[1] ), $actual ) ) {
-			return new \WP_Error( 'cookiekit_sha_mismatch', __( 'Güncelleme reddedildi: paketin SHA-256 özeti eşleşmiyor. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_sha_mismatch', __( 'Update rejected: the SHA-256 digest of the package does not match. The old version was kept.', 'cookiekit' ) );
 		}
 		return self::verify_signature( self::signed_message( $version, $actual ), $sig_b64, $key_override );
 	}
@@ -161,11 +161,11 @@ final class Updater {
 		$dir  = rtrim( str_replace( '\\', '/', $source ), '/' );
 		$main = $dir . '/cookiekit.php';
 		if ( self::SLUG !== basename( $dir ) || ! is_file( $main ) ) {
-			return new \WP_Error( 'cookiekit_bad_layout', __( 'Güncelleme reddedildi: paketin kök klasörü “cookiekit” değil ya da cookiekit.php yok. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_layout', __( 'Update rejected: the root folder of the package is not “cookiekit” or cookiekit.php is missing. The old version was kept.', 'cookiekit' ) );
 		}
 		$head = get_file_data( $main, array( 'v' => 'Version', 'n' => 'Plugin Name' ) );
 		if ( '' === $head['n'] || $head['v'] !== $version ) {
-			return new \WP_Error( 'cookiekit_bad_version', __( 'Güncelleme reddedildi: paketteki sürüm, yayınlanan sürümle uyuşmuyor. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_version', __( 'Update rejected: the version inside the package does not match the published version. The old version was kept.', 'cookiekit' ) );
 		}
 		return true;
 	}
@@ -294,7 +294,7 @@ final class Updater {
 		$meta   = self::local_meta();
 		$notes  = $rel ? $rel['notes'] : '';
 		return (object) array(
-			'name'          => 'CookieKit — Çerez ve Onay Yöneticisi',
+			'name'          => 'CookieKit — ' . __( 'Cookie and Consent Manager', 'cookiekit' ),
 			'slug'          => self::SLUG,
 			'version'       => $new ? $rel['version'] : COOKIEKIT_VERSION,
 			'author'        => '<a href="https://github.com/RbnCore">RBN Bilişim</a>',
@@ -304,8 +304,8 @@ final class Updater {
 			'tested'        => $meta['tested'],
 			'download_link' => $new ? $rel['package'] : '',
 			'sections'      => array(
-				'description' => esc_html__( 'KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı.', 'cookiekit' ),
-				'changelog'   => '' !== $notes ? wp_kses_post( nl2br( esc_html( $notes ) ) ) : esc_html__( 'Bu sürüm için yayın notu yok.', 'cookiekit' ),
+				'description' => esc_html__( 'A KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log.', 'cookiekit' ),
+				'changelog'   => '' !== $notes ? wp_kses_post( nl2br( esc_html( $notes ) ) ) : esc_html__( 'There are no release notes for this version.', 'cookiekit' ),
 			),
 		);
 	}
@@ -323,7 +323,7 @@ final class Updater {
 		}
 		self::$verified = null;
 		if ( 1 !== preg_match( '#^' . preg_quote( self::PKG_PREFIX, '#' ) . '(\d{1,4}\.\d{1,4}\.\d{1,4})/cookiekit-\1\.zip$#', $package, $m ) ) {
-			return new \WP_Error( 'cookiekit_bad_url', __( 'Güncelleme reddedildi: paket adresi beklenen biçimde değil. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_bad_url', __( 'Update rejected: the package address is not in the expected format. The old version was kept.', 'cookiekit' ) );
 		}
 		$version = $m[1];
 		$sha     = self::fetch_text( $package . '.sha256' );
@@ -358,7 +358,7 @@ final class Updater {
 			)
 		);
 		if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
-			return new \WP_Error( 'cookiekit_fetch_fail', __( 'Güncelleme durduruldu: özet ya da imza dosyası indirilemedi. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_fetch_fail', __( 'Update stopped: the digest or signature file could not be downloaded. The old version was kept.', 'cookiekit' ) );
 		}
 		return (string) wp_remote_retrieve_body( $res );
 	}
@@ -379,7 +379,7 @@ final class Updater {
 		$version        = self::$verified;
 		self::$verified = null;
 		if ( null === $version ) {
-			return new \WP_Error( 'cookiekit_unverified', __( 'Güncelleme reddedildi: paket CookieKit doğrulamasından geçmedi. Eski sürüm korundu.', 'cookiekit' ) );
+			return new \WP_Error( 'cookiekit_unverified', __( 'Update rejected: the package did not pass the CookieKit verification. The old version was kept.', 'cookiekit' ) );
 		}
 		$ok = self::check_source( (string) $source, $version );
 		return is_wp_error( $ok ) ? $ok : $source;
@@ -415,7 +415,7 @@ final class Updater {
 
 	private static function guard( string $nonce_action ): void {
 		if ( ! current_user_can( 'update_plugins' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( $nonce_action );
 	}
@@ -432,32 +432,32 @@ final class Updater {
 		$cached  = $on ? get_transient( self::CACHE ) : false;
 		$state   = '';
 		if ( ! $on ) {
-			$state = esc_html__( 'Güncelleme kontrolü kapalı; GitHub’a hiç bağlanılmaz.', 'cookiekit' );
+			$state = esc_html__( 'The update check is off; GitHub is never contacted.', 'cookiekit' );
 		} elseif ( ! is_array( $cached ) ) {
-			$state = esc_html__( 'Henüz kontrol edilmedi.', 'cookiekit' );
+			$state = esc_html__( 'Not checked yet.', 'cookiekit' );
 		} elseif ( 'none' === $cached['status'] ) {
-			$state = esc_html__( 'Henüz yayınlanmış sürüm yok.', 'cookiekit' );
+			$state = esc_html__( 'There is no published version yet.', 'cookiekit' );
 		} elseif ( 'ok' !== $cached['status'] || ! is_array( $cached['release'] ) ) {
-			$state = esc_html__( 'Kontrol edilemedi; daha sonra tekrar denenecek. Eklenti normal çalışır.', 'cookiekit' );
+			$state = esc_html__( 'Could not check; it will be tried again later. The plugin works normally.', 'cookiekit' );
 		} elseif ( version_compare( $cached['release']['version'], COOKIEKIT_VERSION, '>' ) ) {
 			/* translators: %s: sürüm numarası */
-			$state = sprintf( esc_html__( 'Yeni sürüm var: %s. Eklentiler sayfasından “Güncelle” deyin.', 'cookiekit' ), '<strong>' . esc_html( $cached['release']['version'] ) . '</strong>' );
+			$state = sprintf( esc_html__( 'A new version is available: %s. Click “Update” on the Plugins page.', 'cookiekit' ), '<strong>' . esc_html( $cached['release']['version'] ) . '</strong>' );
 		} else {
-			$state = esc_html__( 'Eklenti güncel.', 'cookiekit' );
+			$state = esc_html__( 'The plugin is up to date.', 'cookiekit' );
 		}
-		$last = $checked > 0 ? esc_html( wp_date( 'd.m.Y H:i', $checked ) ) : esc_html__( 'hiç', 'cookiekit' );
+		$last = $checked > 0 ? esc_html( wp_date( 'd.m.Y H:i', $checked ) ) : esc_html__( 'never', 'cookiekit' );
 		$post = esc_url( admin_url( 'admin-post.php' ) );
 
-		$html  = '<dl class="ck-dl"><dt>' . esc_html__( 'Kurulu sürüm', 'cookiekit' ) . '</dt><dd>' . esc_html( COOKIEKIT_VERSION ) . '</dd>'
-			. '<dt>' . esc_html__( 'Durum', 'cookiekit' ) . '</dt><dd>' . $state . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $state yukarıda kaçışlı.
-			. '<dt>' . esc_html__( 'Son kontrol', 'cookiekit' ) . '</dt><dd>' . $last . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<dt>' . esc_html__( 'Otomatik güncelleme', 'cookiekit' ) . '</dt><dd>' . esc_html__( 'Eklentiler sayfasında CookieKit satırındaki “Otomatik güncellemeleri etkinleştir” bağlantısından açılır/kapanır.', 'cookiekit' ) . '</dd></dl>'
-			. '<p class="ck-help">' . esc_html__( 'Güncelleme paketi kurulmadan önce SHA-256 özeti ve Ed25519 imzasıyla doğrulanır; doğrulanamayan paket kurulmaz. Yalnız standart bir GET isteği gider; site adresiniz ya da kullanıcı bilginiz gönderilmez.', 'cookiekit' ) . '</p>'
+		$html  = '<dl class="ck-dl"><dt>' . esc_html__( 'Installed version', 'cookiekit' ) . '</dt><dd>' . esc_html( COOKIEKIT_VERSION ) . '</dd>'
+			. '<dt>' . esc_html__( 'Status', 'cookiekit' ) . '</dt><dd>' . $state . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $state yukarıda kaçışlı.
+			. '<dt>' . esc_html__( 'Last check', 'cookiekit' ) . '</dt><dd>' . $last . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<dt>' . esc_html__( 'Automatic updates', 'cookiekit' ) . '</dt><dd>' . esc_html__( 'Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page.', 'cookiekit' ) . '</dd></dl>'
+			. '<p class="ck-help">' . esc_html__( 'The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent.', 'cookiekit' ) . '</p>'
 			. '<div style="display:flex;gap:var(--ck-s3);flex-wrap:wrap;margin-top:var(--ck-s3)">';
 		if ( $on ) {
-			$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html__( 'Şimdi kontrol et', 'cookiekit' ) . '</button></form>';
+			$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html__( 'Check now', 'cookiekit' ) . '</button></form>';
 		}
-		$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_toggle">' . wp_nonce_field( 'cookiekit_update_toggle', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html( $on ? __( 'Güncelleme kontrolünü kapat', 'cookiekit' ) : __( 'Güncelleme kontrolünü aç', 'cookiekit' ) ) . '</button></form></div>';
+		$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_toggle">' . wp_nonce_field( 'cookiekit_update_toggle', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html( $on ? __( 'Turn off the update check', 'cookiekit' ) : __( 'Turn on the update check', 'cookiekit' ) ) . '</button></form></div>';
 		return $html;
 	}
 }

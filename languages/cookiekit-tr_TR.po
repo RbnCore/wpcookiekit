@@ -2,1181 +2,1649 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CookieKit 0.1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/RbnCore\n"
-"POT-Creation-Date: 2026-10-27 12:00+0000\n"
+"POT-Creation-Date: 2026-10-28 12:00+0000\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Domain: cookiekit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: cookiekit\n"
 
+#: includes/Cookies.php:120
+#, php-format
+msgid "%d days"
+msgstr "%d gün"
 
-#: includes/Admin.php:128
-msgid "Form tanınmadı; hiçbir ayar değişmedi."
-msgstr "Form tanınmadı; hiçbir ayar değişmedi."
-
-#: includes/Admin.php:144
-msgid "Süre 30 ile 395 gün arasında olmalı; değer düzeltildi."
-msgstr "Süre 30 ile 395 gün arasında olmalı; değer düzeltildi."
-
-#: includes/Admin.php:167
-msgid "Geçerli bir renk girin (örn. #0b5fff); eski değer korundu."
-msgstr "Geçerli bir renk girin (örn. #0b5fff); eski değer korundu."
-
-#: includes/Admin.php:183
-msgid "Adres “/” ile (site içi yol) ya da bu sitenin http(s) adresiyle başlamalı; eski değer korundu."
-msgstr "Adres “/” ile (site içi yol) ya da bu sitenin http(s) adresiyle başlamalı; eski değer korundu."
-
-#: includes/Admin.php:205 includes/Admin.php:278
-msgid "Bu işlem için yetkiniz yok."
-msgstr "Bu işlem için yetkiniz yok."
-
-#: includes/Admin.php:52
-msgid "Ayarlar"
-msgstr "Ayarlar"
-
-#: includes/AdminPage.php:105 includes/AdminPage.php:422
-msgid "— Seçin —"
-msgstr "— Seçin —"
-
-#: includes/AdminPage.php:127
-msgid "Bu sayfaya erişim yetkiniz yok."
-msgstr "Bu sayfaya erişim yetkiniz yok."
-
-#: includes/AdminPage.php:149 includes/AdminPage.php:308
-msgid "Kaydedilmemiş değişiklikler var"
-msgstr "Kaydedilmemiş değişiklikler var"
-
-#: includes/AdminPage.php:150
-msgid "Kopyalandı"
-msgstr "Kopyalandı"
-
-#: includes/AdminPage.php:151
-msgid "Seçildi — Ctrl+C ile kopyalayın"
-msgstr "Seçildi — Ctrl+C ile kopyalayın"
-
-#: includes/AdminPage.php:152 includes/AdminPage.php:551
-msgid "Kopyala"
-msgstr "Kopyala"
-
-#: includes/AdminPage.php:153
-msgid "Metin / zemin kontrastı"
-msgstr "Metin / zemin kontrastı"
-
-#: includes/AdminPage.php:154
-msgid "AA geçer"
-msgstr "AA geçer"
-
-#: includes/AdminPage.php:155
-msgid "AA için en az 4,5:1 gerekir"
-msgstr "AA için en az 4,5:1 gerekir"
-
-#: includes/AdminPage.php:156
-msgid "Kontrast hesaplanamadı: renkleri #rrggbb biçiminde girin."
-msgstr "Kontrast hesaplanamadı: renkleri #rrggbb biçiminde girin."
-
-#: includes/AdminPage.php:157
-msgid "Adım"
-msgstr "Adım"
-
-#: includes/AdminPage.php:158 includes/AdminPage.php:634
-msgid "Devam"
-msgstr "Devam"
-
-#: includes/AdminPage.php:159 includes/AdminPage.php:654
-msgid "Tercih panelini göster"
-msgstr "Tercih panelini göster"
-
-#: includes/AdminPage.php:160
-msgid "Banner’ı göster"
-msgstr "Banner’ı göster"
-
-#: includes/AdminPage.php:161 includes/AdminPage.php:633
-msgid "Analiz ve reklam çerezleri sorulur"
-msgstr "Analiz ve reklam çerezleri sorulur"
-
-#: includes/AdminPage.php:162
-msgid "Yalnız analiz çerezleri sorulur"
-msgstr "Yalnız analiz çerezleri sorulur"
-
-#: includes/AdminPage.php:163
-msgid "“%s” çerezi listeden kaldırılsın mı?"
-msgstr "“%s” çerezi listeden kaldırılsın mı?"
-
-#: includes/AdminPage.php:175
-msgid "Sürüm %s"
-msgstr "Sürüm %s"
-
-#: includes/AdminPage.php:177 includes/AdminPage.php:524
-msgid "Etkin"
-msgstr "Etkin"
-
-#: includes/AdminPage.php:179
-msgid "Kapalı — banner gösterilmiyor"
-msgstr "Kapalı — banner gösterilmiyor"
-
-#: includes/AdminPage.php:184 includes/AdminPage.php:486
-msgid "Banner’ı önizle"
-msgstr "Banner’ı önizle"
-
-#: includes/AdminPage.php:209
-msgid "Çerez listeye eklendi."
-msgstr "Çerez listeye eklendi."
-
-#: includes/AdminPage.php:210
-msgid "Çerez listeden kaldırıldı."
-msgstr "Çerez listeden kaldırıldı."
-
-#: includes/AdminPage.php:211
-msgid "Çerez eklenemedi: ad zorunlu, kategori geçerli olmalı."
-msgstr "Çerez eklenemedi: ad zorunlu, kategori geçerli olmalı."
-
-#: includes/AdminPage.php:212
-msgid "En çok 40 özel çerez eklenebilir."
-msgstr "En çok 40 özel çerez eklenebilir."
-
-#: includes/AdminPage.php:213
-msgid "Tüm onay kayıtları silindi."
-msgstr "Tüm onay kayıtları silindi."
-
-#: includes/AdminPage.php:214
-msgid "Onay kayıtları silinemedi: tablo okunamıyor."
-msgstr "Onay kayıtları silinemedi: tablo okunamıyor."
-
-#: includes/AdminPage.php:215
-msgid "Silme onaylanmadı: kutuya SİL yazmanız gerekir. Hiçbir kayıt silinmedi."
-msgstr "Silme onaylanmadı: kutuya SİL yazmanız gerekir. Hiçbir kayıt silinmedi."
-
-#: includes/AdminPage.php:228
-msgid "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
-msgid_plural "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
-msgstr[0] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
-msgstr[1] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
-
-#: includes/AdminPage.php:235
-msgid "Ayarlar kaydedildi."
-msgstr "Ayarlar kaydedildi."
-
-#: includes/AdminPage.php:235
-msgid "Önbellekli sayfa kullanıyorsanız önbelleği temizleyin."
-msgstr "Önbellekli sayfa kullanıyorsanız önbelleği temizleyin."
-
-#: includes/AdminPage.php:241 includes/AdminPage.php:336
-msgid "Onay geçerlilik süresi"
-msgstr "Onay geçerlilik süresi"
-
-#: includes/AdminPage.php:242
-msgid "Vurgu rengi"
-msgstr "Vurgu rengi"
-
-#: includes/AdminPage.php:243
-msgid "Zemin rengi"
-msgstr "Zemin rengi"
-
-#: includes/AdminPage.php:244
-msgid "Metin rengi"
-msgstr "Metin rengi"
-
-#: includes/AdminPage.php:245 includes/AdminPage.php:415
-msgid "Gizlilik Politikası"
-msgstr "Gizlilik Politikası"
-
-#: includes/AdminPage.php:246 includes/AdminPage.php:416
-msgid "Çerez Politikası"
-msgstr "Çerez Politikası"
-
-#: includes/AdminPage.php:259
-msgid "Toplam karar"
-msgstr "Toplam karar"
-
-#: includes/AdminPage.php:259
-msgid "son 30 gün"
-msgstr "son 30 gün"
-
-#: includes/AdminPage.php:260 includes/AdminPage.php:490
-msgid "Hepsini kabul"
-msgstr "Hepsini kabul"
-
-#: includes/AdminPage.php:260 includes/AdminPage.php:262
-msgid "%d karar"
+#: includes/AdminPage.php:264
+#: includes/AdminPage.php:266
+#, php-format
+msgid "%d decisions"
 msgstr "%d karar"
 
-#: includes/AdminPage.php:261 includes/AdminPage.php:491
-msgid "Reddet"
-msgstr "Reddet"
-
-#: includes/AdminPage.php:261
-msgid "%d karar · yalnız zorunlu"
+#: includes/AdminPage.php:265
+#, php-format
+msgid "%d decisions · necessary only"
 msgstr "%d karar · yalnız zorunlu"
 
-#: includes/AdminPage.php:262 includes/AdminPage.php:492
-msgid "Özel tercih"
-msgstr "Özel tercih"
+#: includes/AdminPage.php:385
+#, php-format
+msgid "%s colour picker"
+msgstr "%s rengi seçici"
 
-#: includes/AdminPage.php:265
-msgid "Onay kaydı tablosu okunamadı."
-msgstr "Onay kaydı tablosu okunamadı."
+#: includes/AdminPage.php:542
+msgid "(below)."
+msgstr "ile yükleyin (aşağıda)."
 
-#: includes/AdminPage.php:265
-msgid "Özet sayıları gösterilemiyor; ziyaretçi tarafı etkilenmez, banner çalışmaya devam eder."
-msgstr "Özet sayıları gösterilemiyor; ziyaretçi tarafı etkilenmez, banner çalışmaya devam eder."
+#: includes/AdminPage.php:606
+msgid "(opens in a new tab)"
+msgstr "(yeni sekmede açılır)"
 
-#: includes/AdminPage.php:265
-msgid "Yardım → Sorun giderme"
-msgstr "Yardım → Sorun giderme"
+#: includes/Cookies.php:127
+msgid "1 minute"
+msgstr "1 dakika"
 
-#: includes/AdminPage.php:265
-msgid "Tabloyu yeniden oluşturmak için eklentiyi kapatıp açın."
-msgstr "Tabloyu yeniden oluşturmak için eklentiyi kapatıp açın."
+#: includes/AdminPage.php:681
+#: includes/Cookies.php:121
+msgid "1 year"
+msgstr "1 yıl"
 
-#: includes/AdminPage.php:267
-msgid "Son 30 günün özeti"
-msgstr "Son 30 günün özeti"
+#: includes/Cookies.php:132
+#: includes/Cookies.php:133
+msgid "13 months"
+msgstr "13 ay"
 
-#: includes/AdminPage.php:27
-msgid "Genel"
-msgstr "Genel"
+#: includes/Cookies.php:130
+msgid "13 months in the EU/EEA and the UK, 24 months elsewhere"
+msgstr "AB/AEA ve İngiltere’de 13 ay, diğer yerlerde 24 ay"
 
-#: includes/AdminPage.php:271
-msgid "henüz karar yok"
-msgstr "henüz karar yok"
+#: includes/Cookies.php:131
+msgid "15 minutes"
+msgstr "15 dakika"
 
-#: includes/AdminPage.php:273
-msgid "okunamadı"
-msgstr "okunamadı"
+#: includes/Cookies.php:135
+msgid "2 weeks"
+msgstr "2 hafta"
 
-#: includes/AdminPage.php:279
-msgid "Karar dağılımı: yüzde %1$s kabul, yüzde %2$s reddet, yüzde %3$s özel tercih"
-msgstr "Karar dağılımı: yüzde %1$s kabul, yüzde %2$s reddet, yüzde %3$s özel tercih"
+#: includes/Cookies.php:124
+#: includes/Cookies.php:125
+msgid "2 years"
+msgstr "2 yıl"
 
-#: includes/AdminPage.php:28
-msgid "Görünüm"
-msgstr "Görünüm"
+#: includes/Cookies.php:126
+msgid "24 hours"
+msgstr "24 saat"
 
-#: includes/AdminPage.php:286
-msgid "CookieKit bölümleri"
-msgstr "CookieKit bölümleri"
+#: includes/Cookies.php:134
+msgid "6 months"
+msgstr "6 ay"
 
-#: includes/AdminPage.php:29
-msgid "Metinler"
-msgstr "Metinler"
+#: includes/Updater.php:307
+msgid "A KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log."
+msgstr "KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı."
 
-#: includes/AdminPage.php:30
-msgid "Çerezler"
-msgstr "Çerezler"
+#: includes/Updater.php:444
+#, php-format
+msgid "A new version is available: %s. Click “Update” on the Plugins page."
+msgstr "Yeni sürüm var: %s. Eklentiler sayfasından “Güncelle” deyin."
 
-#: includes/AdminPage.php:308 includes/AdminPage.php:664 includes/AdminPage.php:665 includes/AdminPage.php:666 includes/AdminPage.php:680
-msgid "Vazgeç"
-msgstr "Vazgeç"
+#: includes/AdminPage.php:419
+msgid "A path on this site (/privacy-policy/) or the full address of this site."
+msgstr "Site içi yol (/gizlilik-politikasi/) ya da bu sitenin tam adresi."
 
-#: includes/AdminPage.php:308
-msgid "Değişiklikleri kaydet"
-msgstr "Değişiklikleri kaydet"
+#: includes/AdminPage.php:155
+msgid "AA needs at least 4.5:1"
+msgstr "AA için en az 4,5:1 gerekir"
 
-#: includes/AdminPage.php:31
-msgid "Onay kayıtları"
-msgstr "Onay kayıtları"
+#: includes/AdminPage.php:378
+msgid "Accent"
+msgstr "Vurgu"
 
-#: includes/AdminPage.php:316 includes/AdminPage.php:643
-msgid "Canlı önizleme"
-msgstr "Canlı önizleme"
+#: includes/AdminPage.php:246
+msgid "Accent colour"
+msgstr "Vurgu rengi"
 
-#: includes/AdminPage.php:32
-msgid "Entegrasyon"
-msgstr "Entegrasyon"
+#: includes/Settings.php:50
+msgid "Accept"
+msgstr "Kabul et"
 
-#: includes/AdminPage.php:323
-msgid "Durum"
-msgstr "Durum"
+#: includes/AdminPage.php:264
+#: includes/AdminPage.php:494
+msgid "Accept all"
+msgstr "Hepsini kabul"
 
-#: includes/AdminPage.php:323
-msgid "Banner’ı tüm sitede açın ya da kapatın."
-msgstr "Banner’ı tüm sitede açın ya da kapatın."
+#: includes/AdminPage.php:404
+msgid "Accept and Reject keep equal visibility; only their text changes."
+msgstr "Kabul et ve Reddet eşit görünürlükte kalır; yalnız yazıları değişir."
 
-#: includes/AdminPage.php:324
-msgid "Çerez bandı"
-msgstr "Çerez bandı"
+#: includes/AdminPage.php:407
+msgid "Accept button"
+msgstr "Kabul düğmesi"
 
-#: includes/AdminPage.php:325
-msgid "Ziyaretçilere göster"
-msgstr "Ziyaretçilere göster"
+#: includes/AdminPage.php:450
+msgid "Action"
+msgstr "İşlem"
 
-#: includes/AdminPage.php:325
-msgid "Kapatınca banner ve Consent Mode betiği yayından kalkar."
-msgstr "Kapatınca banner ve Consent Mode betiği yayından kalkar."
+#: includes/AdminPage.php:642
+msgid "Activate and finish"
+msgstr "Etkinleştir ve bitir"
 
-#: includes/AdminPage.php:328
-msgid "Çerez kategorileri"
-msgstr "Çerez kategorileri"
+#: includes/AdminPage.php:177
+#: includes/AdminPage.php:528
+msgid "Active"
+msgstr "Etkin"
 
-#: includes/AdminPage.php:328
-msgid "Ziyaretçiden hangi kategoriler için izin istenecek? Kullanmadığınız kategoriyi kapatın."
-msgstr "Ziyaretçiden hangi kategoriler için izin istenecek? Kullanmadığınız kategoriyi kapatın."
+#: includes/AdminPage.php:449
+#: includes/AdminPage.php:462
+#: includes/AdminPage.php:675
+msgid "Add cookie"
+msgstr "Çerez ekle"
 
-#: includes/AdminPage.php:33
-msgid "Yardım"
-msgstr "Yardım"
+#: includes/AdminPage.php:688
+msgid "Add the cookie"
+msgstr "Çerezi ekle"
 
-#: includes/AdminPage.php:330 includes/AdminPage.php:497 includes/AdminPage.php:675
-msgid "Zorunlu"
-msgstr "Zorunlu"
-
-#: includes/AdminPage.php:330
-msgid "Her zaman açık"
-msgstr "Her zaman açık"
-
-#: includes/AdminPage.php:330
-msgid "Sitenin çalışması ve tercihin hatırlanması için gerekir; kapatılamaz."
-msgstr "Sitenin çalışması ve tercihin hatırlanması için gerekir; kapatılamaz."
-
-#: includes/AdminPage.php:331 includes/AdminPage.php:499 includes/AdminPage.php:675
-msgid "Analiz"
-msgstr "Analiz"
-
-#: includes/AdminPage.php:331
-msgid "Analiz çerezlerini sor"
-msgstr "Analiz çerezlerini sor"
-
-#: includes/AdminPage.php:331
-msgid "Google Analytics gibi ölçüm araçları için."
-msgstr "Google Analytics gibi ölçüm araçları için."
-
-#: includes/AdminPage.php:332 includes/AdminPage.php:502 includes/AdminPage.php:675
-msgid "Reklam"
+#: includes/AdminPage.php:336
+#: includes/AdminPage.php:506
+#: includes/AdminPage.php:683
+msgid "Advertising"
 msgstr "Reklam"
 
-#: includes/AdminPage.php:332
-msgid "Reklam çerezlerini sor"
+#: includes/Cookies.php:130
+#: includes/Cookies.php:132
+#: includes/Cookies.php:133
+msgid "Advertising and security."
+msgstr "Reklam ve güvenlik."
+
+#: includes/AdminPage.php:542
+msgid "Advertising category"
+msgstr "Reklam kategorisi"
+
+#: includes/Cookies.php:52
+msgid "Advertising cookies"
+msgstr "Reklam çerezleri"
+
+#: includes/AdminPage.php:213
+msgid "All consent records were deleted."
+msgstr "Tüm onay kayıtları silindi."
+
+#: includes/AdminPage.php:498
+msgid "Allowed"
+msgstr "İzin verilen"
+
+#: includes/AdminPage.php:347
+msgid "Also delete the settings and the consent log"
+msgstr "Ayarları ve onay kaydını da sil"
+
+#: includes/AdminPage.php:334
+#: includes/Frontend.php:81
+msgid "Always on"
+msgstr "Her zaman açık"
+
+#: includes/AdminPage.php:335
+#: includes/AdminPage.php:503
+#: includes/AdminPage.php:683
+msgid "Analytics"
+msgstr "Analiz"
+
+#: includes/AdminPage.php:630
+msgid "Analytics + Advertising"
+msgstr "Analiz + Reklam"
+
+#: includes/AdminPage.php:161
+#: includes/AdminPage.php:641
+msgid "Analytics and ad cookies are asked about"
+msgstr "Analiz ve reklam çerezleri sorulur"
+
+#: includes/Cookies.php:43
+msgid "Analytics cookies"
+msgstr "Analiz çerezleri"
+
+#: includes/AdminPage.php:631
+msgid "Analytics only"
+msgstr "Yalnız Analiz"
+
+#: includes/AdminPage.php:28
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: includes/AdminPage.php:587
+msgid "Appearance → fit the banner to its surroundings; General → turn on “Show to visitors”."
+msgstr "Görünüm → banner’ı çevresine uydurun; Genel → “Ziyaretçilere göster”i açın."
+
+#: includes/AdminPage.php:336
+msgid "Ask about advertising cookies"
 msgstr "Reklam çerezlerini sor"
 
+#: includes/AdminPage.php:335
+msgid "Ask about analytics cookies"
+msgstr "Analiz çerezlerini sor"
+
+#: includes/AdminPage.php:407
+#: includes/AdminPage.php:408
+msgid "At most 30 characters."
+msgstr "En çok 30 karakter."
+
+#: includes/AdminPage.php:212
+msgid "At most 40 custom cookies can be added."
+msgstr "En çok 40 özel çerez eklenebilir."
+
+#: includes/AdminPage.php:402
+msgid "At most 500 characters. Say which cookies are used and why."
+msgstr "En çok 500 karakter. Hangi çerezlerin neden kullanıldığını söyleyin."
+
+#: includes/AdminPage.php:401
+msgid "At most 80 characters."
+msgstr "En çok 80 karakter."
+
+#: includes/Updater.php:454
+msgid "Automatic updates"
+msgstr "Otomatik güncelleme"
+
+#: includes/AdminPage.php:642
+msgid "Back"
+msgstr "Geri"
+
+#: includes/AdminPage.php:379
+msgid "Background"
+msgstr "Zemin"
+
+#: includes/AdminPage.php:247
+msgid "Background colour"
+msgstr "Zemin rengi"
+
+#: includes/AdminPage.php:365
+msgid "Banner position"
+msgstr "Banner konumu"
+
+#: includes/AdminPage.php:661
+#: includes/AdminPage.php:671
+msgid "Banner preview"
+msgstr "Banner önizlemesi"
+
+#: includes/AdminPage.php:400
+msgid "Banner text"
+msgstr "Banner metni"
+
+#: includes/AdminPage.php:340
+msgid "Between 30 and 395 days. Default 180."
+msgstr "30–395 gün arası. Varsayılan 180."
+
+#: includes/AdminPage.php:357
+msgid "Bottom centre"
+msgstr "Alt orta"
+
+#: includes/AdminPage.php:356
+msgid "Bottom left"
+msgstr "Alt sol"
+
+#: includes/AdminPage.php:358
+msgid "Bottom right"
+msgstr "Alt sağ"
+
+#: includes/AdminPage.php:359
+msgid "Box in the centre"
+msgstr "Ortada kutu"
+
+#: includes/AdminPage.php:454
+msgid "Built-in"
+msgstr "Yerleşik"
+
+#: includes/AdminPage.php:464
+msgid "Built-in rows are only cookies documented in the Google cookie reference; they cannot be changed. If you add a new cookie, consider turning on General → “Re-consent”."
+msgstr "Yerleşik satırlar yalnız Google çerez referansında belgelenmiş çerezlerdir; değiştirilemez. Yeni çerez eklerseniz Genel → “Yeniden onay”ı açmayı düşünün."
+
+#: includes/AdminPage.php:404
+msgid "Button labels"
+msgstr "Düğme etiketleri"
+
+#: includes/AdminPage.php:312
+#: includes/AdminPage.php:672
+#: includes/AdminPage.php:673
+#: includes/AdminPage.php:674
+#: includes/AdminPage.php:688
+msgid "Cancel"
+msgstr "Vazgeç"
+
+#: includes/AdminPage.php:683
+msgid "Category"
+msgstr "Kategori"
+
+#: includes/Updater.php:458
+msgid "Check now"
+msgstr "Şimdi kontrol et"
+
+#: includes/AdminPage.php:538
+msgid "Checked so that two plugins do not load the same tag."
+msgstr "Aynı etiketi iki eklenti yüklemesin diye kontrol edilir."
+
+#: includes/AdminPage.php:587
+msgid "Choose the categories"
+msgstr "Kategorileri seçin"
+
+#: includes/AdminPage.php:637
+msgid "Choose your policy pages"
+msgstr "Politika sayfalarınızı seçin"
+
+#: includes/AdminPage.php:591
+msgid "Clear your cache plugin and open the site in a logged-out (private window) browser. If you decided earlier, the banner will not appear again: raise the revision with General → Re-consent."
+msgstr "Önbellek eklentinizi temizleyin ve siteyi giriş yapmamış (gizli pencere) bir tarayıcıda açın. Daha önce karar verdiyseniz banner tekrar çıkmaz: Genel → Yeniden onay ile revizyonu artırın."
+
+#: includes/AdminPage.php:671
+#: includes/Frontend.php:76
+msgid "Close"
+msgstr "Kapat"
+
+#: includes/AdminPage.php:372
+msgid "Colour source"
+msgstr "Renk kaynağı"
+
+#: includes/AdminPage.php:371
+msgid "Colours"
+msgstr "Renkler"
+
+#: includes/AdminPage.php:478
+msgid "Consent decisions"
+msgstr "Onay kararları"
+
+#: includes/AdminPage.php:641
+msgid "Consent decisions are not recorded (log is off)"
+msgstr "Onay kararları kaydedilmez (günlük kapalı)"
+
+#: includes/AdminPage.php:641
+msgid "Consent decisions are recorded (the raw IP is not stored)"
+msgstr "Onay kararları kaydedilir (ham IP saklanmaz)"
+
+#: includes/AdminPage.php:339
+msgid "Consent duration and re-consent"
+msgstr "Onay süresi ve yeniden onay"
+
+#: includes/AdminPage.php:31
+msgid "Consent log"
+msgstr "Onay kayıtları"
+
+#: includes/AdminPage.php:498
+msgid "Consent log table"
+msgstr "Onay kaydı tablosu"
+
+#: includes/AdminPage.php:346
+msgid "Consent logging"
+msgstr "Onay kaydı"
+
+#: includes/AdminPage.php:214
+msgid "Consent records could not be deleted: the table cannot be read."
+msgstr "Onay kayıtları silinemedi: tablo okunamıyor."
+
+#: includes/AdminPage.php:245
+#: includes/AdminPage.php:340
+msgid "Consent validity period"
+msgstr "Onay geçerlilik süresi"
+
+#: includes/AdminPage.php:158
+#: includes/AdminPage.php:642
+msgid "Continue"
+msgstr "Devam"
+
+#: includes/AdminPage.php:156
+msgid "Contrast could not be calculated: enter the colours in #rrggbb format."
+msgstr "Kontrast hesaplanamadı: renkleri #rrggbb biçiminde girin."
+
+#: includes/AdminPage.php:450
+#: includes/Frontend.php:152
+msgid "Cookie"
+msgstr "Çerez"
+
+#: includes/AdminPage.php:250
+#: includes/AdminPage.php:420
+#: includes/Frontend.php:79
+msgid "Cookie Policy"
+msgstr "Çerez Politikası"
+
+#: includes/AdminPage.php:639
+msgid "Cookie Policy page"
+msgstr "Çerez Politikası sayfası"
+
+#: includes/Updater.php:297
+msgid "Cookie and Consent Manager"
+msgstr "Çerez ve Onay Yöneticisi"
+
+#: includes/AdminPage.php:328
+msgid "Cookie banner"
+msgstr "Çerez bandı"
+
 #: includes/AdminPage.php:332
-msgid "AdSense ve Google reklam ortakları için. Sitede reklam yoksa kapatın."
+msgid "Cookie categories"
+msgstr "Çerez kategorileri"
+
+#: includes/AdminPage.php:448
+msgid "Cookie list"
+msgstr "Çerez listesi"
+
+#: includes/AdminPage.php:678
+msgid "Cookie name"
+msgstr "Çerez adı"
+
+#: includes/Frontend.php:77
+msgid "Cookie preferences"
+msgstr "Çerez tercihleri"
+
+#: includes/AdminPage.php:549
+msgid "Cookie settings"
+msgstr "Çerez ayarları"
+
+#: includes/AdminPage.php:450
+msgid "Cookie table"
+msgstr "Çerez tablosu"
+
+#: includes/AdminPage.php:548
+msgid "Cookie table (for the Cookie Policy page)"
+msgstr "Çerez tablosu (Çerez Politikası sayfasına)"
+
+#: includes/AdminPage.php:290
+msgid "CookieKit sections"
+msgstr "CookieKit bölümleri"
+
+#: cookiekit.php:3
+msgctxt "Plugin Name of the plugin"
+msgid "CookieKit — Cookie and Consent Manager"
+msgstr "CookieKit — Çerez ve Onay Yöneticisi"
+
+#: includes/AdminPage.php:30
+#: includes/Frontend.php:80
+msgid "Cookies"
+msgstr "Çerezler"
+
+#: includes/Admin.php:63
+#: includes/Admin.php:64
+msgid "Cookies and Consent"
+msgstr "Çerez ve Onay"
+
+#: includes/AdminPage.php:450
+msgid "Cookies by category"
+msgstr "Kategoriye göre çerezler"
+
+#: includes/AdminPage.php:594
+msgid "Cookies tab → “Add cookie”. The cookie you add appears in the preferences panel and in the table on the policy page."
+msgstr "Çerezler sekmesi → “Çerez ekle”. Eklediğiniz çerez tercih panelinde ve politika sayfasındaki tabloda görünür."
+
+#: includes/AdminPage.php:150
+msgid "Copied"
+msgstr "Kopyalandı"
+
+#: includes/AdminPage.php:152
+#: includes/AdminPage.php:555
+msgid "Copy"
+msgstr "Kopyala"
+
+#: includes/AdminPage.php:545
+msgid "Copy and paste into your page, theme or button."
+msgstr "Kopyalayıp sayfanıza, temanıza ya da düğmenize yapıştırın."
+
+#: includes/Updater.php:441
+msgid "Could not check; it will be tried again later. The plugin works normally."
+msgstr "Kontrol edilemedi; daha sonra tekrar denenecek. Eklenti normal çalışır."
+
+#: includes/AdminPage.php:339
+#, php-format
+msgid "Current revision: %s. When the revision changes, all visitors are asked for consent again."
+msgstr "Geçerli revizyon: %s. Revizyon değişince tüm ziyaretçilerden yeniden onay istenir."
+
+#: includes/AdminPage.php:457
+msgid "Custom"
+msgstr "Özel"
+
+#: includes/AdminPage.php:266
+#: includes/AdminPage.php:496
+msgid "Custom choice"
+msgstr "Özel tercih"
+
+#: includes/AdminPage.php:374
+#: includes/AdminPage.php:376
+msgid "Custom colours"
+msgstr "Özel renkler"
+
+#: includes/Admin.php:296
+#: includes/AdminPage.php:164
+msgid "DELETE"
+msgstr "SİL"
+
+#: includes/AdminPage.php:658
+msgid "Dark"
+msgstr "Koyu"
+
+#: includes/AdminPage.php:498
+msgid "Decision"
+msgstr "Karar"
+
+#: includes/AdminPage.php:283
+#, php-format
+msgid "Decision breakdown: %1$s percent accept, %2$s percent reject, %3$s percent custom choice"
+msgstr "Karar dağılımı: yüzde %1$s kabul, yüzde %2$s reddet, yüzde %3$s özel tercih"
+
+#: includes/AdminPage.php:531
+msgid "Default: denied"
+msgstr "Varsayılan: reddedildi"
+
+#: includes/AdminPage.php:673
+msgid "Delete all consent records?"
+msgstr "Tüm onay kayıtları silinsin mi?"
+
+#: includes/AdminPage.php:673
+msgid "Delete all records"
+msgstr "Tüm kayıtları sil"
+
+#: includes/AdminPage.php:482
+msgid "Delete records"
+msgstr "Kayıtları sil"
+
+#: includes/AdminPage.php:219
+msgid "Deletion was not confirmed: you must type DELETE in the box. No record was deleted."
+msgstr "Silme onaylanmadı: kutuya SİL yazmanız gerekir. Hiçbir kayıt silinmedi."
+
+#: includes/AdminPage.php:402
+msgid "Description"
+msgstr "Açıklama"
+
+#: includes/AdminPage.php:654
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: includes/AdminPage.php:540
+#: includes/AdminPage.php:541
+msgid "Detected"
+msgstr "Algılandı"
+
+#: includes/AdminPage.php:538
+msgid "Detected plugins"
+msgstr "Algılanan eklentiler"
+
+#: includes/AdminPage.php:540
+msgid "Detected. Analytics and AdSense tags are restricted by Consent Mode until consent is given."
+msgstr "Algılandı. Analytics ve AdSense etiketleri onay verilene kadar Consent Mode ile kısıtlanır."
+
+#: includes/AdminPage.php:541
+msgid "Detected. If the Analytics tag is not tied to consent, load the script with cookiekit_script()."
+msgstr "Algılandı. Analytics etiketi onaya bağlanmıyorsa betiği cookiekit_script() ile yükleyin."
+
+#: includes/AdminPage.php:653
+msgid "Device"
+msgstr "Cihaz"
+
+#: includes/AdminPage.php:595
+msgid "Does it conflict with another plugin?"
+msgstr "Başka bir eklentiyle çakışır mı?"
+
+#: includes/AdminPage.php:662
+msgid "Drawn with the real banner style; the site does not change until you save."
+msgstr "Gerçek banner stiliyle çizilir; kaydedene kadar sitede değişmez."
+
+#: includes/AdminPage.php:450
+#: includes/AdminPage.php:681
+#: includes/Frontend.php:152
+msgid "Duration"
+msgstr "Süre"
+
+#: includes/Admin.php:195
+msgid "Enter a valid colour (e.g. #0b5fff); the old value was kept."
+msgstr "Geçerli bir renk girin (örn. #0b5fff); eski değer korundu."
+
+#: includes/Cookies.php:34
+msgid "Essential cookies"
+msgstr "Zorunlu çerezler"
+
+#: includes/AdminPage.php:480
+msgid "Export CSV"
+msgstr "CSV dışa aktar"
+
+#: readme.txt:4
+msgctxt "Release note"
+msgid "First release."
+msgstr "İlk sürüm."
+
+#: includes/AdminPage.php:336
+msgid "For AdSense and Google advertising partners. Turn off if the site has no ads."
 msgstr "AdSense ve Google reklam ortakları için. Sitede reklam yoksa kapatın."
 
 #: includes/AdminPage.php:335
-msgid "Onay süresi ve yeniden onay"
-msgstr "Onay süresi ve yeniden onay"
+msgid "For measurement tools such as Google Analytics."
+msgstr "Google Analytics gibi ölçüm araçları için."
 
-#: includes/AdminPage.php:335
-msgid "Geçerli revizyon: %s. Revizyon değişince tüm ziyaretçilerden yeniden onay istenir."
-msgstr "Geçerli revizyon: %s. Revizyon değişince tüm ziyaretçilerden yeniden onay istenir."
+#: includes/AdminPage.php:589
+msgid "Frequently asked questions"
+msgstr "Sık sorulanlar"
 
-#: includes/AdminPage.php:336
-msgid "30–395 gün arası. Varsayılan 180."
-msgstr "30–395 gün arası. Varsayılan 180."
-
-#: includes/AdminPage.php:337
-msgid "gün"
-msgstr "gün"
-
-#: includes/AdminPage.php:338
-msgid "Yeniden onay"
-msgstr "Yeniden onay"
-
-#: includes/AdminPage.php:338
-msgid "Kaydederken revizyonu artır"
-msgstr "Kaydederken revizyonu artır"
-
-#: includes/AdminPage.php:338
-msgid "Kategori ya da çerez listesini değiştirdiyseniz açın. Önbellek kullanıyorsanız ardından temizleyin."
-msgstr "Kategori ya da çerez listesini değiştirdiyseniz açın. Önbellek kullanıyorsanız ardından temizleyin."
-
-#: includes/AdminPage.php:341
-msgid "Kayıt ve veri"
-msgstr "Kayıt ve veri"
-
-#: includes/AdminPage.php:341
-msgid "KVKK ispatı için onay kararlarını saklayın. Ham IP kaydedilmez, 12 ay sonra otomatik silinir."
-msgstr "KVKK ispatı için onay kararlarını saklayın. Ham IP kaydedilmez, 12 ay sonra otomatik silinir."
-
-#: includes/AdminPage.php:342
-msgid "Onay kaydı"
-msgstr "Onay kaydı"
-
-#: includes/AdminPage.php:342
-msgid "Onay kararlarını kaydet"
-msgstr "Onay kararlarını kaydet"
-
-#: includes/AdminPage.php:342
-msgid "Karar, kategori, sayfa ve günlük dönen tuzla özetlenmiş IP saklanır."
-msgstr "Karar, kategori, sayfa ve günlük dönen tuzla özetlenmiş IP saklanır."
-
-#: includes/AdminPage.php:343
-msgid "Eklenti silinirken"
-msgstr "Eklenti silinirken"
-
-#: includes/AdminPage.php:343
-msgid "Ayarları ve onay kaydını da sil"
-msgstr "Ayarları ve onay kaydını da sil"
-
-#: includes/AdminPage.php:343
-msgid "Açıksa eklentiyi silmek ayarları, özel çerezleri ve kayıt tablosunu geri alınamaz biçimde kaldırır."
-msgstr "Açıksa eklentiyi silmek ayarları, özel çerezleri ve kayıt tablosunu geri alınamaz biçimde kaldırır."
-
-#: includes/AdminPage.php:352
-msgid "Alt sol"
-msgstr "Alt sol"
-
-#: includes/AdminPage.php:353
-msgid "Alt orta"
-msgstr "Alt orta"
-
-#: includes/AdminPage.php:353
-msgid "Tam genişlik"
+#: includes/AdminPage.php:357
+msgid "Full width"
 msgstr "Tam genişlik"
 
-#: includes/AdminPage.php:354
-msgid "Alt sağ"
-msgstr "Alt sağ"
+#: includes/Cookies.php:131
+msgid "Functionality (per the Google cookie reference)."
+msgstr "İşlevsellik (Google çerez referansına göre)."
 
-#: includes/AdminPage.php:355
-msgid "Ortada kutu"
-msgstr "Ortada kutu"
+#: includes/AdminPage.php:27
+msgid "General"
+msgstr "Genel"
 
-#: includes/AdminPage.php:360
-msgid "Konum"
-msgstr "Konum"
-
-#: includes/AdminPage.php:360
-msgid "Banner ekranın neresinde görünsün? Önizleme anında güncellenir."
-msgstr "Banner ekranın neresinde görünsün? Önizleme anında güncellenir."
-
-#: includes/AdminPage.php:361
-msgid "Banner konumu"
-msgstr "Banner konumu"
-
-#: includes/AdminPage.php:365
-msgid "Telefonda (640 px altı) banner her zaman alt tam genişlik olur."
-msgstr "Telefonda (640 px altı) banner her zaman alt tam genişlik olur."
-
-#: includes/AdminPage.php:367
-msgid "Renkler"
-msgstr "Renkler"
-
-#: includes/AdminPage.php:367
-msgid "Temanızla uyumlu kalmak için varsayılan olarak tema renkleri kullanılır."
-msgstr "Temanızla uyumlu kalmak için varsayılan olarak tema renkleri kullanılır."
-
-#: includes/AdminPage.php:368
-msgid "Renk kaynağı"
-msgstr "Renk kaynağı"
-
-#: includes/AdminPage.php:369
-msgid "Tema renkleri"
-msgstr "Tema renkleri"
-
-#: includes/AdminPage.php:370 includes/AdminPage.php:372
-msgid "Özel renkler"
-msgstr "Özel renkler"
-
-#: includes/AdminPage.php:371
-msgid "“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu varsayılan kullanılır (üç renk alanı boş kalır)."
-msgstr "“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu varsayılan kullanılır (üç renk alanı boş kalır)."
-
-#: includes/AdminPage.php:372
-msgid "Metin ve zemin arasındaki kontrast en az 4,5:1 olmalı."
-msgstr "Metin ve zemin arasındaki kontrast en az 4,5:1 olmalı."
-
-#: includes/AdminPage.php:374
-msgid "Vurgu"
-msgstr "Vurgu"
-
-#: includes/AdminPage.php:375
-msgid "Zemin"
-msgstr "Zemin"
-
-#: includes/AdminPage.php:376
-msgid "Metin"
-msgstr "Metin"
-
-#: includes/AdminPage.php:381
-msgid "%s rengi seçici"
-msgstr "%s rengi seçici"
-
-#: includes/AdminPage.php:384
-msgid "Metin / zemin kontrastı: —"
-msgstr "Metin / zemin kontrastı: —"
-
-#: includes/AdminPage.php:396
-msgid "Banner metni"
-msgstr "Banner metni"
-
-#: includes/AdminPage.php:396
-msgid "Kısa ve net yazın: ziyaretçi ne istendiğini tek bakışta anlamalı."
-msgstr "Kısa ve net yazın: ziyaretçi ne istendiğini tek bakışta anlamalı."
-
-#: includes/AdminPage.php:397
-msgid "Başlık"
-msgstr "Başlık"
-
-#: includes/AdminPage.php:397
-msgid "En çok 80 karakter."
-msgstr "En çok 80 karakter."
-
-#: includes/AdminPage.php:398
-msgid "Açıklama"
-msgstr "Açıklama"
-
-#: includes/AdminPage.php:398
-msgid "En çok 500 karakter. Hangi çerezlerin neden kullanıldığını söyleyin."
-msgstr "En çok 500 karakter. Hangi çerezlerin neden kullanıldığını söyleyin."
-
-#: includes/AdminPage.php:400
-msgid "Düğme etiketleri"
-msgstr "Düğme etiketleri"
-
-#: includes/AdminPage.php:400
-msgid "Kabul et ve Reddet eşit görünürlükte kalır; yalnız yazıları değişir."
-msgstr "Kabul et ve Reddet eşit görünürlükte kalır; yalnız yazıları değişir."
-
-#: includes/AdminPage.php:403
-msgid "Kabul düğmesi"
-msgstr "Kabul düğmesi"
-
-#: includes/AdminPage.php:403 includes/AdminPage.php:404
-msgid "En çok 30 karakter."
-msgstr "En çok 30 karakter."
-
-#: includes/AdminPage.php:404
-msgid "Red düğmesi"
-msgstr "Red düğmesi"
-
-#: includes/AdminPage.php:405
-msgid "Tercihler düğmesi"
-msgstr "Tercihler düğmesi"
-
-#: includes/AdminPage.php:405
-msgid "Kategori panelini açar. En çok 30 karakter."
-msgstr "Kategori panelini açar. En çok 30 karakter."
-
-#: includes/AdminPage.php:406
-msgid "Seçimi kaydet düğmesi"
-msgstr "Seçimi kaydet düğmesi"
-
-#: includes/AdminPage.php:406
-msgid "Panelin altındaki düğme. En çok 40 karakter."
-msgstr "Panelin altındaki düğme. En çok 40 karakter."
-
-#: includes/AdminPage.php:412
-msgid "Politika bağlantıları"
-msgstr "Politika bağlantıları"
-
-#: includes/AdminPage.php:412
-msgid "Banner ve tercih paneli bu sayfalara bağlanır. Boş bırakırsanız bağlantı gösterilmez."
-msgstr "Banner ve tercih paneli bu sayfalara bağlanır. Boş bırakırsanız bağlantı gösterilmez."
-
-#: includes/AdminPage.php:415
-msgid "Site içi yol (/gizlilik-politikasi/) ya da bu sitenin tam adresi."
-msgstr "Site içi yol (/gizlilik-politikasi/) ya da bu sitenin tam adresi."
-
-#: includes/AdminPage.php:416
-msgid "Çerez tablosu için [cookiekit_cerez_listesi] kullanan sayfa."
-msgstr "Çerez tablosu için [cookiekit_cerez_listesi] kullanan sayfa."
-
-#: includes/AdminPage.php:421
-msgid "Sayfa listesinden seç"
-msgstr "Sayfa listesinden seç"
-
-#: includes/AdminPage.php:422
-msgid "Sayfa listesinden seç…"
-msgstr "Sayfa listesinden seç…"
-
-#: includes/AdminPage.php:426
-msgid "Metinleri varsayılana sıfırla"
-msgstr "Metinleri varsayılana sıfırla"
-
-#: includes/AdminPage.php:444
-msgid "Çerez listesi"
-msgstr "Çerez listesi"
-
-#: includes/AdminPage.php:445
-msgid "Tercih panelinde ve [cookiekit_cerez_listesi] kısa kodunda gösterilir. Yalnız sitenizde gerçekten kurulanları listeleyin."
-msgstr "Tercih panelinde ve [cookiekit_cerez_listesi] kısa kodunda gösterilir. Yalnız sitenizde gerçekten kurulanları listeleyin."
-
-#: includes/AdminPage.php:445 includes/AdminPage.php:458 includes/AdminPage.php:667
-msgid "Çerez ekle"
-msgstr "Çerez ekle"
-
-#: includes/AdminPage.php:446
-msgid "Çerez tablosu"
-msgstr "Çerez tablosu"
-
-#: includes/AdminPage.php:446
-msgid "Kategoriye göre çerezler"
-msgstr "Kategoriye göre çerezler"
-
-#: includes/AdminPage.php:446
-msgid "Çerez"
-msgstr "Çerez"
-
-#: includes/AdminPage.php:446 includes/AdminPage.php:671
-msgid "Sağlayıcı"
-msgstr "Sağlayıcı"
-
-#: includes/AdminPage.php:446 includes/AdminPage.php:672
-msgid "Amaç"
-msgstr "Amaç"
-
-#: includes/AdminPage.php:446 includes/AdminPage.php:673
-msgid "Süre"
-msgstr "Süre"
-
-#: includes/AdminPage.php:446 includes/AdminPage.php:601
-msgid "Kaynak"
-msgstr "Kaynak"
-
-#: includes/AdminPage.php:446
-msgid "İşlem"
-msgstr "İşlem"
-
-#: includes/AdminPage.php:450
-msgid "Yerleşik"
-msgstr "Yerleşik"
-
-#: includes/AdminPage.php:453
-msgid "Özel"
-msgstr "Özel"
-
-#: includes/AdminPage.php:453
-msgid "Kaldır"
-msgstr "Kaldır"
-
-#: includes/AdminPage.php:458
-msgid "Özel çerez eklenmedi"
-msgstr "Özel çerez eklenmedi"
-
-#: includes/AdminPage.php:458
-msgid "Yukarıdaki yerleşik liste Google ve WordPress çerezlerini kapsar. Sitenize özel bir çerez kuruyorsanız ekleyin; ziyaretçi paneli ve politika sayfası otomatik güncellenir."
-msgstr "Yukarıdaki yerleşik liste Google ve WordPress çerezlerini kapsar. Sitenize özel bir çerez kuruyorsanız ekleyin; ziyaretçi paneli ve politika sayfası otomatik güncellenir."
-
-#: includes/AdminPage.php:460
-msgid "Yerleşik satırlar yalnız Google çerez referansında belgelenmiş çerezlerdir; değiştirilemez. Yeni çerez eklerseniz Genel → “Yeniden onay”ı açmayı düşünün."
-msgstr "Yerleşik satırlar yalnız Google çerez referansında belgelenmiş çerezlerdir; değiştirilemez. Yeni çerez eklerseniz Genel → “Yeniden onay”ı açmayı düşünün."
-
-#: includes/AdminPage.php:472
-msgid "Onay kaydı kapalı."
-msgstr "Onay kaydı kapalı."
-
-#: includes/AdminPage.php:472
-msgid "Yeni kararlar saklanmıyor; KVKK ispatı için"
-msgstr "Yeni kararlar saklanmıyor; KVKK ispatı için"
-
-#: includes/AdminPage.php:472
-msgid "Genel → Kayıt ve veri"
+#: includes/AdminPage.php:476
+msgid "General → Records and data"
 msgstr "Genel → Kayıt ve veri"
 
-#: includes/AdminPage.php:472
-msgid "bölümünden açın."
-msgstr "bölümünden açın."
+#: includes/AdminPage.php:587
+msgid "General → leave on only the categories you use (turn off advertising if there are no ads)."
+msgstr "Genel → yalnız kullandığınız kategorileri açık bırakın (reklam yoksa kapatın)."
 
-#: includes/AdminPage.php:474
-msgid "Onay kararları"
-msgstr "Onay kararları"
-
-#: includes/AdminPage.php:476
-msgid "Kayıtlar 12 ay sonra otomatik silinir. Ham IP saklanmaz; yalnız günlük dönen tuzla özet tutulur."
-msgstr "Kayıtlar 12 ay sonra otomatik silinir. Ham IP saklanmaz; yalnız günlük dönen tuzla özet tutulur."
-
-#: includes/AdminPage.php:476
-msgid "CSV dışa aktar"
-msgstr "CSV dışa aktar"
-
-#: includes/AdminPage.php:478
-msgid "Kayıtları sil"
-msgstr "Kayıtları sil"
-
-#: includes/AdminPage.php:482
-msgid "Kayıtlar gösterilemiyor"
-msgstr "Kayıtlar gösterilemiyor"
-
-#: includes/AdminPage.php:482
-msgid "Onay kaydı tablosu okunamadı. Ziyaretçi tarafı etkilenmez; kayıt yazma da duraklamış olabilir."
-msgstr "Onay kaydı tablosu okunamadı. Ziyaretçi tarafı etkilenmez; kayıt yazma da duraklamış olabilir."
-
-#: includes/AdminPage.php:486
-msgid "Henüz onay kararı yok"
-msgstr "Henüz onay kararı yok"
-
-#: includes/AdminPage.php:486
-msgid "Bir ziyaretçi bannerda seçim yapınca burada görünür. Yeni kurduysanız, çıkış yapmış bir tarayıcıda siteyi açıp bannerı deneyin."
-msgstr "Bir ziyaretçi bannerda seçim yapınca burada görünür. Yeni kurduysanız, çıkış yapmış bir tarayıcıda siteyi açıp bannerı deneyin."
-
-#: includes/AdminPage.php:494
-msgid "Onay kaydı tablosu"
-msgstr "Onay kaydı tablosu"
-
-#: includes/AdminPage.php:494
-msgid "Son onay kararları"
-msgstr "Son onay kararları"
-
-#: includes/AdminPage.php:494
-msgid "Zaman"
-msgstr "Zaman"
-
-#: includes/AdminPage.php:494
-msgid "Karar"
-msgstr "Karar"
-
-#: includes/AdminPage.php:494
-msgid "İzin verilen"
-msgstr "İzin verilen"
-
-#: includes/AdminPage.php:494
-msgid "Rev."
-msgstr "Rev."
-
-#: includes/AdminPage.php:494
-msgid "Sayfa"
-msgstr "Sayfa"
-
-#: includes/AdminPage.php:494
-msgid "IP özeti"
-msgstr "IP özeti"
-
-#: includes/AdminPage.php:511
-msgid "%1$d kayıttan %2$d–%3$d gösteriliyor"
-msgstr "%1$d kayıttan %2$d–%3$d gösteriliyor"
-
-#: includes/AdminPage.php:512
-msgid "Önceki"
-msgstr "Önceki"
-
-#: includes/AdminPage.php:513
-msgid "Sonraki"
-msgstr "Sonraki"
-
-#: includes/AdminPage.php:524 includes/AdminPage.php:538
-msgid "Kapalı"
-msgstr "Kapalı"
-
-#: includes/AdminPage.php:525
+#: includes/AdminPage.php:529
 msgid "Google Consent Mode v2"
 msgstr "Google Consent Mode v2"
 
-#: includes/AdminPage.php:525
-msgid "Ayar gerekmez; eklenti sayfa başında otomatik çalışır. Durum bilgi amaçlıdır."
-msgstr "Ayar gerekmez; eklenti sayfa başında otomatik çalışır. Durum bilgi amaçlıdır."
+#: includes/AdminPage.php:641
+msgid "Google Consent Mode v2: default “denied”"
+msgstr "Google Consent Mode v2: varsayılan “reddedildi”"
 
-#: includes/AdminPage.php:527
-msgid "Varsayılan: reddedildi"
-msgstr "Varsayılan: reddedildi"
-
-#: includes/AdminPage.php:527
-msgid "sayfa başında, 500 ms güncelleme beklemesiyle"
-msgstr "sayfa başında, 500 ms güncelleme beklemesiyle"
-
-#: includes/AdminPage.php:528
-msgid "Seçimde güncelleme"
-msgstr "Seçimde güncelleme"
-
-#: includes/AdminPage.php:528
-msgid "Ziyaretçi karar verince"
-msgstr "Ziyaretçi karar verince"
-
-#: includes/AdminPage.php:528
-msgid "gönderilir; geri gelen ziyaretçide anında uygulanır."
-msgstr "gönderilir; geri gelen ziyaretçide anında uygulanır."
-
-#: includes/AdminPage.php:529
-msgid "dataLayer olayı"
-msgstr "dataLayer olayı"
-
-#: includes/AdminPage.php:529
-msgid "olayı Google Etiket Yöneticisi tetikleyicisi olarak kullanılabilir."
-msgstr "olayı Google Etiket Yöneticisi tetikleyicisi olarak kullanılabilir."
-
-#: includes/AdminPage.php:534
-msgid "Algılanan eklentiler"
-msgstr "Algılanan eklentiler"
-
-#: includes/AdminPage.php:534
-msgid "Aynı etiketi iki eklenti yüklemesin diye kontrol edilir."
-msgstr "Aynı etiketi iki eklenti yüklemesin diye kontrol edilir."
-
-#: includes/AdminPage.php:536
+#: includes/AdminPage.php:540
 msgid "Google Site Kit"
 msgstr "Google Site Kit"
 
-#: includes/AdminPage.php:536
-msgid "Algılandı. Analytics ve AdSense etiketleri onay verilene kadar Consent Mode ile kısıtlanır."
-msgstr "Algılandı. Analytics ve AdSense etiketleri onay verilene kadar Consent Mode ile kısıtlanır."
+#: includes/AdminPage.php:33
+msgid "Help"
+msgstr "Yardım"
 
-#: includes/AdminPage.php:536 includes/AdminPage.php:537
-msgid "Etkin değil."
-msgstr "Etkin değil."
+#: includes/AdminPage.php:269
+msgid "Help → Troubleshooting"
+msgstr "Yardım → Sorun giderme"
 
-#: includes/AdminPage.php:536 includes/AdminPage.php:537
-msgid "Algılandı"
-msgstr "Algılandı"
+#: includes/AdminPage.php:594
+msgid "How do I add my own cookie?"
+msgstr "Kendi çerezimi nasıl eklerim?"
 
-#: includes/AdminPage.php:536 includes/AdminPage.php:537
-msgid "Bulunamadı"
-msgstr "Bulunamadı"
+#: includes/AdminPage.php:631
+msgid "I only measure visitors and show no ads."
+msgstr "Sadece ziyaretçi ölçümü yapıyorum, reklam göstermiyorum."
 
-#: includes/AdminPage.php:537
+#: includes/AdminPage.php:630
+msgid "I use Google Analytics and AdSense (or other Google advertising)."
+msgstr "Google Analytics ve AdSense (ya da başka Google reklamı) kullanıyorum."
+
+#: includes/AdminPage.php:498
+msgid "IP hash"
+msgstr "IP özeti"
+
+#: includes/AdminPage.php:595
+msgid "If two plugins load the same tag, check the detection status in the Integration tab."
+msgstr "Aynı etiketi iki eklenti yüklüyorsa Entegrasyon sekmesindeki algılama durumuna bakın."
+
+#: includes/AdminPage.php:239
+msgid "If you use a page cache, clear the cache."
+msgstr "Önbellekli sayfa kullanıyorsanız önbelleği temizleyin."
+
+#: includes/AdminPage.php:342
+msgid "Increase the revision on save"
+msgstr "Kaydederken revizyonu artır"
+
+#: includes/Updater.php:451
+msgid "Installed version"
+msgstr "Kurulu sürüm"
+
+#: includes/AdminPage.php:32
+msgid "Integration"
+msgstr "Entegrasyon"
+
+#: includes/AdminPage.php:593
+msgid "Is personal data stored in the consent log?"
+msgstr "Onay kayıtlarında kişisel veri saklanıyor mu?"
+
+#: includes/AdminPage.php:490
+msgid "It appears here when a visitor makes a choice on the banner. If you just installed it, open the site in a logged-out browser and try the banner."
+msgstr "Bir ziyaretçi bannerda seçim yapınca burada görünür. Yeni kurduysanız, çıkış yapmış bir tarayıcıda siteyi açıp bannerı deneyin."
+
+#: includes/AdminPage.php:596
+msgid "It means the consent log table cannot be read. The visitor side is not affected. Deactivating and reactivating the plugin recreates the table; existing records are not deleted."
+msgstr "Onay kaydı tablosu okunamıyor demektir. Ziyaretçi tarafı etkilenmez. Eklentiyi kapatıp yeniden etkinleştirmek tabloyu yeniden oluşturur; mevcut kayıtlar silinmez."
+
+#: cookiekit.php:5
+msgctxt "Description of the plugin"
+msgid "KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and a script-blocking API. Connects to GitHub only to check for updates (can be turned off in the settings)."
+msgstr "KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı ve betik engelleme API'si. Yalnız güncelleme kontrolü için GitHub'a bağlanır (ayarlardan kapatılabilir)."
+
+#: includes/AdminPage.php:345
+msgid "Keep consent decisions as proof (KVKK). The raw IP is not stored; records are deleted automatically after 12 months."
+msgstr "KVKK ispatı için onay kararlarını saklayın. Ham IP kaydedilmez, 12 ay sonra otomatik silinir."
+
+#: includes/Updater.php:453
+msgid "Last check"
+msgstr "Son kontrol"
+
+#: includes/AdminPage.php:498
+msgid "Latest consent decisions"
+msgstr "Son onay kararları"
+
+#: includes/AdminPage.php:606
+msgid "License"
+msgstr "Lisans"
+
+#: includes/AdminPage.php:587
+msgid "Link the pages"
+msgstr "Sayfaları bağlayın"
+
+#: includes/AdminPage.php:320
+#: includes/AdminPage.php:651
+msgid "Live preview"
+msgstr "Canlı önizleme"
+
+#: includes/AdminPage.php:547
+#: includes/Frontend.php:137
+msgid "Manage cookie preferences"
+msgstr "Çerez tercihlerini yönet"
+
+#: includes/Cookies.php:44
+msgid "Measures how the site is used with Google Analytics. Only set if you allow it."
+msgstr "Google Analytics ile sitenin nasıl kullanıldığını ölçer. Yalnızca izin verirseniz kurulur."
+
+#: readme.txt:1
+msgctxt "Release note"
+msgid "Menu: the screen now sits under the shared \"RBN Kit\" top-level menu (RBN Kit → Cookies and Consent); the old Settings address redirects to the new one."
+msgstr "Menü: ekran artık ortak \"RBN Kit\" üst menüsünün altında (RBN Kit → Çerez ve Onay); eski Ayarlar adresi yeni adrese yönlenir."
+
+#: includes/AdminPage.php:655
+msgid "Mobile"
+msgstr "Mobil"
+
+#: includes/AdminPage.php:541
 msgid "MonsterInsights"
 msgstr "MonsterInsights"
 
-#: includes/AdminPage.php:537
-msgid "Algılandı. Analytics etiketi onaya bağlanmıyorsa betiği cookiekit_script() ile yükleyin."
-msgstr "Algılandı. Analytics etiketi onaya bağlanmıyorsa betiği cookiekit_script() ile yükleyin."
+#: includes/AdminPage.php:334
+#: includes/AdminPage.php:501
+#: includes/AdminPage.php:683
+msgid "Necessary"
+msgstr "Zorunlu"
 
-#: includes/AdminPage.php:538
-msgid "Reklam kategorisi"
-msgstr "Reklam kategorisi"
+#: includes/AdminPage.php:334
+msgid "Needed for the site to work and to remember the choice; cannot be turned off."
+msgstr "Sitenin çalışması ve tercihin hatırlanması için gerekir; kapatılamaz."
 
-#: includes/AdminPage.php:538
-msgid "Açık. Reklam kodunuzu"
-msgstr "Açık. Reklam kodunuzu"
+#: includes/AdminPage.php:476
+msgid "New decisions are not stored; to keep proof (KVKK), turn it on under"
+msgstr "Yeni kararlar saklanmıyor; KVKK ispatı için"
 
-#: includes/AdminPage.php:538
-msgid "ile yükleyin (aşağıda)."
-msgstr "ile yükleyin (aşağıda)."
+#: includes/AdminPage.php:613
+msgid "New versions come from the official releases on GitHub."
+msgstr "Yeni sürümler GitHub’daki resmî yayınlardan gelir."
 
-#: includes/AdminPage.php:538
-msgid "Kapalı: bannerda reklam kategorisi sorulmuyor."
+#: includes/AdminPage.php:517
+msgid "Next"
+msgstr "Sonraki"
+
+#: includes/AdminPage.php:490
+msgid "No consent decisions yet"
+msgstr "Henüz onay kararı yok"
+
+#: includes/AdminPage.php:462
+msgid "No custom cookies added"
+msgstr "Özel çerez eklenmedi"
+
+#: includes/AdminPage.php:529
+msgid "No setting needed; the plugin runs automatically at the start of the page. The status is for information only."
+msgstr "Ayar gerekmez; eklenti sayfa başında otomatik çalışır. Durum bilgi amaçlıdır."
+
+#: includes/AdminPage.php:540
+#: includes/AdminPage.php:541
+msgid "Not active."
+msgstr "Etkin değil."
+
+#: includes/Updater.php:437
+msgid "Not checked yet."
+msgstr "Henüz kontrol edilmedi."
+
+#: includes/AdminPage.php:540
+#: includes/AdminPage.php:541
+msgid "Not found"
+msgstr "Bulunamadı"
+
+#: includes/AdminPage.php:528
+#: includes/AdminPage.php:542
+msgid "Off"
+msgstr "Kapalı"
+
+#: includes/AdminPage.php:179
+msgid "Off — the banner is not shown"
+msgstr "Kapalı — banner gösterilmiyor"
+
+#: includes/AdminPage.php:542
+msgid "Off: the advertising category is not asked about on the banner."
 msgstr "Kapalı: bannerda reklam kategorisi sorulmuyor."
 
-#: includes/AdminPage.php:538 includes/AdminPage.php:649
-msgid "Açık"
+#: includes/AdminPage.php:542
+#: includes/AdminPage.php:657
+msgid "On"
 msgstr "Açık"
 
-#: includes/AdminPage.php:541
-msgid "Kısa kodlar ve kod parçaları"
-msgstr "Kısa kodlar ve kod parçaları"
+#: includes/AdminPage.php:369
+msgid "On phones (below 640 px) the banner is always full width at the bottom."
+msgstr "Telefonda (640 px altı) banner her zaman alt tam genişlik olur."
 
-#: includes/AdminPage.php:541
-msgid "Kopyalayıp sayfanıza, temanıza ya da düğmenize yapıştırın."
-msgstr "Kopyalayıp sayfanıza, temanıza ya da düğmenize yapıştırın."
+#: includes/AdminPage.php:542
+msgid "On. Load your ad code with"
+msgstr "Açık. Reklam kodunuzu"
 
-#: includes/AdminPage.php:543
-msgid "Tercih düğmesi (kısa kod)"
-msgstr "Tercih düğmesi (kısa kod)"
+#: includes/AdminPage.php:162
+msgid "Only analytics cookies are asked about"
+msgstr "Yalnız analiz çerezleri sorulur"
 
-#: includes/AdminPage.php:544
-msgid "Çerez tablosu (Çerez Politikası sayfasına)"
-msgstr "Çerez tablosu (Çerez Politikası sayfasına)"
-
-#: includes/AdminPage.php:545
-msgid "Herhangi bir öğeden paneli aç"
+#: includes/AdminPage.php:549
+msgid "Open the panel from any element"
 msgstr "Herhangi bir öğeden paneli aç"
 
-#: includes/AdminPage.php:546
-msgid "Betiği onaya bağla (PHP)"
-msgstr "Betiği onaya bağla (PHP)"
+#: includes/AdminPage.php:409
+msgid "Opens the category panel. At most 30 characters."
+msgstr "Kategori panelini açar. En çok 30 karakter."
 
-#: includes/AdminPage.php:581
-msgid "Hızlı başlangıç"
-msgstr "Hızlı başlangıç"
+#: includes/AdminPage.php:498
+msgid "Page"
+msgstr "Sayfa"
 
-#: includes/AdminPage.php:581
-msgid "Kurulumdan sonra 2 dakikada doğru ayar:"
-msgstr "Kurulumdan sonra 2 dakikada doğru ayar:"
-
-#: includes/AdminPage.php:582
-msgid "Kategorileri seçin"
-msgstr "Kategorileri seçin"
-
-#: includes/AdminPage.php:582
-msgid "Genel → yalnız kullandığınız kategorileri açık bırakın (reklam yoksa kapatın)."
-msgstr "Genel → yalnız kullandığınız kategorileri açık bırakın (reklam yoksa kapatın)."
-
-#: includes/AdminPage.php:582
-msgid "Sayfaları bağlayın"
-msgstr "Sayfaları bağlayın"
-
-#: includes/AdminPage.php:582
-msgid "Metinler → Gizlilik ve Çerez Politikası sayfalarınızı seçin."
-msgstr "Metinler → Gizlilik ve Çerez Politikası sayfalarınızı seçin."
-
-#: includes/AdminPage.php:582
-msgid "Önizleyip etkinleştirin"
-msgstr "Önizleyip etkinleştirin"
-
-#: includes/AdminPage.php:582
-msgid "Görünüm → banner’ı çevresine uydurun; Genel → “Ziyaretçilere göster”i açın."
-msgstr "Görünüm → banner’ı çevresine uydurun; Genel → “Ziyaretçilere göster”i açın."
-
-#: includes/AdminPage.php:582
-msgid "Kurulum sihirbazını yeniden aç"
-msgstr "Kurulum sihirbazını yeniden aç"
-
-#: includes/AdminPage.php:584
-msgid "Sık sorulanlar"
-msgstr "Sık sorulanlar"
-
-#: includes/AdminPage.php:586
-msgid "Banner görünmüyor, ne yapmalıyım?"
-msgstr "Banner görünmüyor, ne yapmalıyım?"
-
-#: includes/AdminPage.php:586
-msgid "Önbellek eklentinizi temizleyin ve siteyi giriş yapmamış (gizli pencere) bir tarayıcıda açın. Daha önce karar verdiyseniz banner tekrar çıkmaz: Genel → Yeniden onay ile revizyonu artırın."
-msgstr "Önbellek eklentinizi temizleyin ve siteyi giriş yapmamış (gizli pencere) bir tarayıcıda açın. Daha önce karar verdiyseniz banner tekrar çıkmaz: Genel → Yeniden onay ile revizyonu artırın."
-
-#: includes/AdminPage.php:587
-msgid "Ziyaretçi “Reddet” derse Google etiketleri ne olur?"
-msgstr "Ziyaretçi “Reddet” derse Google etiketleri ne olur?"
-
-#: includes/AdminPage.php:587
-msgid "Consent Mode v2 varsayılanı “reddedildi” kalır; Analytics ve reklam çerezleri kurulmaz."
-msgstr "Consent Mode v2 varsayılanı “reddedildi” kalır; Analytics ve reklam çerezleri kurulmaz."
-
-#: includes/AdminPage.php:588
-msgid "Onay kayıtlarında kişisel veri saklanıyor mu?"
-msgstr "Onay kayıtlarında kişisel veri saklanıyor mu?"
-
-#: includes/AdminPage.php:588
-msgid "Ham IP ve tam tarayıcı bilgisi saklanmaz; yalnız günlük dönen tuzla özet, karar ve sayfa yolu tutulur. Kayıtlar 12 ay sonra silinir."
-msgstr "Ham IP ve tam tarayıcı bilgisi saklanmaz; yalnız günlük dönen tuzla özet, karar ve sayfa yolu tutulur. Kayıtlar 12 ay sonra silinir."
-
-#: includes/AdminPage.php:589
-msgid "Kendi çerezimi nasıl eklerim?"
-msgstr "Kendi çerezimi nasıl eklerim?"
-
-#: includes/AdminPage.php:589
-msgid "Çerezler sekmesi → “Çerez ekle”. Eklediğiniz çerez tercih panelinde ve politika sayfasındaki tabloda görünür."
-msgstr "Çerezler sekmesi → “Çerez ekle”. Eklediğiniz çerez tercih panelinde ve politika sayfasındaki tabloda görünür."
-
-#: includes/AdminPage.php:590
-msgid "Başka bir eklentiyle çakışır mı?"
-msgstr "Başka bir eklentiyle çakışır mı?"
-
-#: includes/AdminPage.php:590
-msgid "Aynı etiketi iki eklenti yüklüyorsa Entegrasyon sekmesindeki algılama durumuna bakın."
-msgstr "Aynı etiketi iki eklenti yüklüyorsa Entegrasyon sekmesindeki algılama durumuna bakın."
-
-#: includes/AdminPage.php:591
-msgid "Sorun giderme: özet kartları “okunamadı” diyor"
-msgstr "Sorun giderme: özet kartları “okunamadı” diyor"
-
-#: includes/AdminPage.php:591
-msgid "Onay kaydı tablosu okunamıyor demektir. Ziyaretçi tarafı etkilenmez. Eklentiyi kapatıp yeniden etkinleştirmek tabloyu yeniden oluşturur; mevcut kayıtlar silinmez."
-msgstr "Onay kaydı tablosu okunamıyor demektir. Ziyaretçi tarafı etkilenmez. Eklentiyi kapatıp yeniden etkinleştirmek tabloyu yeniden oluşturur; mevcut kayıtlar silinmez."
-
-#: includes/AdminPage.php:600
-msgid "Sürüm ve kaynak"
-msgstr "Sürüm ve kaynak"
-
-#: includes/AdminPage.php:601
-msgid "Eklenti"
-msgstr "Eklenti"
-
-#: includes/AdminPage.php:601
-msgid "Sürüm"
-msgstr "Sürüm"
-
-#: includes/AdminPage.php:601
-msgid "Gereksinim"
-msgstr "Gereksinim"
-
-#: includes/AdminPage.php:601
-msgid "Lisans"
-msgstr "Lisans"
-
-#: includes/AdminPage.php:601
-msgid "(yeni sekmede açılır)"
-msgstr "(yeni sekmede açılır)"
-
-#: includes/AdminPage.php:602
-msgid "Sürüm notları"
-msgstr "Sürüm notları"
-
-#: includes/AdminPage.php:614
-msgid "Kurulum"
-msgstr "Kurulum"
-
-#: includes/AdminPage.php:614
-msgid "Şimdilik atla"
-msgstr "Şimdilik atla"
-
-#: includes/AdminPage.php:615
-msgid "Kurulum adımları"
-msgstr "Kurulum adımları"
-
-#: includes/AdminPage.php:615 includes/AdminPage.php:620
-msgid "Site türü"
-msgstr "Site türü"
-
-#: includes/AdminPage.php:615
-msgid "Metin ve bağlantılar"
-msgstr "Metin ve bağlantılar"
-
-#: includes/AdminPage.php:615
-msgid "Önizle ve etkinleştir"
-msgstr "Önizle ve etkinleştir"
-
-#: includes/AdminPage.php:620
-msgid "Sitenizde hangi çerezler kullanılıyor?"
-msgstr "Sitenizde hangi çerezler kullanılıyor?"
-
-#: includes/AdminPage.php:620
-msgid "Yalnız gerçekten kullandığınız kategoriyi gösterin; kullanılmayan kategori ziyaretçiye gereksiz soru olur."
-msgstr "Yalnız gerçekten kullandığınız kategoriyi gösterin; kullanılmayan kategori ziyaretçiye gereksiz soru olur."
-
-#: includes/AdminPage.php:622
-msgid "Analiz + Reklam"
-msgstr "Analiz + Reklam"
-
-#: includes/AdminPage.php:622
-msgid "Google Analytics ve AdSense (ya da başka Google reklamı) kullanıyorum."
-msgstr "Google Analytics ve AdSense (ya da başka Google reklamı) kullanıyorum."
-
-#: includes/AdminPage.php:623
-msgid "Yalnız Analiz"
-msgstr "Yalnız Analiz"
-
-#: includes/AdminPage.php:623
-msgid "Sadece ziyaretçi ölçümü yapıyorum, reklam göstermiyorum."
-msgstr "Sadece ziyaretçi ölçümü yapıyorum, reklam göstermiyorum."
-
-#: includes/AdminPage.php:627
-msgid "Zorunlu çerez kategorisi her zaman görünür. Sonradan Genel sekmesinden değiştirebilirsiniz."
-msgstr "Zorunlu çerez kategorisi her zaman görünür. Sonradan Genel sekmesinden değiştirebilirsiniz."
-
-#: includes/AdminPage.php:629
-msgid "Politika sayfalarınızı seçin"
-msgstr "Politika sayfalarınızı seçin"
-
-#: includes/AdminPage.php:629
-msgid "Banner bu sayfalara bağlanır. Sayfanız henüz yoksa boş bırakın; bağlantı gösterilmez."
-msgstr "Banner bu sayfalara bağlanır. Sayfanız henüz yoksa boş bırakın; bağlantı gösterilmez."
-
-#: includes/AdminPage.php:630
-msgid "Gizlilik Politikası sayfası"
-msgstr "Gizlilik Politikası sayfası"
-
-#: includes/AdminPage.php:631
-msgid "Çerez Politikası sayfası"
-msgstr "Çerez Politikası sayfası"
-
-#: includes/AdminPage.php:631
-msgid "İpucu: Çerez Politikası sayfasına [cookiekit_cerez_listesi] kısa kodunu ekleyerek çerez tablosunu gösterin."
-msgstr "İpucu: Çerez Politikası sayfasına [cookiekit_cerez_listesi] kısa kodunu ekleyerek çerez tablosunu gösterin."
-
-#: includes/AdminPage.php:633
-msgid "Önizleyin ve etkinleştirin"
-msgstr "Önizleyin ve etkinleştirin"
-
-#: includes/AdminPage.php:633
-msgid "Etkinleştirince banner yayına girer."
-msgstr "Etkinleştirince banner yayına girer."
-
-#: includes/AdminPage.php:633
-msgid "Google Consent Mode v2: varsayılan “reddedildi”"
-msgstr "Google Consent Mode v2: varsayılan “reddedildi”"
-
-#: includes/AdminPage.php:633
-msgid "Onay kararları kaydedilir (ham IP saklanmaz)"
-msgstr "Onay kararları kaydedilir (ham IP saklanmaz)"
-
-#: includes/AdminPage.php:633
-msgid "Onay kararları kaydedilmez (günlük kapalı)"
-msgstr "Onay kararları kaydedilmez (günlük kapalı)"
-
-#: includes/AdminPage.php:634
-msgid "Geri"
-msgstr "Geri"
-
-#: includes/AdminPage.php:634
-msgid "Etkinleştir ve bitir"
-msgstr "Etkinleştir ve bitir"
-
-#: includes/AdminPage.php:645
-msgid "Cihaz"
-msgstr "Cihaz"
-
-#: includes/AdminPage.php:646
-msgid "Masaüstü"
-msgstr "Masaüstü"
-
-#: includes/AdminPage.php:647
-msgid "Mobil"
-msgstr "Mobil"
-
-#: includes/AdminPage.php:648
-msgid "Sayfa teması"
+#: includes/AdminPage.php:656
+msgid "Page theme"
 msgstr "Sayfa teması"
 
-#: includes/AdminPage.php:650
-msgid "Koyu"
-msgstr "Koyu"
+#: includes/AdminPage.php:154
+msgid "Passes AA"
+msgstr "AA geçer"
 
-#: includes/AdminPage.php:653 includes/AdminPage.php:663
-msgid "Banner önizlemesi"
-msgstr "Banner önizlemesi"
+#: includes/AdminPage.php:425
+msgid "Pick from the page list"
+msgstr "Sayfa listesinden seç"
 
-#: includes/AdminPage.php:654
-msgid "Gerçek banner stiliyle çizilir; kaydedene kadar sitede değişmez."
-msgstr "Gerçek banner stiliyle çizilir; kaydedene kadar sitede değişmez."
+#: includes/AdminPage.php:426
+msgid "Pick from the page list…"
+msgstr "Sayfa listesinden seç…"
 
-#: includes/AdminPage.php:663
-msgid "Kapat"
-msgstr "Kapat"
+#: includes/AdminPage.php:606
+msgid "Plugin"
+msgstr "Eklenti"
 
-#: includes/AdminPage.php:664
-msgid "Metinler varsayılana dönsün mü?"
-msgstr "Metinler varsayılana dönsün mü?"
+#: includes/AdminPage.php:416
+msgid "Policy links"
+msgstr "Politika bağlantıları"
 
-#: includes/AdminPage.php:664
-msgid "Başlık, açıklama ve düğme etiketleri Türkçe varsayılanlara döner. Kaydedene kadar sitede değişmez."
-msgstr "Başlık, açıklama ve düğme etiketleri Türkçe varsayılanlara döner. Kaydedene kadar sitede değişmez."
+#: includes/AdminPage.php:364
+msgid "Position"
+msgstr "Konum"
 
-#: includes/AdminPage.php:664
-msgid "Varsayılana dön"
-msgstr "Varsayılana dön"
+#: includes/Settings.php:52
+msgid "Preferences"
+msgstr "Tercihler"
 
-#: includes/AdminPage.php:665
-msgid "Tüm onay kayıtları silinsin mi?"
-msgstr "Tüm onay kayıtları silinsin mi?"
+#: includes/AdminPage.php:409
+msgid "Preferences button"
+msgstr "Tercihler düğmesi"
 
-#: includes/AdminPage.php:665
-msgid "Bu işlem geri alınamaz. KVKK kapsamında ispat için saklamanız gereken kayıtlar varsa önce CSV olarak indirin."
-msgstr "Bu işlem geri alınamaz. KVKK kapsamında ispat için saklamanız gereken kayıtlar varsa önce CSV olarak indirin."
-
-#: includes/AdminPage.php:665
-msgid "Onaylamak için SİL yazın"
-msgstr "Onaylamak için SİL yazın"
-
-#: includes/AdminPage.php:665
-msgid "Tüm kayıtları sil"
-msgstr "Tüm kayıtları sil"
-
-#: includes/AdminPage.php:666
-msgid "Çerez listeden kaldırılsın mı?"
-msgstr "Çerez listeden kaldırılsın mı?"
-
-#: includes/AdminPage.php:666
-msgid "Çerez tercih panelinden ve politika tablosundan kalkar. Sitenizdeki çerezin kendisi silinmez."
-msgstr "Çerez tercih panelinden ve politika tablosundan kalkar. Sitenizdeki çerezin kendisi silinmez."
-
-#: includes/AdminPage.php:666
-msgid "Listeden kaldır"
-msgstr "Listeden kaldır"
-
-#: includes/AdminPage.php:670
-msgid "Çerez adı"
-msgstr "Çerez adı"
-
-#: includes/AdminPage.php:671
-msgid "Bu site"
-msgstr "Bu site"
-
-#: includes/AdminPage.php:672
-msgid "Ne için kullanılıyor?"
-msgstr "Ne için kullanılıyor?"
-
-#: includes/AdminPage.php:673
-msgid "1 yıl"
-msgstr "1 yıl"
-
-#: includes/AdminPage.php:675
-msgid "Kategori"
-msgstr "Kategori"
-
-#: includes/AdminPage.php:680
-msgid "Çerezi ekle"
-msgstr "Çerezi ekle"
+#: includes/AdminPage.php:547
+msgid "Preferences button (shortcode)"
+msgstr "Tercih düğmesi (kısa kod)"
 
 #: templates/admin/preview.php:20
-msgid "Önizleme"
+msgid "Preview"
 msgstr "Önizleme"
+
+#: includes/AdminPage.php:623
+msgid "Preview and activate"
+msgstr "Önizle ve etkinleştir"
+
+#: includes/AdminPage.php:641
+msgid "Preview and go live"
+msgstr "Önizleyin ve etkinleştirin"
+
+#: includes/AdminPage.php:184
+#: includes/AdminPage.php:490
+msgid "Preview the banner"
+msgstr "Banner’ı önizle"
+
+#: includes/AdminPage.php:587
+msgid "Preview, then activate"
+msgstr "Önizleyip etkinleştirin"
+
+#: includes/AdminPage.php:516
+msgid "Previous"
+msgstr "Önceki"
+
+#: includes/AdminPage.php:249
+#: includes/AdminPage.php:419
+#: includes/Frontend.php:78
+msgid "Privacy Policy"
+msgstr "Gizlilik Politikası"
+
+#: includes/AdminPage.php:638
+msgid "Privacy Policy page"
+msgstr "Gizlilik Politikası sayfası"
+
+#: includes/AdminPage.php:450
+#: includes/AdminPage.php:679
+#: includes/Frontend.php:152
+msgid "Provider"
+msgstr "Sağlayıcı"
+
+#: includes/AdminPage.php:450
+#: includes/AdminPage.php:680
+#: includes/Frontend.php:152
+msgid "Purpose"
+msgstr "Amaç"
+
+#: includes/AdminPage.php:586
+msgid "Quick start"
+msgstr "Hızlı başlangıç"
+
+#: includes/AdminPage.php:342
+msgid "Re-consent"
+msgstr "Yeniden onay"
+
+#: includes/AdminPage.php:346
+msgid "Record consent decisions"
+msgstr "Onay kararlarını kaydet"
+
+#: includes/AdminPage.php:345
+msgid "Records and data"
+msgstr "Kayıt ve veri"
+
+#: includes/AdminPage.php:480
+msgid "Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept."
+msgstr "Kayıtlar 12 ay sonra otomatik silinir. Ham IP saklanmaz; yalnız günlük dönen tuzla özet tutulur."
+
+#: includes/AdminPage.php:486
+msgid "Records cannot be shown"
+msgstr "Kayıtlar gösterilemiyor"
+
+#: includes/AdminPage.php:265
+#: includes/AdminPage.php:495
+#: includes/Settings.php:51
+msgid "Reject"
+msgstr "Reddet"
+
+#: includes/AdminPage.php:408
+msgid "Reject button"
+msgstr "Red düğmesi"
+
+#: includes/AdminPage.php:607
+msgid "Release notes"
+msgstr "Sürüm notları"
+
+#: includes/Cookies.php:120
+msgid "Remembers your cookie choice."
+msgstr "Çerez tercihinizi hatırlar."
+
+#: includes/Cookies.php:121
+msgid "Remembers your name, email and website if you tick “save my details” in the comment form."
+msgstr "Yorum formunda “bu bilgileri kaydet” işaretlenirse adınızı, e-postanızı ve site adresinizi hatırlar."
+
+#: includes/AdminPage.php:457
+msgid "Remove"
+msgstr "Kaldır"
+
+#: includes/AdminPage.php:674
+msgid "Remove from list"
+msgstr "Listeden kaldır"
+
+#: includes/AdminPage.php:674
+msgid "Remove the cookie from the list?"
+msgstr "Çerez listeden kaldırılsın mı?"
+
+#: includes/AdminPage.php:163
+#, php-format
+msgid "Remove the “%s” cookie from the list?"
+msgstr "“%s” çerezi listeden kaldırılsın mı?"
+
+#: includes/AdminPage.php:587
+msgid "Reopen the setup wizard"
+msgstr "Kurulum sihirbazını yeniden aç"
+
+#: includes/Cookies.php:35
+msgid "Required for the site to work and to remember your choice. Cannot be turned off."
+msgstr "Sitenin çalışması ve tercihinizin hatırlanması için gereklidir. Kapatılamaz."
+
+#: includes/AdminPage.php:606
+msgid "Requirements"
+msgstr "Gereksinim"
+
+#: includes/AdminPage.php:430
+msgid "Reset texts to default"
+msgstr "Metinleri varsayılana sıfırla"
+
+#: includes/AdminPage.php:672
+msgid "Reset the texts to default?"
+msgstr "Metinler varsayılana dönsün mü?"
+
+#: includes/AdminPage.php:672
+msgid "Reset to default"
+msgstr "Varsayılana dön"
+
+#: includes/AdminPage.php:498
+msgid "Rev."
+msgstr "Rev."
+
+#: includes/AdminPage.php:312
+msgid "Save changes"
+msgstr "Değişiklikleri kaydet"
+
+#: includes/AdminPage.php:410
+msgid "Save choice button"
+msgstr "Seçimi kaydet düğmesi"
+
+#: includes/Settings.php:53
+msgid "Save my choice"
+msgstr "Seçimimi kaydet"
+
+#: includes/Cookies.php:135
+msgid "Security, functionality and advertising."
+msgstr "Güvenlik, işlevsellik ve reklam."
+
+#: includes/Cookies.php:134
+msgid "Security."
+msgstr "Güvenlik."
+
+#: includes/AdminPage.php:151
+msgid "Selected — copy with Ctrl+C"
+msgstr "Seçildi — Ctrl+C ile kopyalayın"
+
+#: includes/Admin.php:54
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/AdminPage.php:239
+msgid "Settings saved."
+msgstr "Ayarlar kaydedildi."
+
+#: includes/AdminPage.php:622
+msgid "Setup"
+msgstr "Kurulum"
+
+#: includes/AdminPage.php:623
+msgid "Setup steps"
+msgstr "Kurulum adımları"
+
+#: includes/AdminPage.php:545
+msgid "Shortcodes and code snippets"
+msgstr "Kısa kodlar ve kod parçaları"
+
+#: includes/AdminPage.php:628
+msgid "Show only the categories you really use; an unused category is an unnecessary question for visitors."
+msgstr "Yalnız gerçekten kullandığınız kategoriyi gösterin; kullanılmayan kategori ziyaretçiye gereksiz soru olur."
+
+#: includes/AdminPage.php:160
+msgid "Show the banner"
+msgstr "Banner’ı göster"
+
+#: includes/AdminPage.php:159
+#: includes/AdminPage.php:662
+msgid "Show the preferences panel"
+msgstr "Tercih panelini göster"
+
+#: includes/AdminPage.php:329
+msgid "Show to visitors"
+msgstr "Ziyaretçilere göster"
+
+#: includes/AdminPage.php:515
+#, php-format
+msgid "Showing %2$d–%3$d of %1$d records"
+msgstr "%1$d kayıttan %2$d–%3$d gösteriliyor"
+
+#: includes/AdminPage.php:449
+msgid "Shown in the preferences panel and in the [cookiekit_cerez_listesi] shortcode. List only the cookies that are really set on your site."
+msgstr "Tercih panelinde ve [cookiekit_cerez_listesi] kısa kodunda gösterilir. Yalnız sitenizde gerçekten kurulanları listeleyin."
+
+#: includes/AdminPage.php:623
+#: includes/AdminPage.php:628
+msgid "Site type"
+msgstr "Site türü"
+
+#: includes/AdminPage.php:622
+msgid "Skip for now"
+msgstr "Şimdilik atla"
+
+#: includes/AdminPage.php:232
+#, php-format
+msgid "Some changes were not saved: %d field needs fixing."
+msgid_plural "Some changes were not saved: %d fields need fixing."
+msgstr[0] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
+msgstr[1] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
+
+#: includes/AdminPage.php:450
+#: includes/AdminPage.php:606
+msgid "Source"
+msgstr "Kaynak"
+
+#: includes/AdminPage.php:327
+#: includes/Updater.php:452
+msgid "Status"
+msgstr "Durum"
+
+#: includes/AdminPage.php:157
+msgid "Step"
+msgstr "Adım"
+
+#: includes/AdminPage.php:271
+msgid "Summary of the last 30 days"
+msgstr "Son 30 günün özeti"
+
+#: includes/AdminPage.php:380
+msgid "Text"
+msgstr "Metin"
+
+#: includes/AdminPage.php:153
+msgid "Text / background contrast"
+msgstr "Metin / zemin kontrastı"
+
+#: includes/AdminPage.php:388
+msgid "Text / background contrast: —"
+msgstr "Metin / zemin kontrastı: —"
+
+#: includes/AdminPage.php:623
+msgid "Text and links"
+msgstr "Metin ve bağlantılar"
+
+#: includes/AdminPage.php:248
+msgid "Text colour"
+msgstr "Metin rengi"
+
+#: includes/AdminPage.php:29
+msgid "Texts"
+msgstr "Metinler"
+
+#: includes/AdminPage.php:587
+msgid "Texts → choose your Privacy Policy and Cookie Policy pages."
+msgstr "Metinler → Gizlilik ve Çerez Politikası sayfalarınızı seçin."
+
+#: includes/AdminPage.php:592
+msgid "The Consent Mode v2 default stays “denied”; Analytics and advertising cookies are not set."
+msgstr "Consent Mode v2 varsayılanı “reddedildi” kalır; Analytics ve reklam çerezleri kurulmaz."
+
+#: includes/Admin.php:211
+msgid "The address must start with “/” (a path on this site) or with this site's http(s) address; the old value was kept."
+msgstr "Adres “/” ile (site içi yol) ya da bu sitenin http(s) adresiyle başlamalı; eski değer korundu."
+
+#: includes/AdminPage.php:416
+msgid "The banner and the preferences panel link to these pages. If left empty, no link is shown."
+msgstr "Banner ve tercih paneli bu sayfalara bağlanır. Boş bırakırsanız bağlantı gösterilmez."
+
+#: includes/AdminPage.php:641
+msgid "The banner goes live when you activate it."
+msgstr "Etkinleştirince banner yayına girer."
+
+#: includes/AdminPage.php:591
+msgid "The banner is not showing; what should I do?"
+msgstr "Banner görünmüyor, ne yapmalıyım?"
+
+#: includes/AdminPage.php:637
+msgid "The banner links to these pages. If you do not have the page yet, leave it empty; no link is shown."
+msgstr "Banner bu sayfalara bağlanır. Sayfanız henüz yoksa boş bırakın; bağlantı gösterilmez."
+
+#: includes/AdminPage.php:462
+msgid "The built-in list above covers Google and WordPress cookies. If your site sets its own cookie, add it; the visitor panel and the policy page update automatically."
+msgstr "Yukarıdaki yerleşik liste Google ve WordPress çerezlerini kapsar. Sitenize özel bir çerez kuruyorsanız ekleyin; ziyaretçi paneli ve politika sayfası otomatik güncellenir."
+
+#: includes/AdminPage.php:410
+msgid "The button at the bottom of the panel. At most 40 characters."
+msgstr "Panelin altındaki düğme. En çok 40 karakter."
+
+#: includes/AdminPage.php:476
+msgid "The consent log is off."
+msgstr "Onay kaydı kapalı."
+
+#: includes/AdminPage.php:269
+msgid "The consent log table could not be read."
+msgstr "Onay kaydı tablosu okunamadı."
+
+#: includes/AdminPage.php:486
+msgid "The consent log table could not be read. The visitor side is not affected; writing records may also have paused."
+msgstr "Onay kaydı tablosu okunamadı. Ziyaretçi tarafı etkilenmez; kayıt yazma da duraklamış olabilir."
+
+#: includes/AdminPage.php:376
+msgid "The contrast between text and background must be at least 4.5:1."
+msgstr "Metin ve zemin arasındaki kontrast en az 4,5:1 olmalı."
+
+#: includes/AdminPage.php:211
+msgid "The cookie could not be added: a name is required and the category must be valid."
+msgstr "Çerez eklenemedi: ad zorunlu, kategori geçerli olmalı."
+
+#: includes/AdminPage.php:674
+msgid "The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted."
+msgstr "Çerez tercih panelinden ve politika tablosundan kalkar. Sitenizdeki çerezin kendisi silinmez."
+
+#: includes/AdminPage.php:209
+msgid "The cookie was added to the list."
+msgstr "Çerez listeye eklendi."
+
+#: includes/AdminPage.php:210
+msgid "The cookie was removed from the list."
+msgstr "Çerez listeden kaldırıldı."
+
+#: includes/AdminPage.php:346
+msgid "The decision, category, page and an IP hashed with a daily-rotating salt are stored."
+msgstr "Karar, kategori, sayfa ve günlük dönen tuzla özetlenmiş IP saklanır."
+
+#: includes/Admin.php:172
+msgid "The duration must be between 30 and 395 days; the value was corrected."
+msgstr "Süre 30 ile 395 gün arasında olmalı; değer düzeltildi."
+
+#: includes/Admin.php:156
+msgid "The form was not recognised; no setting was changed."
+msgstr "Form tanınmadı; hiçbir ayar değişmedi."
+
+#: includes/AdminPage.php:635
+msgid "The necessary-cookie category is always shown. You can change this later in the General tab."
+msgstr "Zorunlu çerez kategorisi her zaman görünür. Sonradan Genel sekmesinden değiştirebilirsiniz."
+
+#: readme.txt:3
+msgctxt "Release note"
+msgid "The package is verified with a SHA-256 digest and an Ed25519 signature; the check can be turned off in Help → Update."
+msgstr "Paket SHA-256 ve Ed25519 imzasıyla doğrulanır; Yardım → Güncelleme kartından kontrol kapatılabilir."
+
+#: includes/AdminPage.php:420
+msgid "The page that uses [cookiekit_cerez_listesi] for the cookie table."
+msgstr "Çerez tablosu için [cookiekit_cerez_listesi] kullanan sayfa."
+
+#: includes/Updater.php:446
+msgid "The plugin is up to date."
+msgstr "Eklenti güncel."
+
+#: includes/AdminPage.php:593
+msgid "The raw IP and full browser information are not stored; only a hash with a daily-rotating salt, the decision and the page path are kept. Records are deleted after 12 months."
+msgstr "Ham IP ve tam tarayıcı bilgisi saklanmaz; yalnız günlük dönen tuzla özet, karar ve sayfa yolu tutulur. Kayıtlar 12 ay sonra silinir."
+
+#: includes/AdminPage.php:586
+msgid "The right setup in 2 minutes after installation:"
+msgstr "Kurulumdan sonra 2 dakikada doğru ayar:"
+
+#: includes/AdminPage.php:269
+msgid "The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working."
+msgstr "Özet sayıları gösterilemiyor; ziyaretçi tarafı etkilenmez, banner çalışmaya devam eder."
+
+#: includes/AdminPage.php:672
+msgid "The title, description and button labels return to the defaults. The site does not change until you save."
+msgstr "Başlık, açıklama ve düğme etiketleri Türkçe varsayılanlara döner. Kaydedene kadar sitede değişmez."
+
+#: includes/Updater.php:435
+msgid "The update check is off; GitHub is never contacted."
+msgstr "Güncelleme kontrolü kapalı; GitHub’a hiç bağlanılmaz."
+
+#: includes/AdminPage.php:216
+msgid "The update check is off; no connection was made."
+msgstr "Güncelleme kontrolü kapalı; hiçbir bağlantı kurulmadı."
+
+#: includes/AdminPage.php:215
+msgid "The update check was done."
+msgstr "Güncelleme kontrolü yapıldı."
+
+#: includes/AdminPage.php:217
+msgid "The update check was turned off. GitHub is no longer contacted."
+msgstr "Güncelleme kontrolü kapatıldı. GitHub’a artık bağlanılmaz."
+
+#: includes/AdminPage.php:218
+msgid "The update check was turned on."
+msgstr "Güncelleme kontrolü açıldı."
+
+#: includes/Updater.php:455
+msgid "The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent."
+msgstr "Güncelleme paketi kurulmadan önce SHA-256 özeti ve Ed25519 imzasıyla doğrulanır; doğrulanamayan paket kurulmaz. Yalnız standart bir GET isteği gider; site adresiniz ya da kullanıcı bilginiz gönderilmez."
+
+#: includes/AdminPage.php:373
+msgid "Theme colours"
+msgstr "Tema renkleri"
+
+#: includes/AdminPage.php:371
+msgid "Theme colours are used by default so the banner stays consistent with your theme."
+msgstr "Temanızla uyumlu kalmak için varsayılan olarak tema renkleri kullanılır."
+
+#: includes/Updater.php:308
+msgid "There are no release notes for this version."
+msgstr "Bu sürüm için yayın notu yok."
+
+#: includes/AdminPage.php:149
+#: includes/AdminPage.php:312
+msgid "There are unsaved changes"
+msgstr "Kaydedilmemiş değişiklikler var"
+
+#: includes/Updater.php:439
+msgid "There is no published version yet."
+msgstr "Henüz yayınlanmış sürüm yok."
+
+#: includes/AdminPage.php:673
+msgid "This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first."
+msgstr "Bu işlem geri alınamaz. KVKK kapsamında ispat için saklamanız gereken kayıtlar varsa önce CSV olarak indirin."
+
+#: includes/AdminPage.php:679
+#: includes/Cookies.php:100
+msgid "This site"
+msgstr "Bu site"
+
+#: includes/Cookies.php:120
+msgid "This site (CookieKit)"
+msgstr "Bu site (CookieKit)"
+
+#: includes/Cookies.php:121
+msgid "This site (WordPress)"
+msgstr "Bu site (WordPress)"
+
+#: includes/AdminPage.php:550
+msgid "Tie a script to consent (PHP)"
+msgstr "Betiği onaya bağla (PHP)"
+
+#: includes/AdminPage.php:498
+msgid "Time"
+msgstr "Zaman"
+
+#: includes/AdminPage.php:639
+msgid "Tip: show the cookie table by adding the [cookiekit_cerez_listesi] shortcode to the Cookie Policy page."
+msgstr "İpucu: Çerez Politikası sayfasına [cookiekit_cerez_listesi] kısa kodunu ekleyerek çerez tablosunu gösterin."
+
+#: includes/AdminPage.php:401
+msgid "Title"
+msgstr "Başlık"
+
+#: includes/AdminPage.php:269
+msgid "To recreate the table, deactivate and reactivate the plugin."
+msgstr "Tabloyu yeniden oluşturmak için eklentiyi kapatıp açın."
+
+#: includes/Rest.php:101
+msgid "Too many requests."
+msgstr "Çok fazla istek."
+
+#: includes/AdminPage.php:263
+msgid "Total decisions"
+msgstr "Toplam karar"
+
+#: includes/AdminPage.php:596
+msgid "Troubleshooting: the summary cards say “could not be read”"
+msgstr "Sorun giderme: özet kartları “okunamadı” diyor"
+
+#: includes/Updater.php:460
+msgid "Turn off the update check"
+msgstr "Güncelleme kontrolünü kapat"
+
+#: includes/AdminPage.php:342
+msgid "Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards."
+msgstr "Kategori ya da çerez listesini değiştirdiyseniz açın. Önbellek kullanıyorsanız ardından temizleyin."
+
+#: includes/Updater.php:460
+msgid "Turn on the update check"
+msgstr "Güncelleme kontrolünü aç"
+
+#: includes/AdminPage.php:327
+msgid "Turn the banner on or off across the whole site."
+msgstr "Banner’ı tüm sitede açın ya da kapatın."
+
+#: includes/Updater.php:454
+msgid "Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page."
+msgstr "Eklentiler sayfasında CookieKit satırındaki “Otomatik güncellemeleri etkinleştir” bağlantısından açılır/kapanır."
+
+#: includes/AdminPage.php:673
+msgid "Type DELETE to confirm"
+msgstr "Onaylamak için SİL yazın"
+
+#: includes/AdminPage.php:613
+msgid "Update"
+msgstr "Güncelleme"
+
+#: includes/AdminPage.php:532
+msgid "Update on choice"
+msgstr "Seçimde güncelleme"
+
+#: includes/Updater.php:122
+msgid "Update rejected: signature verification (sodium) is missing on the server. The old version was kept."
+msgstr "Güncelleme reddedildi: sunucuda imza doğrulama (sodium) yok. Eski sürüm korundu."
+
+#: includes/Updater.php:150
+msgid "Update rejected: the SHA-256 digest of the package does not match. The old version was kept."
+msgstr "Güncelleme reddedildi: paketin SHA-256 özeti eşleşmiyor. Eski sürüm korundu."
+
+#: includes/Updater.php:146
+msgid "Update rejected: the digest (SHA-256) file could not be read. The old version was kept."
+msgstr "Güncelleme reddedildi: özet (SHA-256) dosyası okunamadı. Eski sürüm korundu."
+
+#: includes/Updater.php:326
+msgid "Update rejected: the package address is not in the expected format. The old version was kept."
+msgstr "Güncelleme reddedildi: paket adresi beklenen biçimde değil. Eski sürüm korundu."
+
+#: includes/Updater.php:382
+msgid "Update rejected: the package did not pass the CookieKit verification. The old version was kept."
+msgstr "Güncelleme reddedildi: paket CookieKit doğrulamasından geçmedi. Eski sürüm korundu."
+
+#: includes/Updater.php:130
+msgid "Update rejected: the package signature is invalid. The old version was kept."
+msgstr "Güncelleme reddedildi: paket imzası geçersiz. Eski sürüm korundu."
+
+#: includes/Updater.php:143
+msgid "Update rejected: the package size is not in the expected range. The old version was kept."
+msgstr "Güncelleme reddedildi: paket boyutu beklenen aralıkta değil. Eski sürüm korundu."
+
+#: includes/Updater.php:127
+msgid "Update rejected: the plugin has no valid signature key. The old version was kept."
+msgstr "Güncelleme reddedildi: eklentide geçerli imza anahtarı yok. Eski sürüm korundu."
+
+#: includes/Updater.php:164
+msgid "Update rejected: the root folder of the package is not “cookiekit” or cookiekit.php is missing. The old version was kept."
+msgstr "Güncelleme reddedildi: paketin kök klasörü “cookiekit” değil ya da cookiekit.php yok. Eski sürüm korundu."
+
+#: includes/Updater.php:168
+msgid "Update rejected: the version inside the package does not match the published version. The old version was kept."
+msgstr "Güncelleme reddedildi: paketteki sürüm, yayınlanan sürümle uyuşmuyor. Eski sürüm korundu."
+
+#: includes/Updater.php:361
+msgid "Update stopped: the digest or signature file could not be downloaded. The old version was kept."
+msgstr "Güncelleme durduruldu: özet ya da imza dosyası indirilemedi. Eski sürüm korundu."
+
+#: readme.txt:2
+msgctxt "Release note"
+msgid "Updates from GitHub: Update / up to date on the Plugins page, WordPress automatic update support."
+msgstr "GitHub’dan güncelleme: Eklentiler sayfasında Güncelle / güncel, WordPress otomatik güncelleme desteği."
+
+#: includes/Cookies.php:53
+msgid "Used by Google AdSense and Google advertising partners to show ads that may interest you. Only set if you allow it."
+msgstr "Google AdSense ve Google reklam ortakları ilginizi çekebilecek reklamları göstermek için kullanır. Yalnızca izin verirseniz kurulur."
+
+#: includes/AdminPage.php:606
+msgid "Version"
+msgstr "Sürüm"
+
+#: includes/AdminPage.php:175
+#, php-format
+msgid "Version %s"
+msgstr "Sürüm %s"
+
+#: includes/AdminPage.php:605
+msgid "Version and source"
+msgstr "Sürüm ve kaynak"
+
+#: includes/Cookies.php:124
+#: includes/Cookies.php:125
+#: includes/Cookies.php:126
+#: includes/Cookies.php:127
+msgid "Visitor and site usage measurement (purpose in the Google cookie reference: Analytics)."
+msgstr "Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz)."
+
+#: includes/Settings.php:49
+msgid "We use essential cookies to make the site work. Analytics and advertising cookies are only set with your permission. You can change your preferences at any time."
+msgstr "Sitenin çalışması için zorunlu çerezler kullanırız. Analiz ve reklam çerezleri yalnızca sizin izninizle kurulur. Tercihlerinizi istediğiniz zaman değiştirebilirsiniz."
+
+#: includes/AdminPage.php:592
+msgid "What happens to Google tags if the visitor chooses “Reject”?"
+msgstr "Ziyaretçi “Reddet” derse Google etiketleri ne olur?"
+
+#: includes/AdminPage.php:680
+msgid "What is it used for?"
+msgstr "Ne için kullanılıyor?"
+
+#: includes/AdminPage.php:329
+msgid "When off, the banner and the Consent Mode script are removed from the page."
+msgstr "Kapatınca banner ve Consent Mode betiği yayından kalkar."
+
+#: includes/AdminPage.php:347
+msgid "When on, deleting the plugin irreversibly removes the settings, custom cookies and the log table."
+msgstr "Açıksa eklentiyi silmek ayarları, özel çerezleri ve kayıt tablosunu geri alınamaz biçimde kaldırır."
+
+#: includes/AdminPage.php:347
+msgid "When the plugin is deleted"
+msgstr "Eklenti silinirken"
+
+#: includes/AdminPage.php:532
+msgid "When the visitor decides,"
+msgstr "Ziyaretçi karar verince"
+
+#: includes/AdminPage.php:364
+msgid "Where on the screen should the banner appear? The preview updates instantly."
+msgstr "Banner ekranın neresinde görünsün? Önizleme anında güncellenir."
+
+#: includes/AdminPage.php:332
+msgid "Which categories should visitors be asked about? Turn off a category you do not use."
+msgstr "Ziyaretçiden hangi kategoriler için izin istenecek? Kullanmadığınız kategoriyi kapatın."
+
+#: includes/AdminPage.php:628
+msgid "Which cookies does your site use?"
+msgstr "Sitenizde hangi çerezler kullanılıyor?"
+
+#: includes/AdminPage.php:400
+msgid "Write short and clear: visitors should understand what is asked at a glance."
+msgstr "Kısa ve net yazın: ziyaretçi ne istendiğini tek bakışta anlamalı."
+
+#: includes/AdminPage.php:127
+msgid "You do not have access to this page."
+msgstr "Bu sayfaya erişim yetkiniz yok."
+
+#: includes/Admin.php:233
+#: includes/Admin.php:306
+#: includes/Updater.php:418
+msgid "You do not have permission for this action."
+msgstr "Bu işlem için yetkiniz yok."
+
+#: includes/Admin.php:319
+msgid "You do not have permission."
+msgstr "Yetkiniz yok."
+
+#: includes/Settings.php:48
+msgid "Your cookie preferences"
+msgstr "Çerez tercihleriniz"
+
+#: includes/Admin.php:328
+msgctxt "CSV decision value"
+msgid "accepted"
+msgstr "kabul"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "advertising"
+msgstr "reklam"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "analytics"
+msgstr "analiz"
+
+#: includes/AdminPage.php:531
+msgid "at the start of the page, with a 500 ms update wait"
+msgstr "sayfa başında, 500 ms güncelleme beklemesiyle"
+
+#: includes/Admin.php:324
+msgid "cookiekit-consent-log"
+msgstr "cookiekit-onay-kaydi"
+
+#: includes/AdminPage.php:277
+msgid "could not be read"
+msgstr "okunamadı"
+
+#: includes/Admin.php:328
+#: includes/Admin.php:333
+msgctxt "CSV decision value"
+msgid "custom"
+msgstr "ozel"
+
+#: includes/AdminPage.php:533
+msgid "dataLayer event"
+msgstr "dataLayer olayı"
+
+#: includes/AdminPage.php:341
+msgid "days"
+msgstr "gün"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "decision"
+msgstr "karar"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "essential"
+msgstr "zorunlu"
+
+#: includes/AdminPage.php:533
+msgid "event can be used as a Google Tag Manager trigger."
+msgstr "olayı Google Etiket Yöneticisi tetikleyicisi olarak kullanılabilir."
+
+#: includes/AdminPage.php:550
+msgctxt "Example script URL"
+msgid "https://example.com/ads.js"
+msgstr "https://ornek.com/reklam.js"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "ip_digest"
+msgstr "ip_ozeti"
+
+#: includes/AdminPage.php:532
+msgid "is sent; it is applied instantly for a returning visitor."
+msgstr "gönderilir; geri gelen ziyaretçide anında uygulanır."
+
+#: includes/AdminPage.php:263
+msgid "last 30 days"
+msgstr "son 30 gün"
+
+#: includes/AdminPage.php:551
+msgid "mask: null | 1 | 3 | 5 | 7"
+msgstr "maske: null | 1 | 3 | 5 | 7"
+
+#: includes/Updater.php:448
+msgid "never"
+msgstr "hiç"
+
+#: includes/AdminPage.php:275
+msgid "no decisions yet"
+msgstr "henüz karar yok"
+
+#: includes/AdminPage.php:551
+msgid "open the panel"
+msgstr "paneli aç"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "page"
+msgstr "sayfa"
+
+#: includes/Admin.php:328
+msgctxt "CSV decision value"
+msgid "rejected"
+msgstr "red"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "revision"
+msgstr "revizyon"
+
+#: includes/AdminPage.php:476
+msgid "section."
+msgstr "bölümünden açın."
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "time_utc"
+msgstr "zaman_utc"
+
+#: includes/Admin.php:327
+msgctxt "CSV column header"
+msgid "ua_digest"
+msgstr "ua_ozeti"
+
+#: includes/AdminPage.php:105
+#: includes/AdminPage.php:426
+msgid "— Select —"
+msgstr "— Seçin —"
+
+#: includes/AdminPage.php:375
+msgid "“Theme colours”: the site's --fm-* variables or the light/dark default are used (the three colour fields stay empty)."
+msgstr "“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu varsayılan kullanılır (üç renk alanı boş kalır)."

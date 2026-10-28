@@ -24,13 +24,13 @@ final class AdminPage {
 	/** Sekme adı → görünen ad. @return array<string,string> */
 	private static function tab_names(): array {
 		return array(
-			'genel'       => __( 'Genel', 'cookiekit' ),
-			'gorunum'     => __( 'Görünüm', 'cookiekit' ),
-			'metinler'    => __( 'Metinler', 'cookiekit' ),
-			'cerezler'    => __( 'Çerezler', 'cookiekit' ),
-			'kayitlar'    => __( 'Onay kayıtları', 'cookiekit' ),
-			'entegrasyon' => __( 'Entegrasyon', 'cookiekit' ),
-			'yardim'      => __( 'Yardım', 'cookiekit' ),
+			'genel'       => __( 'General', 'cookiekit' ),
+			'gorunum'     => __( 'Appearance', 'cookiekit' ),
+			'metinler'    => __( 'Texts', 'cookiekit' ),
+			'cerezler'    => __( 'Cookies', 'cookiekit' ),
+			'kayitlar'    => __( 'Consent log', 'cookiekit' ),
+			'entegrasyon' => __( 'Integration', 'cookiekit' ),
+			'yardim'      => __( 'Help', 'cookiekit' ),
 		);
 	}
 
@@ -102,7 +102,7 @@ final class AdminPage {
 	}
 
 	private static function page_select( string $id, string $name, string $current, string $label ): string {
-		$h = '<select class="ck-select" id="' . esc_attr( $id ) . '"' . ( '' !== $name ? ' name="' . esc_attr( $name ) . '"' : '' ) . '><option value="">' . esc_html__( '— Seçin —', 'cookiekit' ) . '</option>';
+		$h = '<select class="ck-select" id="' . esc_attr( $id ) . '"' . ( '' !== $name ? ' name="' . esc_attr( $name ) . '"' : '' ) . '><option value="">' . esc_html__( '— Select —', 'cookiekit' ) . '</option>';
 		foreach ( self::pages( $current ) as $path => $title ) {
 			$h .= '<option value="' . esc_attr( $path ) . '"' . selected( $current, $path, false ) . '>' . esc_html( $title . ' (' . $path . ')' ) . '</option>';
 		}
@@ -124,7 +124,7 @@ final class AdminPage {
 
 	public static function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu sayfaya erişim yetkiniz yok.', 'cookiekit' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have access to this page.', 'cookiekit' ), '', array( 'response' => 403 ) );
 		}
 		self::$s = Settings::all();
 		foreach ( get_settings_errors( self::OPT ) as $e ) {
@@ -146,22 +146,22 @@ final class AdminPage {
 			'preview'  => wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_preview' ), 'cookiekit_preview' ),
 			'defaults' => array_intersect_key( Settings::defaults(), array_flip( array( 'title', 'desc', 'accept', 'reject', 'prefs', 'save' ) ) ),
 			'i18n'     => array(
-				'unsaved'   => __( 'Kaydedilmemiş değişiklikler var', 'cookiekit' ),
-				'copied'    => __( 'Kopyalandı', 'cookiekit' ),
-				'copyfail'  => __( 'Seçildi — Ctrl+C ile kopyalayın', 'cookiekit' ),
-				'copy'      => __( 'Kopyala', 'cookiekit' ),
-				'contrast'  => __( 'Metin / zemin kontrastı', 'cookiekit' ),
-				'aa_ok'     => __( 'AA geçer', 'cookiekit' ),
-				'aa_fail'   => __( 'AA için en az 4,5:1 gerekir', 'cookiekit' ),
-				'nocalc'    => __( 'Kontrast hesaplanamadı: renkleri #rrggbb biçiminde girin.', 'cookiekit' ),
-				'step'      => __( 'Adım', 'cookiekit' ),
-				'next'      => __( 'Devam', 'cookiekit' ),
-				'panel_on'  => __( 'Tercih panelini göster', 'cookiekit' ),
-				'panel_off' => __( 'Banner’ı göster', 'cookiekit' ),
-				'sum_ads'   => __( 'Analiz ve reklam çerezleri sorulur', 'cookiekit' ),
-				'sum_an'    => __( 'Yalnız analiz çerezleri sorulur', 'cookiekit' ),
-				'rm_title'  => __( '“%s” çerezi listeden kaldırılsın mı?', 'cookiekit' ),
-				'confirm'   => 'SİL',
+				'unsaved'   => __( 'There are unsaved changes', 'cookiekit' ),
+				'copied'    => __( 'Copied', 'cookiekit' ),
+				'copyfail'  => __( 'Selected — copy with Ctrl+C', 'cookiekit' ),
+				'copy'      => __( 'Copy', 'cookiekit' ),
+				'contrast'  => __( 'Text / background contrast', 'cookiekit' ),
+				'aa_ok'     => __( 'Passes AA', 'cookiekit' ),
+				'aa_fail'   => __( 'AA needs at least 4.5:1', 'cookiekit' ),
+				'nocalc'    => __( 'Contrast could not be calculated: enter the colours in #rrggbb format.', 'cookiekit' ),
+				'step'      => __( 'Step', 'cookiekit' ),
+				'next'      => __( 'Continue', 'cookiekit' ),
+				'panel_on'  => __( 'Show the preferences panel', 'cookiekit' ),
+				'panel_off' => __( 'Show the banner', 'cookiekit' ),
+				'sum_ads'   => __( 'Analytics and ad cookies are asked about', 'cookiekit' ),
+				'sum_an'    => __( 'Only analytics cookies are asked about', 'cookiekit' ),
+				'rm_title'  => __( 'Remove the “%s” cookie from the list?', 'cookiekit' ),
+				'confirm'   => __( 'DELETE', 'cookiekit' ),
 			),
 		);
 		?>
@@ -172,16 +172,16 @@ final class AdminPage {
 	<div class="ck-head">
 		<div class="ck-head__id">
 			<h1>CookieKit</h1>
-			<span class="ck-chip"><?php echo esc_html( sprintf( /* translators: %s: sürüm */ __( 'Sürüm %s', 'cookiekit' ), COOKIEKIT_VERSION ) ); ?></span>
+			<span class="ck-chip"><?php echo esc_html( sprintf( /* translators: %s: sürüm */ __( 'Version %s', 'cookiekit' ), COOKIEKIT_VERSION ) ); ?></span>
 			<?php if ( $on ) : ?>
-				<span class="ck-chip ck-chip--ok"><span class="ck-dot" aria-hidden="true"></span><?php esc_html_e( 'Etkin', 'cookiekit' ); ?></span>
+				<span class="ck-chip ck-chip--ok"><span class="ck-dot" aria-hidden="true"></span><?php esc_html_e( 'Active', 'cookiekit' ); ?></span>
 			<?php else : ?>
-				<span class="ck-chip ck-chip--off"><span class="ck-dot" aria-hidden="true"></span><?php esc_html_e( 'Kapalı — banner gösterilmiyor', 'cookiekit' ); ?></span>
+				<span class="ck-chip ck-chip--off"><span class="ck-dot" aria-hidden="true"></span><?php esc_html_e( 'Off — the banner is not shown', 'cookiekit' ); ?></span>
 			<?php endif; ?>
 		</div>
 		<?php if ( ! $wizard ) : ?>
 		<div class="ck-head__act">
-			<button type="button" class="ck-btn" data-dialog="dlg-prev"><?php echo self::ico( 'eye' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Banner’ı önizle', 'cookiekit' ); ?></button>
+			<button type="button" class="ck-btn" data-dialog="dlg-prev"><?php echo self::ico( 'eye' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Preview the banner', 'cookiekit' ); ?></button>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -206,17 +206,17 @@ final class AdminPage {
 	/** Kaydedildi / hata / eylem bildirimleri. */
 	private static function notices(): void {
 		$notes = array(
-			'cookie_added'   => array( 'ok', __( 'Çerez listeye eklendi.', 'cookiekit' ) ),
-			'cookie_removed' => array( 'ok', __( 'Çerez listeden kaldırıldı.', 'cookiekit' ) ),
-			'cookie_invalid' => array( 'err', __( 'Çerez eklenemedi: ad zorunlu, kategori geçerli olmalı.', 'cookiekit' ) ),
-			'cookie_limit'   => array( 'err', __( 'En çok 40 özel çerez eklenebilir.', 'cookiekit' ) ),
-			'purged'         => array( 'ok', __( 'Tüm onay kayıtları silindi.', 'cookiekit' ) ),
-			'purge_fail'     => array( 'err', __( 'Onay kayıtları silinemedi: tablo okunamıyor.', 'cookiekit' ) ),
-			'update_checked' => array( 'ok', __( 'Güncelleme kontrolü yapıldı.', 'cookiekit' ) ),
-			'update_is_off'  => array( 'err', __( 'Güncelleme kontrolü kapalı; hiçbir bağlantı kurulmadı.', 'cookiekit' ) ),
-			'update_off'     => array( 'ok', __( 'Güncelleme kontrolü kapatıldı. GitHub’a artık bağlanılmaz.', 'cookiekit' ) ),
-			'update_on'      => array( 'ok', __( 'Güncelleme kontrolü açıldı.', 'cookiekit' ) ),
-			'purge_confirm'  => array( 'err', __( 'Silme onaylanmadı: kutuya SİL yazmanız gerekir. Hiçbir kayıt silinmedi.', 'cookiekit' ) ),
+			'cookie_added'   => array( 'ok', __( 'The cookie was added to the list.', 'cookiekit' ) ),
+			'cookie_removed' => array( 'ok', __( 'The cookie was removed from the list.', 'cookiekit' ) ),
+			'cookie_invalid' => array( 'err', __( 'The cookie could not be added: a name is required and the category must be valid.', 'cookiekit' ) ),
+			'cookie_limit'   => array( 'err', __( 'At most 40 custom cookies can be added.', 'cookiekit' ) ),
+			'purged'         => array( 'ok', __( 'All consent records were deleted.', 'cookiekit' ) ),
+			'purge_fail'     => array( 'err', __( 'Consent records could not be deleted: the table cannot be read.', 'cookiekit' ) ),
+			'update_checked' => array( 'ok', __( 'The update check was done.', 'cookiekit' ) ),
+			'update_is_off'  => array( 'err', __( 'The update check is off; no connection was made.', 'cookiekit' ) ),
+			'update_off'     => array( 'ok', __( 'The update check was turned off. GitHub is no longer contacted.', 'cookiekit' ) ),
+			'update_on'      => array( 'ok', __( 'The update check was turned on.', 'cookiekit' ) ),
+			'purge_confirm'  => array( 'err', __( 'Deletion was not confirmed: you must type DELETE in the box. No record was deleted.', 'cookiekit' ) ),
 		);
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız iletiyi seçer, beyaz liste.
 		$note = isset( $_GET['ck_note'] ) ? sanitize_key( (string) wp_unslash( $_GET['ck_note'] ) ) : '';
@@ -229,25 +229,25 @@ final class AdminPage {
 		$updated = ! empty( $_GET['settings-updated'] );
 		if ( self::$errs ) {
 			$h = '<div class="ck-note ck-note--err" id="ck-err" role="alert" tabindex="-1">' . self::ico( 'alert' ) . '<div><p><strong>'
-				. esc_html( sprintf( /* translators: %d: alan sayısı */ _n( 'Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli.', 'Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli.', count( self::$errs ), 'cookiekit' ), count( self::$errs ) ) )
+				. esc_html( sprintf( /* translators: %d: alan sayısı */ _n( 'Some changes were not saved: %d field needs fixing.', 'Some changes were not saved: %d fields need fixing.', count( self::$errs ), 'cookiekit' ), count( self::$errs ) ) )
 				. '</strong></p><ul>';
 			foreach ( self::$errs as $id => $msg ) {
 				$h .= '<li>' . ( 'ck-tab' === $id ? '' : '<a href="#' . esc_attr( $id ) . '">' . esc_html( self::label_for( $id ) ) . '</a>: ' ) . esc_html( $msg ) . '</li>';
 			}
 			echo $h . '</ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} elseif ( $updated ) {
-			echo '<div class="ck-note ck-note--ok" role="status">' . self::ico( 'check' ) . '<div><p><strong>' . esc_html__( 'Ayarlar kaydedildi.', 'cookiekit' ) . '</strong> ' . esc_html__( 'Önbellekli sayfa kullanıyorsanız önbelleği temizleyin.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-note ck-note--ok" role="status">' . self::ico( 'check' ) . '<div><p><strong>' . esc_html__( 'Settings saved.', 'cookiekit' ) . '</strong> ' . esc_html__( 'If you use a page cache, clear the cache.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
 	private static function label_for( string $id ): string {
 		$map = array(
-			'f-days' => __( 'Onay geçerlilik süresi', 'cookiekit' ),
-			'c-ac'   => __( 'Vurgu rengi', 'cookiekit' ),
-			'c-bg'   => __( 'Zemin rengi', 'cookiekit' ),
-			'c-fg'   => __( 'Metin rengi', 'cookiekit' ),
-			't-priv' => __( 'Gizlilik Politikası', 'cookiekit' ),
-			't-cook' => __( 'Çerez Politikası', 'cookiekit' ),
+			'f-days' => __( 'Consent validity period', 'cookiekit' ),
+			'c-ac'   => __( 'Accent colour', 'cookiekit' ),
+			'c-bg'   => __( 'Background colour', 'cookiekit' ),
+			'c-fg'   => __( 'Text colour', 'cookiekit' ),
+			't-priv' => __( 'Privacy Policy', 'cookiekit' ),
+			't-cook' => __( 'Cookie Policy', 'cookiekit' ),
 		);
 		return $map[ $id ] ?? $id;
 	}
@@ -260,34 +260,34 @@ final class AdminPage {
 			return $t > 0 ? round( $n / $t * 100, 1 ) : 0.0;
 		};
 		$cards = array(
-			array( '', __( 'Toplam karar', 'cookiekit' ), (string) $t, false, __( 'son 30 gün', 'cookiekit' ) ),
-			array( 'a', __( 'Hepsini kabul', 'cookiekit' ), (string) round( $pct( $st['a'] ) ), true, sprintf( /* translators: %d: karar sayısı */ __( '%d karar', 'cookiekit' ), $st['a'] ) ),
-			array( 'r', __( 'Reddet', 'cookiekit' ), (string) round( $pct( $st['r'] ) ), true, sprintf( __( '%d karar · yalnız zorunlu', 'cookiekit' ), $st['r'] ) ),
-			array( 'c', __( 'Özel tercih', 'cookiekit' ), (string) round( $pct( $st['c'] ) ), true, sprintf( __( '%d karar', 'cookiekit' ), $st['c'] ) ),
+			array( '', __( 'Total decisions', 'cookiekit' ), (string) $t, false, __( 'last 30 days', 'cookiekit' ) ),
+			array( 'a', __( 'Accept all', 'cookiekit' ), (string) round( $pct( $st['a'] ) ), true, sprintf( /* translators: %d: karar sayısı */ __( '%d decisions', 'cookiekit' ), $st['a'] ) ),
+			array( 'r', __( 'Reject', 'cookiekit' ), (string) round( $pct( $st['r'] ) ), true, sprintf( __( '%d decisions · necessary only', 'cookiekit' ), $st['r'] ) ),
+			array( 'c', __( 'Custom choice', 'cookiekit' ), (string) round( $pct( $st['c'] ) ), true, sprintf( __( '%d decisions', 'cookiekit' ), $st['c'] ) ),
 		);
 		if ( ! $ok ) {
-			echo '<div class="ck-note ck-note--err" role="alert">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'Onay kaydı tablosu okunamadı.', 'cookiekit' ) . '</strong> ' . esc_html__( 'Özet sayıları gösterilemiyor; ziyaretçi tarafı etkilenmez, banner çalışmaya devam eder.', 'cookiekit' ) . '</p><p><a href="' . esc_url( Admin::page_url( array( 'tab' => 'yardim' ) ) ) . '">' . esc_html__( 'Yardım → Sorun giderme', 'cookiekit' ) . '</a> · ' . esc_html__( 'Tabloyu yeniden oluşturmak için eklentiyi kapatıp açın.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-note ck-note--err" role="alert">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'The consent log table could not be read.', 'cookiekit' ) . '</strong> ' . esc_html__( 'The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working.', 'cookiekit' ) . '</p><p><a href="' . esc_url( Admin::page_url( array( 'tab' => 'yardim' ) ) ) . '">' . esc_html__( 'Help → Troubleshooting', 'cookiekit' ) . '</a> · ' . esc_html__( 'To recreate the table, deactivate and reactivate the plugin.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '<ul class="ck-stats" aria-label="' . esc_attr__( 'Son 30 günün özeti', 'cookiekit' ) . '">';
+		echo '<ul class="ck-stats" aria-label="' . esc_attr__( 'Summary of the last 30 days', 'cookiekit' ) . '">';
 		foreach ( $cards as $i => $c ) {
 			echo '<li class="ck-stat"><p class="ck-stat__k">' . ( '' !== $c[0] ? '<span class="ck-key ck-key--' . esc_attr( $c[0] ) . '" aria-hidden="true"></span>' : '' ) . esc_html( $c[1] ) . '</p>';
 			if ( $ok ) {
-				echo '<p class="ck-stat__v">' . esc_html( $c[2] ) . ( $c[3] ? '<small>%</small>' : '' ) . '</p><p class="ck-stat__s">' . esc_html( $t > 0 || 0 === $i ? $c[4] : __( 'henüz karar yok', 'cookiekit' ) ) . '</p>';
+				echo '<p class="ck-stat__v">' . esc_html( $c[2] ) . ( $c[3] ? '<small>%</small>' : '' ) . '</p><p class="ck-stat__s">' . esc_html( $t > 0 || 0 === $i ? $c[4] : __( 'no decisions yet', 'cookiekit' ) ) . '</p>';
 			} else {
-				echo '<p class="ck-stat__v">—</p><p class="ck-stat__s">' . esc_html( 0 === $i ? __( 'okunamadı', 'cookiekit' ) : '' ) . '</p>';
+				echo '<p class="ck-stat__v">—</p><p class="ck-stat__s">' . esc_html( 0 === $i ? __( 'could not be read', 'cookiekit' ) : '' ) . '</p>';
 			}
 			echo '</li>';
 		}
 		echo '</ul>';
 		if ( $ok && $t > 0 ) {
-			$label = sprintf( /* translators: 1-3: yüzde */ __( 'Karar dağılımı: yüzde %1$s kabul, yüzde %2$s reddet, yüzde %3$s özel tercih', 'cookiekit' ), round( $pct( $st['a'] ) ), round( $pct( $st['r'] ) ), round( $pct( $st['c'] ) ) );
+			$label = sprintf( /* translators: 1-3: yüzde */ __( 'Decision breakdown: %1$s percent accept, %2$s percent reject, %3$s percent custom choice', 'cookiekit' ), round( $pct( $st['a'] ) ), round( $pct( $st['r'] ) ), round( $pct( $st['c'] ) ) );
 			echo '<div class="ck-dist" role="img" aria-label="' . esc_attr( $label ) . '"><i style="width:' . esc_attr( (string) $pct( $st['a'] ) ) . '%"></i><i style="width:' . esc_attr( (string) $pct( $st['r'] ) ) . '%"></i><i style="width:' . esc_attr( (string) $pct( $st['c'] ) ) . '%"></i></div>';
 		}
 	}
 
 	/** @param array<string,string> $names */
 	private static function tabs_nav( array $names, string $tab, ?int $total ): void {
-		echo '<nav aria-label="' . esc_attr__( 'CookieKit bölümleri', 'cookiekit' ) . '"><ul class="ck-tabs">';
+		echo '<nav aria-label="' . esc_attr__( 'CookieKit sections', 'cookiekit' ) . '"><ul class="ck-tabs">';
 		foreach ( $names as $id => $name ) {
 			$count = '';
 			if ( 'cerezler' === $id ) {
@@ -309,7 +309,7 @@ final class AdminPage {
 	}
 
 	private static function form_close(): void {
-		echo '<div class="ck-bar" data-bar><p><span class="ck-dot" aria-hidden="true"></span><span data-bar-t>' . esc_html__( 'Kaydedilmemiş değişiklikler var', 'cookiekit' ) . '</span></p><div class="ck-bar__act"><button type="button" class="ck-btn" data-revert>' . esc_html__( 'Vazgeç', 'cookiekit' ) . '</button><button type="submit" class="ck-btn ck-btn--pri">' . esc_html__( 'Değişiklikleri kaydet', 'cookiekit' ) . '</button></div></div></form>';
+		echo '<div class="ck-bar" data-bar><p><span class="ck-dot" aria-hidden="true"></span><span data-bar-t>' . esc_html__( 'There are unsaved changes', 'cookiekit' ) . '</span></p><div class="ck-bar__act"><button type="button" class="ck-btn" data-revert>' . esc_html__( 'Cancel', 'cookiekit' ) . '</button><button type="submit" class="ck-btn ck-btn--pri">' . esc_html__( 'Save changes', 'cookiekit' ) . '</button></div></div></form>';
 	}
 
 	private static function card_open( string $id, string $title, string $desc_html = '' ): void {
@@ -317,34 +317,34 @@ final class AdminPage {
 	}
 
 	private static function prev_slot( string $id ): void {
-		echo '<aside class="ck-split__side" aria-label="' . esc_attr__( 'Canlı önizleme', 'cookiekit' ) . '"><div data-prev-slot="' . esc_attr( $id ) . '"></div></aside>';
+		echo '<aside class="ck-split__side" aria-label="' . esc_attr__( 'Live preview', 'cookiekit' ) . '"><div data-prev-slot="' . esc_attr( $id ) . '"></div></aside>';
 	}
 
 	// ───────────────────────── GENEL ─────────────────────────
 	private static function tab_genel(): void {
 		$s = self::$s;
 		self::form_open( 'genel' );
-		self::card_open( 'g1', __( 'Durum', 'cookiekit' ), esc_html__( 'Banner’ı tüm sitede açın ya da kapatın.', 'cookiekit' ) );
-		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Çerez bandı', 'cookiekit' ) . '</span></div><div class="ck-field__c">'
-			. self::sw( 'enabled', __( 'Ziyaretçilere göster', 'cookiekit' ), __( 'Kapatınca banner ve Consent Mode betiği yayından kalkar.', 'cookiekit' ), 'h-en' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		self::card_open( 'g1', __( 'Status', 'cookiekit' ), esc_html__( 'Turn the banner on or off across the whole site.', 'cookiekit' ) );
+		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Cookie banner', 'cookiekit' ) . '</span></div><div class="ck-field__c">'
+			. self::sw( 'enabled', __( 'Show to visitors', 'cookiekit' ), __( 'When off, the banner and the Consent Mode script are removed from the page.', 'cookiekit' ), 'h-en' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</div></div></div></section>';
 
-		self::card_open( 'g2', __( 'Çerez kategorileri', 'cookiekit' ), esc_html__( 'Ziyaretçiden hangi kategoriler için izin istenecek? Kullanmadığınız kategoriyi kapatın.', 'cookiekit' ) );
+		self::card_open( 'g2', __( 'Cookie categories', 'cookiekit' ), esc_html__( 'Which categories should visitors be asked about? Turn off a category you do not use.', 'cookiekit' ) );
 		echo '<div class="ck-card__b">'
-			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Zorunlu', 'cookiekit' ) . '</span></div><div class="ck-field__c"><label class="ck-switch"><input type="checkbox" role="switch" checked disabled aria-describedby="h-nec"><span class="ck-switch__t" aria-hidden="true"></span><span class="ck-switch__x"><b>' . esc_html__( 'Her zaman açık', 'cookiekit' ) . '</b><span class="ck-help" id="h-nec">' . esc_html__( 'Sitenin çalışması ve tercihin hatırlanması için gerekir; kapatılamaz.', 'cookiekit' ) . '</span></span></label></div></div>'
-			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Analiz', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'show_analytics', __( 'Analiz çerezlerini sor', 'cookiekit' ), __( 'Google Analytics gibi ölçüm araçları için.', 'cookiekit' ), 'h-an' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Reklam', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'show_ads', __( 'Reklam çerezlerini sor', 'cookiekit' ), __( 'AdSense ve Google reklam ortakları için. Sitede reklam yoksa kapatın.', 'cookiekit' ), 'h-ad' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Necessary', 'cookiekit' ) . '</span></div><div class="ck-field__c"><label class="ck-switch"><input type="checkbox" role="switch" checked disabled aria-describedby="h-nec"><span class="ck-switch__t" aria-hidden="true"></span><span class="ck-switch__x"><b>' . esc_html__( 'Always on', 'cookiekit' ) . '</b><span class="ck-help" id="h-nec">' . esc_html__( 'Needed for the site to work and to remember the choice; cannot be turned off.', 'cookiekit' ) . '</span></span></label></div></div>'
+			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Analytics', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'show_analytics', __( 'Ask about analytics cookies', 'cookiekit' ), __( 'For measurement tools such as Google Analytics.', 'cookiekit' ), 'h-an' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Advertising', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'show_ads', __( 'Ask about advertising cookies', 'cookiekit' ), __( 'For AdSense and Google advertising partners. Turn off if the site has no ads.', 'cookiekit' ), 'h-ad' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</div></section>';
 
-		self::card_open( 'g3', __( 'Onay süresi ve yeniden onay', 'cookiekit' ), sprintf( /* translators: %d: revizyon */ esc_html__( 'Geçerli revizyon: %s. Revizyon değişince tüm ziyaretçilerden yeniden onay istenir.', 'cookiekit' ), '<strong>' . (int) $s['revision'] . '</strong>' ) );
-		echo '<div class="ck-card__b"><div class="' . esc_attr( self::field_class( 'f-days' ) ) . '"><div class="ck-field__l"><label for="f-days">' . esc_html__( 'Onay geçerlilik süresi', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( '30–395 gün arası. Varsayılan 180.', 'cookiekit' ) . '</p></div>'
-			. '<div class="ck-field__c"><span class="ck-unit"><input class="ck-input ck-input--s" type="number" inputmode="numeric" id="f-days" name="' . esc_attr( self::OPT . '[days]' ) . '" value="' . esc_attr( (string) (int) $s['days'] ) . '" min="30" max="395"' . self::inv( 'f-days' ) . '><span>' . esc_html__( 'gün', 'cookiekit' ) . '</span></span>' . self::err_msg( 'f-days' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Yeniden onay', 'cookiekit' ) . '</span></div><div class="ck-field__c"><label class="ck-switch"><input type="checkbox" role="switch" name="' . esc_attr( self::OPT . '[bump_revision]' ) . '" value="1" aria-describedby="h-rev"><span class="ck-switch__t" aria-hidden="true"></span><span class="ck-switch__x"><b>' . esc_html__( 'Kaydederken revizyonu artır', 'cookiekit' ) . '</b><span class="ck-help" id="h-rev">' . esc_html__( 'Kategori ya da çerez listesini değiştirdiyseniz açın. Önbellek kullanıyorsanız ardından temizleyin.', 'cookiekit' ) . '</span></span></label></div></div>'
+		self::card_open( 'g3', __( 'Consent duration and re-consent', 'cookiekit' ), sprintf( /* translators: %d: revizyon */ esc_html__( 'Current revision: %s. When the revision changes, all visitors are asked for consent again.', 'cookiekit' ), '<strong>' . (int) $s['revision'] . '</strong>' ) );
+		echo '<div class="ck-card__b"><div class="' . esc_attr( self::field_class( 'f-days' ) ) . '"><div class="ck-field__l"><label for="f-days">' . esc_html__( 'Consent validity period', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( 'Between 30 and 395 days. Default 180.', 'cookiekit' ) . '</p></div>'
+			. '<div class="ck-field__c"><span class="ck-unit"><input class="ck-input ck-input--s" type="number" inputmode="numeric" id="f-days" name="' . esc_attr( self::OPT . '[days]' ) . '" value="' . esc_attr( (string) (int) $s['days'] ) . '" min="30" max="395"' . self::inv( 'f-days' ) . '><span>' . esc_html__( 'days', 'cookiekit' ) . '</span></span>' . self::err_msg( 'f-days' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Re-consent', 'cookiekit' ) . '</span></div><div class="ck-field__c"><label class="ck-switch"><input type="checkbox" role="switch" name="' . esc_attr( self::OPT . '[bump_revision]' ) . '" value="1" aria-describedby="h-rev"><span class="ck-switch__t" aria-hidden="true"></span><span class="ck-switch__x"><b>' . esc_html__( 'Increase the revision on save', 'cookiekit' ) . '</b><span class="ck-help" id="h-rev">' . esc_html__( 'Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards.', 'cookiekit' ) . '</span></span></label></div></div>'
 			. '</div></section>';
 
-		self::card_open( 'g4', __( 'Kayıt ve veri', 'cookiekit' ), esc_html__( 'KVKK ispatı için onay kararlarını saklayın. Ham IP kaydedilmez, 12 ay sonra otomatik silinir.', 'cookiekit' ) );
-		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Onay kaydı', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'log', __( 'Onay kararlarını kaydet', 'cookiekit' ), __( 'Karar, kategori, sayfa ve günlük dönen tuzla özetlenmiş IP saklanır.', 'cookiekit' ), 'h-log' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Eklenti silinirken', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'delete_on_uninstall', __( 'Ayarları ve onay kaydını da sil', 'cookiekit' ), __( 'Açıksa eklentiyi silmek ayarları, özel çerezleri ve kayıt tablosunu geri alınamaz biçimde kaldırır.', 'cookiekit' ), 'h-del' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		self::card_open( 'g4', __( 'Records and data', 'cookiekit' ), esc_html__( 'Keep consent decisions as proof (KVKK). The raw IP is not stored; records are deleted automatically after 12 months.', 'cookiekit' ) );
+		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'Consent logging', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'log', __( 'Record consent decisions', 'cookiekit' ), __( 'The decision, category, page and an IP hashed with a daily-rotating salt are stored.', 'cookiekit' ), 'h-log' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="ck-field"><div class="ck-field__l"><span>' . esc_html__( 'When the plugin is deleted', 'cookiekit' ) . '</span></div><div class="ck-field__c">' . self::sw( 'delete_on_uninstall', __( 'Also delete the settings and the consent log', 'cookiekit' ), __( 'When on, deleting the plugin irreversibly removes the settings, custom cookies and the log table.', 'cookiekit' ), 'h-del' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</div></section>';
 		self::form_close();
 	}
@@ -353,39 +353,39 @@ final class AdminPage {
 	private static function tab_gorunum(): void {
 		$s   = self::$s;
 		$pos = array(
-			'bottom-left'   => array( 'bl', __( 'Alt sol', 'cookiekit' ), '' ),
-			'bottom-center' => array( 'bc', __( 'Alt orta', 'cookiekit' ), __( 'Tam genişlik', 'cookiekit' ) ),
-			'bottom-right'  => array( 'br', __( 'Alt sağ', 'cookiekit' ), '' ),
-			'box'           => array( 'box', __( 'Ortada kutu', 'cookiekit' ), '' ),
+			'bottom-left'   => array( 'bl', __( 'Bottom left', 'cookiekit' ), '' ),
+			'bottom-center' => array( 'bc', __( 'Bottom centre', 'cookiekit' ), __( 'Full width', 'cookiekit' ) ),
+			'bottom-right'  => array( 'br', __( 'Bottom right', 'cookiekit' ), '' ),
+			'box'           => array( 'box', __( 'Box in the centre', 'cookiekit' ), '' ),
 		);
 		$own = '' !== (string) $s['color_accent'] || '' !== (string) $s['color_bg'] || '' !== (string) $s['color_text'] || isset( self::$errs['c-ac'] ) || isset( self::$errs['c-bg'] ) || isset( self::$errs['c-fg'] );
 		self::form_open( 'gorunum' );
 		echo '<div class="ck-split"><div>';
-		self::card_open( 'v1', __( 'Konum', 'cookiekit' ), esc_html__( 'Banner ekranın neresinde görünsün? Önizleme anında güncellenir.', 'cookiekit' ) );
-		echo '<div class="ck-card__b ck-card__b--pad"><fieldset class="ck-opts" style="grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr))"><legend class="ck-sr">' . esc_html__( 'Banner konumu', 'cookiekit' ) . '</legend>';
+		self::card_open( 'v1', __( 'Position', 'cookiekit' ), esc_html__( 'Where on the screen should the banner appear? The preview updates instantly.', 'cookiekit' ) );
+		echo '<div class="ck-card__b ck-card__b--pad"><fieldset class="ck-opts" style="grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr))"><legend class="ck-sr">' . esc_html__( 'Banner position', 'cookiekit' ) . '</legend>';
 		foreach ( $pos as $val => $p ) {
 			echo '<label class="ck-opt"><input type="radio" name="' . esc_attr( self::OPT . '[position]' ) . '" value="' . esc_attr( $val ) . '"' . checked( $s['position'], $val, false ) . '><span class="ck-opt__b"><span class="ck-pos ck-pos--' . esc_attr( $p[0] ) . '" aria-hidden="true"><i></i></span><span class="ck-opt__t">' . esc_html( $p[1] ) . '</span>' . ( '' !== $p[2] ? '<span class="ck-opt__d">' . esc_html( $p[2] ) . '</span>' : '' ) . '</span><span class="ck-opt__tick">' . self::ico( 'check' ) . '</span></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '</fieldset><p class="ck-help" style="margin-top:var(--ck-s3)">' . esc_html__( 'Telefonda (640 px altı) banner her zaman alt tam genişlik olur.', 'cookiekit' ) . '</p></div></section>';
+		echo '</fieldset><p class="ck-help" style="margin-top:var(--ck-s3)">' . esc_html__( 'On phones (below 640 px) the banner is always full width at the bottom.', 'cookiekit' ) . '</p></div></section>';
 
-		self::card_open( 'v2', __( 'Renkler', 'cookiekit' ), esc_html__( 'Temanızla uyumlu kalmak için varsayılan olarak tema renkleri kullanılır.', 'cookiekit' ) );
-		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span id="l-tema">' . esc_html__( 'Renk kaynağı', 'cookiekit' ) . '</span></div><div class="ck-field__c"><fieldset class="ck-seg" aria-labelledby="l-tema">'
-			. '<label><input type="radio" name="renk_kaynak" value="tema"' . checked( $own, false, false ) . '><span>' . esc_html__( 'Tema renkleri', 'cookiekit' ) . '</span></label>'
-			. '<label><input type="radio" name="renk_kaynak" value="ozel"' . checked( $own, true, false ) . '><span>' . esc_html__( 'Özel renkler', 'cookiekit' ) . '</span></label></fieldset>'
-			. '<p class="ck-help">' . esc_html__( '“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu varsayılan kullanılır (üç renk alanı boş kalır).', 'cookiekit' ) . '</p></div></div>';
-		echo '<div class="ck-field" id="colors"' . ( $own ? '' : ' hidden' ) . '><div class="ck-field__l"><span>' . esc_html__( 'Özel renkler', 'cookiekit' ) . '</span><p class="ck-help">' . esc_html__( 'Metin ve zemin arasındaki kontrast en az 4,5:1 olmalı.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><div class="ck-colors">';
+		self::card_open( 'v2', __( 'Colours', 'cookiekit' ), esc_html__( 'Theme colours are used by default so the banner stays consistent with your theme.', 'cookiekit' ) );
+		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><span id="l-tema">' . esc_html__( 'Colour source', 'cookiekit' ) . '</span></div><div class="ck-field__c"><fieldset class="ck-seg" aria-labelledby="l-tema">'
+			. '<label><input type="radio" name="renk_kaynak" value="tema"' . checked( $own, false, false ) . '><span>' . esc_html__( 'Theme colours', 'cookiekit' ) . '</span></label>'
+			. '<label><input type="radio" name="renk_kaynak" value="ozel"' . checked( $own, true, false ) . '><span>' . esc_html__( 'Custom colours', 'cookiekit' ) . '</span></label></fieldset>'
+			. '<p class="ck-help">' . esc_html__( '“Theme colours”: the site\'s --fm-* variables or the light/dark default are used (the three colour fields stay empty).', 'cookiekit' ) . '</p></div></div>';
+		echo '<div class="ck-field" id="colors"' . ( $own ? '' : ' hidden' ) . '><div class="ck-field__l"><span>' . esc_html__( 'Custom colours', 'cookiekit' ) . '</span><p class="ck-help">' . esc_html__( 'The contrast between text and background must be at least 4.5:1.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><div class="ck-colors">';
 		foreach ( array(
-			array( 'c-ac', 'color_accent', __( 'Vurgu', 'cookiekit' ), '#0b5fff' ),
-			array( 'c-bg', 'color_bg', __( 'Zemin', 'cookiekit' ), '#ffffff' ),
-			array( 'c-fg', 'color_text', __( 'Metin', 'cookiekit' ), '#1a1a1a' ),
+			array( 'c-ac', 'color_accent', __( 'Accent', 'cookiekit' ), '#0b5fff' ),
+			array( 'c-bg', 'color_bg', __( 'Background', 'cookiekit' ), '#ffffff' ),
+			array( 'c-fg', 'color_text', __( 'Text', 'cookiekit' ), '#1a1a1a' ),
 		) as $c ) {
 			$v   = (string) $s[ $c[1] ];
 			$pic = sanitize_hex_color( $v ) ? $v : $c[3];
 			echo '<div class="' . esc_attr( self::field_class( $c[0] ) ) . ' ck-color-i"><label for="' . esc_attr( $c[0] ) . '">' . esc_html( $c[2] ) . '</label><div class="ck-color">'
-				. '<input type="color" value="' . esc_attr( $pic ) . '" data-pair="' . esc_attr( $c[0] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: renk adı */ __( '%s rengi seçici', 'cookiekit' ), $c[2] ) ) . '">'
+				. '<input type="color" value="' . esc_attr( $pic ) . '" data-pair="' . esc_attr( $c[0] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: renk adı */ __( '%s colour picker', 'cookiekit' ), $c[2] ) ) . '">'
 				. '<input class="ck-input ck-input--mono" id="' . esc_attr( $c[0] ) . '" type="text" name="' . esc_attr( self::OPT . '[' . $c[1] . ']' ) . '" value="' . esc_attr( $v ) . '" placeholder="' . esc_attr( $c[3] ) . '" maxlength="7" data-hex' . self::inv( $c[0] ) . '></div>' . self::err_msg( $c[0] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '</div><p class="ck-note ck-note--ok" id="contrast" style="margin:var(--ck-s3) 0 0;max-width:34rem" role="status">' . self::ico( 'check' ) . '<span>' . esc_html__( 'Metin / zemin kontrastı: —', 'cookiekit' ) . '</span></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</div><p class="ck-note ck-note--ok" id="contrast" style="margin:var(--ck-s3) 0 0;max-width:34rem" role="status">' . self::ico( 'check' ) . '<span>' . esc_html__( 'Text / background contrast: —', 'cookiekit' ) . '</span></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
 		self::prev_slot( 'gorunum' );
 		echo '</div>';
@@ -397,37 +397,37 @@ final class AdminPage {
 		$s = self::$s;
 		self::form_open( 'metinler' );
 		echo '<div class="ck-split"><div>';
-		self::card_open( 'm1', __( 'Banner metni', 'cookiekit' ), esc_html__( 'Kısa ve net yazın: ziyaretçi ne istendiğini tek bakışta anlamalı.', 'cookiekit' ) );
-		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><label for="t-title">' . esc_html__( 'Başlık', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( 'En çok 80 karakter.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><input class="ck-input" style="max-width:none" id="t-title" name="' . esc_attr( self::OPT . '[title]' ) . '" value="' . esc_attr( (string) $s['title'] ) . '" maxlength="80" data-count="80"><p class="ck-counter" aria-hidden="true"></p></div></div>'
-			. '<div class="ck-field"><div class="ck-field__l"><label for="t-desc">' . esc_html__( 'Açıklama', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( 'En çok 500 karakter. Hangi çerezlerin neden kullanıldığını söyleyin.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><textarea class="ck-textarea" id="t-desc" name="' . esc_attr( self::OPT . '[desc]' ) . '" rows="4" maxlength="500" data-count="500">' . esc_textarea( (string) $s['desc'] ) . '</textarea><p class="ck-counter" aria-hidden="true"></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		self::card_open( 'm1', __( 'Banner text', 'cookiekit' ), esc_html__( 'Write short and clear: visitors should understand what is asked at a glance.', 'cookiekit' ) );
+		echo '<div class="ck-card__b"><div class="ck-field"><div class="ck-field__l"><label for="t-title">' . esc_html__( 'Title', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( 'At most 80 characters.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><input class="ck-input" style="max-width:none" id="t-title" name="' . esc_attr( self::OPT . '[title]' ) . '" value="' . esc_attr( (string) $s['title'] ) . '" maxlength="80" data-count="80"><p class="ck-counter" aria-hidden="true"></p></div></div>'
+			. '<div class="ck-field"><div class="ck-field__l"><label for="t-desc">' . esc_html__( 'Description', 'cookiekit' ) . '</label><p class="ck-help">' . esc_html__( 'At most 500 characters. Say which cookies are used and why.', 'cookiekit' ) . '</p></div><div class="ck-field__c"><textarea class="ck-textarea" id="t-desc" name="' . esc_attr( self::OPT . '[desc]' ) . '" rows="4" maxlength="500" data-count="500">' . esc_textarea( (string) $s['desc'] ) . '</textarea><p class="ck-counter" aria-hidden="true"></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-		self::card_open( 'm2', __( 'Düğme etiketleri', 'cookiekit' ), esc_html__( 'Kabul et ve Reddet eşit görünürlükte kalır; yalnız yazıları değişir.', 'cookiekit' ) );
+		self::card_open( 'm2', __( 'Button labels', 'cookiekit' ), esc_html__( 'Accept and Reject keep equal visibility; only their text changes.', 'cookiekit' ) );
 		echo '<div class="ck-card__b">';
 		foreach ( array(
-			array( 't-accept', 'accept', __( 'Kabul düğmesi', 'cookiekit' ), __( 'En çok 30 karakter.', 'cookiekit' ), 30 ),
-			array( 't-reject', 'reject', __( 'Red düğmesi', 'cookiekit' ), __( 'En çok 30 karakter.', 'cookiekit' ), 30 ),
-			array( 't-prefs', 'prefs', __( 'Tercihler düğmesi', 'cookiekit' ), __( 'Kategori panelini açar. En çok 30 karakter.', 'cookiekit' ), 30 ),
-			array( 't-save', 'save', __( 'Seçimi kaydet düğmesi', 'cookiekit' ), __( 'Panelin altındaki düğme. En çok 40 karakter.', 'cookiekit' ), 40 ),
+			array( 't-accept', 'accept', __( 'Accept button', 'cookiekit' ), __( 'At most 30 characters.', 'cookiekit' ), 30 ),
+			array( 't-reject', 'reject', __( 'Reject button', 'cookiekit' ), __( 'At most 30 characters.', 'cookiekit' ), 30 ),
+			array( 't-prefs', 'prefs', __( 'Preferences button', 'cookiekit' ), __( 'Opens the category panel. At most 30 characters.', 'cookiekit' ), 30 ),
+			array( 't-save', 'save', __( 'Save choice button', 'cookiekit' ), __( 'The button at the bottom of the panel. At most 40 characters.', 'cookiekit' ), 40 ),
 		) as $f ) {
 			echo '<div class="ck-field"><div class="ck-field__l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="ck-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-field__c"><input class="ck-input" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( (string) $s[ $f[1] ] ) . '" maxlength="' . (int) $f[4] . '"></div></div>';
 		}
 		echo '</div></section>';
 
-		self::card_open( 'm3', __( 'Politika bağlantıları', 'cookiekit' ), esc_html__( 'Banner ve tercih paneli bu sayfalara bağlanır. Boş bırakırsanız bağlantı gösterilmez.', 'cookiekit' ) );
+		self::card_open( 'm3', __( 'Policy links', 'cookiekit' ), esc_html__( 'The banner and the preferences panel link to these pages. If left empty, no link is shown.', 'cookiekit' ) );
 		echo '<div class="ck-card__b">';
 		foreach ( array(
-			array( 't-priv', 'privacy_url', __( 'Gizlilik Politikası', 'cookiekit' ), __( 'Site içi yol (/gizlilik-politikasi/) ya da bu sitenin tam adresi.', 'cookiekit' ) ),
-			array( 't-cook', 'cookie_url', __( 'Çerez Politikası', 'cookiekit' ), __( 'Çerez tablosu için [cookiekit_cerez_listesi] kullanan sayfa.', 'cookiekit' ) ),
+			array( 't-priv', 'privacy_url', __( 'Privacy Policy', 'cookiekit' ), __( 'A path on this site (/privacy-policy/) or the full address of this site.', 'cookiekit' ) ),
+			array( 't-cook', 'cookie_url', __( 'Cookie Policy', 'cookiekit' ), __( 'The page that uses [cookiekit_cerez_listesi] for the cookie table.', 'cookiekit' ) ),
 		) as $f ) {
 			$v = (string) $s[ $f[1] ];
 			echo '<div class="' . esc_attr( self::field_class( $f[0] ) ) . '"><div class="ck-field__l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="ck-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-field__c">'
 				. '<input class="ck-input" style="max-width:none" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( $v ) . '" maxlength="300"' . self::inv( $f[0] ) . '>' . self::err_msg( $f[0] )
-				. '<p class="ck-help"><label for="' . esc_attr( $f[0] ) . 'p" class="ck-sr">' . esc_html__( 'Sayfa listesinden seç', 'cookiekit' ) . '</label>'
-				. str_replace( '<option value="">' . esc_html__( '— Seçin —', 'cookiekit' ) . '</option>', '<option value="">' . esc_html__( 'Sayfa listesinden seç…', 'cookiekit' ) . '</option>', str_replace( 'class="ck-select"', 'class="ck-select" data-fill="' . esc_attr( $f[0] ) . '" style="max-width:20rem"', self::page_select( $f[0] . 'p', '', '', $f[2] ) ) )
+				. '<p class="ck-help"><label for="' . esc_attr( $f[0] ) . 'p" class="ck-sr">' . esc_html__( 'Pick from the page list', 'cookiekit' ) . '</label>'
+				. str_replace( '<option value="">' . esc_html__( '— Select —', 'cookiekit' ) . '</option>', '<option value="">' . esc_html__( 'Pick from the page list…', 'cookiekit' ) . '</option>', str_replace( 'class="ck-select"', 'class="ck-select" data-fill="' . esc_attr( $f[0] ) . '" style="max-width:20rem"', self::page_select( $f[0] . 'p', '', '', $f[2] ) ) )
 				. '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></section>';
-		echo '<p><button type="button" class="ck-btn ck-btn--sm" data-dialog="dlg-reset">' . self::ico( 'rot' ) . esc_html__( 'Metinleri varsayılana sıfırla', 'cookiekit' ) . '</button></p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<p><button type="button" class="ck-btn ck-btn--sm" data-dialog="dlg-reset">' . self::ico( 'rot' ) . esc_html__( 'Reset texts to default', 'cookiekit' ) . '</button></p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
 		self::prev_slot( 'metinler' );
 		echo '</div>';
@@ -445,23 +445,23 @@ final class AdminPage {
 		foreach ( $custom as $row ) {
 			$by_cat[ $row['cat'] ][] = $row;
 		}
-		self::card_open( 'c1', __( 'Çerez listesi', 'cookiekit' ), '' );
-		echo '<div style="display:flex;flex-wrap:wrap;gap:var(--ck-s3);justify-content:space-between;align-items:flex-start;padding:0 var(--ck-s5) var(--ck-s3)"><p style="margin:0;color:var(--ck-muted);max-width:42rem">' . esc_html__( 'Tercih panelinde ve [cookiekit_cerez_listesi] kısa kodunda gösterilir. Yalnız sitenizde gerçekten kurulanları listeleyin.', 'cookiekit' ) . '</p><button type="button" class="ck-btn ck-btn--pri" data-dialog="dlg-cookie">' . self::ico( 'plus' ) . esc_html__( 'Çerez ekle', 'cookiekit' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<div class="ck-tw" role="region" aria-label="' . esc_attr__( 'Çerez tablosu', 'cookiekit' ) . '" tabindex="0"><table class="ck-table"><caption class="ck-sr">' . esc_html__( 'Kategoriye göre çerezler', 'cookiekit' ) . '</caption><thead><tr><th scope="col">' . esc_html__( 'Çerez', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Sağlayıcı', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Amaç', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Süre', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Kaynak', 'cookiekit' ) . '</th><th scope="col"><span class="ck-sr">' . esc_html__( 'İşlem', 'cookiekit' ) . '</span></th></tr></thead><tbody>';
+		self::card_open( 'c1', __( 'Cookie list', 'cookiekit' ), '' );
+		echo '<div style="display:flex;flex-wrap:wrap;gap:var(--ck-s3);justify-content:space-between;align-items:flex-start;padding:0 var(--ck-s5) var(--ck-s3)"><p style="margin:0;color:var(--ck-muted);max-width:42rem">' . esc_html__( 'Shown in the preferences panel and in the [cookiekit_cerez_listesi] shortcode. List only the cookies that are really set on your site.', 'cookiekit' ) . '</p><button type="button" class="ck-btn ck-btn--pri" data-dialog="dlg-cookie">' . self::ico( 'plus' ) . esc_html__( 'Add cookie', 'cookiekit' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="ck-tw" role="region" aria-label="' . esc_attr__( 'Cookie table', 'cookiekit' ) . '" tabindex="0"><table class="ck-table"><caption class="ck-sr">' . esc_html__( 'Cookies by category', 'cookiekit' ) . '</caption><thead><tr><th scope="col">' . esc_html__( 'Cookie', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Provider', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Purpose', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Duration', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Source', 'cookiekit' ) . '</th><th scope="col"><span class="ck-sr">' . esc_html__( 'Action', 'cookiekit' ) . '</span></th></tr></thead><tbody>';
 		foreach ( Cookies::builtin() as $cat => $rows ) {
 			echo '<tr class="ck-table__grp"><th colspan="6" scope="colgroup">' . esc_html( $cats[ $cat ] ?? $cat ) . '</th></tr>';
 			foreach ( $rows as $r ) {
-				echo '<tr><th scope="row"><code>' . esc_html( $r[0] ) . '</code></th><td>' . esc_html( $r[1] ) . '</td><td>' . esc_html( $r[2] ) . '</td><td>' . esc_html( $r[3] ) . '</td><td><span class="ck-chip">' . esc_html__( 'Yerleşik', 'cookiekit' ) . '</span></td><td></td></tr>';
+				echo '<tr><th scope="row"><code>' . esc_html( $r[0] ) . '</code></th><td>' . esc_html( $r[1] ) . '</td><td>' . esc_html( $r[2] ) . '</td><td>' . esc_html( $r[3] ) . '</td><td><span class="ck-chip">' . esc_html__( 'Built-in', 'cookiekit' ) . '</span></td><td></td></tr>';
 			}
 			foreach ( $by_cat[ $cat ] ?? array() as $r ) {
-				echo '<tr><th scope="row"><code>' . esc_html( $r['name'] ) . '</code></th><td>' . esc_html( $r['provider'] ) . '</td><td>' . esc_html( $r['purpose'] ) . '</td><td>' . esc_html( $r['duration'] ) . '</td><td><span class="ck-chip ck-chip--ok">' . esc_html__( 'Özel', 'cookiekit' ) . '</span></td><td class="ck-num"><button type="button" class="ck-btn ck-btn--sm ck-btn--danger" data-rm="' . esc_attr( $r['id'] ) . '" data-rm-name="' . esc_attr( $r['name'] ) . '">' . self::ico( 'trash' ) . esc_html__( 'Kaldır', 'cookiekit' ) . '<span class="ck-sr"> ' . esc_html( $r['name'] ) . '</span></button></td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<tr><th scope="row"><code>' . esc_html( $r['name'] ) . '</code></th><td>' . esc_html( $r['provider'] ) . '</td><td>' . esc_html( $r['purpose'] ) . '</td><td>' . esc_html( $r['duration'] ) . '</td><td><span class="ck-chip ck-chip--ok">' . esc_html__( 'Custom', 'cookiekit' ) . '</span></td><td class="ck-num"><button type="button" class="ck-btn ck-btn--sm ck-btn--danger" data-rm="' . esc_attr( $r['id'] ) . '" data-rm-name="' . esc_attr( $r['name'] ) . '">' . self::ico( 'trash' ) . esc_html__( 'Remove', 'cookiekit' ) . '<span class="ck-sr"> ' . esc_html( $r['name'] ) . '</span></button></td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 		echo '</tbody></table></div>';
 		if ( ! $custom ) {
-			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'list' ) . '</span><h3>' . esc_html__( 'Özel çerez eklenmedi', 'cookiekit' ) . '</h3><p>' . esc_html__( 'Yukarıdaki yerleşik liste Google ve WordPress çerezlerini kapsar. Sitenize özel bir çerez kuruyorsanız ekleyin; ziyaretçi paneli ve politika sayfası otomatik güncellenir.', 'cookiekit' ) . '</p><button type="button" class="ck-btn" data-dialog="dlg-cookie">' . esc_html__( 'Çerez ekle', 'cookiekit' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'list' ) . '</span><h3>' . esc_html__( 'No custom cookies added', 'cookiekit' ) . '</h3><p>' . esc_html__( 'The built-in list above covers Google and WordPress cookies. If your site sets its own cookie, add it; the visitor panel and the policy page update automatically.', 'cookiekit' ) . '</p><button type="button" class="ck-btn" data-dialog="dlg-cookie">' . esc_html__( 'Add cookie', 'cookiekit' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '<p class="ck-help" style="padding:var(--ck-s3) var(--ck-s5) var(--ck-s4);margin:0">' . esc_html__( 'Yerleşik satırlar yalnız Google çerez referansında belgelenmiş çerezlerdir; değiştirilemez. Yeni çerez eklerseniz Genel → “Yeniden onay”ı açmayı düşünün.', 'cookiekit' ) . '</p></section>';
+		echo '<p class="ck-help" style="padding:var(--ck-s3) var(--ck-s5) var(--ck-s4);margin:0">' . esc_html__( 'Built-in rows are only cookies documented in the Google cookie reference; they cannot be changed. If you add a new cookie, consider turning on General → “Re-consent”.', 'cookiekit' ) . '</p></section>';
 	}
 
 	// ───────────────────────── ONAY KAYITLARI ─────────────────────────
@@ -473,37 +473,37 @@ final class AdminPage {
 			$page = min( $page, (int) ceil( $total / $per ) );
 		}
 		if ( empty( self::$s['log'] ) ) {
-			echo '<div class="ck-note ck-note--warn">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'Onay kaydı kapalı.', 'cookiekit' ) . '</strong> ' . esc_html__( 'Yeni kararlar saklanmıyor; KVKK ispatı için', 'cookiekit' ) . ' <a href="' . esc_url( Admin::page_url( array( 'tab' => 'genel' ) ) ) . '">' . esc_html__( 'Genel → Kayıt ve veri', 'cookiekit' ) . '</a> ' . esc_html__( 'bölümünden açın.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-note ck-note--warn">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'The consent log is off.', 'cookiekit' ) . '</strong> ' . esc_html__( 'New decisions are not stored; to keep proof (KVKK), turn it on under', 'cookiekit' ) . ' <a href="' . esc_url( Admin::page_url( array( 'tab' => 'genel' ) ) ) . '">' . esc_html__( 'General → Records and data', 'cookiekit' ) . '</a> ' . esc_html__( 'section.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		self::card_open( 'k1', __( 'Onay kararları', 'cookiekit' ), '' );
+		self::card_open( 'k1', __( 'Consent decisions', 'cookiekit' ), '' );
 		$csv = wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_csv' ), 'cookiekit_csv' );
-		echo '<div style="display:flex;flex-wrap:wrap;gap:var(--ck-s3);justify-content:space-between;align-items:flex-start;padding:0 var(--ck-s5) var(--ck-s3)"><p style="margin:0;color:var(--ck-muted);max-width:42rem">' . esc_html__( 'Kayıtlar 12 ay sonra otomatik silinir. Ham IP saklanmaz; yalnız günlük dönen tuzla özet tutulur.', 'cookiekit' ) . '</p><div class="ck-head__act"><a class="ck-btn" href="' . esc_url( $csv ) . '">' . self::ico( 'down' ) . esc_html__( 'CSV dışa aktar', 'cookiekit' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div style="display:flex;flex-wrap:wrap;gap:var(--ck-s3);justify-content:space-between;align-items:flex-start;padding:0 var(--ck-s5) var(--ck-s3)"><p style="margin:0;color:var(--ck-muted);max-width:42rem">' . esc_html__( 'Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept.', 'cookiekit' ) . '</p><div class="ck-head__act"><a class="ck-btn" href="' . esc_url( $csv ) . '">' . self::ico( 'down' ) . esc_html__( 'Export CSV', 'cookiekit' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		if ( $total ) {
-			echo '<button type="button" class="ck-btn ck-btn--danger" data-dialog="dlg-purge">' . self::ico( 'trash' ) . esc_html__( 'Kayıtları sil', 'cookiekit' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<button type="button" class="ck-btn ck-btn--danger" data-dialog="dlg-purge">' . self::ico( 'trash' ) . esc_html__( 'Delete records', 'cookiekit' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></div>';
 		if ( null === $total ) {
-			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'chart' ) . '</span><h3>' . esc_html__( 'Kayıtlar gösterilemiyor', 'cookiekit' ) . '</h3><p>' . esc_html__( 'Onay kaydı tablosu okunamadı. Ziyaretçi tarafı etkilenmez; kayıt yazma da duraklamış olabilir.', 'cookiekit' ) . '</p></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'chart' ) . '</span><h3>' . esc_html__( 'Records cannot be shown', 'cookiekit' ) . '</h3><p>' . esc_html__( 'The consent log table could not be read. The visitor side is not affected; writing records may also have paused.', 'cookiekit' ) . '</p></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			return;
 		}
 		if ( 0 === $total ) {
-			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'chart' ) . '</span><h3>' . esc_html__( 'Henüz onay kararı yok', 'cookiekit' ) . '</h3><p>' . esc_html__( 'Bir ziyaretçi bannerda seçim yapınca burada görünür. Yeni kurduysanız, çıkış yapmış bir tarayıcıda siteyi açıp bannerı deneyin.', 'cookiekit' ) . '</p><a class="ck-btn" href="' . esc_url( Admin::page_url( array( 'tab' => 'gorunum' ) ) ) . '">' . esc_html__( 'Banner’ı önizle', 'cookiekit' ) . '</a></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="ck-empty"><span class="ck-empty__i">' . self::ico( 'chart' ) . '</span><h3>' . esc_html__( 'No consent decisions yet', 'cookiekit' ) . '</h3><p>' . esc_html__( 'It appears here when a visitor makes a choice on the banner. If you just installed it, open the site in a logged-out browser and try the banner.', 'cookiekit' ) . '</p><a class="ck-btn" href="' . esc_url( Admin::page_url( array( 'tab' => 'gorunum' ) ) ) . '">' . esc_html__( 'Preview the banner', 'cookiekit' ) . '</a></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			return;
 		}
 		$act = array(
-			'a' => array( __( 'Hepsini kabul', 'cookiekit' ), ' ck-chip--ok' ),
-			'r' => array( __( 'Reddet', 'cookiekit' ), '' ),
-			'c' => array( __( 'Özel tercih', 'cookiekit' ), '' ),
+			'a' => array( __( 'Accept all', 'cookiekit' ), ' ck-chip--ok' ),
+			'r' => array( __( 'Reject', 'cookiekit' ), '' ),
+			'c' => array( __( 'Custom choice', 'cookiekit' ), '' ),
 		);
-		echo '<div class="ck-tw" role="region" aria-label="' . esc_attr__( 'Onay kaydı tablosu', 'cookiekit' ) . '" tabindex="0"><table class="ck-table"><caption class="ck-sr">' . esc_html__( 'Son onay kararları', 'cookiekit' ) . '</caption><thead><tr><th scope="col">' . esc_html__( 'Zaman', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Karar', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'İzin verilen', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Rev.', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Sayfa', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'IP özeti', 'cookiekit' ) . '</th></tr></thead><tbody>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="ck-tw" role="region" aria-label="' . esc_attr__( 'Consent log table', 'cookiekit' ) . '" tabindex="0"><table class="ck-table"><caption class="ck-sr">' . esc_html__( 'Latest consent decisions', 'cookiekit' ) . '</caption><thead><tr><th scope="col">' . esc_html__( 'Time', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Decision', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Allowed', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Rev.', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'Page', 'cookiekit' ) . '</th><th scope="col">' . esc_html__( 'IP hash', 'cookiekit' ) . '</th></tr></thead><tbody>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		foreach ( Log::recent( $per, ( $page - 1 ) * $per ) as $r ) {
 			$mask  = (int) $r['categories'];
-			$allow = array( __( 'Zorunlu', 'cookiekit' ) );
+			$allow = array( __( 'Necessary', 'cookiekit' ) );
 			if ( $mask & Settings::BIT_ANALYTICS ) {
-				$allow[] = __( 'Analiz', 'cookiekit' );
+				$allow[] = __( 'Analytics', 'cookiekit' );
 			}
 			if ( $mask & Settings::BIT_ADS ) {
-				$allow[] = __( 'Reklam', 'cookiekit' );
+				$allow[] = __( 'Advertising', 'cookiekit' );
 			}
 			$a = $act[ $r['action'] ] ?? $act['c'];
 			echo '<tr><td>' . esc_html( get_date_from_gmt( (string) $r['created_at'], 'd.m.Y H:i' ) ) . '</td><td><span class="ck-chip' . esc_attr( $a[1] ) . '">' . esc_html( $a[0] ) . '</span></td><td>' . esc_html( implode( ', ', $allow ) ) . '</td><td>' . (int) $r['revision'] . '</td><td><code>' . esc_html( (string) $r['path'] ) . '</code></td><td><code>' . esc_html( substr( (string) $r['ip_hash'], 0, 8 ) ) . '</code></td></tr>';
@@ -512,9 +512,9 @@ final class AdminPage {
 		$pages = (int) ceil( $total / $per );
 		$from  = ( $page - 1 ) * $per + 1;
 		$to    = min( $total, $page * $per );
-		echo '<div class="ck-pager"><span>' . esc_html( sprintf( /* translators: 1: toplam 2: başlangıç 3: bitiş */ __( '%1$d kayıttan %2$d–%3$d gösteriliyor', 'cookiekit' ), $total, $from, $to ) ) . '</span><span class="ck-pager__b">';
-		echo $page > 1 ? '<a class="ck-btn ck-btn--sm" href="' . esc_url( Admin::page_url( array( 'tab' => 'kayitlar', 'kp' => (string) ( $page - 1 ) ) ) ) . '">' . esc_html__( 'Önceki', 'cookiekit' ) . '</a>' : '<span class="ck-btn ck-btn--sm" aria-disabled="true">' . esc_html__( 'Önceki', 'cookiekit' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $page < $pages ? '<a class="ck-btn ck-btn--sm" href="' . esc_url( Admin::page_url( array( 'tab' => 'kayitlar', 'kp' => (string) ( $page + 1 ) ) ) ) . '">' . esc_html__( 'Sonraki', 'cookiekit' ) . '</a>' : '<span class="ck-btn ck-btn--sm" aria-disabled="true">' . esc_html__( 'Sonraki', 'cookiekit' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="ck-pager"><span>' . esc_html( sprintf( /* translators: 1: toplam 2: başlangıç 3: bitiş */ __( 'Showing %2$d–%3$d of %1$d records', 'cookiekit' ), $total, $from, $to ) ) . '</span><span class="ck-pager__b">';
+		echo $page > 1 ? '<a class="ck-btn ck-btn--sm" href="' . esc_url( Admin::page_url( array( 'tab' => 'kayitlar', 'kp' => (string) ( $page - 1 ) ) ) ) . '">' . esc_html__( 'Previous', 'cookiekit' ) . '</a>' : '<span class="ck-btn ck-btn--sm" aria-disabled="true">' . esc_html__( 'Previous', 'cookiekit' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $page < $pages ? '<a class="ck-btn ck-btn--sm" href="' . esc_url( Admin::page_url( array( 'tab' => 'kayitlar', 'kp' => (string) ( $page + 1 ) ) ) ) . '">' . esc_html__( 'Next', 'cookiekit' ) . '</a>' : '<span class="ck-btn ck-btn--sm" aria-disabled="true">' . esc_html__( 'Next', 'cookiekit' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</span></div></section>';
 	}
 
@@ -525,34 +525,34 @@ final class AdminPage {
 
 	private static function tab_entegrasyon(): void {
 		$on  = ! empty( self::$s['enabled'] );
-		$chp = $on ? __( 'Etkin', 'cookiekit' ) : __( 'Kapalı', 'cookiekit' );
-		self::card_open( 'e1', __( 'Google Consent Mode v2', 'cookiekit' ), esc_html__( 'Ayar gerekmez; eklenti sayfa başında otomatik çalışır. Durum bilgi amaçlıdır.', 'cookiekit' ) );
+		$chp = $on ? __( 'Active', 'cookiekit' ) : __( 'Off', 'cookiekit' );
+		self::card_open( 'e1', __( 'Google Consent Mode v2', 'cookiekit' ), esc_html__( 'No setting needed; the plugin runs automatically at the start of the page. The status is for information only.', 'cookiekit' ) );
 		echo '<div class="ck-card__b"><ul class="ck-status">'
-			. self::status_row( $on, __( 'Varsayılan: reddedildi', 'cookiekit' ), '<code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code> — ' . esc_html__( 'sayfa başında, 500 ms güncelleme beklemesiyle', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. self::status_row( $on, __( 'Seçimde güncelleme', 'cookiekit' ), esc_html__( 'Ziyaretçi karar verince', 'cookiekit' ) . ' <code>consent update</code> ' . esc_html__( 'gönderilir; geri gelen ziyaretçide anında uygulanır.', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. self::status_row( $on, __( 'dataLayer olayı', 'cookiekit' ), '<code>cookiekit_consent_update</code> ' . esc_html__( 'olayı Google Etiket Yöneticisi tetikleyicisi olarak kullanılabilir.', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( $on, __( 'Default: denied', 'cookiekit' ), '<code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code> — ' . esc_html__( 'at the start of the page, with a 500 ms update wait', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( $on, __( 'Update on choice', 'cookiekit' ), esc_html__( 'When the visitor decides,', 'cookiekit' ) . ' <code>consent update</code> ' . esc_html__( 'is sent; it is applied instantly for a returning visitor.', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( $on, __( 'dataLayer event', 'cookiekit' ), '<code>cookiekit_consent_update</code> ' . esc_html__( 'event can be used as a Google Tag Manager trigger.', 'cookiekit' ), $chp ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</ul></div></section>';
 
 		$sitekit = defined( 'GOOGLESITEKIT_VERSION' );
 		$monster = class_exists( 'MonsterInsights' ) || function_exists( 'MonsterInsights' );
-		self::card_open( 'e2', __( 'Algılanan eklentiler', 'cookiekit' ), esc_html__( 'Aynı etiketi iki eklenti yüklemesin diye kontrol edilir.', 'cookiekit' ) );
+		self::card_open( 'e2', __( 'Detected plugins', 'cookiekit' ), esc_html__( 'Checked so that two plugins do not load the same tag.', 'cookiekit' ) );
 		echo '<div class="ck-card__b"><ul class="ck-status">'
-			. self::status_row( $sitekit, __( 'Google Site Kit', 'cookiekit' ), $sitekit ? esc_html__( 'Algılandı. Analytics ve AdSense etiketleri onay verilene kadar Consent Mode ile kısıtlanır.', 'cookiekit' ) : esc_html__( 'Etkin değil.', 'cookiekit' ), $sitekit ? __( 'Algılandı', 'cookiekit' ) : __( 'Bulunamadı', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. self::status_row( $monster, __( 'MonsterInsights', 'cookiekit' ), $monster ? esc_html__( 'Algılandı. Analytics etiketi onaya bağlanmıyorsa betiği cookiekit_script() ile yükleyin.', 'cookiekit' ) : esc_html__( 'Etkin değil.', 'cookiekit' ), $monster ? __( 'Algılandı', 'cookiekit' ) : __( 'Bulunamadı', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. self::status_row( ! empty( self::$s['show_ads'] ), __( 'Reklam kategorisi', 'cookiekit' ), ! empty( self::$s['show_ads'] ) ? esc_html__( 'Açık. Reklam kodunuzu', 'cookiekit' ) . ' <code>cookiekit_script()</code> ' . esc_html__( 'ile yükleyin (aşağıda).', 'cookiekit' ) : esc_html__( 'Kapalı: bannerda reklam kategorisi sorulmuyor.', 'cookiekit' ), ! empty( self::$s['show_ads'] ) ? __( 'Açık', 'cookiekit' ) : __( 'Kapalı', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( $sitekit, __( 'Google Site Kit', 'cookiekit' ), $sitekit ? esc_html__( 'Detected. Analytics and AdSense tags are restricted by Consent Mode until consent is given.', 'cookiekit' ) : esc_html__( 'Not active.', 'cookiekit' ), $sitekit ? __( 'Detected', 'cookiekit' ) : __( 'Not found', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( $monster, __( 'MonsterInsights', 'cookiekit' ), $monster ? esc_html__( 'Detected. If the Analytics tag is not tied to consent, load the script with cookiekit_script().', 'cookiekit' ) : esc_html__( 'Not active.', 'cookiekit' ), $monster ? __( 'Detected', 'cookiekit' ) : __( 'Not found', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. self::status_row( ! empty( self::$s['show_ads'] ), __( 'Advertising category', 'cookiekit' ), ! empty( self::$s['show_ads'] ) ? esc_html__( 'On. Load your ad code with', 'cookiekit' ) . ' <code>cookiekit_script()</code> ' . esc_html__( '(below).', 'cookiekit' ) : esc_html__( 'Off: the advertising category is not asked about on the banner.', 'cookiekit' ), ! empty( self::$s['show_ads'] ) ? __( 'On', 'cookiekit' ) : __( 'Off', 'cookiekit' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</ul></div></section>';
 
-		self::card_open( 'e3', __( 'Kısa kodlar ve kod parçaları', 'cookiekit' ), esc_html__( 'Kopyalayıp sayfanıza, temanıza ya da düğmenize yapıştırın.', 'cookiekit' ) );
+		self::card_open( 'e3', __( 'Shortcodes and code snippets', 'cookiekit' ), esc_html__( 'Copy and paste into your page, theme or button.', 'cookiekit' ) );
 		$snips = array(
-			array( 's1', __( 'Tercih düğmesi (kısa kod)', 'cookiekit' ), '[cookiekit_tercihler label="Çerez tercihlerini yönet"]' ),
-			array( 's2', __( 'Çerez tablosu (Çerez Politikası sayfasına)', 'cookiekit' ), '[cookiekit_cerez_listesi]' ),
-			array( 's3', __( 'Herhangi bir öğeden paneli aç', 'cookiekit' ), '<a href="#" data-cookiekit-open>Çerez ayarları</a>' ),
-			array( 's4', __( 'Betiği onaya bağla (PHP)', 'cookiekit' ), "<?php echo cookiekit_script( 'ads', 'https://ornek.com/reklam.js' ); ?>" ),
-			array( 's5', 'JavaScript', "Cookiekit.open();            // paneli aç\nCookiekit.consent();         // maske: null | 1 | 3 | 5 | 7\ndocument.addEventListener('cookiekit:consent', e => e.detail.mask);" ),
+			array( 's1', __( 'Preferences button (shortcode)', 'cookiekit' ), '[cookiekit_tercihler label="' . esc_attr__( 'Manage cookie preferences', 'cookiekit' ) . '"]' ),
+			array( 's2', __( 'Cookie table (for the Cookie Policy page)', 'cookiekit' ), '[cookiekit_cerez_listesi]' ),
+			array( 's3', __( 'Open the panel from any element', 'cookiekit' ), '<a href="#" data-cookiekit-open>' . __( 'Cookie settings', 'cookiekit' ) . '</a>' ),
+			array( 's4', __( 'Tie a script to consent (PHP)', 'cookiekit' ), "<?php echo cookiekit_script( 'ads', '" . _x( 'https://example.com/ads.js', 'Example script URL', 'cookiekit' ) . "' ); ?>" ),
+			array( 's5', 'JavaScript', "Cookiekit.open();            // " . __( 'open the panel', 'cookiekit' ) . "\nCookiekit.consent();         // " . __( 'mask: null | 1 | 3 | 5 | 7', 'cookiekit' ) . "\ndocument.addEventListener('cookiekit:consent', e => e.detail.mask);" ),
 		);
 		echo '<div class="ck-card__b ck-card__b--pad">';
 		foreach ( $snips as $i => $sn ) {
-			echo '<p class="ck-snip-l"' . ( 0 === $i ? ' style="margin-top:0"' : '' ) . '>' . esc_html( $sn[1] ) . '</p><div class="ck-snip"><pre id="' . esc_attr( $sn[0] ) . '">' . esc_html( $sn[2] ) . '</pre><button type="button" class="ck-btn" data-copy="' . esc_attr( $sn[0] ) . '">' . self::ico( 'copy' ) . '<span>' . esc_html__( 'Kopyala', 'cookiekit' ) . '</span></button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<p class="ck-snip-l"' . ( 0 === $i ? ' style="margin-top:0"' : '' ) . '>' . esc_html( $sn[1] ) . '</p><div class="ck-snip"><pre id="' . esc_attr( $sn[0] ) . '">' . esc_html( $sn[2] ) . '</pre><button type="button" class="ck-btn" data-copy="' . esc_attr( $sn[0] ) . '">' . self::ico( 'copy' ) . '<span>' . esc_html__( 'Copy', 'cookiekit' ) . '</span></button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '<p class="ck-sr" id="copy-live" role="status" aria-live="polite"></p></div></section>';
 	}
@@ -573,7 +573,8 @@ final class AdminPage {
 				$ver         = $m[1];
 				$out[ $ver ] = array();
 			} elseif ( '' !== $ver && 0 === strpos( $line, '* ' ) ) {
-				$out[ $ver ][] = substr( $line, 2 );
+				// Release notes are written in English in readme.txt; the translations live in the .po file.
+				$out[ $ver ][] = _x( substr( $line, 2 ), 'Release note', 'cookiekit' ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
 			} elseif ( 0 === strpos( $line, '==' ) ) {
 				break;
 			}
@@ -582,17 +583,17 @@ final class AdminPage {
 	}
 
 	private static function tab_yardim(): void {
-		self::card_open( 'y1', __( 'Hızlı başlangıç', 'cookiekit' ), esc_html__( 'Kurulumdan sonra 2 dakikada doğru ayar:', 'cookiekit' ) );
-		echo '<div class="ck-card__b ck-card__b--pad"><ol class="ck-steps"><li><b>' . esc_html__( 'Kategorileri seçin', 'cookiekit' ) . '</b><p>' . esc_html__( 'Genel → yalnız kullandığınız kategorileri açık bırakın (reklam yoksa kapatın).', 'cookiekit' ) . '</p></li><li><b>' . esc_html__( 'Sayfaları bağlayın', 'cookiekit' ) . '</b><p>' . esc_html__( 'Metinler → Gizlilik ve Çerez Politikası sayfalarınızı seçin.', 'cookiekit' ) . '</p></li><li><b>' . esc_html__( 'Önizleyip etkinleştirin', 'cookiekit' ) . '</b><p>' . esc_html__( 'Görünüm → banner’ı çevresine uydurun; Genel → “Ziyaretçilere göster”i açın.', 'cookiekit' ) . '</p></li></ol><p style="margin:var(--ck-s4) 0 0"><a class="ck-btn" href="' . esc_url( Admin::page_url( array( 'wizard' => '1' ) ) ) . '">' . esc_html__( 'Kurulum sihirbazını yeniden aç', 'cookiekit' ) . '</a></p></div></section>';
+		self::card_open( 'y1', __( 'Quick start', 'cookiekit' ), esc_html__( 'The right setup in 2 minutes after installation:', 'cookiekit' ) );
+		echo '<div class="ck-card__b ck-card__b--pad"><ol class="ck-steps"><li><b>' . esc_html__( 'Choose the categories', 'cookiekit' ) . '</b><p>' . esc_html__( 'General → leave on only the categories you use (turn off advertising if there are no ads).', 'cookiekit' ) . '</p></li><li><b>' . esc_html__( 'Link the pages', 'cookiekit' ) . '</b><p>' . esc_html__( 'Texts → choose your Privacy Policy and Cookie Policy pages.', 'cookiekit' ) . '</p></li><li><b>' . esc_html__( 'Preview, then activate', 'cookiekit' ) . '</b><p>' . esc_html__( 'Appearance → fit the banner to its surroundings; General → turn on “Show to visitors”.', 'cookiekit' ) . '</p></li></ol><p style="margin:var(--ck-s4) 0 0"><a class="ck-btn" href="' . esc_url( Admin::page_url( array( 'wizard' => '1' ) ) ) . '">' . esc_html__( 'Reopen the setup wizard', 'cookiekit' ) . '</a></p></div></section>';
 
-		self::card_open( 'y2', __( 'Sık sorulanlar', 'cookiekit' ), '' );
+		self::card_open( 'y2', __( 'Frequently asked questions', 'cookiekit' ), '' );
 		$faq = array(
-			array( __( 'Banner görünmüyor, ne yapmalıyım?', 'cookiekit' ), __( 'Önbellek eklentinizi temizleyin ve siteyi giriş yapmamış (gizli pencere) bir tarayıcıda açın. Daha önce karar verdiyseniz banner tekrar çıkmaz: Genel → Yeniden onay ile revizyonu artırın.', 'cookiekit' ) ),
-			array( __( 'Ziyaretçi “Reddet” derse Google etiketleri ne olur?', 'cookiekit' ), __( 'Consent Mode v2 varsayılanı “reddedildi” kalır; Analytics ve reklam çerezleri kurulmaz.', 'cookiekit' ) ),
-			array( __( 'Onay kayıtlarında kişisel veri saklanıyor mu?', 'cookiekit' ), __( 'Ham IP ve tam tarayıcı bilgisi saklanmaz; yalnız günlük dönen tuzla özet, karar ve sayfa yolu tutulur. Kayıtlar 12 ay sonra silinir.', 'cookiekit' ) ),
-			array( __( 'Kendi çerezimi nasıl eklerim?', 'cookiekit' ), __( 'Çerezler sekmesi → “Çerez ekle”. Eklediğiniz çerez tercih panelinde ve politika sayfasındaki tabloda görünür.', 'cookiekit' ) ),
-			array( __( 'Başka bir eklentiyle çakışır mı?', 'cookiekit' ), __( 'Aynı etiketi iki eklenti yüklüyorsa Entegrasyon sekmesindeki algılama durumuna bakın.', 'cookiekit' ) ),
-			array( __( 'Sorun giderme: özet kartları “okunamadı” diyor', 'cookiekit' ), __( 'Onay kaydı tablosu okunamıyor demektir. Ziyaretçi tarafı etkilenmez. Eklentiyi kapatıp yeniden etkinleştirmek tabloyu yeniden oluşturur; mevcut kayıtlar silinmez.', 'cookiekit' ) ),
+			array( __( 'The banner is not showing; what should I do?', 'cookiekit' ), __( 'Clear your cache plugin and open the site in a logged-out (private window) browser. If you decided earlier, the banner will not appear again: raise the revision with General → Re-consent.', 'cookiekit' ) ),
+			array( __( 'What happens to Google tags if the visitor chooses “Reject”?', 'cookiekit' ), __( 'The Consent Mode v2 default stays “denied”; Analytics and advertising cookies are not set.', 'cookiekit' ) ),
+			array( __( 'Is personal data stored in the consent log?', 'cookiekit' ), __( 'The raw IP and full browser information are not stored; only a hash with a daily-rotating salt, the decision and the page path are kept. Records are deleted after 12 months.', 'cookiekit' ) ),
+			array( __( 'How do I add my own cookie?', 'cookiekit' ), __( 'Cookies tab → “Add cookie”. The cookie you add appears in the preferences panel and in the table on the policy page.', 'cookiekit' ) ),
+			array( __( 'Does it conflict with another plugin?', 'cookiekit' ), __( 'If two plugins load the same tag, check the detection status in the Integration tab.', 'cookiekit' ) ),
+			array( __( 'Troubleshooting: the summary cards say “could not be read”', 'cookiekit' ), __( 'It means the consent log table cannot be read. The visitor side is not affected. Deactivating and reactivating the plugin recreates the table; existing records are not deleted.', 'cookiekit' ) ),
 		);
 		echo '<div class="ck-card__b ck-faq">';
 		foreach ( $faq as $q ) {
@@ -601,15 +602,15 @@ final class AdminPage {
 		echo '</div></section>';
 
 		$hdr = get_file_data( COOKIEKIT_FILE, array( 'wp' => 'Requires at least', 'php' => 'Requires PHP', 'lic' => 'License' ) );
-		self::card_open( 'y3', __( 'Sürüm ve kaynak', 'cookiekit' ), '' );
-		echo '<div class="ck-card__b ck-card__b--pad"><dl class="ck-dl"><dt>' . esc_html__( 'Eklenti', 'cookiekit' ) . '</dt><dd>CookieKit</dd><dt>' . esc_html__( 'Sürüm', 'cookiekit' ) . '</dt><dd>' . esc_html( COOKIEKIT_VERSION ) . '</dd><dt>' . esc_html__( 'Gereksinim', 'cookiekit' ) . '</dt><dd>WordPress ' . esc_html( $hdr['wp'] ) . ' · PHP ' . esc_html( $hdr['php'] ) . '</dd><dt>' . esc_html__( 'Lisans', 'cookiekit' ) . '</dt><dd>' . esc_html( $hdr['lic'] ) . '</dd><dt>' . esc_html__( 'Kaynak', 'cookiekit' ) . '</dt><dd><a href="https://github.com/RbnCore" rel="noopener" target="_blank">github.com/RbnCore<span class="ck-sr"> ' . esc_html__( '(yeni sekmede açılır)', 'cookiekit' ) . '</span></a></dd></dl>';
-		echo '<h3 style="margin:var(--ck-s5) 0 var(--ck-s2);font-size:.9375rem">' . esc_html__( 'Sürüm notları', 'cookiekit' ) . '</h3><ul class="ck-log">';
+		self::card_open( 'y3', __( 'Version and source', 'cookiekit' ), '' );
+		echo '<div class="ck-card__b ck-card__b--pad"><dl class="ck-dl"><dt>' . esc_html__( 'Plugin', 'cookiekit' ) . '</dt><dd>CookieKit</dd><dt>' . esc_html__( 'Version', 'cookiekit' ) . '</dt><dd>' . esc_html( COOKIEKIT_VERSION ) . '</dd><dt>' . esc_html__( 'Requirements', 'cookiekit' ) . '</dt><dd>WordPress ' . esc_html( $hdr['wp'] ) . ' · PHP ' . esc_html( $hdr['php'] ) . '</dd><dt>' . esc_html__( 'License', 'cookiekit' ) . '</dt><dd>' . esc_html( $hdr['lic'] ) . '</dd><dt>' . esc_html__( 'Source', 'cookiekit' ) . '</dt><dd><a href="https://github.com/RbnCore" rel="noopener" target="_blank">github.com/RbnCore<span class="ck-sr"> ' . esc_html__( '(opens in a new tab)', 'cookiekit' ) . '</span></a></dd></dl>';
+		echo '<h3 style="margin:var(--ck-s5) 0 var(--ck-s2);font-size:.9375rem">' . esc_html__( 'Release notes', 'cookiekit' ) . '</h3><ul class="ck-log">';
 		foreach ( self::changelog() as $ver => $items ) {
 			echo '<li><b>' . esc_html( $ver ) . '</b> — ' . esc_html( implode( ' ', $items ) ) . '</li>';
 		}
 		echo '</ul></div></section>';
 
-		self::card_open( 'y4', __( 'Güncelleme', 'cookiekit' ), esc_html__( 'Yeni sürümler GitHub’daki resmî yayınlardan gelir.', 'cookiekit' ) );
+		self::card_open( 'y4', __( 'Update', 'cookiekit' ), esc_html__( 'New versions come from the official releases on GitHub.', 'cookiekit' ) );
 		echo '<div class="ck-card__b ck-card__b--pad">' . Updater::render_card() . '</div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Updater::render_card() çıktısı kaçışlıdır.
 	}
 
@@ -618,27 +619,27 @@ final class AdminPage {
 		$s    = self::$s;
 		$skip = wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_wizard_skip' ), 'cookiekit_wizard_skip' );
 		$ads  = ! empty( $s['show_ads'] ) || empty( $s['wizard_done'] );
-		echo '<section id="wizard" aria-labelledby="wiz-h"><div class="ck-wiz"><div class="ck-wiz__top"><p id="wiz-n">' . esc_html__( 'Kurulum', 'cookiekit' ) . '</p><a class="ck-btn ck-btn--link" href="' . esc_url( $skip ) . '">' . esc_html__( 'Şimdilik atla', 'cookiekit' ) . '</a></div>';
-		echo '<ol class="ck-stepper" aria-label="' . esc_attr__( 'Kurulum adımları', 'cookiekit' ) . '"><li data-st="1"><b>1</b><span>' . esc_html__( 'Site türü', 'cookiekit' ) . '</span></li><li data-st="2"><b>2</b><span>' . esc_html__( 'Metin ve bağlantılar', 'cookiekit' ) . '</span></li><li data-st="3"><b>3</b><span>' . esc_html__( 'Önizle ve etkinleştir', 'cookiekit' ) . '</span></li></ol>';
+		echo '<section id="wizard" aria-labelledby="wiz-h"><div class="ck-wiz"><div class="ck-wiz__top"><p id="wiz-n">' . esc_html__( 'Setup', 'cookiekit' ) . '</p><a class="ck-btn ck-btn--link" href="' . esc_url( $skip ) . '">' . esc_html__( 'Skip for now', 'cookiekit' ) . '</a></div>';
+		echo '<ol class="ck-stepper" aria-label="' . esc_attr__( 'Setup steps', 'cookiekit' ) . '"><li data-st="1"><b>1</b><span>' . esc_html__( 'Site type', 'cookiekit' ) . '</span></li><li data-st="2"><b>2</b><span>' . esc_html__( 'Text and links', 'cookiekit' ) . '</span></li><li data-st="3"><b>3</b><span>' . esc_html__( 'Preview and activate', 'cookiekit' ) . '</span></li></ol>';
 		echo '<form class="ck-card" id="wiz-form" method="post" action="options.php">';
 		settings_fields( 'cookiekit_group' );
 		echo '<input type="hidden" name="' . esc_attr( self::OPT . '[_tab]' ) . '" value="kurulum">';
 		// 1
-		echo '<div data-wstep="1"><div class="ck-card__h"><h2 id="wiz-h">' . esc_html__( 'Sitenizde hangi çerezler kullanılıyor?', 'cookiekit' ) . '</h2><p>' . esc_html__( 'Yalnız gerçekten kullandığınız kategoriyi gösterin; kullanılmayan kategori ziyaretçiye gereksiz soru olur.', 'cookiekit' ) . '</p></div><div class="ck-card__b ck-card__b--pad"><fieldset class="ck-opts" style="grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))"><legend class="ck-sr">' . esc_html__( 'Site türü', 'cookiekit' ) . '</legend>';
+		echo '<div data-wstep="1"><div class="ck-card__h"><h2 id="wiz-h">' . esc_html__( 'Which cookies does your site use?', 'cookiekit' ) . '</h2><p>' . esc_html__( 'Show only the categories you really use; an unused category is an unnecessary question for visitors.', 'cookiekit' ) . '</p></div><div class="ck-card__b ck-card__b--pad"><fieldset class="ck-opts" style="grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))"><legend class="ck-sr">' . esc_html__( 'Site type', 'cookiekit' ) . '</legend>';
 		foreach ( array(
-			array( 'reklam', __( 'Analiz + Reklam', 'cookiekit' ), __( 'Google Analytics ve AdSense (ya da başka Google reklamı) kullanıyorum.', 'cookiekit' ), $ads ),
-			array( 'analiz', __( 'Yalnız Analiz', 'cookiekit' ), __( 'Sadece ziyaretçi ölçümü yapıyorum, reklam göstermiyorum.', 'cookiekit' ), ! $ads ),
+			array( 'reklam', __( 'Analytics + Advertising', 'cookiekit' ), __( 'I use Google Analytics and AdSense (or other Google advertising).', 'cookiekit' ), $ads ),
+			array( 'analiz', __( 'Analytics only', 'cookiekit' ), __( 'I only measure visitors and show no ads.', 'cookiekit' ), ! $ads ),
 		) as $o ) {
 			echo '<label class="ck-opt"><input type="radio" name="' . esc_attr( self::OPT . '[_tur]' ) . '" value="' . esc_attr( $o[0] ) . '"' . checked( $o[3], true, false ) . '><span class="ck-opt__b"><span class="ck-opt__t">' . esc_html( $o[1] ) . '</span><span class="ck-opt__d">' . esc_html( $o[2] ) . '</span></span><span class="ck-opt__tick">' . self::ico( 'check' ) . '</span></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '</fieldset><p class="ck-help" style="margin-top:var(--ck-s3)">' . esc_html__( 'Zorunlu çerez kategorisi her zaman görünür. Sonradan Genel sekmesinden değiştirebilirsiniz.', 'cookiekit' ) . '</p></div></div>';
+		echo '</fieldset><p class="ck-help" style="margin-top:var(--ck-s3)">' . esc_html__( 'The necessary-cookie category is always shown. You can change this later in the General tab.', 'cookiekit' ) . '</p></div></div>';
 		// 2
-		echo '<div data-wstep="2"><div class="ck-card__h"><h2>' . esc_html__( 'Politika sayfalarınızı seçin', 'cookiekit' ) . '</h2><p>' . esc_html__( 'Banner bu sayfalara bağlanır. Sayfanız henüz yoksa boş bırakın; bağlantı gösterilmez.', 'cookiekit' ) . '</p></div><div class="ck-card__b">'
-			. '<div class="ck-field"><div class="ck-field__l"><label for="t-priv">' . esc_html__( 'Gizlilik Politikası sayfası', 'cookiekit' ) . '</label></div><div class="ck-field__c">' . self::page_select( 't-priv', self::OPT . '[privacy_url]', (string) $s['privacy_url'], '' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="ck-field"><div class="ck-field__l"><label for="t-cook">' . esc_html__( 'Çerez Politikası sayfası', 'cookiekit' ) . '</label></div><div class="ck-field__c">' . self::page_select( 't-cook', self::OPT . '[cookie_url]', (string) $s['cookie_url'], '' ) . '<p class="ck-help">' . esc_html__( 'İpucu: Çerez Politikası sayfasına [cookiekit_cerez_listesi] kısa kodunu ekleyerek çerez tablosunu gösterin.', 'cookiekit' ) . '</p></div></div></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div data-wstep="2"><div class="ck-card__h"><h2>' . esc_html__( 'Choose your policy pages', 'cookiekit' ) . '</h2><p>' . esc_html__( 'The banner links to these pages. If you do not have the page yet, leave it empty; no link is shown.', 'cookiekit' ) . '</p></div><div class="ck-card__b">'
+			. '<div class="ck-field"><div class="ck-field__l"><label for="t-priv">' . esc_html__( 'Privacy Policy page', 'cookiekit' ) . '</label></div><div class="ck-field__c">' . self::page_select( 't-priv', self::OPT . '[privacy_url]', (string) $s['privacy_url'], '' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="ck-field"><div class="ck-field__l"><label for="t-cook">' . esc_html__( 'Cookie Policy page', 'cookiekit' ) . '</label></div><div class="ck-field__c">' . self::page_select( 't-cook', self::OPT . '[cookie_url]', (string) $s['cookie_url'], '' ) . '<p class="ck-help">' . esc_html__( 'Tip: show the cookie table by adding the [cookiekit_cerez_listesi] shortcode to the Cookie Policy page.', 'cookiekit' ) . '</p></div></div></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// 3
-		echo '<div data-wstep="3"><div class="ck-card__h"><h2>' . esc_html__( 'Önizleyin ve etkinleştirin', 'cookiekit' ) . '</h2><p>' . esc_html__( 'Etkinleştirince banner yayına girer.', 'cookiekit' ) . '</p></div><div class="ck-card__b ck-card__b--pad"><div data-prev-slot="wiz" data-compact></div><ul class="ck-sum" style="margin-top:var(--ck-s4)"><li>' . self::ico( 'check' ) . '<span id="w-sum1">' . esc_html__( 'Analiz ve reklam çerezleri sorulur', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . esc_html__( 'Google Consent Mode v2: varsayılan “reddedildi”', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . ( ! empty( $s['log'] ) ? esc_html__( 'Onay kararları kaydedilir (ham IP saklanmaz)', 'cookiekit' ) : esc_html__( 'Onay kararları kaydedilmez (günlük kapalı)', 'cookiekit' ) ) . '</span></li></ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<div class="ck-wiz__f"><button type="button" class="ck-btn" id="wiz-back" hidden>' . esc_html__( 'Geri', 'cookiekit' ) . '</button><div><button type="button" class="ck-btn ck-btn--pri" id="wiz-next" hidden>' . esc_html__( 'Devam', 'cookiekit' ) . '</button><button type="submit" class="ck-btn ck-btn--pri" id="wiz-finish">' . esc_html__( 'Etkinleştir ve bitir', 'cookiekit' ) . '</button></div></div></form></div></section>';
+		echo '<div data-wstep="3"><div class="ck-card__h"><h2>' . esc_html__( 'Preview and go live', 'cookiekit' ) . '</h2><p>' . esc_html__( 'The banner goes live when you activate it.', 'cookiekit' ) . '</p></div><div class="ck-card__b ck-card__b--pad"><div data-prev-slot="wiz" data-compact></div><ul class="ck-sum" style="margin-top:var(--ck-s4)"><li>' . self::ico( 'check' ) . '<span id="w-sum1">' . esc_html__( 'Analytics and ad cookies are asked about', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . esc_html__( 'Google Consent Mode v2: default “denied”', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . ( ! empty( $s['log'] ) ? esc_html__( 'Consent decisions are recorded (the raw IP is not stored)', 'cookiekit' ) : esc_html__( 'Consent decisions are not recorded (log is off)', 'cookiekit' ) ) . '</span></li></ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="ck-wiz__f"><button type="button" class="ck-btn" id="wiz-back" hidden>' . esc_html__( 'Back', 'cookiekit' ) . '</button><div><button type="button" class="ck-btn ck-btn--pri" id="wiz-next" hidden>' . esc_html__( 'Continue', 'cookiekit' ) . '</button><button type="submit" class="ck-btn ck-btn--pri" id="wiz-finish">' . esc_html__( 'Activate and finish', 'cookiekit' ) . '</button></div></div></form></div></section>';
 	}
 
 	// ───────────────────────── PENCERELER ─────────────────────────
@@ -647,18 +648,18 @@ final class AdminPage {
 <template id="ck-tpl-prev">
 	<section class="ck-prev" aria-labelledby="pv-h-{id}">
 		<div class="ck-prev__bar">
-			<h2 id="pv-h-{id}"><?php esc_html_e( 'Canlı önizleme', 'cookiekit' ); ?></h2>
+			<h2 id="pv-h-{id}"><?php esc_html_e( 'Live preview', 'cookiekit' ); ?></h2>
 			<div class="ck-prev__ctl">
-				<fieldset class="ck-seg"><legend class="ck-sr"><?php esc_html_e( 'Cihaz', 'cookiekit' ); ?></legend>
-					<label><input type="radio" name="pv-dev-{id}" value="desk" checked><span><?php echo self::ico( 'desk' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Masaüstü', 'cookiekit' ); ?></span></span></label>
-					<label><input type="radio" name="pv-dev-{id}" value="mob"><span><?php echo self::ico( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Mobil', 'cookiekit' ); ?></span></span></label></fieldset>
-				<fieldset class="ck-seg"><legend class="ck-sr"><?php esc_html_e( 'Sayfa teması', 'cookiekit' ); ?></legend>
-					<label><input type="radio" name="pv-th-{id}" value="light" checked><span><?php echo self::ico( 'sun' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Açık', 'cookiekit' ); ?></span></span></label>
-					<label><input type="radio" name="pv-th-{id}" value="dark"><span><?php echo self::ico( 'moon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Koyu', 'cookiekit' ); ?></span></span></label></fieldset>
+				<fieldset class="ck-seg"><legend class="ck-sr"><?php esc_html_e( 'Device', 'cookiekit' ); ?></legend>
+					<label><input type="radio" name="pv-dev-{id}" value="desk" checked><span><?php echo self::ico( 'desk' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Desktop', 'cookiekit' ); ?></span></span></label>
+					<label><input type="radio" name="pv-dev-{id}" value="mob"><span><?php echo self::ico( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Mobile', 'cookiekit' ); ?></span></span></label></fieldset>
+				<fieldset class="ck-seg"><legend class="ck-sr"><?php esc_html_e( 'Page theme', 'cookiekit' ); ?></legend>
+					<label><input type="radio" name="pv-th-{id}" value="light" checked><span><?php echo self::ico( 'sun' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'On', 'cookiekit' ); ?></span></span></label>
+					<label><input type="radio" name="pv-th-{id}" value="dark"><span><?php echo self::ico( 'moon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="ck-sr"><?php esc_html_e( 'Dark', 'cookiekit' ); ?></span></span></label></fieldset>
 			</div>
 		</div>
-		<div class="ck-prev__stage" data-stage><iframe class="ck-prev__frame" title="<?php esc_attr_e( 'Banner önizlemesi', 'cookiekit' ); ?>" tabindex="-1"></iframe></div>
-		<div class="ck-prev__foot"><p><?php esc_html_e( 'Gerçek banner stiliyle çizilir; kaydedene kadar sitede değişmez.', 'cookiekit' ); ?></p><button type="button" class="ck-btn ck-btn--sm" data-panel-toggle aria-pressed="false"><?php esc_html_e( 'Tercih panelini göster', 'cookiekit' ); ?></button></div>
+		<div class="ck-prev__stage" data-stage><iframe class="ck-prev__frame" title="<?php esc_attr_e( 'Banner preview', 'cookiekit' ); ?>" tabindex="-1"></iframe></div>
+		<div class="ck-prev__foot"><p><?php esc_html_e( 'Drawn with the real banner style; the site does not change until you save.', 'cookiekit' ); ?></p><button type="button" class="ck-btn ck-btn--sm" data-panel-toggle aria-pressed="false"><?php esc_html_e( 'Show the preferences panel', 'cookiekit' ); ?></button></div>
 	</section>
 </template>
 		<?php
@@ -667,24 +668,24 @@ final class AdminPage {
 		}
 		$post = esc_url( admin_url( 'admin-post.php' ) );
 		?>
-<dialog class="ck-dlg ck-dlg--wide" id="dlg-prev" aria-labelledby="dp-h"><form method="dialog"><div class="ck-dlg__b"><h2 id="dp-h"><?php esc_html_e( 'Banner önizlemesi', 'cookiekit' ); ?></h2><div data-prev-slot="dialog"></div></div><div class="ck-dlg__f"><button class="ck-btn ck-btn--pri"><?php esc_html_e( 'Kapat', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="ck-dlg" id="dlg-reset" aria-labelledby="dr-h"><form method="dialog"><div class="ck-dlg__b"><h2 id="dr-h"><?php esc_html_e( 'Metinler varsayılana dönsün mü?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'Başlık, açıklama ve düğme etiketleri Türkçe varsayılanlara döner. Kaydedene kadar sitede değişmez.', 'cookiekit' ); ?></p></div><div class="ck-dlg__f"><button class="ck-btn" value="iptal"><?php esc_html_e( 'Vazgeç', 'cookiekit' ); ?></button><button class="ck-btn ck-btn--pri" value="tamam" data-do="reset-texts"><?php esc_html_e( 'Varsayılana dön', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="ck-dlg" id="dlg-purge" aria-labelledby="du-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_purge_log"><?php wp_nonce_field( 'cookiekit_purge_log' ); ?><div class="ck-dlg__b"><h2 id="du-h"><?php esc_html_e( 'Tüm onay kayıtları silinsin mi?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'Bu işlem geri alınamaz. KVKK kapsamında ispat için saklamanız gereken kayıtlar varsa önce CSV olarak indirin.', 'cookiekit' ); ?></p><label for="purge-t" style="font-weight:600"><?php esc_html_e( 'Onaylamak için SİL yazın', 'cookiekit' ); ?></label><input class="ck-input" id="purge-t" name="confirm" autocomplete="off" style="margin-top:var(--ck-s2)"></div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Vazgeç', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--danger" id="purge-ok" disabled><?php esc_html_e( 'Tüm kayıtları sil', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="ck-dlg" id="dlg-rmcookie" aria-labelledby="dc-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_remove"><input type="hidden" name="id" id="rm-id" value=""><?php wp_nonce_field( 'cookiekit_cookie_remove' ); ?><div class="ck-dlg__b"><h2 id="dc-h"><?php esc_html_e( 'Çerez listeden kaldırılsın mı?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'Çerez tercih panelinden ve politika tablosundan kalkar. Sitenizdeki çerezin kendisi silinmez.', 'cookiekit' ); ?></p></div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Vazgeç', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--danger"><?php esc_html_e( 'Listeden kaldır', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="ck-dlg" id="dlg-cookie" aria-labelledby="dk-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_add"><?php wp_nonce_field( 'cookiekit_cookie_add' ); ?><div class="ck-dlg__b"><h2 id="dk-h"><?php esc_html_e( 'Çerez ekle', 'cookiekit' ); ?></h2>
+<dialog class="ck-dlg ck-dlg--wide" id="dlg-prev" aria-labelledby="dp-h"><form method="dialog"><div class="ck-dlg__b"><h2 id="dp-h"><?php esc_html_e( 'Banner preview', 'cookiekit' ); ?></h2><div data-prev-slot="dialog"></div></div><div class="ck-dlg__f"><button class="ck-btn ck-btn--pri"><?php esc_html_e( 'Close', 'cookiekit' ); ?></button></div></form></dialog>
+<dialog class="ck-dlg" id="dlg-reset" aria-labelledby="dr-h"><form method="dialog"><div class="ck-dlg__b"><h2 id="dr-h"><?php esc_html_e( 'Reset the texts to default?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'The title, description and button labels return to the defaults. The site does not change until you save.', 'cookiekit' ); ?></p></div><div class="ck-dlg__f"><button class="ck-btn" value="iptal"><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button class="ck-btn ck-btn--pri" value="tamam" data-do="reset-texts"><?php esc_html_e( 'Reset to default', 'cookiekit' ); ?></button></div></form></dialog>
+<dialog class="ck-dlg" id="dlg-purge" aria-labelledby="du-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_purge_log"><?php wp_nonce_field( 'cookiekit_purge_log' ); ?><div class="ck-dlg__b"><h2 id="du-h"><?php esc_html_e( 'Delete all consent records?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first.', 'cookiekit' ); ?></p><label for="purge-t" style="font-weight:600"><?php esc_html_e( 'Type DELETE to confirm', 'cookiekit' ); ?></label><input class="ck-input" id="purge-t" name="confirm" autocomplete="off" style="margin-top:var(--ck-s2)"></div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--danger" id="purge-ok" disabled><?php esc_html_e( 'Delete all records', 'cookiekit' ); ?></button></div></form></dialog>
+<dialog class="ck-dlg" id="dlg-rmcookie" aria-labelledby="dc-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_remove"><input type="hidden" name="id" id="rm-id" value=""><?php wp_nonce_field( 'cookiekit_cookie_remove' ); ?><div class="ck-dlg__b"><h2 id="dc-h"><?php esc_html_e( 'Remove the cookie from the list?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted.', 'cookiekit' ); ?></p></div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--danger"><?php esc_html_e( 'Remove from list', 'cookiekit' ); ?></button></div></form></dialog>
+<dialog class="ck-dlg" id="dlg-cookie" aria-labelledby="dk-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_add"><?php wp_nonce_field( 'cookiekit_cookie_add' ); ?><div class="ck-dlg__b"><h2 id="dk-h"><?php esc_html_e( 'Add cookie', 'cookiekit' ); ?></h2>
 		<?php
 		$rows = array(
-			array( 'k-ad', 'name', __( 'Çerez adı', 'cookiekit' ), 'ornek_cerez', 64, true ),
-			array( 'k-sg', 'provider', __( 'Sağlayıcı', 'cookiekit' ), __( 'Bu site', 'cookiekit' ), 80, false ),
-			array( 'k-am', 'purpose', __( 'Amaç', 'cookiekit' ), __( 'Ne için kullanılıyor?', 'cookiekit' ), 200, false ),
-			array( 'k-su', 'duration', __( 'Süre', 'cookiekit' ), __( '1 yıl', 'cookiekit' ), 40, false ),
+			array( 'k-ad', 'name', __( 'Cookie name', 'cookiekit' ), 'ornek_cerez', 64, true ),
+			array( 'k-sg', 'provider', __( 'Provider', 'cookiekit' ), __( 'This site', 'cookiekit' ), 80, false ),
+			array( 'k-am', 'purpose', __( 'Purpose', 'cookiekit' ), __( 'What is it used for?', 'cookiekit' ), 200, false ),
+			array( 'k-su', 'duration', __( 'Duration', 'cookiekit' ), __( '1 year', 'cookiekit' ), 40, false ),
 		);
-		echo '<div class="ck-field" style="grid-template-columns:1fr;border:0;padding-top:0"><div class="ck-field__l"><label for="k-cat">' . esc_html__( 'Kategori', 'cookiekit' ) . '</label></div><div class="ck-field__c"><select class="ck-select" id="k-cat" name="cat"><option value="necessary">' . esc_html__( 'Zorunlu', 'cookiekit' ) . '</option><option value="analytics">' . esc_html__( 'Analiz', 'cookiekit' ) . '</option><option value="ads">' . esc_html__( 'Reklam', 'cookiekit' ) . '</option></select></div></div>';
+		echo '<div class="ck-field" style="grid-template-columns:1fr;border:0;padding-top:0"><div class="ck-field__l"><label for="k-cat">' . esc_html__( 'Category', 'cookiekit' ) . '</label></div><div class="ck-field__c"><select class="ck-select" id="k-cat" name="cat"><option value="necessary">' . esc_html__( 'Necessary', 'cookiekit' ) . '</option><option value="analytics">' . esc_html__( 'Analytics', 'cookiekit' ) . '</option><option value="ads">' . esc_html__( 'Advertising', 'cookiekit' ) . '</option></select></div></div>';
 		foreach ( $rows as $r ) {
 			echo '<div class="ck-field" style="grid-template-columns:1fr;border:0;padding-top:0"><div class="ck-field__l"><label for="' . esc_attr( $r[0] ) . '">' . esc_html( $r[2] ) . '</label></div><div class="ck-field__c"><input class="ck-input" id="' . esc_attr( $r[0] ) . '" name="' . esc_attr( $r[1] ) . '" placeholder="' . esc_attr( $r[3] ) . '" maxlength="' . (int) $r[4] . '"' . ( $r[5] ? ' required' : '' ) . '></div></div>';
 		}
 		?>
-	</div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Vazgeç', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--pri"><?php esc_html_e( 'Çerezi ekle', 'cookiekit' ); ?></button></div></form></dialog>
+	</div><div class="ck-dlg__f"><button type="button" class="ck-btn" data-close><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button type="submit" class="ck-btn ck-btn--pri"><?php esc_html_e( 'Add the cookie', 'cookiekit' ); ?></button></div></form></dialog>
 		<?php
 	}
 }

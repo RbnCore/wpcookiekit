@@ -1,6 +1,6 @@
-=== CookieKit — Çerez ve Onay Yöneticisi ===
+=== CookieKit — Cookie and Consent Manager ===
 Contributors: rbnbilisim
-Tags: cookie consent, kvkk, gdpr, consent mode, cerez
+Tags: cookie consent, kvkk, gdpr, consent mode, cookies
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
@@ -8,32 +8,32 @@ Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Bağlantı: https://github.com/RbnCore
+Link: https://github.com/RbnCore
 
-KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı ve betik engelleme. Yalnız güncelleme kontrolü için GitHub'a bağlanır (ayarlardan kapatılabilir).
+KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and script blocking. Connects to GitHub only to check for updates (can be turned off in the settings).
 
 == Description ==
 
-* Türkçe banner ve tercih paneli; Kabul et / Reddet / Tercihler düğmeleri eşit görünürlükte (karanlık desen yok).
-* Kategoriler: Zorunlu (kilitli), Analiz, Reklam. Her kategori için belgelenmiş çerez listesi.
-* Google Consent Mode v2: sayfa başında varsayılan "denied"; seçimde `consent update`; geri gelen ziyaretçide anında uygulanır.
-* Onay çerezi `cookiekit_consent` (sürüm.bitmask), 180 gün; "revizyon" artırılınca herkesten yeniden onay istenir.
-* Onay kaydı (KVKK ispat): ham IP saklanmaz (günlük dönen tuzla HMAC), 12 ay sonra otomatik silinir, CSV dışa aktarım.
-* Kısa kodlar: `[cookiekit_tercihler]`, `[cookiekit_cerez_listesi]`; herhangi bir öğeye `data-cookiekit-open` verilirse paneli açar.
-* Betik engelleme API'si: `cookiekit_script( 'analytics', $src_veya_kod )`.
-* Hafif: JS ve CSS toplamı birkaç KB, jQuery yok, CLS 0; tek dış istek güncelleme kontrolüdür (ayarlardan kapatılabilir).
+* Banner and preferences panel in the site language (Turkish translation included); the Accept / Reject / Preferences buttons have equal prominence (no dark patterns).
+* Categories: Essential (locked), Analytics, Advertising. A documented cookie list for each category.
+* Google Consent Mode v2: "denied" by default at the top of the page; `consent update` on choice; applied at once for a returning visitor.
+* The consent cookie is `cookiekit_consent` (version.bitmask), 180 days; when the "revision" is raised, everyone is asked for consent again.
+* Consent log (KVKK proof): the raw IP is not stored (HMAC with a daily rotating salt), it is deleted automatically after 12 months, CSV export.
+* Shortcodes: `[cookiekit_tercihler]`, `[cookiekit_cerez_listesi]`; give any element `data-cookiekit-open` to open the panel.
+* Script-blocking API: `cookiekit_script( 'analytics', $src_or_code )`.
+* Light: JS and CSS together are a few KB, no jQuery, CLS 0; the only external request is the update check (can be turned off in the settings).
 
 == Installation ==
 
-1. `cookiekit.zip` dosyasını Eklentiler → Yeni ekle → Eklenti yükle ile yükleyin ve etkinleştirin.
-2. RBN Kit → Çerez ve Onay ekranından (Genel, Görünüm, Metinler, Çerezler, Onay kayıtları, Entegrasyon, Yardım sekmeleri) kategorileri, bağlantıları, renkleri ve metinleri düzenleyin; ilk kurulumda 3 adımlı sihirbaz açılır.
+1. Upload the `cookiekit.zip` file with Plugins → Add New → Upload Plugin and activate it.
+2. Under RBN Kit → Cookies and Consent (the General, Appearance, Texts, Cookies, Consent log, Integration and Help tabs), edit the categories, links, colours and texts; a 3-step wizard opens on first setup.
 
 == Changelog ==
 
 = 0.1.2 =
-* Menü: ekran artık ortak "RBN Kit" üst menüsünün altında (RBN Kit → Çerez ve Onay); eski Ayarlar adresi yeni adrese yönlenir.
-* GitHub’dan güncelleme: Eklentiler sayfasında Güncelle / güncel, WordPress otomatik güncelleme desteği.
-* Paket SHA-256 ve Ed25519 imzasıyla doğrulanır; Yardım → Güncelleme kartından kontrol kapatılabilir.
+* Menu: the screen now sits under the shared "RBN Kit" top-level menu (RBN Kit → Cookies and Consent); the old Settings address redirects to the new one.
+* Updates from GitHub: Update / up to date on the Plugins page, WordPress automatic update support.
+* The package is verified with a SHA-256 digest and an Ed25519 signature; the check can be turned off in Help → Update.
 
 = 0.1.1 =
-* İlk sürüm.
+* First release.

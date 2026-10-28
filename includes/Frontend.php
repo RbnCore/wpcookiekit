@@ -73,12 +73,12 @@ final class Frontend {
 				'reject'  => (string) Settings::get( 'reject' ),
 				'prefs'   => (string) Settings::get( 'prefs' ),
 				'save'    => (string) Settings::get( 'save' ),
-				'close'   => 'Kapat',
-				'panel'   => 'Çerez tercihleri',
-				'privacy' => 'Gizlilik Politikası',
-				'cookie'  => 'Çerez Politikası',
-				'cname'   => 'Çerezler',
-				'always'  => 'Her zaman açık',
+				'close'   => __( 'Close', 'cookiekit' ),
+				'panel'   => __( 'Cookie preferences', 'cookiekit' ),
+				'privacy' => __( 'Privacy Policy', 'cookiekit' ),
+				'cookie'  => __( 'Cookie Policy', 'cookiekit' ),
+				'cname'   => __( 'Cookies', 'cookiekit' ),
+				'always'  => __( 'Always on', 'cookiekit' ),
 			),
 			'c'    => $cats,
 		);
@@ -134,7 +134,7 @@ final class Frontend {
 
 	/** [cookiekit_tercihler label="…"] */
 	public static function sc_prefs( $atts ): string {
-		$atts = shortcode_atts( array( 'label' => 'Çerez tercihlerini yönet' ), (array) $atts, 'cookiekit_tercihler' );
+		$atts = shortcode_atts( array( 'label' => __( 'Manage cookie preferences', 'cookiekit' ) ), (array) $atts, 'cookiekit_tercihler' );
 		return '<button type="button" class="cookiekit-open" data-cookiekit-open>' . esc_html( (string) $atts['label'] ) . '</button>';
 	}
 
@@ -149,7 +149,7 @@ final class Frontend {
 			}
 			$out .= '<h3>' . esc_html( $cat['name'] ) . '</h3><p>' . esc_html( $cat['desc'] ) . '</p>';
 			$out .= '<div class="cookiekit-tw" role="region" tabindex="0" aria-label="' . esc_attr( $cat['name'] ) . '"><table class="cookiekit-table"><thead><tr>';
-			foreach ( array( 'Çerez', 'Sağlayıcı', 'Amaç', 'Süre' ) as $th ) {
+			foreach ( array( __( 'Cookie', 'cookiekit' ), __( 'Provider', 'cookiekit' ), __( 'Purpose', 'cookiekit' ), __( 'Duration', 'cookiekit' ) ) as $th ) {
 				$out .= '<th scope="col">' . esc_html( $th ) . '</th>';
 			}
 			$out .= '</tr></thead><tbody>';

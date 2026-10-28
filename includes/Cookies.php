@@ -31,8 +31,8 @@ final class Cookies {
 			array(
 				'id'     => 'necessary',
 				'bit'    => Settings::BIT_NECESSARY,
-				'name'   => 'Zorunlu çerezler',
-				'desc'   => 'Sitenin çalışması ve tercihinizin hatırlanması için gereklidir. Kapatılamaz.',
+				'name'   => __( 'Essential cookies', 'cookiekit' ),
+				'desc'   => __( 'Required for the site to work and to remember your choice. Cannot be turned off.', 'cookiekit' ),
 				'locked' => true,
 			),
 		);
@@ -40,8 +40,8 @@ final class Cookies {
 			$cats[] = array(
 				'id'     => 'analytics',
 				'bit'    => Settings::BIT_ANALYTICS,
-				'name'   => 'Analiz çerezleri',
-				'desc'   => 'Google Analytics ile sitenin nasıl kullanıldığını ölçer. Yalnızca izin verirseniz kurulur.',
+				'name'   => __( 'Analytics cookies', 'cookiekit' ),
+				'desc'   => __( 'Measures how the site is used with Google Analytics. Only set if you allow it.', 'cookiekit' ),
 				'locked' => false,
 			);
 		}
@@ -49,8 +49,8 @@ final class Cookies {
 			$cats[] = array(
 				'id'     => 'ads',
 				'bit'    => Settings::BIT_ADS,
-				'name'   => 'Reklam çerezleri',
-				'desc'   => 'Google AdSense ve Google reklam ortakları ilginizi çekebilecek reklamları göstermek için kullanır. Yalnızca izin verirseniz kurulur.',
+				'name'   => __( 'Advertising cookies', 'cookiekit' ),
+				'desc'   => __( 'Used by Google AdSense and Google advertising partners to show ads that may interest you. Only set if you allow it.', 'cookiekit' ),
 				'locked' => false,
 			);
 		}
@@ -97,7 +97,7 @@ final class Cookies {
 			'id'       => '' !== $id ? substr( (string) $id, 0, 12 ) : substr( md5( $cat . '|' . $name . '|' . wp_generate_uuid4() ), 0, 12 ),
 			'cat'      => $cat,
 			'name'     => $name,
-			'provider' => '' !== $provider ? $provider : 'Bu site',
+			'provider' => '' !== $provider ? $provider : __( 'This site', 'cookiekit' ),
 			'purpose'  => $purpose,
 			'duration' => $duration,
 		);
@@ -117,22 +117,22 @@ final class Cookies {
 		$days = (int) Settings::get( 'days', 180 );
 		$list = array(
 			'necessary' => array(
-				array( 'cookiekit_consent', 'Bu site (CookieKit)', 'Çerez tercihinizi hatırlar.', $days . ' gün' ),
-				array( 'comment_author_*, comment_author_email_*, comment_author_url_*', 'Bu site (WordPress)', 'Yorum formunda “bu bilgileri kaydet” işaretlenirse adınızı, e-postanızı ve site adresinizi hatırlar.', '1 yıl' ),
+				array( 'cookiekit_consent', __( 'This site (CookieKit)', 'cookiekit' ), __( 'Remembers your cookie choice.', 'cookiekit' ), sprintf( __( '%d days', 'cookiekit' ), $days ) ),
+				array( 'comment_author_*, comment_author_email_*, comment_author_url_*', __( 'This site (WordPress)', 'cookiekit' ), __( 'Remembers your name, email and website if you tick “save my details” in the comment form.', 'cookiekit' ), __( '1 year', 'cookiekit' ) ),
 			),
 			'analytics' => array(
-				array( '_ga', 'Google Analytics', 'Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz).', '2 yıl' ),
-				array( '_ga_<ID>', 'Google Analytics', 'Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz).', '2 yıl' ),
-				array( '_gid', 'Google Analytics', 'Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz).', '24 saat' ),
-				array( '_gat', 'Google Analytics', 'Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz).', '1 dakika' ),
+				array( '_ga', 'Google Analytics', __( 'Visitor and site usage measurement (purpose in the Google cookie reference: Analytics).', 'cookiekit' ), __( '2 years', 'cookiekit' ) ),
+				array( '_ga_<ID>', 'Google Analytics', __( 'Visitor and site usage measurement (purpose in the Google cookie reference: Analytics).', 'cookiekit' ), __( '2 years', 'cookiekit' ) ),
+				array( '_gid', 'Google Analytics', __( 'Visitor and site usage measurement (purpose in the Google cookie reference: Analytics).', 'cookiekit' ), __( '24 hours', 'cookiekit' ) ),
+				array( '_gat', 'Google Analytics', __( 'Visitor and site usage measurement (purpose in the Google cookie reference: Analytics).', 'cookiekit' ), __( '1 minute', 'cookiekit' ) ),
 			),
 			'ads'       => array(
-				array( 'IDE', 'Google (doubleclick.net)', 'Reklam ve güvenlik.', 'AB/AEA ve İngiltere’de 13 ay, diğer yerlerde 24 ay' ),
-				array( 'test_cookie', 'Google (doubleclick.net)', 'İşlevsellik (Google çerez referansına göre).', '15 dakika' ),
-				array( '__gads', 'Google', 'Reklam ve güvenlik.', '13 ay' ),
-				array( '__gpi', 'Google', 'Reklam ve güvenlik.', '13 ay' ),
-				array( '__eoi', 'Google', 'Güvenlik.', '6 ay' ),
-				array( 'DSID', 'Google (doubleclick.net)', 'Güvenlik, işlevsellik ve reklam.', '2 hafta' ),
+				array( 'IDE', 'Google (doubleclick.net)', __( 'Advertising and security.', 'cookiekit' ), __( '13 months in the EU/EEA and the UK, 24 months elsewhere', 'cookiekit' ) ),
+				array( 'test_cookie', 'Google (doubleclick.net)', __( 'Functionality (per the Google cookie reference).', 'cookiekit' ), __( '15 minutes', 'cookiekit' ) ),
+				array( '__gads', 'Google', __( 'Advertising and security.', 'cookiekit' ), __( '13 months', 'cookiekit' ) ),
+				array( '__gpi', 'Google', __( 'Advertising and security.', 'cookiekit' ), __( '13 months', 'cookiekit' ) ),
+				array( '__eoi', 'Google', __( 'Security.', 'cookiekit' ), __( '6 months', 'cookiekit' ) ),
+				array( 'DSID', 'Google (doubleclick.net)', __( 'Security, functionality and advertising.', 'cookiekit' ), __( '2 weeks', 'cookiekit' ) ),
 			),
 		);
 		return $list;

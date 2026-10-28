@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       CookieKit — Çerez ve Onay Yöneticisi
+ * Plugin Name:       CookieKit — Cookie and Consent Manager
  * Plugin URI:        https://github.com/RbnCore
- * Description:       KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı ve betik engelleme API'si. Yalnız güncelleme kontrolü için GitHub'a bağlanır (ayarlardan kapatılabilir).
+ * Description:       KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and a script-blocking API. Connects to GitHub only to check for updates (can be turned off in the settings).
  * Version:           0.1.2
  * Requires at least: 6.4
  * Requires PHP:      8.1

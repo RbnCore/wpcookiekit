@@ -155,7 +155,7 @@
 	});
 	var pt = d.getElementById('purge-t'), pok = d.getElementById('purge-ok');
 	if (pt && pok) {
-		pt.addEventListener('input', function () { pok.disabled = pt.value.trim().toLocaleUpperCase('tr') !== (I.confirm || 'SİL'); });
+		pt.addEventListener('input', function () { pok.disabled = pt.value.trim().toLocaleUpperCase('tr') !== (I.confirm || 'DELETE'); });
 	}
 	$$('[data-do=reset-texts]').forEach(function (b) {
 		b.addEventListener('click', function () {
