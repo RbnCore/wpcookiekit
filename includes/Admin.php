@@ -64,7 +64,6 @@ final class Admin {
 				'menu_title' => __( 'Çerez ve Onay', 'cookiekit' ),
 				'cap'        => 'manage_options',
 				'callback'   => array( AdminPage::class, 'render' ),
-				'order'      => 30,
 				'version'    => COOKIEKIT_VERSION,
 			)
 		);
