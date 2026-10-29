@@ -2,6 +2,16 @@
 
 CookieKit adds a cookie banner and a preferences panel to WordPress for the Turkish data protection law (KVKK), with Google Consent Mode v2, a consent log kept as proof, and a script-blocking API.
 
+## AdminKit is required
+
+CookieKit does not work without the **AdminKit** plugin. Its header declares `Requires Plugins: adminkit`.
+
+- On WordPress 6.5 and later, WordPress refuses to activate CookieKit while AdminKit is missing or inactive.
+- A second check runs on every request: without AdminKit, or with an AdminKit older than core API level 1, CookieKit adds no hook, prints nothing on the site and shows one admin notice with a link to activate AdminKit (when it is installed) or to download and install it.
+- Install and activate **AdminKit first**, then CookieKit.
+
+AdminKit supplies the RBN Kit menu, the admin interface kit, the cache groups `cookiekit.rate` and `cookiekit.updates`, and the network switch that decides whether CookieKit may ask GitHub for updates.
+
 ## Who it is for
 
 Turkish WordPress publishers and agencies that need a cookie consent banner with real records — which categories were accepted, when, and with which policy revision — without sending visitor data to a third-party consent service.
@@ -23,16 +33,17 @@ Turkish WordPress publishers and agencies that need a cookie consent banner with
 
 - WordPress 6.5 or later
 - PHP 8.1 or later
-- AdminKit (`adminkit`) plugin (`Requires Plugins: adminkit`)
+- AdminKit (`adminkit`), installed and active (`Requires Plugins: adminkit`)
 - The PHP `sodium` extension for automatic updates; without it updates are refused and you install the zip by hand
 
 ## Installation
 
-1. Download `cookiekit-0.1.2.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
-2. In WordPress go to **Plugins → Add New → Upload Plugin**, choose the zip, install and activate. Activation creates the `{prefix}cookiekit_log` table and schedules the daily cleanup.
-3. Open **RBN Kit → Cookies and Consent**, enter your policy links, categories and texts. The three-step wizard opens on first setup.
-4. If a page cache plugin is active, clear the cache once. The banner is drawn with JavaScript, so a cached page must contain the new markup.
-5. If `DISABLE_WP_CRON` is set, make sure the server calls `wp-cron.php`; otherwise the 12-month log cleanup does not run.
+1. Install and activate **AdminKit** first; CookieKit cannot be activated without it.
+2. Download `cookiekit-0.1.2.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
+3. In WordPress go to **Plugins → Add New → Upload Plugin**, choose the zip, install and activate. Activation creates the `{prefix}cookiekit_log` table and schedules the daily cleanup.
+4. Open **RBN Kit → Cookies and Consent**, enter your policy links, categories and texts. The three-step wizard opens on first setup.
+5. If a page cache plugin is active, clear the cache once. The banner is drawn with JavaScript, so a cached page must contain the new markup.
+6. If `DISABLE_WP_CRON` is set, make sure the server calls `wp-cron.php`; otherwise the 12-month log cleanup does not run.
 
 ## Updating
 
@@ -56,7 +67,7 @@ English is the source language; a Turkish (`tr_TR`) translation ships in `langua
 
 ## RBN Kit menu
 
-The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN Kit top-level menu just below Dashboard. The menu order is fixed across RBN plugins (Overview → AdminKit → Cookies and Consent → Content Health).
+The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN Kit top-level menu just below Dashboard. The menu itself comes from AdminKit, and the item order is fixed across RBN plugins (Overview → AdminKit → Cookies and Consent → Content Health → SEO Toolkit).
 
 ## Known limits
 
