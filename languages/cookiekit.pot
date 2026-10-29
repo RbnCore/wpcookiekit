@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CookieKit 0.1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/RbnCore\n"
-"POT-Creation-Date: 2026-10-28 12:00+0000\n"
+"POT-Creation-Date: 2026-10-29 07:58+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,27 +15,26 @@ msgstr ""
 msgid "%d days"
 msgstr ""
 
-#: includes/AdminPage.php:264
-#: includes/AdminPage.php:266
+#: includes/AdminPage.php:271
 #, php-format
 msgid "%d decisions"
 msgstr ""
 
-#: includes/AdminPage.php:265
+#: includes/AdminPage.php:270
 #, php-format
 msgid "%d decisions · necessary only"
 msgstr ""
 
-#: includes/AdminPage.php:385
+#: includes/AdminPage.php:390
 #, php-format
 msgid "%s colour picker"
 msgstr ""
 
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:547
 msgid "(below)."
 msgstr ""
 
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -43,12 +42,10 @@ msgstr ""
 msgid "1 minute"
 msgstr ""
 
-#: includes/AdminPage.php:681
 #: includes/Cookies.php:121
 msgid "1 year"
 msgstr ""
 
-#: includes/Cookies.php:132
 #: includes/Cookies.php:133
 msgid "13 months"
 msgstr ""
@@ -65,7 +62,6 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
-#: includes/Cookies.php:124
 #: includes/Cookies.php:125
 msgid "2 years"
 msgstr ""
@@ -78,28 +74,28 @@ msgstr ""
 msgid "6 months"
 msgstr ""
 
-#: includes/Updater.php:307
+#: includes/Updater.php:308
 msgid "A KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log."
 msgstr ""
 
-#: includes/Updater.php:444
+#: includes/Updater.php:430
 #, php-format
 msgid "A new version is available: %s. Click “Update” on the Plugins page."
 msgstr ""
 
-#: includes/AdminPage.php:419
+#: includes/AdminPage.php:424
 msgid "A path on this site (/privacy-policy/) or the full address of this site."
 msgstr ""
 
-#: includes/AdminPage.php:155
+#: includes/AdminPage.php:162
 msgid "AA needs at least 4.5:1"
 msgstr ""
 
-#: includes/AdminPage.php:378
+#: includes/AdminPage.php:383
 msgid "Accent"
 msgstr ""
 
-#: includes/AdminPage.php:246
+#: includes/AdminPage.php:251
 msgid "Accent colour"
 msgstr ""
 
@@ -107,55 +103,51 @@ msgstr ""
 msgid "Accept"
 msgstr ""
 
-#: includes/AdminPage.php:264
-#: includes/AdminPage.php:494
+#: includes/AdminPage.php:499
 msgid "Accept all"
 msgstr ""
 
-#: includes/AdminPage.php:404
+#: includes/AdminPage.php:409
 msgid "Accept and Reject keep equal visibility; only their text changes."
 msgstr ""
 
-#: includes/AdminPage.php:407
+#: includes/AdminPage.php:412
 msgid "Accept button"
 msgstr ""
 
-#: includes/AdminPage.php:450
+#: includes/AdminPage.php:455
 msgid "Action"
 msgstr ""
 
-#: includes/AdminPage.php:642
+#: cookiekit.php:72
+msgid "activate AdminKit"
+msgstr ""
+
+#: includes/AdminPage.php:647
 msgid "Activate and finish"
 msgstr ""
 
-#: includes/AdminPage.php:177
-#: includes/AdminPage.php:528
+#: includes/AdminPage.php:533
 msgid "Active"
 msgstr ""
 
-#: includes/AdminPage.php:449
-#: includes/AdminPage.php:462
-#: includes/AdminPage.php:675
+#: includes/AdminPage.php:681
 msgid "Add cookie"
 msgstr ""
 
-#: includes/AdminPage.php:688
+#: includes/AdminPage.php:694
 msgid "Add the cookie"
 msgstr ""
 
-#: includes/AdminPage.php:336
-#: includes/AdminPage.php:506
-#: includes/AdminPage.php:683
+#: includes/AdminPage.php:689
 msgid "Advertising"
 msgstr ""
 
-#: includes/Cookies.php:130
-#: includes/Cookies.php:132
 #: includes/Cookies.php:133
 msgid "Advertising and security."
 msgstr ""
 
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:547
 msgid "Advertising category"
 msgstr ""
 
@@ -163,35 +155,31 @@ msgstr ""
 msgid "Advertising cookies"
 msgstr ""
 
-#: includes/AdminPage.php:213
+#: includes/AdminPage.php:220
 msgid "All consent records were deleted."
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Allowed"
 msgstr ""
 
-#: includes/AdminPage.php:347
+#: includes/AdminPage.php:352
 msgid "Also delete the settings and the consent log"
 msgstr ""
 
-#: includes/AdminPage.php:334
 #: includes/Frontend.php:81
 msgid "Always on"
 msgstr ""
 
-#: includes/AdminPage.php:335
-#: includes/AdminPage.php:503
-#: includes/AdminPage.php:683
+#: includes/AdminPage.php:689
 msgid "Analytics"
 msgstr ""
 
-#: includes/AdminPage.php:630
+#: includes/AdminPage.php:635
 msgid "Analytics + Advertising"
 msgstr ""
 
-#: includes/AdminPage.php:161
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "Analytics and ad cookies are asked about"
 msgstr ""
 
@@ -199,7 +187,7 @@ msgstr ""
 msgid "Analytics cookies"
 msgstr ""
 
-#: includes/AdminPage.php:631
+#: includes/AdminPage.php:636
 msgid "Analytics only"
 msgstr ""
 
@@ -207,154 +195,151 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Appearance → fit the banner to its surroundings; General → turn on “Show to visitors”."
 msgstr ""
 
-#: includes/AdminPage.php:336
+#: includes/AdminPage.php:341
 msgid "Ask about advertising cookies"
 msgstr ""
 
-#: includes/AdminPage.php:335
+#: includes/AdminPage.php:340
 msgid "Ask about analytics cookies"
 msgstr ""
 
-#: includes/AdminPage.php:407
-#: includes/AdminPage.php:408
+#: includes/AdminPage.php:413
 msgid "At most 30 characters."
 msgstr ""
 
-#: includes/AdminPage.php:212
+#: includes/AdminPage.php:219
 msgid "At most 40 custom cookies can be added."
 msgstr ""
 
-#: includes/AdminPage.php:402
+#: includes/AdminPage.php:407
 msgid "At most 500 characters. Say which cookies are used and why."
 msgstr ""
 
-#: includes/AdminPage.php:401
+#: includes/AdminPage.php:406
 msgid "At most 80 characters."
 msgstr ""
 
-#: includes/Updater.php:454
+#: includes/AdminPage.php:536
+msgid "at the start of the page, with a 500 ms update wait"
+msgstr ""
+
+#: includes/Updater.php:440
 msgid "Automatic updates"
 msgstr ""
 
-#: includes/AdminPage.php:642
+#: includes/AdminPage.php:647
 msgid "Back"
 msgstr ""
 
-#: includes/AdminPage.php:379
+#: includes/AdminPage.php:384
 msgid "Background"
 msgstr ""
 
-#: includes/AdminPage.php:247
+#: includes/AdminPage.php:252
 msgid "Background colour"
 msgstr ""
 
-#: includes/AdminPage.php:365
+#: includes/AdminPage.php:370
 msgid "Banner position"
 msgstr ""
 
-#: includes/AdminPage.php:661
-#: includes/AdminPage.php:671
+#: includes/AdminPage.php:677
 msgid "Banner preview"
 msgstr ""
 
-#: includes/AdminPage.php:400
+#: includes/AdminPage.php:405
 msgid "Banner text"
 msgstr ""
 
-#: includes/AdminPage.php:340
+#: includes/AdminPage.php:345
 msgid "Between 30 and 395 days. Default 180."
 msgstr ""
 
-#: includes/AdminPage.php:357
+#: includes/AdminPage.php:362
 msgid "Bottom centre"
 msgstr ""
 
-#: includes/AdminPage.php:356
+#: includes/AdminPage.php:361
 msgid "Bottom left"
 msgstr ""
 
-#: includes/AdminPage.php:358
+#: includes/AdminPage.php:363
 msgid "Bottom right"
 msgstr ""
 
-#: includes/AdminPage.php:359
+#: includes/AdminPage.php:364
 msgid "Box in the centre"
 msgstr ""
 
-#: includes/AdminPage.php:454
+#: includes/AdminPage.php:459
 msgid "Built-in"
 msgstr ""
 
-#: includes/AdminPage.php:464
+#: includes/AdminPage.php:469
 msgid "Built-in rows are only cookies documented in the Google cookie reference; they cannot be changed. If you add a new cookie, consider turning on General → “Re-consent”."
 msgstr ""
 
-#: includes/AdminPage.php:404
+#: includes/AdminPage.php:409
 msgid "Button labels"
 msgstr ""
 
-#: includes/AdminPage.php:312
-#: includes/AdminPage.php:672
-#: includes/AdminPage.php:673
-#: includes/AdminPage.php:674
-#: includes/AdminPage.php:688
+#: includes/AdminPage.php:694
 msgid "Cancel"
 msgstr ""
 
-#: includes/AdminPage.php:683
+#: includes/AdminPage.php:689
 msgid "Category"
 msgstr ""
 
-#: includes/Updater.php:458
+#: includes/Updater.php:445
 msgid "Check now"
 msgstr ""
 
-#: includes/AdminPage.php:538
+#: includes/AdminPage.php:543
 msgid "Checked so that two plugins do not load the same tag."
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Choose the categories"
 msgstr ""
 
-#: includes/AdminPage.php:637
+#: includes/AdminPage.php:642
 msgid "Choose your policy pages"
 msgstr ""
 
-#: includes/AdminPage.php:591
+#: includes/AdminPage.php:596
 msgid "Clear your cache plugin and open the site in a logged-out (private window) browser. If you decided earlier, the banner will not appear again: raise the revision with General → Re-consent."
 msgstr ""
 
-#: includes/AdminPage.php:671
 #: includes/Frontend.php:76
 msgid "Close"
 msgstr ""
 
-#: includes/AdminPage.php:372
+#: includes/AdminPage.php:377
 msgid "Colour source"
 msgstr ""
 
-#: includes/AdminPage.php:371
+#: includes/AdminPage.php:376
 msgid "Colours"
 msgstr ""
 
-#: includes/AdminPage.php:478
+#: includes/AdminPage.php:483
 msgid "Consent decisions"
 msgstr ""
 
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "Consent decisions are not recorded (log is off)"
 msgstr ""
 
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "Consent decisions are recorded (the raw IP is not stored)"
 msgstr ""
 
-#: includes/AdminPage.php:339
+#: includes/AdminPage.php:344
 msgid "Consent duration and re-consent"
 msgstr ""
 
@@ -362,228 +347,234 @@ msgstr ""
 msgid "Consent log"
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Consent log table"
 msgstr ""
 
-#: includes/AdminPage.php:346
+#: includes/AdminPage.php:351
 msgid "Consent logging"
 msgstr ""
 
-#: includes/AdminPage.php:214
+#: includes/AdminPage.php:221
 msgid "Consent records could not be deleted: the table cannot be read."
 msgstr ""
 
-#: includes/AdminPage.php:245
-#: includes/AdminPage.php:340
+#: includes/AdminPage.php:345
 msgid "Consent validity period"
 msgstr ""
 
-#: includes/AdminPage.php:158
-#: includes/AdminPage.php:642
+#: includes/AdminPage.php:647
 msgid "Continue"
 msgstr ""
 
-#: includes/AdminPage.php:156
+#: includes/AdminPage.php:163
 msgid "Contrast could not be calculated: enter the colours in #rrggbb format."
 msgstr ""
 
-#: includes/AdminPage.php:450
 #: includes/Frontend.php:152
 msgid "Cookie"
 msgstr ""
 
-#: includes/AdminPage.php:250
-#: includes/AdminPage.php:420
+#: includes/Updater.php:298
+msgid "Cookie and Consent Manager"
+msgstr ""
+
+#: includes/AdminPage.php:333
+msgid "Cookie banner"
+msgstr ""
+
+#: includes/AdminPage.php:337
+msgid "Cookie categories"
+msgstr ""
+
+#: includes/AdminPage.php:453
+msgid "Cookie list"
+msgstr ""
+
+#: includes/AdminPage.php:684
+msgid "Cookie name"
+msgstr ""
+
 #: includes/Frontend.php:79
 msgid "Cookie Policy"
 msgstr ""
 
-#: includes/AdminPage.php:639
+#: includes/AdminPage.php:644
 msgid "Cookie Policy page"
-msgstr ""
-
-#: includes/Updater.php:297
-msgid "Cookie and Consent Manager"
-msgstr ""
-
-#: includes/AdminPage.php:328
-msgid "Cookie banner"
-msgstr ""
-
-#: includes/AdminPage.php:332
-msgid "Cookie categories"
-msgstr ""
-
-#: includes/AdminPage.php:448
-msgid "Cookie list"
-msgstr ""
-
-#: includes/AdminPage.php:678
-msgid "Cookie name"
 msgstr ""
 
 #: includes/Frontend.php:77
 msgid "Cookie preferences"
 msgstr ""
 
-#: includes/AdminPage.php:549
+#: includes/AdminPage.php:554
 msgid "Cookie settings"
 msgstr ""
 
-#: includes/AdminPage.php:450
+#: includes/AdminPage.php:455
 msgid "Cookie table"
 msgstr ""
 
-#: includes/AdminPage.php:548
+#: includes/AdminPage.php:553
 msgid "Cookie table (for the Cookie Policy page)"
 msgstr ""
 
-#: includes/AdminPage.php:290
+#: cookiekit.php:88
+#, php-format
+msgid "CookieKit requires the AdminKit plugin. Please %s to continue."
+msgstr ""
+
+#: includes/AdminPage.php:295
 msgid "CookieKit sections"
 msgstr ""
 
-#: cookiekit.php:3
-msgctxt "Plugin Name of the plugin"
-msgid "CookieKit — Cookie and Consent Manager"
+#: includes/Admin.php:331
+msgid "cookiekit-consent-log"
 msgstr ""
 
-#: includes/AdminPage.php:30
 #: includes/Frontend.php:80
 msgid "Cookies"
 msgstr ""
 
-#: includes/Admin.php:63
 #: includes/Admin.php:64
 msgid "Cookies and Consent"
 msgstr ""
 
-#: includes/AdminPage.php:450
+#: includes/AdminPage.php:455
 msgid "Cookies by category"
 msgstr ""
 
-#: includes/AdminPage.php:594
+#: includes/AdminPage.php:599
 msgid "Cookies tab → “Add cookie”. The cookie you add appears in the preferences panel and in the table on the policy page."
 msgstr ""
 
-#: includes/AdminPage.php:150
+#: includes/AdminPage.php:157
 msgid "Copied"
 msgstr ""
 
-#: includes/AdminPage.php:152
-#: includes/AdminPage.php:555
+#: includes/AdminPage.php:560
 msgid "Copy"
 msgstr ""
 
-#: includes/AdminPage.php:545
+#: includes/AdminPage.php:550
 msgid "Copy and paste into your page, theme or button."
 msgstr ""
 
-#: includes/Updater.php:441
+#: includes/AdminPage.php:282
+msgid "could not be read"
+msgstr ""
+
+#: includes/Updater.php:427
 msgid "Could not check; it will be tried again later. The plugin works normally."
 msgstr ""
 
-#: includes/AdminPage.php:339
+#: includes/AdminPage.php:344
 #, php-format
 msgid "Current revision: %s. When the revision changes, all visitors are asked for consent again."
 msgstr ""
 
-#: includes/AdminPage.php:457
+#: includes/AdminPage.php:462
 msgid "Custom"
 msgstr ""
 
-#: includes/AdminPage.php:266
-#: includes/AdminPage.php:496
+#: includes/AdminPage.php:501
 msgid "Custom choice"
 msgstr ""
 
-#: includes/AdminPage.php:374
-#: includes/AdminPage.php:376
+#: includes/AdminPage.php:381
 msgid "Custom colours"
 msgstr ""
 
-#: includes/Admin.php:296
-#: includes/AdminPage.php:164
-msgid "DELETE"
-msgstr ""
-
-#: includes/AdminPage.php:658
+#: includes/AdminPage.php:664
 msgid "Dark"
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:538
+msgid "dataLayer event"
+msgstr ""
+
+#: includes/AdminPage.php:346
+msgid "days"
+msgstr ""
+
+#: includes/AdminPage.php:503
 msgid "Decision"
 msgstr ""
 
-#: includes/AdminPage.php:283
+#: includes/AdminPage.php:288
 #, php-format
 msgid "Decision breakdown: %1$s percent accept, %2$s percent reject, %3$s percent custom choice"
 msgstr ""
 
-#: includes/AdminPage.php:531
+#: includes/AdminPage.php:536
 msgid "Default: denied"
 msgstr ""
 
-#: includes/AdminPage.php:673
+#: includes/AdminPage.php:171
+msgid "DELETE"
+msgstr ""
+
+#: includes/AdminPage.php:679
 msgid "Delete all consent records?"
 msgstr ""
 
-#: includes/AdminPage.php:673
+#: includes/AdminPage.php:679
 msgid "Delete all records"
 msgstr ""
 
-#: includes/AdminPage.php:482
+#: includes/AdminPage.php:487
 msgid "Delete records"
 msgstr ""
 
-#: includes/AdminPage.php:219
+#: includes/AdminPage.php:224
 msgid "Deletion was not confirmed: you must type DELETE in the box. No record was deleted."
 msgstr ""
 
-#: includes/AdminPage.php:402
+#: includes/AdminPage.php:407
 msgid "Description"
 msgstr ""
 
-#: includes/AdminPage.php:654
+#: includes/AdminPage.php:660
 msgid "Desktop"
 msgstr ""
 
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:546
 msgid "Detected"
 msgstr ""
 
-#: includes/AdminPage.php:538
+#: includes/AdminPage.php:543
 msgid "Detected plugins"
 msgstr ""
 
-#: includes/AdminPage.php:540
+#: includes/AdminPage.php:545
 msgid "Detected. Analytics and AdSense tags are restricted by Consent Mode until consent is given."
 msgstr ""
 
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:546
 msgid "Detected. If the Analytics tag is not tied to consent, load the script with cookiekit_script()."
 msgstr ""
 
-#: includes/AdminPage.php:653
+#: includes/AdminPage.php:659
 msgid "Device"
 msgstr ""
 
-#: includes/AdminPage.php:595
+#: includes/AdminPage.php:600
 msgid "Does it conflict with another plugin?"
 msgstr ""
 
-#: includes/AdminPage.php:662
+#: cookiekit.php:84
+msgid "download and install AdminKit"
+msgstr ""
+
+#: includes/AdminPage.php:668
 msgid "Drawn with the real banner style; the site does not change until you save."
 msgstr ""
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:681
 #: includes/Frontend.php:152
 msgid "Duration"
 msgstr ""
 
-#: includes/Admin.php:195
+#: includes/Admin.php:202
 msgid "Enter a valid colour (e.g. #0b5fff); the old value was kept."
 msgstr ""
 
@@ -591,28 +582,27 @@ msgstr ""
 msgid "Essential cookies"
 msgstr ""
 
-#: includes/AdminPage.php:480
+#: includes/AdminPage.php:538
+msgid "event can be used as a Google Tag Manager trigger."
+msgstr ""
+
+#: includes/AdminPage.php:485
 msgid "Export CSV"
 msgstr ""
 
-#: readme.txt:4
-msgctxt "Release note"
-msgid "First release."
-msgstr ""
-
-#: includes/AdminPage.php:336
+#: includes/AdminPage.php:341
 msgid "For AdSense and Google advertising partners. Turn off if the site has no ads."
 msgstr ""
 
-#: includes/AdminPage.php:335
+#: includes/AdminPage.php:340
 msgid "For measurement tools such as Google Analytics."
 msgstr ""
 
-#: includes/AdminPage.php:589
+#: includes/AdminPage.php:594
 msgid "Frequently asked questions"
 msgstr ""
 
-#: includes/AdminPage.php:357
+#: includes/AdminPage.php:362
 msgid "Full width"
 msgstr ""
 
@@ -624,23 +614,23 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/AdminPage.php:476
-msgid "General → Records and data"
-msgstr ""
-
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "General → leave on only the categories you use (turn off advertising if there are no ads)."
 msgstr ""
 
-#: includes/AdminPage.php:529
+#: includes/AdminPage.php:481
+msgid "General → Records and data"
+msgstr ""
+
+#: includes/AdminPage.php:534
 msgid "Google Consent Mode v2"
 msgstr ""
 
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "Google Consent Mode v2: default “denied”"
 msgstr ""
 
-#: includes/AdminPage.php:540
+#: includes/AdminPage.php:545
 msgid "Google Site Kit"
 msgstr ""
 
@@ -648,39 +638,35 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: includes/AdminPage.php:269
+#: includes/AdminPage.php:274
 msgid "Help → Troubleshooting"
 msgstr ""
 
-#: includes/AdminPage.php:594
+#: includes/AdminPage.php:599
 msgid "How do I add my own cookie?"
 msgstr ""
 
-#: includes/AdminPage.php:631
+#: includes/AdminPage.php:636
 msgid "I only measure visitors and show no ads."
 msgstr ""
 
-#: includes/AdminPage.php:630
+#: includes/AdminPage.php:635
 msgid "I use Google Analytics and AdSense (or other Google advertising)."
 msgstr ""
 
-#: includes/AdminPage.php:498
-msgid "IP hash"
-msgstr ""
-
-#: includes/AdminPage.php:595
+#: includes/AdminPage.php:600
 msgid "If two plugins load the same tag, check the detection status in the Integration tab."
 msgstr ""
 
-#: includes/AdminPage.php:239
+#: includes/AdminPage.php:244
 msgid "If you use a page cache, clear the cache."
 msgstr ""
 
-#: includes/AdminPage.php:342
+#: includes/AdminPage.php:347
 msgid "Increase the revision on save"
 msgstr ""
 
-#: includes/Updater.php:451
+#: includes/Updater.php:437
 msgid "Installed version"
 msgstr ""
 
@@ -688,185 +674,199 @@ msgstr ""
 msgid "Integration"
 msgstr ""
 
-#: includes/AdminPage.php:593
+#: includes/AdminPage.php:503
+msgid "IP hash"
+msgstr ""
+
+#: includes/AdminPage.php:598
 msgid "Is personal data stored in the consent log?"
 msgstr ""
 
-#: includes/AdminPage.php:490
+#: includes/AdminPage.php:537
+msgid "is sent; it is applied instantly for a returning visitor."
+msgstr ""
+
+#: includes/AdminPage.php:495
 msgid "It appears here when a visitor makes a choice on the banner. If you just installed it, open the site in a logged-out browser and try the banner."
 msgstr ""
 
-#: includes/AdminPage.php:596
+#: includes/AdminPage.php:601
 msgid "It means the consent log table cannot be read. The visitor side is not affected. Deactivating and reactivating the plugin recreates the table; existing records are not deleted."
 msgstr ""
 
-#: cookiekit.php:5
-msgctxt "Description of the plugin"
-msgid "KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and a script-blocking API. Connects to GitHub only to check for updates (can be turned off in the settings)."
-msgstr ""
-
-#: includes/AdminPage.php:345
+#: includes/AdminPage.php:350
 msgid "Keep consent decisions as proof (KVKK). The raw IP is not stored; records are deleted automatically after 12 months."
 msgstr ""
 
-#: includes/Updater.php:453
+#: includes/AdminPage.php:268
+msgid "last 30 days"
+msgstr ""
+
+#: includes/Updater.php:439
 msgid "Last check"
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Latest consent decisions"
 msgstr ""
 
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "License"
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Link the pages"
 msgstr ""
 
-#: includes/AdminPage.php:320
-#: includes/AdminPage.php:651
+#: includes/AdminPage.php:657
 msgid "Live preview"
 msgstr ""
 
-#: includes/AdminPage.php:547
 #: includes/Frontend.php:137
 msgid "Manage cookie preferences"
+msgstr ""
+
+#: includes/AdminPage.php:556
+msgid "mask: null | 1 | 3 | 5 | 7"
 msgstr ""
 
 #: includes/Cookies.php:44
 msgid "Measures how the site is used with Google Analytics. Only set if you allow it."
 msgstr ""
 
-#: readme.txt:1
-msgctxt "Release note"
-msgid "Menu: the screen now sits under the shared \"RBN Kit\" top-level menu (RBN Kit → Cookies and Consent); the old Settings address redirects to the new one."
-msgstr ""
-
-#: includes/AdminPage.php:655
+#: includes/AdminPage.php:661
 msgid "Mobile"
 msgstr ""
 
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:546
 msgid "MonsterInsights"
 msgstr ""
 
-#: includes/AdminPage.php:334
-#: includes/AdminPage.php:501
-#: includes/AdminPage.php:683
+#: includes/AdminPage.php:689
 msgid "Necessary"
 msgstr ""
 
-#: includes/AdminPage.php:334
+#: includes/AdminPage.php:339
 msgid "Needed for the site to work and to remember the choice; cannot be turned off."
 msgstr ""
 
-#: includes/AdminPage.php:476
+#: includes/Updater.php:434
+msgid "never"
+msgstr ""
+
+#: includes/AdminPage.php:481
 msgid "New decisions are not stored; to keep proof (KVKK), turn it on under"
 msgstr ""
 
-#: includes/AdminPage.php:613
+#: includes/AdminPage.php:618
 msgid "New versions come from the official releases on GitHub."
 msgstr ""
 
-#: includes/AdminPage.php:517
+#: includes/AdminPage.php:522
 msgid "Next"
 msgstr ""
 
-#: includes/AdminPage.php:490
+#: includes/AdminPage.php:495
 msgid "No consent decisions yet"
 msgstr ""
 
-#: includes/AdminPage.php:462
+#: includes/AdminPage.php:467
 msgid "No custom cookies added"
 msgstr ""
 
-#: includes/AdminPage.php:529
+#: includes/AdminPage.php:280
+msgid "no decisions yet"
+msgstr ""
+
+#: includes/AdminPage.php:534
 msgid "No setting needed; the plugin runs automatically at the start of the page. The status is for information only."
 msgstr ""
 
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:546
 msgid "Not active."
 msgstr ""
 
-#: includes/Updater.php:437
+#: includes/Updater.php:423
 msgid "Not checked yet."
 msgstr ""
 
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:546
 msgid "Not found"
 msgstr ""
 
-#: includes/AdminPage.php:528
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:547
 msgid "Off"
 msgstr ""
 
-#: includes/AdminPage.php:179
+#: includes/AdminPage.php:186
 msgid "Off — the banner is not shown"
 msgstr ""
 
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:547
 msgid "Off: the advertising category is not asked about on the banner."
 msgstr ""
 
-#: includes/AdminPage.php:542
-#: includes/AdminPage.php:657
+#: includes/AdminPage.php:663
 msgid "On"
 msgstr ""
 
-#: includes/AdminPage.php:369
+#: includes/AdminPage.php:374
 msgid "On phones (below 640 px) the banner is always full width at the bottom."
 msgstr ""
 
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:547
 msgid "On. Load your ad code with"
 msgstr ""
 
-#: includes/AdminPage.php:162
+#: includes/AdminPage.php:169
 msgid "Only analytics cookies are asked about"
 msgstr ""
 
-#: includes/AdminPage.php:549
+#: includes/AdminPage.php:556
+msgid "open the panel"
+msgstr ""
+
+#: includes/AdminPage.php:554
 msgid "Open the panel from any element"
 msgstr ""
 
-#: includes/AdminPage.php:409
+#: includes/AdminPage.php:414
 msgid "Opens the category panel. At most 30 characters."
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Page"
 msgstr ""
 
-#: includes/AdminPage.php:656
+#: includes/AdminPage.php:662
 msgid "Page theme"
 msgstr ""
 
-#: includes/AdminPage.php:154
+#: includes/AdminPage.php:520
+msgid "Pagination"
+msgstr ""
+
+#: includes/AdminPage.php:161
 msgid "Passes AA"
 msgstr ""
 
-#: includes/AdminPage.php:425
+#: includes/AdminPage.php:430
 msgid "Pick from the page list"
 msgstr ""
 
-#: includes/AdminPage.php:426
+#: includes/AdminPage.php:431
 msgid "Pick from the page list…"
 msgstr ""
 
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "Plugin"
 msgstr ""
 
-#: includes/AdminPage.php:416
+#: includes/AdminPage.php:421
 msgid "Policy links"
 msgstr ""
 
-#: includes/AdminPage.php:364
+#: includes/AdminPage.php:369
 msgid "Position"
 msgstr ""
 
@@ -874,11 +874,11 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
-#: includes/AdminPage.php:409
+#: includes/AdminPage.php:414
 msgid "Preferences button"
 msgstr ""
 
-#: includes/AdminPage.php:547
+#: includes/AdminPage.php:552
 msgid "Preferences button (shortcode)"
 msgstr ""
 
@@ -886,84 +886,75 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: includes/AdminPage.php:623
+#: includes/AdminPage.php:628
 msgid "Preview and activate"
 msgstr ""
 
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "Preview and go live"
 msgstr ""
 
-#: includes/AdminPage.php:184
-#: includes/AdminPage.php:490
+#: includes/AdminPage.php:495
 msgid "Preview the banner"
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Preview, then activate"
 msgstr ""
 
-#: includes/AdminPage.php:516
+#: includes/AdminPage.php:521
 msgid "Previous"
 msgstr ""
 
-#: includes/AdminPage.php:249
-#: includes/AdminPage.php:419
 #: includes/Frontend.php:78
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/AdminPage.php:638
+#: includes/AdminPage.php:643
 msgid "Privacy Policy page"
 msgstr ""
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:679
 #: includes/Frontend.php:152
 msgid "Provider"
 msgstr ""
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:680
 #: includes/Frontend.php:152
 msgid "Purpose"
 msgstr ""
 
-#: includes/AdminPage.php:586
+#: includes/AdminPage.php:591
 msgid "Quick start"
 msgstr ""
 
-#: includes/AdminPage.php:342
+#: includes/AdminPage.php:347
 msgid "Re-consent"
 msgstr ""
 
-#: includes/AdminPage.php:346
+#: includes/AdminPage.php:351
 msgid "Record consent decisions"
 msgstr ""
 
-#: includes/AdminPage.php:345
+#: includes/AdminPage.php:350
 msgid "Records and data"
 msgstr ""
 
-#: includes/AdminPage.php:480
+#: includes/AdminPage.php:485
 msgid "Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept."
 msgstr ""
 
-#: includes/AdminPage.php:486
+#: includes/AdminPage.php:491
 msgid "Records cannot be shown"
 msgstr ""
 
-#: includes/AdminPage.php:265
-#: includes/AdminPage.php:495
 #: includes/Settings.php:51
 msgid "Reject"
 msgstr ""
 
-#: includes/AdminPage.php:408
+#: includes/AdminPage.php:413
 msgid "Reject button"
 msgstr ""
 
-#: includes/AdminPage.php:607
+#: includes/AdminPage.php:612
 msgid "Release notes"
 msgstr ""
 
@@ -975,24 +966,24 @@ msgstr ""
 msgid "Remembers your name, email and website if you tick “save my details” in the comment form."
 msgstr ""
 
-#: includes/AdminPage.php:457
+#: includes/AdminPage.php:462
 msgid "Remove"
 msgstr ""
 
-#: includes/AdminPage.php:674
+#: includes/AdminPage.php:680
 msgid "Remove from list"
 msgstr ""
 
-#: includes/AdminPage.php:674
+#: includes/AdminPage.php:680
 msgid "Remove the cookie from the list?"
 msgstr ""
 
-#: includes/AdminPage.php:163
+#: includes/AdminPage.php:170
 #, php-format
 msgid "Remove the “%s” cookie from the list?"
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Reopen the setup wizard"
 msgstr ""
 
@@ -1000,36 +991,40 @@ msgstr ""
 msgid "Required for the site to work and to remember your choice. Cannot be turned off."
 msgstr ""
 
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "Requirements"
 msgstr ""
 
-#: includes/AdminPage.php:430
+#: includes/AdminPage.php:435
 msgid "Reset texts to default"
 msgstr ""
 
-#: includes/AdminPage.php:672
+#: includes/AdminPage.php:678
 msgid "Reset the texts to default?"
 msgstr ""
 
-#: includes/AdminPage.php:672
+#: includes/AdminPage.php:678
 msgid "Reset to default"
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Rev."
 msgstr ""
 
-#: includes/AdminPage.php:312
+#: includes/AdminPage.php:317
 msgid "Save changes"
 msgstr ""
 
-#: includes/AdminPage.php:410
+#: includes/AdminPage.php:415
 msgid "Save choice button"
 msgstr ""
 
 #: includes/Settings.php:53
 msgid "Save my choice"
+msgstr ""
+
+#: includes/AdminPage.php:481
+msgid "section."
 msgstr ""
 
 #: includes/Cookies.php:135
@@ -1040,7 +1035,7 @@ msgstr ""
 msgid "Security."
 msgstr ""
 
-#: includes/AdminPage.php:151
+#: includes/AdminPage.php:158
 msgid "Selected — copy with Ctrl+C"
 msgstr ""
 
@@ -1048,99 +1043,95 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/AdminPage.php:239
+#: includes/AdminPage.php:244
 msgid "Settings saved."
 msgstr ""
 
-#: includes/AdminPage.php:622
+#: includes/AdminPage.php:627
 msgid "Setup"
 msgstr ""
 
-#: includes/AdminPage.php:623
+#: includes/AdminPage.php:628
 msgid "Setup steps"
 msgstr ""
 
-#: includes/AdminPage.php:545
+#: includes/AdminPage.php:550
 msgid "Shortcodes and code snippets"
 msgstr ""
 
-#: includes/AdminPage.php:628
+#: includes/AdminPage.php:633
 msgid "Show only the categories you really use; an unused category is an unnecessary question for visitors."
 msgstr ""
 
-#: includes/AdminPage.php:160
+#: includes/AdminPage.php:167
 msgid "Show the banner"
 msgstr ""
 
-#: includes/AdminPage.php:159
-#: includes/AdminPage.php:662
+#: includes/AdminPage.php:668
 msgid "Show the preferences panel"
 msgstr ""
 
-#: includes/AdminPage.php:329
+#: includes/AdminPage.php:334
 msgid "Show to visitors"
 msgstr ""
 
-#: includes/AdminPage.php:515
+#: includes/AdminPage.php:520
 #, php-format
 msgid "Showing %2$d–%3$d of %1$d records"
 msgstr ""
 
-#: includes/AdminPage.php:449
+#: includes/AdminPage.php:454
 msgid "Shown in the preferences panel and in the [cookiekit_cerez_listesi] shortcode. List only the cookies that are really set on your site."
 msgstr ""
 
-#: includes/AdminPage.php:623
-#: includes/AdminPage.php:628
+#: includes/AdminPage.php:633
 msgid "Site type"
 msgstr ""
 
-#: includes/AdminPage.php:622
+#: includes/AdminPage.php:627
 msgid "Skip for now"
 msgstr ""
 
-#: includes/AdminPage.php:232
+#: includes/AdminPage.php:237
 #, php-format
 msgid "Some changes were not saved: %d field needs fixing."
 msgid_plural "Some changes were not saved: %d fields need fixing."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "Source"
 msgstr ""
 
-#: includes/AdminPage.php:327
-#: includes/Updater.php:452
+#: includes/Updater.php:438
 msgid "Status"
 msgstr ""
 
-#: includes/AdminPage.php:157
+#: includes/AdminPage.php:164
 msgid "Step"
 msgstr ""
 
-#: includes/AdminPage.php:271
+#: includes/AdminPage.php:276
 msgid "Summary of the last 30 days"
 msgstr ""
 
-#: includes/AdminPage.php:380
+#: includes/AdminPage.php:385
 msgid "Text"
 msgstr ""
 
-#: includes/AdminPage.php:153
+#: includes/AdminPage.php:160
 msgid "Text / background contrast"
 msgstr ""
 
-#: includes/AdminPage.php:388
+#: includes/AdminPage.php:393
 msgid "Text / background contrast: —"
 msgstr ""
 
-#: includes/AdminPage.php:623
+#: includes/AdminPage.php:628
 msgid "Text and links"
 msgstr ""
 
-#: includes/AdminPage.php:248
+#: includes/AdminPage.php:253
 msgid "Text colour"
 msgstr ""
 
@@ -1148,161 +1139,154 @@ msgstr ""
 msgid "Texts"
 msgstr ""
 
-#: includes/AdminPage.php:587
+#: includes/AdminPage.php:592
 msgid "Texts → choose your Privacy Policy and Cookie Policy pages."
 msgstr ""
 
-#: includes/AdminPage.php:592
-msgid "The Consent Mode v2 default stays “denied”; Analytics and advertising cookies are not set."
-msgstr ""
-
-#: includes/Admin.php:211
+#: includes/Admin.php:218
 msgid "The address must start with “/” (a path on this site) or with this site's http(s) address; the old value was kept."
 msgstr ""
 
-#: includes/AdminPage.php:416
+#: includes/AdminPage.php:421
 msgid "The banner and the preferences panel link to these pages. If left empty, no link is shown."
 msgstr ""
 
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:646
 msgid "The banner goes live when you activate it."
 msgstr ""
 
-#: includes/AdminPage.php:591
+#: includes/AdminPage.php:596
 msgid "The banner is not showing; what should I do?"
 msgstr ""
 
-#: includes/AdminPage.php:637
+#: includes/AdminPage.php:642
 msgid "The banner links to these pages. If you do not have the page yet, leave it empty; no link is shown."
 msgstr ""
 
-#: includes/AdminPage.php:462
+#: includes/AdminPage.php:467
 msgid "The built-in list above covers Google and WordPress cookies. If your site sets its own cookie, add it; the visitor panel and the policy page update automatically."
 msgstr ""
 
-#: includes/AdminPage.php:410
+#: includes/AdminPage.php:415
 msgid "The button at the bottom of the panel. At most 40 characters."
 msgstr ""
 
-#: includes/AdminPage.php:476
+#: includes/AdminPage.php:481
 msgid "The consent log is off."
 msgstr ""
 
-#: includes/AdminPage.php:269
+#: includes/AdminPage.php:274
 msgid "The consent log table could not be read."
 msgstr ""
 
-#: includes/AdminPage.php:486
+#: includes/AdminPage.php:491
 msgid "The consent log table could not be read. The visitor side is not affected; writing records may also have paused."
 msgstr ""
 
-#: includes/AdminPage.php:376
+#: includes/AdminPage.php:597
+msgid "The Consent Mode v2 default stays “denied”; Analytics and advertising cookies are not set."
+msgstr ""
+
+#: includes/AdminPage.php:381
 msgid "The contrast between text and background must be at least 4.5:1."
 msgstr ""
 
-#: includes/AdminPage.php:211
+#: includes/AdminPage.php:218
 msgid "The cookie could not be added: a name is required and the category must be valid."
 msgstr ""
 
-#: includes/AdminPage.php:674
+#: includes/AdminPage.php:680
 msgid "The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted."
 msgstr ""
 
-#: includes/AdminPage.php:209
+#: includes/AdminPage.php:216
 msgid "The cookie was added to the list."
 msgstr ""
 
-#: includes/AdminPage.php:210
+#: includes/AdminPage.php:217
 msgid "The cookie was removed from the list."
 msgstr ""
 
-#: includes/AdminPage.php:346
+#: includes/AdminPage.php:351
 msgid "The decision, category, page and an IP hashed with a daily-rotating salt are stored."
 msgstr ""
 
-#: includes/Admin.php:172
+#: includes/Admin.php:179
 msgid "The duration must be between 30 and 395 days; the value was corrected."
 msgstr ""
 
-#: includes/Admin.php:156
+#: includes/Admin.php:163
 msgid "The form was not recognised; no setting was changed."
 msgstr ""
 
-#: includes/AdminPage.php:635
+#: includes/AdminPage.php:640
 msgid "The necessary-cookie category is always shown. You can change this later in the General tab."
 msgstr ""
 
-#: readme.txt:3
-msgctxt "Release note"
-msgid "The package is verified with a SHA-256 digest and an Ed25519 signature; the check can be turned off in Help → Update."
-msgstr ""
-
-#: includes/AdminPage.php:420
+#: includes/AdminPage.php:425
 msgid "The page that uses [cookiekit_cerez_listesi] for the cookie table."
 msgstr ""
 
-#: includes/Updater.php:446
+#: includes/Updater.php:432
 msgid "The plugin is up to date."
 msgstr ""
 
-#: includes/AdminPage.php:593
+#: includes/AdminPage.php:598
 msgid "The raw IP and full browser information are not stored; only a hash with a daily-rotating salt, the decision and the page path are kept. Records are deleted after 12 months."
 msgstr ""
 
-#: includes/AdminPage.php:586
+#: includes/AdminPage.php:591
 msgid "The right setup in 2 minutes after installation:"
 msgstr ""
 
-#: includes/AdminPage.php:269
+#: includes/AdminPage.php:274
 msgid "The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working."
 msgstr ""
 
-#: includes/AdminPage.php:672
+#: includes/AdminPage.php:678
 msgid "The title, description and button labels return to the defaults. The site does not change until you save."
 msgstr ""
 
-#: includes/Updater.php:435
+#: includes/Updater.php:421
 msgid "The update check is off; GitHub is never contacted."
 msgstr ""
 
-#: includes/AdminPage.php:216
+#: includes/AdminPage.php:223
 msgid "The update check is off; no connection was made."
 msgstr ""
 
-#: includes/AdminPage.php:215
+#: includes/AdminPage.php:222
 msgid "The update check was done."
 msgstr ""
 
-#: includes/Updater.php:455
+#: includes/Updater.php:441
 msgid "The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent."
 msgstr ""
 
-#: includes/AdminPage.php:373
+#: includes/AdminPage.php:378
 msgid "Theme colours"
 msgstr ""
 
-#: includes/AdminPage.php:371
+#: includes/AdminPage.php:376
 msgid "Theme colours are used by default so the banner stays consistent with your theme."
 msgstr ""
 
-#: includes/Updater.php:308
+#: includes/Updater.php:309
 msgid "There are no release notes for this version."
 msgstr ""
 
-#: includes/AdminPage.php:149
-#: includes/AdminPage.php:312
+#: includes/AdminPage.php:317
 msgid "There are unsaved changes"
 msgstr ""
 
-#: includes/Updater.php:439
+#: includes/Updater.php:425
 msgid "There is no published version yet."
 msgstr ""
 
-#: includes/AdminPage.php:673
+#: includes/AdminPage.php:679
 msgid "This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first."
 msgstr ""
 
-#: includes/AdminPage.php:679
 #: includes/Cookies.php:100
 msgid "This site"
 msgstr ""
@@ -1315,23 +1299,23 @@ msgstr ""
 msgid "This site (WordPress)"
 msgstr ""
 
-#: includes/AdminPage.php:550
+#: includes/AdminPage.php:555
 msgid "Tie a script to consent (PHP)"
 msgstr ""
 
-#: includes/AdminPage.php:498
+#: includes/AdminPage.php:503
 msgid "Time"
 msgstr ""
 
-#: includes/AdminPage.php:639
+#: includes/AdminPage.php:644
 msgid "Tip: show the cookie table by adding the [cookiekit_cerez_listesi] shortcode to the Cookie Policy page."
 msgstr ""
 
-#: includes/AdminPage.php:401
+#: includes/AdminPage.php:406
 msgid "Title"
 msgstr ""
 
-#: includes/AdminPage.php:269
+#: includes/AdminPage.php:274
 msgid "To recreate the table, deactivate and reactivate the plugin."
 msgstr ""
 
@@ -1339,111 +1323,103 @@ msgstr ""
 msgid "Too many requests."
 msgstr ""
 
-#: includes/AdminPage.php:263
+#: includes/AdminPage.php:268
 msgid "Total decisions"
 msgstr ""
 
-#: includes/AdminPage.php:596
+#: includes/AdminPage.php:601
 msgid "Troubleshooting: the summary cards say “could not be read”"
 msgstr ""
 
-#: includes/AdminPage.php:342
+#: includes/AdminPage.php:347
 msgid "Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards."
 msgstr ""
 
-#: includes/AdminPage.php:327
+#: includes/AdminPage.php:332
 msgid "Turn the banner on or off across the whole site."
 msgstr ""
 
-#: includes/Updater.php:454
+#: includes/Updater.php:440
 msgid "Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page."
 msgstr ""
 
-#: includes/Updater.php:443
-msgid "Update checks follow the RBN Kit network setting."
-msgstr ""
-
-#: includes/AdminPage.php:673
+#: includes/AdminPage.php:679
 msgid "Type DELETE to confirm"
 msgstr ""
 
-#: includes/AdminPage.php:613
+#: includes/AdminPage.php:618
 msgid "Update"
 msgstr ""
 
-#: includes/AdminPage.php:532
+#: includes/Updater.php:442
+msgid "Update checks follow the RBN Kit network setting."
+msgstr ""
+
+#: includes/AdminPage.php:537
 msgid "Update on choice"
 msgstr ""
 
-#: includes/Updater.php:122
+#: includes/Updater.php:123
 msgid "Update rejected: signature verification (sodium) is missing on the server. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:150
-msgid "Update rejected: the SHA-256 digest of the package does not match. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:146
+#: includes/Updater.php:147
 msgid "Update rejected: the digest (SHA-256) file could not be read. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:326
+#: includes/Updater.php:327
 msgid "Update rejected: the package address is not in the expected format. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:382
+#: includes/Updater.php:383
 msgid "Update rejected: the package did not pass the CookieKit verification. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:130
+#: includes/Updater.php:131
 msgid "Update rejected: the package signature is invalid. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:143
+#: includes/Updater.php:144
 msgid "Update rejected: the package size is not in the expected range. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:127
+#: includes/Updater.php:128
 msgid "Update rejected: the plugin has no valid signature key. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:164
+#: includes/Updater.php:165
 msgid "Update rejected: the root folder of the package is not “cookiekit” or cookiekit.php is missing. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:168
+#: includes/Updater.php:151
+msgid "Update rejected: the SHA-256 digest of the package does not match. The old version was kept."
+msgstr ""
+
+#: includes/Updater.php:169
 msgid "Update rejected: the version inside the package does not match the published version. The old version was kept."
 msgstr ""
 
-#: includes/Updater.php:361
+#: includes/Updater.php:362
 msgid "Update stopped: the digest or signature file could not be downloaded. The old version was kept."
-msgstr ""
-
-#: readme.txt:2
-msgctxt "Release note"
-msgid "Updates from GitHub: Update / up to date on the Plugins page, WordPress automatic update support."
 msgstr ""
 
 #: includes/Cookies.php:53
 msgid "Used by Google AdSense and Google advertising partners to show ads that may interest you. Only set if you allow it."
 msgstr ""
 
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:611
 msgid "Version"
 msgstr ""
 
-#: includes/AdminPage.php:175
+#: includes/AdminPage.php:182
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: includes/AdminPage.php:605
+#: includes/AdminPage.php:610
 msgid "Version and source"
 msgstr ""
 
-#: includes/Cookies.php:124
-#: includes/Cookies.php:125
-#: includes/Cookies.php:126
 #: includes/Cookies.php:127
 msgid "Visitor and site usage measurement (purpose in the Google cookie reference: Analytics)."
 msgstr ""
@@ -1452,57 +1428,55 @@ msgstr ""
 msgid "We use essential cookies to make the site work. Analytics and advertising cookies are only set with your permission. You can change your preferences at any time."
 msgstr ""
 
-#: includes/AdminPage.php:592
+#: includes/AdminPage.php:597
 msgid "What happens to Google tags if the visitor chooses “Reject”?"
 msgstr ""
 
-#: includes/AdminPage.php:680
+#: includes/AdminPage.php:686
 msgid "What is it used for?"
 msgstr ""
 
-#: includes/AdminPage.php:329
+#: includes/AdminPage.php:334
 msgid "When off, the banner and the Consent Mode script are removed from the page."
 msgstr ""
 
-#: includes/AdminPage.php:347
+#: includes/AdminPage.php:352
 msgid "When on, deleting the plugin irreversibly removes the settings, custom cookies and the log table."
 msgstr ""
 
-#: includes/AdminPage.php:347
+#: includes/AdminPage.php:352
 msgid "When the plugin is deleted"
 msgstr ""
 
-#: includes/AdminPage.php:532
+#: includes/AdminPage.php:537
 msgid "When the visitor decides,"
 msgstr ""
 
-#: includes/AdminPage.php:364
+#: includes/AdminPage.php:369
 msgid "Where on the screen should the banner appear? The preview updates instantly."
 msgstr ""
 
-#: includes/AdminPage.php:332
+#: includes/AdminPage.php:337
 msgid "Which categories should visitors be asked about? Turn off a category you do not use."
 msgstr ""
 
-#: includes/AdminPage.php:628
+#: includes/AdminPage.php:633
 msgid "Which cookies does your site use?"
 msgstr ""
 
-#: includes/AdminPage.php:400
+#: includes/AdminPage.php:405
 msgid "Write short and clear: visitors should understand what is asked at a glance."
 msgstr ""
 
-#: includes/AdminPage.php:127
+#: includes/AdminPage.php:134
 msgid "You do not have access to this page."
 msgstr ""
 
-#: includes/Admin.php:233
-#: includes/Admin.php:306
-#: includes/Updater.php:418
+#: includes/Updater.php:404
 msgid "You do not have permission for this action."
 msgstr ""
 
-#: includes/Admin.php:319
+#: includes/Admin.php:326
 msgid "You do not have permission."
 msgstr ""
 
@@ -1510,143 +1484,75 @@ msgstr ""
 msgid "Your cookie preferences"
 msgstr ""
 
-#: includes/Admin.php:328
-msgctxt "CSV decision value"
-msgid "accepted"
+#: includes/AdminPage.php:431
+msgid "— Select —"
 msgstr ""
 
-#: includes/Admin.php:327
+#: includes/AdminPage.php:380
+msgid "“Theme colours”: the site's --fm-* variables or the light/dark default are used (the three colour fields stay empty)."
+msgstr ""
+
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "advertising"
 msgstr ""
 
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "analytics"
 msgstr ""
 
-#: includes/AdminPage.php:531
-msgid "at the start of the page, with a 500 ms update wait"
-msgstr ""
-
-#: includes/Admin.php:324
-msgid "cookiekit-consent-log"
-msgstr ""
-
-#: includes/AdminPage.php:277
-msgid "could not be read"
-msgstr ""
-
-#: includes/Admin.php:328
-#: includes/Admin.php:333
-msgctxt "CSV decision value"
-msgid "custom"
-msgstr ""
-
-#: includes/AdminPage.php:533
-msgid "dataLayer event"
-msgstr ""
-
-#: includes/AdminPage.php:341
-msgid "days"
-msgstr ""
-
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "decision"
 msgstr ""
 
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "essential"
 msgstr ""
 
-#: includes/AdminPage.php:533
-msgid "event can be used as a Google Tag Manager trigger."
-msgstr ""
-
-#: includes/AdminPage.php:550
-msgctxt "Example script URL"
-msgid "https://example.com/ads.js"
-msgstr ""
-
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "ip_digest"
 msgstr ""
 
-#: includes/AdminPage.php:532
-msgid "is sent; it is applied instantly for a returning visitor."
-msgstr ""
-
-#: includes/AdminPage.php:263
-msgid "last 30 days"
-msgstr ""
-
-#: includes/AdminPage.php:551
-msgid "mask: null | 1 | 3 | 5 | 7"
-msgstr ""
-
-#: includes/Updater.php:448
-msgid "never"
-msgstr ""
-
-#: includes/AdminPage.php:275
-msgid "no decisions yet"
-msgstr ""
-
-#: includes/AdminPage.php:551
-msgid "open the panel"
-msgstr ""
-
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "page"
 msgstr ""
 
-#: includes/Admin.php:328
-msgctxt "CSV decision value"
-msgid "rejected"
-msgstr ""
-
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "revision"
 msgstr ""
 
-#: includes/AdminPage.php:476
-msgid "section."
-msgstr ""
-
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "time_utc"
 msgstr ""
 
-#: includes/Admin.php:327
+#: includes/Admin.php:334
 msgctxt "CSV column header"
 msgid "ua_digest"
 msgstr ""
 
-#: includes/AdminPage.php:105
-#: includes/AdminPage.php:426
-msgid "— Select —"
+#: includes/Admin.php:335
+msgctxt "CSV decision value"
+msgid "accepted"
 msgstr ""
 
-#: includes/AdminPage.php:375
-msgid "“Theme colours”: the site's --fm-* variables or the light/dark default are used (the three colour fields stay empty)."
+#: includes/Admin.php:340
+msgctxt "CSV decision value"
+msgid "custom"
 msgstr ""
 
-#: cookiekit.php:72
-msgid "activate AdminKit"
+#: includes/Admin.php:335
+msgctxt "CSV decision value"
+msgid "rejected"
 msgstr ""
 
-#: cookiekit.php:76
-#: cookiekit.php:88
-#, php-format
-msgid "CookieKit requires the AdminKit plugin. Please %s to continue."
-msgstr ""
-
-#: cookiekit.php:84
-msgid "download and install AdminKit"
+#: includes/AdminPage.php:555
+msgctxt "Example script URL"
+msgid "https://example.com/ads.js"
 msgstr ""
