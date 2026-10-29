@@ -1648,3 +1648,17 @@ msgstr "— Seçin —"
 #: includes/AdminPage.php:375
 msgid "“Theme colours”: the site's --fm-* variables or the light/dark default are used (the three colour fields stay empty)."
 msgstr "“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu varsayılan kullanılır (üç renk alanı boş kalır)."
+
+#: cookiekit.php:72
+msgid "activate AdminKit"
+msgstr "AdminKit eklentisini etkinleştirin"
+
+#: cookiekit.php:76
+#: cookiekit.php:88
+#, php-format
+msgid "CookieKit requires the AdminKit plugin. Please %s to continue."
+msgstr "CookieKit, AdminKit eklentisini gerektirir. Devam etmek için lütfen %s."
+
+#: cookiekit.php:84
+msgid "download and install AdminKit"
+msgstr "AdminKit eklentisini indirin ve kurun"

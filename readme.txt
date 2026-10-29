@@ -1,9 +1,10 @@
 === CookieKit — Cookie and Consent Manager ===
 Contributors: rbnbilisim
 Tags: cookie consent, kvkk, gdpr, consent mode, cookies
-Requires at least: 6.4
+Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
+Requires Plugins: adminkit
 Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

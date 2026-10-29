@@ -21,8 +21,9 @@ Turkish WordPress publishers and agencies that need a cookie consent banner with
 
 ## Requirements
 
-- WordPress 6.4 or later
+- WordPress 6.5 or later
 - PHP 8.1 or later
+- AdminKit (`adminkit`) plugin (`Requires Plugins: adminkit`)
 - The PHP `sodium` extension for automatic updates; without it updates are refused and you install the zip by hand
 
 ## Installation
@@ -60,7 +61,7 @@ The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN
 ## Known limits
 
 - CookieKit is **not a TCF-certified CMP**. For personalised advertising in the EEA, the United Kingdom or Switzerland, Google requires a certified CMP; in those regions you need one, or you serve non-personalised ads only.
-- Rate-limit counters are transients, so without a persistent object cache they live in the database until they expire.
+- Rate-limit counters and update caches are managed via AdminKit Core Cache (`cookiekit.rate` and `cookiekit.updates` groups). Without a persistent object cache, transient driver stores them in the database until they expire.
 
 ## Version and license
 

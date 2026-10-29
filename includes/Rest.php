@@ -73,17 +73,17 @@ final class Rest {
 
 	/** IP başına dakikada RATE_LIMIT istek; aşılırsa true. */
 	private static function limited( string $ip ): bool {
-		$key   = 'cookiekit_rl_' . substr( Log::ip_digest( $ip ), 0, 20 );
-		$state = get_transient( $key );
+		$key   = substr( Log::ip_digest( $ip ), 0, 20 );
+		$state = \AdminKit\Core\Cache::get( 'cookiekit.rate', $key );
 		$now   = time();
 		if ( ! is_array( $state ) || ( $now - (int) $state[1] ) >= MINUTE_IN_SECONDS ) {
-			set_transient( $key, array( 1, $now ), MINUTE_IN_SECONDS );
+			\AdminKit\Core\Cache::set( 'cookiekit.rate', $key, array( 1, $now ), MINUTE_IN_SECONDS );
 			return false;
 		}
 		if ( (int) $state[0] >= self::RATE_LIMIT ) {
 			return true;
 		}
-		set_transient( $key, array( (int) $state[0] + 1, (int) $state[1] ), max( 1, MINUTE_IN_SECONDS - ( $now - (int) $state[1] ) ) );
+		\AdminKit\Core\Cache::set( 'cookiekit.rate', $key, array( (int) $state[0] + 1, (int) $state[1] ), max( 1, MINUTE_IN_SECONDS - ( $now - (int) $state[1] ) ) );
 		return false;
 	}
 

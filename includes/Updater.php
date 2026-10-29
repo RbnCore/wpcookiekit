@@ -25,7 +25,7 @@ final class Updater {
 	public const SLUG         = 'cookiekit';
 	public const OPT_OFF      = 'cookiekit_update_off';
 	public const OPT_CHECKED  = 'cookiekit_update_checked';
-	public const CACHE        = 'cookiekit_update_release';
+	public const CACHE        = 'release';
 	public const MAX_ZIP      = 8388608; // 8 MB.
 	private const TTL_OK      = 43200;   // 12 saat (GitHub: belirteçsiz 60 istek/saat).
 	private const TTL_ERR     = 3600;
@@ -182,7 +182,7 @@ final class Updater {
 			return null;
 		}
 		if ( ! $force ) {
-			$cached = get_transient( self::CACHE );
+			$cached = \AdminKit\Core\Cache::get( 'cookiekit.updates', self::CACHE );
 			if ( is_array( $cached ) && isset( $cached['status'] ) ) {
 				return $cached;
 			}
@@ -218,7 +218,7 @@ final class Updater {
 			'release' => $rel,
 			'time'    => time(),
 		);
-		set_transient( self::CACHE, $record, $ttl );
+		\AdminKit\Core\Cache::set( 'cookiekit.updates', self::CACHE, $record, $ttl );
 		update_option( self::OPT_CHECKED, $record['time'], false );
 		return $record;
 	}
@@ -288,7 +288,7 @@ final class Updater {
 		if ( 'plugin_information' !== $action || ! is_object( $args ) || self::SLUG !== ( $args->slug ?? '' ) || ! self::enabled() ) {
 			return $result;
 		}
-		$cached = get_transient( self::CACHE );
+		$cached = \AdminKit\Core\Cache::get( 'cookiekit.updates', self::CACHE );
 		$rel    = ( is_array( $cached ) && 'ok' === ( $cached['status'] ?? '' ) && is_array( $cached['release'] ?? null ) ) ? $cached['release'] : null;
 		$new    = $rel && version_compare( $rel['version'], COOKIEKIT_VERSION, '>' );
 		$meta   = self::local_meta();
@@ -390,7 +390,7 @@ final class Updater {
 	public static function action_check(): void {
 		self::guard( 'cookiekit_update_check' );
 		if ( self::enabled() ) {
-			delete_transient( self::CACHE );
+			\AdminKit\Core\Cache::delete( 'cookiekit.updates', self::CACHE );
 			delete_site_transient( 'update_plugins' );
 			wp_update_plugins();
 			self::redirect( 'update_checked' );
@@ -402,7 +402,7 @@ final class Updater {
 		self::guard( 'cookiekit_update_toggle' );
 		$off = self::enabled(); // Şu an açıksa kapatılacak.
 		update_option( self::OPT_OFF, $off ? '1' : '0', false );
-		delete_transient( self::CACHE );
+		\AdminKit\Core\Cache::delete( 'cookiekit.updates', self::CACHE );
 		if ( $off ) {
 			$cur = get_site_transient( 'update_plugins' );
 			if ( is_object( $cur ) ) {
@@ -429,7 +429,7 @@ final class Updater {
 	public static function render_card(): string {
 		$on      = self::enabled();
 		$checked = (int) get_option( self::OPT_CHECKED, 0 );
-		$cached  = $on ? get_transient( self::CACHE ) : false;
+		$cached  = $on ? \AdminKit\Core\Cache::get( 'cookiekit.updates', self::CACHE ) : false;
 		$state   = '';
 		if ( ! $on ) {
 			$state = esc_html__( 'The update check is off; GitHub is never contacted.', 'cookiekit' );
