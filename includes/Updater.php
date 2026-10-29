@@ -438,11 +438,11 @@ final class Updater {
 			. '<dt>' . esc_html__( 'Status', 'cookiekit' ) . '</dt><dd>' . $state . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $state yukarıda kaçışlı.
 			. '<dt>' . esc_html__( 'Last check', 'cookiekit' ) . '</dt><dd>' . $last . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '<dt>' . esc_html__( 'Automatic updates', 'cookiekit' ) . '</dt><dd>' . esc_html__( 'Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page.', 'cookiekit' ) . '</dd></dl>'
-			. '<p class="ck-help">' . esc_html__( 'The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent.', 'cookiekit' ) . '</p>'
-			. '<p class="ck-help"><a href="' . esc_url( admin_url( 'admin.php?page=adminkit#adminkit-network' ) ) . '">' . esc_html__( 'Update checks follow the RBN Kit network setting.', 'cookiekit' ) . '</a></p>';
+			. '<p class="rbn-help">' . esc_html__( 'The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent.', 'cookiekit' ) . '</p>'
+			. '<p class="rbn-help"><a href="' . esc_url( admin_url( 'admin.php?page=adminkit#adminkit-network' ) ) . '">' . esc_html__( 'Update checks follow the RBN Kit network setting.', 'cookiekit' ) . '</a></p>';
 		if ( $on ) {
-			$html .= '<div style="display:flex;gap:var(--ck-s3);flex-wrap:wrap;margin-top:var(--ck-s3)">'
-				. '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html__( 'Check now', 'cookiekit' ) . '</button></form>'
+			$html .= '<div class="rbn-form-actions">'
+				. '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="rbn-btn">' . esc_html__( 'Check now', 'cookiekit' ) . '</button></form>'
 				. '</div>';
 		}
 		return $html;

@@ -106,8 +106,15 @@ final class Admin {
 		if ( '' === self::$hook || $hook !== self::$hook ) {
 			return;
 		}
-		wp_enqueue_style( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.css', array(), COOKIEKIT_VERSION );
-		wp_enqueue_script( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.js', array(), COOKIEKIT_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
+		// Görünüm AdminKit kitindendir (rbn-admin-ui; AdminKit kaydeder); eklenti dosyaları yalnız bu ekrana özgü düzeni yazar.
+		wp_enqueue_style( 'rbn-admin-ui' );
+		wp_enqueue_script( 'rbn-admin-ui' );
+		$ver = static function ( string $rel ): string {
+			$t = @filemtime( COOKIEKIT_DIR . $rel ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- dosya yoksa sürüme düşer.
+			return COOKIEKIT_VERSION . ( $t ? '.' . $t : '' );
+		};
+		wp_enqueue_style( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.css', array( 'rbn-admin-ui' ), $ver( 'assets/cookiekit-admin.css' ) );
+		wp_enqueue_script( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.js', array( 'rbn-admin-ui' ), $ver( 'assets/cookiekit-admin.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 	}
 
 	/**
