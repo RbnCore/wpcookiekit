@@ -15,8 +15,7 @@ msgstr ""
 msgid "%d days"
 msgstr "%d gün"
 
-#: includes/AdminPage.php:264
-#: includes/AdminPage.php:266
+#: includes/AdminPage.php:264 includes/AdminPage.php:266
 #, php-format
 msgid "%d decisions"
 msgstr "%d karar"
@@ -43,13 +42,11 @@ msgstr "(yeni sekmede açılır)"
 msgid "1 minute"
 msgstr "1 dakika"
 
-#: includes/AdminPage.php:681
-#: includes/Cookies.php:121
+#: includes/AdminPage.php:681 includes/Cookies.php:121
 msgid "1 year"
 msgstr "1 yıl"
 
-#: includes/Cookies.php:132
-#: includes/Cookies.php:133
+#: includes/Cookies.php:132 includes/Cookies.php:133
 msgid "13 months"
 msgstr "13 ay"
 
@@ -65,8 +62,7 @@ msgstr "15 dakika"
 msgid "2 weeks"
 msgstr "2 hafta"
 
-#: includes/Cookies.php:124
-#: includes/Cookies.php:125
+#: includes/Cookies.php:124 includes/Cookies.php:125
 msgid "2 years"
 msgstr "2 yıl"
 
@@ -77,15 +73,6 @@ msgstr "24 saat"
 #: includes/Cookies.php:134
 msgid "6 months"
 msgstr "6 ay"
-
-#: includes/Updater.php:307
-msgid "A KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log."
-msgstr "KVKK uyumlu çerez bandı ve tercih paneli, Google Consent Mode v2, onay kaydı."
-
-#: includes/Updater.php:444
-#, php-format
-msgid "A new version is available: %s. Click “Update” on the Plugins page."
-msgstr "Yeni sürüm var: %s. Eklentiler sayfasından “Güncelle” deyin."
 
 #: includes/AdminPage.php:419
 msgid "A path on this site (/privacy-policy/) or the full address of this site."
@@ -107,8 +94,7 @@ msgstr "Vurgu rengi"
 msgid "Accept"
 msgstr "Kabul et"
 
-#: includes/AdminPage.php:264
-#: includes/AdminPage.php:494
+#: includes/AdminPage.php:264 includes/AdminPage.php:494
 msgid "Accept all"
 msgstr "Hepsini kabul"
 
@@ -128,13 +114,11 @@ msgstr "İşlem"
 msgid "Activate and finish"
 msgstr "Etkinleştir ve bitir"
 
-#: includes/AdminPage.php:177
-#: includes/AdminPage.php:528
+#: includes/AdminPage.php:177 includes/AdminPage.php:528
 msgid "Active"
 msgstr "Etkin"
 
-#: includes/AdminPage.php:449
-#: includes/AdminPage.php:462
+#: includes/AdminPage.php:449 includes/AdminPage.php:462
 #: includes/AdminPage.php:675
 msgid "Add cookie"
 msgstr "Çerez ekle"
@@ -143,15 +127,12 @@ msgstr "Çerez ekle"
 msgid "Add the cookie"
 msgstr "Çerezi ekle"
 
-#: includes/AdminPage.php:336
-#: includes/AdminPage.php:506
+#: includes/AdminPage.php:336 includes/AdminPage.php:506
 #: includes/AdminPage.php:683
 msgid "Advertising"
 msgstr "Reklam"
 
-#: includes/Cookies.php:130
-#: includes/Cookies.php:132
-#: includes/Cookies.php:133
+#: includes/Cookies.php:130 includes/Cookies.php:132 includes/Cookies.php:133
 msgid "Advertising and security."
 msgstr "Reklam ve güvenlik."
 
@@ -175,13 +156,11 @@ msgstr "İzin verilen"
 msgid "Also delete the settings and the consent log"
 msgstr "Ayarları ve onay kaydını da sil"
 
-#: includes/AdminPage.php:334
-#: includes/Frontend.php:81
+#: includes/AdminPage.php:334 includes/Frontend.php:81
 msgid "Always on"
 msgstr "Her zaman açık"
 
-#: includes/AdminPage.php:335
-#: includes/AdminPage.php:503
+#: includes/AdminPage.php:335 includes/AdminPage.php:503
 #: includes/AdminPage.php:683
 msgid "Analytics"
 msgstr "Analiz"
@@ -190,8 +169,7 @@ msgstr "Analiz"
 msgid "Analytics + Advertising"
 msgstr "Analiz + Reklam"
 
-#: includes/AdminPage.php:161
-#: includes/AdminPage.php:641
+#: includes/AdminPage.php:161 includes/AdminPage.php:641
 msgid "Analytics and ad cookies are asked about"
 msgstr "Analiz ve reklam çerezleri sorulur"
 
@@ -219,8 +197,7 @@ msgstr "Reklam çerezlerini sor"
 msgid "Ask about analytics cookies"
 msgstr "Analiz çerezlerini sor"
 
-#: includes/AdminPage.php:407
-#: includes/AdminPage.php:408
+#: includes/AdminPage.php:407 includes/AdminPage.php:408
 msgid "At most 30 characters."
 msgstr "En çok 30 karakter."
 
@@ -256,8 +233,7 @@ msgstr "Zemin rengi"
 msgid "Banner position"
 msgstr "Banner konumu"
 
-#: includes/AdminPage.php:661
-#: includes/AdminPage.php:671
+#: includes/AdminPage.php:661 includes/AdminPage.php:671
 msgid "Banner preview"
 msgstr "Banner önizlemesi"
 
@@ -297,10 +273,8 @@ msgstr "Yerleşik satırlar yalnız Google çerez referansında belgelenmiş çe
 msgid "Button labels"
 msgstr "Düğme etiketleri"
 
-#: includes/AdminPage.php:312
-#: includes/AdminPage.php:672
-#: includes/AdminPage.php:673
-#: includes/AdminPage.php:674
+#: includes/AdminPage.php:312 includes/AdminPage.php:672
+#: includes/AdminPage.php:673 includes/AdminPage.php:674
 #: includes/AdminPage.php:688
 msgid "Cancel"
 msgstr "Vazgeç"
@@ -329,8 +303,7 @@ msgstr "Politika sayfalarınızı seçin"
 msgid "Clear your cache plugin and open the site in a logged-out (private window) browser. If you decided earlier, the banner will not appear again: raise the revision with General → Re-consent."
 msgstr "Önbellek eklentinizi temizleyin ve siteyi giriş yapmamış (gizli pencere) bir tarayıcıda açın. Daha önce karar verdiyseniz banner tekrar çıkmaz: Genel → Yeniden onay ile revizyonu artırın."
 
-#: includes/AdminPage.php:671
-#: includes/Frontend.php:76
+#: includes/AdminPage.php:671 includes/Frontend.php:76
 msgid "Close"
 msgstr "Kapat"
 
@@ -374,13 +347,11 @@ msgstr "Onay kaydı"
 msgid "Consent records could not be deleted: the table cannot be read."
 msgstr "Onay kayıtları silinemedi: tablo okunamıyor."
 
-#: includes/AdminPage.php:245
-#: includes/AdminPage.php:340
+#: includes/AdminPage.php:245 includes/AdminPage.php:340
 msgid "Consent validity period"
 msgstr "Onay geçerlilik süresi"
 
-#: includes/AdminPage.php:158
-#: includes/AdminPage.php:642
+#: includes/AdminPage.php:158 includes/AdminPage.php:642
 msgid "Continue"
 msgstr "Devam"
 
@@ -388,13 +359,11 @@ msgstr "Devam"
 msgid "Contrast could not be calculated: enter the colours in #rrggbb format."
 msgstr "Kontrast hesaplanamadı: renkleri #rrggbb biçiminde girin."
 
-#: includes/AdminPage.php:450
-#: includes/Frontend.php:152
+#: includes/AdminPage.php:450 includes/Frontend.php:152
 msgid "Cookie"
 msgstr "Çerez"
 
-#: includes/AdminPage.php:250
-#: includes/AdminPage.php:420
+#: includes/AdminPage.php:250 includes/AdminPage.php:420
 #: includes/Frontend.php:79
 msgid "Cookie Policy"
 msgstr "Çerez Politikası"
@@ -402,10 +371,6 @@ msgstr "Çerez Politikası"
 #: includes/AdminPage.php:639
 msgid "Cookie Policy page"
 msgstr "Çerez Politikası sayfası"
-
-#: includes/Updater.php:297
-msgid "Cookie and Consent Manager"
-msgstr "Çerez ve Onay Yöneticisi"
 
 #: includes/AdminPage.php:328
 msgid "Cookie banner"
@@ -448,13 +413,11 @@ msgctxt "Plugin Name of the plugin"
 msgid "CookieKit — Cookie and Consent Manager"
 msgstr "CookieKit — Çerez ve Onay Yöneticisi"
 
-#: includes/AdminPage.php:30
-#: includes/Frontend.php:80
+#: includes/AdminPage.php:30 includes/Frontend.php:80
 msgid "Cookies"
 msgstr "Çerezler"
 
-#: includes/Admin.php:63
-#: includes/Admin.php:64
+#: includes/Admin.php:63 includes/Admin.php:64
 msgid "Cookies and Consent"
 msgstr "Çerez ve Onay"
 
@@ -470,18 +433,13 @@ msgstr "Çerezler sekmesi → “Çerez ekle”. Eklediğiniz çerez tercih pane
 msgid "Copied"
 msgstr "Kopyalandı"
 
-#: includes/AdminPage.php:152
-#: includes/AdminPage.php:555
+#: includes/AdminPage.php:152 includes/AdminPage.php:555
 msgid "Copy"
 msgstr "Kopyala"
 
 #: includes/AdminPage.php:545
 msgid "Copy and paste into your page, theme or button."
 msgstr "Kopyalayıp sayfanıza, temanıza ya da düğmenize yapıştırın."
-
-#: includes/Updater.php:441
-msgid "Could not check; it will be tried again later. The plugin works normally."
-msgstr "Kontrol edilemedi; daha sonra tekrar denenecek. Eklenti normal çalışır."
 
 #: includes/AdminPage.php:339
 #, php-format
@@ -492,18 +450,15 @@ msgstr "Geçerli revizyon: %s. Revizyon değişince tüm ziyaretçilerden yenide
 msgid "Custom"
 msgstr "Özel"
 
-#: includes/AdminPage.php:266
-#: includes/AdminPage.php:496
+#: includes/AdminPage.php:266 includes/AdminPage.php:496
 msgid "Custom choice"
 msgstr "Özel tercih"
 
-#: includes/AdminPage.php:374
-#: includes/AdminPage.php:376
+#: includes/AdminPage.php:374 includes/AdminPage.php:376
 msgid "Custom colours"
 msgstr "Özel renkler"
 
-#: includes/Admin.php:296
-#: includes/AdminPage.php:164
+#: includes/Admin.php:296 includes/AdminPage.php:164
 msgid "DELETE"
 msgstr "SİL"
 
@@ -548,8 +503,7 @@ msgstr "Açıklama"
 msgid "Desktop"
 msgstr "Masaüstü"
 
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:540 includes/AdminPage.php:541
 msgid "Detected"
 msgstr "Algılandı"
 
@@ -577,8 +531,7 @@ msgstr "Başka bir eklentiyle çakışır mı?"
 msgid "Drawn with the real banner style; the site does not change until you save."
 msgstr "Gerçek banner stiliyle çizilir; kaydedene kadar sitede değişmez."
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:681
+#: includes/AdminPage.php:450 includes/AdminPage.php:681
 #: includes/Frontend.php:152
 msgid "Duration"
 msgstr "Süre"
@@ -594,11 +547,6 @@ msgstr "Zorunlu çerezler"
 #: includes/AdminPage.php:480
 msgid "Export CSV"
 msgstr "CSV dışa aktar"
-
-#: readme.txt:4
-msgctxt "Release note"
-msgid "First release."
-msgstr "İlk sürüm."
 
 #: includes/AdminPage.php:336
 msgid "For AdSense and Google advertising partners. Turn off if the site has no ads."
@@ -725,24 +673,17 @@ msgstr "Lisans"
 msgid "Link the pages"
 msgstr "Sayfaları bağlayın"
 
-#: includes/AdminPage.php:320
-#: includes/AdminPage.php:651
+#: includes/AdminPage.php:320 includes/AdminPage.php:651
 msgid "Live preview"
 msgstr "Canlı önizleme"
 
-#: includes/AdminPage.php:547
-#: includes/Frontend.php:137
+#: includes/AdminPage.php:547 includes/Frontend.php:137
 msgid "Manage cookie preferences"
 msgstr "Çerez tercihlerini yönet"
 
 #: includes/Cookies.php:44
 msgid "Measures how the site is used with Google Analytics. Only set if you allow it."
 msgstr "Google Analytics ile sitenin nasıl kullanıldığını ölçer. Yalnızca izin verirseniz kurulur."
-
-#: readme.txt:1
-msgctxt "Release note"
-msgid "Menu: the screen now sits under the shared \"RBN Kit\" top-level menu (RBN Kit → Cookies and Consent); the old Settings address redirects to the new one."
-msgstr "Menü: ekran artık ortak \"RBN Kit\" üst menüsünün altında (RBN Kit → Çerez ve Onay); eski Ayarlar adresi yeni adrese yönlenir."
 
 #: includes/AdminPage.php:655
 msgid "Mobile"
@@ -752,8 +693,7 @@ msgstr "Mobil"
 msgid "MonsterInsights"
 msgstr "MonsterInsights"
 
-#: includes/AdminPage.php:334
-#: includes/AdminPage.php:501
+#: includes/AdminPage.php:334 includes/AdminPage.php:501
 #: includes/AdminPage.php:683
 msgid "Necessary"
 msgstr "Zorunlu"
@@ -786,22 +726,15 @@ msgstr "Özel çerez eklenmedi"
 msgid "No setting needed; the plugin runs automatically at the start of the page. The status is for information only."
 msgstr "Ayar gerekmez; eklenti sayfa başında otomatik çalışır. Durum bilgi amaçlıdır."
 
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:540 includes/AdminPage.php:541
 msgid "Not active."
 msgstr "Etkin değil."
 
-#: includes/Updater.php:437
-msgid "Not checked yet."
-msgstr "Henüz kontrol edilmedi."
-
-#: includes/AdminPage.php:540
-#: includes/AdminPage.php:541
+#: includes/AdminPage.php:540 includes/AdminPage.php:541
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: includes/AdminPage.php:528
-#: includes/AdminPage.php:542
+#: includes/AdminPage.php:528 includes/AdminPage.php:542
 msgid "Off"
 msgstr "Kapalı"
 
@@ -813,8 +746,7 @@ msgstr "Kapalı — banner gösterilmiyor"
 msgid "Off: the advertising category is not asked about on the banner."
 msgstr "Kapalı: bannerda reklam kategorisi sorulmuyor."
 
-#: includes/AdminPage.php:542
-#: includes/AdminPage.php:657
+#: includes/AdminPage.php:542 includes/AdminPage.php:657
 msgid "On"
 msgstr "Açık"
 
@@ -894,8 +826,7 @@ msgstr "Önizle ve etkinleştir"
 msgid "Preview and go live"
 msgstr "Önizleyin ve etkinleştirin"
 
-#: includes/AdminPage.php:184
-#: includes/AdminPage.php:490
+#: includes/AdminPage.php:184 includes/AdminPage.php:490
 msgid "Preview the banner"
 msgstr "Banner’ı önizle"
 
@@ -907,8 +838,7 @@ msgstr "Önizleyip etkinleştirin"
 msgid "Previous"
 msgstr "Önceki"
 
-#: includes/AdminPage.php:249
-#: includes/AdminPage.php:419
+#: includes/AdminPage.php:249 includes/AdminPage.php:419
 #: includes/Frontend.php:78
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
@@ -917,14 +847,12 @@ msgstr "Gizlilik Politikası"
 msgid "Privacy Policy page"
 msgstr "Gizlilik Politikası sayfası"
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:679
+#: includes/AdminPage.php:450 includes/AdminPage.php:679
 #: includes/Frontend.php:152
 msgid "Provider"
 msgstr "Sağlayıcı"
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:680
+#: includes/AdminPage.php:450 includes/AdminPage.php:680
 #: includes/Frontend.php:152
 msgid "Purpose"
 msgstr "Amaç"
@@ -953,8 +881,7 @@ msgstr "Kayıtlar 12 ay sonra otomatik silinir. Ham IP saklanmaz; yalnız günl�
 msgid "Records cannot be shown"
 msgstr "Kayıtlar gösterilemiyor"
 
-#: includes/AdminPage.php:265
-#: includes/AdminPage.php:495
+#: includes/AdminPage.php:265 includes/AdminPage.php:495
 #: includes/Settings.php:51
 msgid "Reject"
 msgstr "Reddet"
@@ -1072,8 +999,7 @@ msgstr "Yalnız gerçekten kullandığınız kategoriyi gösterin; kullanılmaya
 msgid "Show the banner"
 msgstr "Banner’ı göster"
 
-#: includes/AdminPage.php:159
-#: includes/AdminPage.php:662
+#: includes/AdminPage.php:159 includes/AdminPage.php:662
 msgid "Show the preferences panel"
 msgstr "Tercih panelini göster"
 
@@ -1090,8 +1016,7 @@ msgstr "%1$d kayıttan %2$d–%3$d gösteriliyor"
 msgid "Shown in the preferences panel and in the [cookiekit_cerez_listesi] shortcode. List only the cookies that are really set on your site."
 msgstr "Tercih panelinde ve [cookiekit_cerez_listesi] kısa kodunda gösterilir. Yalnız sitenizde gerçekten kurulanları listeleyin."
 
-#: includes/AdminPage.php:623
-#: includes/AdminPage.php:628
+#: includes/AdminPage.php:623 includes/AdminPage.php:628
 msgid "Site type"
 msgstr "Site türü"
 
@@ -1106,13 +1031,11 @@ msgid_plural "Some changes were not saved: %d fields need fixing."
 msgstr[0] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
 msgstr[1] "Bazı değişiklikler kaydedilmedi: %d alan düzeltilmeli."
 
-#: includes/AdminPage.php:450
-#: includes/AdminPage.php:606
+#: includes/AdminPage.php:450 includes/AdminPage.php:606
 msgid "Source"
 msgstr "Kaynak"
 
-#: includes/AdminPage.php:327
-#: includes/Updater.php:452
+#: includes/AdminPage.php:327 includes/Updater.php:452
 msgid "Status"
 msgstr "Durum"
 
@@ -1232,18 +1155,9 @@ msgstr "Form tanınmadı; hiçbir ayar değişmedi."
 msgid "The necessary-cookie category is always shown. You can change this later in the General tab."
 msgstr "Zorunlu çerez kategorisi her zaman görünür. Sonradan Genel sekmesinden değiştirebilirsiniz."
 
-#: readme.txt:3
-msgctxt "Release note"
-msgid "The package is verified with a SHA-256 digest and an Ed25519 signature; the check can be turned off in Help → Update."
-msgstr "Paket SHA-256 ve Ed25519 imzasıyla doğrulanır; Yardım → Güncelleme kartından kontrol kapatılabilir."
-
 #: includes/AdminPage.php:420
 msgid "The page that uses [cookiekit_cerez_listesi] for the cookie table."
 msgstr "Çerez tablosu için [cookiekit_cerez_listesi] kullanan sayfa."
-
-#: includes/Updater.php:446
-msgid "The plugin is up to date."
-msgstr "Eklenti güncel."
 
 #: includes/AdminPage.php:593
 msgid "The raw IP and full browser information are not stored; only a hash with a daily-rotating salt, the decision and the page path are kept. Records are deleted after 12 months."
@@ -1260,10 +1174,6 @@ msgstr "Özet sayıları gösterilemiyor; ziyaretçi tarafı etkilenmez, banner 
 #: includes/AdminPage.php:672
 msgid "The title, description and button labels return to the defaults. The site does not change until you save."
 msgstr "Başlık, açıklama ve düğme etiketleri Türkçe varsayılanlara döner. Kaydedene kadar sitede değişmez."
-
-#: includes/Updater.php:435
-msgid "The update check is off; GitHub is never contacted."
-msgstr "Güncelleme kontrolü kapalı; GitHub’a hiç bağlanılmaz."
 
 #: includes/AdminPage.php:216
 msgid "The update check is off; no connection was made."
@@ -1285,25 +1195,15 @@ msgstr "Tema renkleri"
 msgid "Theme colours are used by default so the banner stays consistent with your theme."
 msgstr "Temanızla uyumlu kalmak için varsayılan olarak tema renkleri kullanılır."
 
-#: includes/Updater.php:308
-msgid "There are no release notes for this version."
-msgstr "Bu sürüm için yayın notu yok."
-
-#: includes/AdminPage.php:149
-#: includes/AdminPage.php:312
+#: includes/AdminPage.php:149 includes/AdminPage.php:312
 msgid "There are unsaved changes"
 msgstr "Kaydedilmemiş değişiklikler var"
-
-#: includes/Updater.php:439
-msgid "There is no published version yet."
-msgstr "Henüz yayınlanmış sürüm yok."
 
 #: includes/AdminPage.php:673
 msgid "This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first."
 msgstr "Bu işlem geri alınamaz. KVKK kapsamında ispat için saklamanız gereken kayıtlar varsa önce CSV olarak indirin."
 
-#: includes/AdminPage.php:679
-#: includes/Cookies.php:100
+#: includes/AdminPage.php:679 includes/Cookies.php:100
 msgid "This site"
 msgstr "Bu site"
 
@@ -1375,55 +1275,6 @@ msgstr "Güncelleme"
 msgid "Update on choice"
 msgstr "Seçimde güncelleme"
 
-#: includes/Updater.php:122
-msgid "Update rejected: signature verification (sodium) is missing on the server. The old version was kept."
-msgstr "Güncelleme reddedildi: sunucuda imza doğrulama (sodium) yok. Eski sürüm korundu."
-
-#: includes/Updater.php:150
-msgid "Update rejected: the SHA-256 digest of the package does not match. The old version was kept."
-msgstr "Güncelleme reddedildi: paketin SHA-256 özeti eşleşmiyor. Eski sürüm korundu."
-
-#: includes/Updater.php:146
-msgid "Update rejected: the digest (SHA-256) file could not be read. The old version was kept."
-msgstr "Güncelleme reddedildi: özet (SHA-256) dosyası okunamadı. Eski sürüm korundu."
-
-#: includes/Updater.php:326
-msgid "Update rejected: the package address is not in the expected format. The old version was kept."
-msgstr "Güncelleme reddedildi: paket adresi beklenen biçimde değil. Eski sürüm korundu."
-
-#: includes/Updater.php:382
-msgid "Update rejected: the package did not pass the CookieKit verification. The old version was kept."
-msgstr "Güncelleme reddedildi: paket CookieKit doğrulamasından geçmedi. Eski sürüm korundu."
-
-#: includes/Updater.php:130
-msgid "Update rejected: the package signature is invalid. The old version was kept."
-msgstr "Güncelleme reddedildi: paket imzası geçersiz. Eski sürüm korundu."
-
-#: includes/Updater.php:143
-msgid "Update rejected: the package size is not in the expected range. The old version was kept."
-msgstr "Güncelleme reddedildi: paket boyutu beklenen aralıkta değil. Eski sürüm korundu."
-
-#: includes/Updater.php:127
-msgid "Update rejected: the plugin has no valid signature key. The old version was kept."
-msgstr "Güncelleme reddedildi: eklentide geçerli imza anahtarı yok. Eski sürüm korundu."
-
-#: includes/Updater.php:164
-msgid "Update rejected: the root folder of the package is not “cookiekit” or cookiekit.php is missing. The old version was kept."
-msgstr "Güncelleme reddedildi: paketin kök klasörü “cookiekit” değil ya da cookiekit.php yok. Eski sürüm korundu."
-
-#: includes/Updater.php:168
-msgid "Update rejected: the version inside the package does not match the published version. The old version was kept."
-msgstr "Güncelleme reddedildi: paketteki sürüm, yayınlanan sürümle uyuşmuyor. Eski sürüm korundu."
-
-#: includes/Updater.php:361
-msgid "Update stopped: the digest or signature file could not be downloaded. The old version was kept."
-msgstr "Güncelleme durduruldu: özet ya da imza dosyası indirilemedi. Eski sürüm korundu."
-
-#: readme.txt:2
-msgctxt "Release note"
-msgid "Updates from GitHub: Update / up to date on the Plugins page, WordPress automatic update support."
-msgstr "GitHub’dan güncelleme: Eklentiler sayfasında Güncelle / güncel, WordPress otomatik güncelleme desteği."
-
 #: includes/Cookies.php:53
 msgid "Used by Google AdSense and Google advertising partners to show ads that may interest you. Only set if you allow it."
 msgstr "Google AdSense ve Google reklam ortakları ilginizi çekebilecek reklamları göstermek için kullanır. Yalnızca izin verirseniz kurulur."
@@ -1441,9 +1292,7 @@ msgstr "Sürüm %s"
 msgid "Version and source"
 msgstr "Sürüm ve kaynak"
 
-#: includes/Cookies.php:124
-#: includes/Cookies.php:125
-#: includes/Cookies.php:126
+#: includes/Cookies.php:124 includes/Cookies.php:125 includes/Cookies.php:126
 #: includes/Cookies.php:127
 msgid "Visitor and site usage measurement (purpose in the Google cookie reference: Analytics)."
 msgstr "Ziyaretçi ve site kullanımı ölçümü (Google çerez referansında amaç: Analiz)."
@@ -1496,9 +1345,7 @@ msgstr "Kısa ve net yazın: ziyaretçi ne istendiğini tek bakışta anlamalı.
 msgid "You do not have access to this page."
 msgstr "Bu sayfaya erişim yetkiniz yok."
 
-#: includes/Admin.php:233
-#: includes/Admin.php:306
-#: includes/Updater.php:418
+#: includes/Admin.php:233 includes/Admin.php:306 includes/Updater.php:418
 msgid "You do not have permission for this action."
 msgstr "Bu işlem için yetkiniz yok."
 
@@ -1537,8 +1384,7 @@ msgstr "cookiekit-onay-kaydi"
 msgid "could not be read"
 msgstr "okunamadı"
 
-#: includes/Admin.php:328
-#: includes/Admin.php:333
+#: includes/Admin.php:328 includes/Admin.php:333
 msgctxt "CSV decision value"
 msgid "custom"
 msgstr "ozel"
@@ -1628,8 +1474,7 @@ msgctxt "CSV column header"
 msgid "ua_digest"
 msgstr "ua_ozeti"
 
-#: includes/AdminPage.php:105
-#: includes/AdminPage.php:426
+#: includes/AdminPage.php:105 includes/AdminPage.php:426
 msgid "— Select —"
 msgstr "— Seçin —"
 
@@ -1641,8 +1486,7 @@ msgstr "“Tema renkleri”: sitenin --fm-* değişkenleri ya da açık/koyu var
 msgid "activate AdminKit"
 msgstr "AdminKit eklentisini etkinleştirin"
 
-#: cookiekit.php:76
-#: cookiekit.php:88
+#: cookiekit.php:76 cookiekit.php:88
 #, php-format
 msgid "CookieKit requires the AdminKit plugin. Please %s to continue."
 msgstr "CookieKit, AdminKit eklentisini gerektirir. Devam etmek için lütfen %s."

@@ -61,7 +61,6 @@ final class Admin {
 
 	/** Ekran kimliği (rbn-kit_page_cookiekit); menü kurulduktan sonra okunur. */
 	public static function late(): void {
-		\AdminKit\Helpers\Menu::legacy_redirect( self::SLUG, 'options-general.php' );
 		self::$hook = \AdminKit\Helpers\Menu::hook( self::SLUG );
 	}
 

@@ -74,15 +74,6 @@ msgstr ""
 msgid "6 months"
 msgstr ""
 
-#: includes/Updater.php:308
-msgid "A KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log."
-msgstr ""
-
-#: includes/Updater.php:430
-#, php-format
-msgid "A new version is available: %s. Click “Update” on the Plugins page."
-msgstr ""
-
 #: includes/AdminPage.php:424
 msgid "A path on this site (/privacy-policy/) or the full address of this site."
 msgstr ""
@@ -375,10 +366,6 @@ msgstr ""
 msgid "Cookie"
 msgstr ""
 
-#: includes/Updater.php:298
-msgid "Cookie and Consent Manager"
-msgstr ""
-
 #: includes/AdminPage.php:333
 msgid "Cookie banner"
 msgstr ""
@@ -462,10 +449,6 @@ msgstr ""
 
 #: includes/AdminPage.php:282
 msgid "could not be read"
-msgstr ""
-
-#: includes/Updater.php:427
-msgid "Could not check; it will be tried again later. The plugin works normally."
 msgstr ""
 
 #: includes/AdminPage.php:344
@@ -784,10 +767,6 @@ msgstr ""
 
 #: includes/AdminPage.php:546
 msgid "Not active."
-msgstr ""
-
-#: includes/Updater.php:423
-msgid "Not checked yet."
 msgstr ""
 
 #: includes/AdminPage.php:546
@@ -1227,10 +1206,6 @@ msgstr ""
 msgid "The page that uses [cookiekit_cerez_listesi] for the cookie table."
 msgstr ""
 
-#: includes/Updater.php:432
-msgid "The plugin is up to date."
-msgstr ""
-
 #: includes/AdminPage.php:598
 msgid "The raw IP and full browser information are not stored; only a hash with a daily-rotating salt, the decision and the page path are kept. Records are deleted after 12 months."
 msgstr ""
@@ -1245,10 +1220,6 @@ msgstr ""
 
 #: includes/AdminPage.php:678
 msgid "The title, description and button labels return to the defaults. The site does not change until you save."
-msgstr ""
-
-#: includes/Updater.php:421
-msgid "The update check is off; GitHub is never contacted."
 msgstr ""
 
 #: includes/AdminPage.php:223
@@ -1271,16 +1242,8 @@ msgstr ""
 msgid "Theme colours are used by default so the banner stays consistent with your theme."
 msgstr ""
 
-#: includes/Updater.php:309
-msgid "There are no release notes for this version."
-msgstr ""
-
 #: includes/AdminPage.php:317
 msgid "There are unsaved changes"
-msgstr ""
-
-#: includes/Updater.php:425
-msgid "There is no published version yet."
 msgstr ""
 
 #: includes/AdminPage.php:679
@@ -1357,50 +1320,6 @@ msgstr ""
 
 #: includes/AdminPage.php:537
 msgid "Update on choice"
-msgstr ""
-
-#: includes/Updater.php:123
-msgid "Update rejected: signature verification (sodium) is missing on the server. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:147
-msgid "Update rejected: the digest (SHA-256) file could not be read. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:327
-msgid "Update rejected: the package address is not in the expected format. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:383
-msgid "Update rejected: the package did not pass the CookieKit verification. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:131
-msgid "Update rejected: the package signature is invalid. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:144
-msgid "Update rejected: the package size is not in the expected range. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:128
-msgid "Update rejected: the plugin has no valid signature key. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:165
-msgid "Update rejected: the root folder of the package is not “cookiekit” or cookiekit.php is missing. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:151
-msgid "Update rejected: the SHA-256 digest of the package does not match. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:169
-msgid "Update rejected: the version inside the package does not match the published version. The old version was kept."
-msgstr ""
-
-#: includes/Updater.php:362
-msgid "Update stopped: the digest or signature file could not be downloaded. The old version was kept."
 msgstr ""
 
 #: includes/Cookies.php:53

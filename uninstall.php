@@ -11,11 +11,10 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 wp_clear_scheduled_hook( 'cookiekit_purge' );
 
-// Güncelleme ve önbellek kaydı: veri silme tercihinden bağımsız, geçici/yardımcı kayıtlardır.
+// Önbellek kaydı: veri silme tercihinden bağımsız, geçici/yardımcı kayıtlardır.
 if ( class_exists( '\AdminKit\Core\Cache' ) ) {
 	\AdminKit\Core\Cache::purge_plugin( 'cookiekit' );
 }
-delete_option( 'cookiekit_update_checked' );
 
 $cookiekit_settings = get_option( 'cookiekit_settings', array() );
 if ( is_array( $cookiekit_settings ) && ! empty( $cookiekit_settings['delete_on_uninstall'] ) ) {
