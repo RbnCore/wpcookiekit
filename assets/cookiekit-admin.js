@@ -144,16 +144,12 @@
 			var msg = I.rm_desc || 'The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted.';
 			var confirmText = I.rm_confirm || 'Remove from list';
 			var cancelText = I.cancel || 'Cancel';
-			var uConfirm = (window.RbnUi && window.RbnUi.confirm) ? window.RbnUi.confirm : null;
-			if (!uConfirm) {
-				if (!window.confirm(title)) { return; }
-				sendRm(id);
-				return;
-			}
-			uConfirm({
+			window.RbnUi.confirm({
 				title: title,
 				message: msg,
+				confirmLabel: confirmText,
 				confirmText: confirmText,
+				cancelLabel: cancelText,
 				cancelText: cancelText,
 				tone: 'danger'
 			}).then(function (ok) {
@@ -181,16 +177,12 @@
 			var reqText = I.confirm || 'DELETE';
 			var confirmText = I.purge_confirm || 'Delete all records';
 			var cancelText = I.cancel || 'Cancel';
-			var uConfirm = (window.RbnUi && window.RbnUi.confirm) ? window.RbnUi.confirm : null;
-			if (!uConfirm) {
-				if (!window.confirm(title)) { return; }
-				sendPurge(reqText);
-				return;
-			}
-			uConfirm({
+			window.RbnUi.confirm({
 				title: title,
 				message: msg,
+				confirmLabel: confirmText,
 				confirmText: confirmText,
+				cancelLabel: cancelText,
 				cancelText: cancelText,
 				tone: 'danger',
 				requireText: reqText
