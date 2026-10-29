@@ -40,12 +40,12 @@ Updates come from GitHub and appear on the Plugins page like any WordPress updat
 
 - **Source**: only `github.com/RbnCore/wpcookiekit` releases. The request is unauthenticated, times out after 5 seconds, is cached for 12 hours, and sends only `User-Agent: CookieKit/<version>`. If GitHub cannot be reached, no error is shown and the plugin keeps working.
 - **Verification is always on**: the package's SHA-256 digest (`.zip.sha256`) and its Ed25519 signature (`.zip.sig`, public key in `includes/update-pubkey.php`) are checked, and the zip must contain `cookiekit/` and `cookiekit.php`. If any check fails, the installation stops and the installed version stays as it was.
-- **Turning it off**: RBN Kit → Cookies and Consent → Help → Update → "Turn off the update check". While it is off, no request goes to GitHub. "Check now" skips the cache and asks immediately.
+- **Turning it off**: Follows the central RBN Kit network setting (RBN Kit → AdminKit → Modules → Network). When the central network setting is off, no request goes to GitHub. "Check now" skips the cache and asks immediately when enabled.
 - **Manual update**: upload the new `cookiekit-X.Y.Z.zip` with Plugins → Add New → Upload Plugin and choose *Replace current*. To roll back, install the previous zip the same way; settings and the log table are kept (the schema is additive).
 
 ## Privacy and external requests
 
-- On the front end CookieKit makes no external request and loads no third-party asset. The only external request in the whole plugin is the GitHub update check described above, and it can be turned off.
+- On the front end CookieKit makes no external request and loads no third-party asset. The only external request in the whole plugin is the GitHub update check described above, and it follows the central RBN Kit network setting.
 - The consent log stores no raw IP address, only a salted HMAC; the salt rotates daily. Records are deleted after 12 months. CSV export requires `manage_options` and a nonce.
 - No site address, user or visitor data is sent to GitHub. Only the user agent string goes out.
 - On uninstall the data is kept by default. If "Delete data when the plugin is uninstalled" is ticked, the table and settings are removed.

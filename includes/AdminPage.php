@@ -214,8 +214,6 @@ final class AdminPage {
 			'purge_fail'     => array( 'err', __( 'Consent records could not be deleted: the table cannot be read.', 'cookiekit' ) ),
 			'update_checked' => array( 'ok', __( 'The update check was done.', 'cookiekit' ) ),
 			'update_is_off'  => array( 'err', __( 'The update check is off; no connection was made.', 'cookiekit' ) ),
-			'update_off'     => array( 'ok', __( 'The update check was turned off. GitHub is no longer contacted.', 'cookiekit' ) ),
-			'update_on'      => array( 'ok', __( 'The update check was turned on.', 'cookiekit' ) ),
 			'purge_confirm'  => array( 'err', __( 'Deletion was not confirmed: you must type DELETE in the box. No record was deleted.', 'cookiekit' ) ),
 		);
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız iletiyi seçer, beyaz liste.

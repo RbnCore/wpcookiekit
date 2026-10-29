@@ -1273,14 +1273,6 @@ msgstr ""
 msgid "The update check was done."
 msgstr ""
 
-#: includes/AdminPage.php:217
-msgid "The update check was turned off. GitHub is no longer contacted."
-msgstr ""
-
-#: includes/AdminPage.php:218
-msgid "The update check was turned on."
-msgstr ""
-
 #: includes/Updater.php:455
 msgid "The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent."
 msgstr ""
@@ -1355,16 +1347,8 @@ msgstr ""
 msgid "Troubleshooting: the summary cards say “could not be read”"
 msgstr ""
 
-#: includes/Updater.php:460
-msgid "Turn off the update check"
-msgstr ""
-
 #: includes/AdminPage.php:342
 msgid "Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards."
-msgstr ""
-
-#: includes/Updater.php:460
-msgid "Turn on the update check"
 msgstr ""
 
 #: includes/AdminPage.php:327
@@ -1373,6 +1357,10 @@ msgstr ""
 
 #: includes/Updater.php:454
 msgid "Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page."
+msgstr ""
+
+#: includes/Updater.php:443
+msgid "Update checks follow the RBN Kit network setting."
 msgstr ""
 
 #: includes/AdminPage.php:673

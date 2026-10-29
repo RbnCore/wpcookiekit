@@ -1273,14 +1273,6 @@ msgstr "Güncelleme kontrolü kapalı; hiçbir bağlantı kurulmadı."
 msgid "The update check was done."
 msgstr "Güncelleme kontrolü yapıldı."
 
-#: includes/AdminPage.php:217
-msgid "The update check was turned off. GitHub is no longer contacted."
-msgstr "Güncelleme kontrolü kapatıldı. GitHub’a artık bağlanılmaz."
-
-#: includes/AdminPage.php:218
-msgid "The update check was turned on."
-msgstr "Güncelleme kontrolü açıldı."
-
 #: includes/Updater.php:455
 msgid "The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent."
 msgstr "Güncelleme paketi kurulmadan önce SHA-256 özeti ve Ed25519 imzasıyla doğrulanır; doğrulanamayan paket kurulmaz. Yalnız standart bir GET isteği gider; site adresiniz ya da kullanıcı bilginiz gönderilmez."
@@ -1355,17 +1347,9 @@ msgstr "Toplam karar"
 msgid "Troubleshooting: the summary cards say “could not be read”"
 msgstr "Sorun giderme: özet kartları “okunamadı” diyor"
 
-#: includes/Updater.php:460
-msgid "Turn off the update check"
-msgstr "Güncelleme kontrolünü kapat"
-
 #: includes/AdminPage.php:342
 msgid "Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards."
 msgstr "Kategori ya da çerez listesini değiştirdiyseniz açın. Önbellek kullanıyorsanız ardından temizleyin."
-
-#: includes/Updater.php:460
-msgid "Turn on the update check"
-msgstr "Güncelleme kontrolünü aç"
 
 #: includes/AdminPage.php:327
 msgid "Turn the banner on or off across the whole site."
@@ -1374,6 +1358,10 @@ msgstr "Banner’ı tüm sitede açın ya da kapatın."
 #: includes/Updater.php:454
 msgid "Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page."
 msgstr "Eklentiler sayfasında CookieKit satırındaki “Otomatik güncellemeleri etkinleştir” bağlantısından açılır/kapanır."
+
+#: includes/Updater.php:443
+msgid "Update checks follow the RBN Kit network setting."
+msgstr "Güncelleme kontrolleri RBN Kit ağ ayarını izler."
 
 #: includes/AdminPage.php:673
 msgid "Type DELETE to confirm"

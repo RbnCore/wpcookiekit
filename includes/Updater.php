@@ -5,7 +5,7 @@
  * - Ağ çağrısı yalnız WP'nin kendi güncelleme kontrolünde (`update_plugins_github.com`) yapılır; yazı/ön yüz çalışmaz.
  * - Belirteç, hesap ya da site bilgisi gönderilmez: yalnız belirteçsiz GET + User-Agent `CookieKit/<sürüm>`.
  * - Paket kurulmadan önce SHA-256 ve Ed25519 imzası doğrulanır; bu kontrol kapatılamaz.
- * - Kapatma anahtarı (`cookiekit_update_off`) açıksa hiç ağ çağrısı yapılmaz.
+ * - Merkezi ağ ayarı kapalıysa hiç ağ çağrısı yapılmaz.
  *
  * Bağımsız sınıf: başka eklentiye kopyalanırken yalnız sabitler (REPO, PLUGIN, SLUG, ön ek) değişir.
  *
@@ -23,7 +23,6 @@ final class Updater {
 	public const REPO         = 'RbnCore/wpcookiekit';
 	public const PLUGIN       = 'cookiekit/cookiekit.php';
 	public const SLUG         = 'cookiekit';
-	public const OPT_OFF      = 'cookiekit_update_off';
 	public const OPT_CHECKED  = 'cookiekit_update_checked';
 	public const CACHE        = 'release';
 	public const MAX_ZIP      = 8388608; // 8 MB.
@@ -41,11 +40,13 @@ final class Updater {
 		add_filter( 'upgrader_pre_download', array( self::class, 'pre_download' ), 10, 3 );
 		add_filter( 'upgrader_source_selection', array( self::class, 'source_selection' ), 10, 4 );
 		add_action( 'admin_post_cookiekit_update_check', array( self::class, 'action_check' ) );
-		add_action( 'admin_post_cookiekit_update_toggle', array( self::class, 'action_toggle' ) );
 	}
 
 	public static function enabled(): bool {
-		return '1' !== (string) get_option( self::OPT_OFF, '' );
+		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 2 || ! class_exists( 'AdminKit\Core\Network', false ) ) {
+			return false;
+		}
+		return \AdminKit\Core\Network::github_allowed( 'updates:cookiekit' );
 	}
 
 	// ───────────────────────── Saf yardımcılar ─────────────────────────
@@ -398,21 +399,6 @@ final class Updater {
 		self::redirect( 'update_is_off' );
 	}
 
-	public static function action_toggle(): void {
-		self::guard( 'cookiekit_update_toggle' );
-		$off = self::enabled(); // Şu an açıksa kapatılacak.
-		update_option( self::OPT_OFF, $off ? '1' : '0', false );
-		\AdminKit\Core\Cache::delete( 'cookiekit.updates', self::CACHE );
-		if ( $off ) {
-			$cur = get_site_transient( 'update_plugins' );
-			if ( is_object( $cur ) ) {
-				unset( $cur->response[ self::PLUGIN ], $cur->no_update[ self::PLUGIN ] );
-				set_site_transient( 'update_plugins', $cur );
-			}
-		}
-		self::redirect( $off ? 'update_off' : 'update_on' );
-	}
-
 	private static function guard( string $nonce_action ): void {
 		if ( ! current_user_can( 'update_plugins' ) ) {
 			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
@@ -453,11 +439,12 @@ final class Updater {
 			. '<dt>' . esc_html__( 'Last check', 'cookiekit' ) . '</dt><dd>' . $last . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '<dt>' . esc_html__( 'Automatic updates', 'cookiekit' ) . '</dt><dd>' . esc_html__( 'Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page.', 'cookiekit' ) . '</dd></dl>'
 			. '<p class="ck-help">' . esc_html__( 'The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent.', 'cookiekit' ) . '</p>'
-			. '<div style="display:flex;gap:var(--ck-s3);flex-wrap:wrap;margin-top:var(--ck-s3)">';
+			. '<p class="ck-help"><a href="' . esc_url( admin_url( 'admin.php?page=adminkit#adminkit-network' ) ) . '">' . esc_html__( 'Update checks follow the RBN Kit network setting.', 'cookiekit' ) . '</a></p>';
 		if ( $on ) {
-			$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html__( 'Check now', 'cookiekit' ) . '</button></form>';
+			$html .= '<div style="display:flex;gap:var(--ck-s3);flex-wrap:wrap;margin-top:var(--ck-s3)">'
+				. '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_check">' . wp_nonce_field( 'cookiekit_update_check', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html__( 'Check now', 'cookiekit' ) . '</button></form>'
+				. '</div>';
 		}
-		$html .= '<form method="post" action="' . $post . '"><input type="hidden" name="action" value="cookiekit_update_toggle">' . wp_nonce_field( 'cookiekit_update_toggle', '_wpnonce', true, false ) . '<button type="submit" class="ck-btn">' . esc_html( $on ? __( 'Turn off the update check', 'cookiekit' ) : __( 'Turn on the update check', 'cookiekit' ) ) . '</button></form></div>';
 		return $html;
 	}
 }
