@@ -91,7 +91,7 @@ final class Rest {
 		// Başka bir sitenin tarayıcıdan çağırmasını engelle (Origin varsa bu siteyle aynı olmalı).
 		$origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? esc_url_raw( wp_unslash( (string) $_SERVER['HTTP_ORIGIN'] ) ) : '';
 		if ( '' !== $origin && wp_parse_url( $origin, PHP_URL_HOST ) !== wp_parse_url( home_url(), PHP_URL_HOST ) ) {
-			return new \WP_Error( 'cookiekit_origin', 'Yetkisiz kaynak.', array( 'status' => 403 ) );
+			return new \WP_Error( 'cookiekit_origin', __( 'Forbidden origin.', 'cookiekit' ), array( 'status' => 403 ) );
 		}
 		if ( ! Settings::get( 'enabled' ) || ! Settings::get( 'log' ) ) {
 			return rest_ensure_response( array( 'logged' => false ) );

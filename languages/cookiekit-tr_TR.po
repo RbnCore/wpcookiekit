@@ -1654,3 +1654,6 @@ msgstr "AdminKit eklentisini indirin ve kurun"
 #: includes/AdminPage.php:520
 msgid "Pagination"
 msgstr "Sayfalama"
+
+msgid "Forbidden origin."
+msgstr "Yetkisiz kaynak."

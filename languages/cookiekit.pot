@@ -1556,3 +1556,6 @@ msgstr ""
 msgctxt "Example script URL"
 msgid "https://example.com/ads.js"
 msgstr ""
+
+msgid "Forbidden origin."
+msgstr ""
