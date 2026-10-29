@@ -34,6 +34,7 @@ final class Admin {
 		add_action( 'admin_menu', array( self::class, 'menu' ), 5 );
 		add_action( 'admin_menu', array( self::class, 'late' ), 99 );
 		add_action( 'admin_init', array( self::class, 'register' ) );
+		add_action( 'admin_init', array( self::class, 'handle_redirect_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
 		add_action( 'admin_post_cookiekit_csv', array( self::class, 'csv' ) );
 		add_action( 'admin_post_cookiekit_purge_log', array( self::class, 'purge_log' ) );
@@ -221,12 +222,48 @@ final class Admin {
 		check_admin_referer( $nonce_action );
 	}
 
-	private static function back( string $tab, string $note = '' ): void {
-		$args = array( 'tab' => $tab );
-		if ( '' !== $note && in_array( $note, self::NOTES, true ) ) {
-			$args['ck_note'] = $note;
+	/** Post-Redirect-Get: URL'den parametreleri temizler ve Toast::flash'a taşır. */
+	public static function handle_redirect_notices(): void {
+		if ( ! isset( $_GET['page'] ) || self::SLUG !== $_GET['page'] ) {
+			return;
 		}
-		wp_safe_redirect( self::page_url( $args ) );
+		if ( ! empty( $_GET['settings-updated'] ) ) {
+			if ( class_exists( '\AdminKit\Helpers\Toast' ) ) {
+				\AdminKit\Helpers\Toast::flash( 'success', __( 'Settings saved.', 'cookiekit' ) );
+			}
+			wp_safe_redirect( remove_query_arg( 'settings-updated' ) );
+			exit;
+		}
+		if ( isset( $_GET['ck_note'] ) ) {
+			$note = sanitize_key( (string) wp_unslash( $_GET['ck_note'] ) );
+			self::flash_note( $note );
+			wp_safe_redirect( remove_query_arg( 'ck_note' ) );
+			exit;
+		}
+	}
+
+	public static function flash_note( string $note ): void {
+		$notes = array(
+			'cookie_added'   => array( 'success', __( 'The cookie was added to the list.', 'cookiekit' ) ),
+			'cookie_removed' => array( 'success', __( 'The cookie was removed from the list.', 'cookiekit' ) ),
+			'cookie_invalid' => array( 'error', __( 'The cookie could not be added: a name is required and the category must be valid.', 'cookiekit' ) ),
+			'cookie_limit'   => array( 'error', __( 'At most 40 custom cookies can be added.', 'cookiekit' ) ),
+			'purged'         => array( 'success', __( 'All consent records were deleted.', 'cookiekit' ) ),
+			'purge_fail'     => array( 'error', __( 'Consent records could not be deleted: the table cannot be read.', 'cookiekit' ) ),
+			'update_checked' => array( 'success', __( 'The update check was done.', 'cookiekit' ) ),
+			'update_is_off'  => array( 'info', __( 'The update check is off; no connection was made.', 'cookiekit' ) ),
+			'purge_confirm'  => array( 'error', __( 'Deletion was not confirmed: you must type DELETE in the box. No record was deleted.', 'cookiekit' ) ),
+		);
+		if ( isset( $notes[ $note ] ) && class_exists( '\AdminKit\Helpers\Toast' ) ) {
+			\AdminKit\Helpers\Toast::flash( $notes[ $note ][0], $notes[ $note ][1] );
+		}
+	}
+
+	private static function back( string $tab, string $note = '' ): void {
+		if ( '' !== $note ) {
+			self::flash_note( $note );
+		}
+		wp_safe_redirect( self::page_url( array( 'tab' => $tab ) ) );
 		exit;
 	}
 

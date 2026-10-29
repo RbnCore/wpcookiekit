@@ -135,18 +135,79 @@
 		});
 	});
 	$$('[data-close]').forEach(function (b) { b.addEventListener('click', function () { var dl = b.closest('dialog'); if (dl) { dl.close(); } }); });
+	/* Çerez silme onayı */
 	$$('[data-rm]').forEach(function (b) {
 		b.addEventListener('click', function () {
-			var dl = d.getElementById('dlg-rmcookie'), id = d.getElementById('rm-id'), h = d.getElementById('dc-h');
-			if (!dl || !id) { return; }
-			id.value = b.getAttribute('data-rm');
-			if (h && I.rm_title) { h.textContent = I.rm_title.replace('%s', b.getAttribute('data-rm-name') || ''); }
-			dl.showModal();
+			var id = b.getAttribute('data-rm') || '';
+			var name = b.getAttribute('data-rm-name') || '';
+			var title = (I.rm_title || 'Remove the “%s” cookie from the list?').replace('%s', name);
+			var msg = I.rm_desc || 'The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted.';
+			var confirmText = I.rm_confirm || 'Remove from list';
+			var cancelText = I.cancel || 'Cancel';
+			var uConfirm = (window.RbnUi && window.RbnUi.confirm) ? window.RbnUi.confirm : null;
+			if (!uConfirm) {
+				if (!window.confirm(title)) { return; }
+				sendRm(id);
+				return;
+			}
+			uConfirm({
+				title: title,
+				message: msg,
+				confirmText: confirmText,
+				cancelText: cancelText,
+				tone: 'danger'
+			}).then(function (ok) {
+				if (ok) { sendRm(id); }
+			});
 		});
 	});
-	var pt = d.getElementById('purge-t'), pok = d.getElementById('purge-ok');
-	if (pt && pok) {
-		pt.addEventListener('input', function () { pok.disabled = pt.value.trim().toLocaleUpperCase('tr') !== (I.confirm || 'DELETE'); });
+	function sendRm(id) {
+		var form = d.createElement('form');
+		form.method = 'post';
+		form.action = cfg.postUrl || 'admin-post.php';
+		var inAct = d.createElement('input'); inAct.type = 'hidden'; inAct.name = 'action'; inAct.value = 'cookiekit_cookie_remove'; form.appendChild(inAct);
+		var inId = d.createElement('input'); inId.type = 'hidden'; inId.name = 'id'; inId.value = id; form.appendChild(inId);
+		var inN = d.createElement('input'); inN.type = 'hidden'; inN.name = '_wpnonce'; inN.value = (cfg.nonces && cfg.nonces.cookie_remove) || ''; form.appendChild(inN);
+		d.body.appendChild(form);
+		form.submit();
+	}
+
+	/* Onay kayıtlarını temizleme (çift onay: requireText) */
+	var btnPurge = d.getElementById('btn-purge-records');
+	if (btnPurge) {
+		btnPurge.addEventListener('click', function () {
+			var title = I.purge_title || 'Delete all consent records?';
+			var msg = I.purge_desc || 'This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first.';
+			var reqText = I.confirm || 'DELETE';
+			var confirmText = I.purge_confirm || 'Delete all records';
+			var cancelText = I.cancel || 'Cancel';
+			var uConfirm = (window.RbnUi && window.RbnUi.confirm) ? window.RbnUi.confirm : null;
+			if (!uConfirm) {
+				if (!window.confirm(title)) { return; }
+				sendPurge(reqText);
+				return;
+			}
+			uConfirm({
+				title: title,
+				message: msg,
+				confirmText: confirmText,
+				cancelText: cancelText,
+				tone: 'danger',
+				requireText: reqText
+			}).then(function (ok) {
+				if (ok) { sendPurge(reqText); }
+			});
+		});
+	}
+	function sendPurge(confirmVal) {
+		var form = d.createElement('form');
+		form.method = 'post';
+		form.action = cfg.postUrl || 'admin-post.php';
+		var inAct = d.createElement('input'); inAct.type = 'hidden'; inAct.name = 'action'; inAct.value = 'cookiekit_purge_log'; form.appendChild(inAct);
+		var inC = d.createElement('input'); inC.type = 'hidden'; inC.name = 'confirm'; inC.value = confirmVal; form.appendChild(inC);
+		var inN = d.createElement('input'); inN.type = 'hidden'; inN.name = '_wpnonce'; inN.value = (cfg.nonces && cfg.nonces.purge_log) || ''; form.appendChild(inN);
+		d.body.appendChild(form);
+		form.submit();
 	}
 	$$('[data-do=reset-texts]').forEach(function (b) {
 		b.addEventListener('click', function () {

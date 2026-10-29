@@ -128,24 +128,35 @@ final class AdminPage {
 		$on     = ! empty( self::$s['enabled'] );
 		$cfg    = array(
 			'preview'  => wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_preview' ), 'cookiekit_preview' ),
+			'postUrl'  => admin_url( 'admin-post.php' ),
+			'nonces'   => array(
+				'cookie_remove' => wp_create_nonce( 'cookiekit_cookie_remove' ),
+				'purge_log'     => wp_create_nonce( 'cookiekit_purge_log' ),
+			),
 			'defaults' => array_intersect_key( Settings::defaults(), array_flip( array( 'title', 'desc', 'accept', 'reject', 'prefs', 'save' ) ) ),
 			'i18n'     => array(
-				'unsaved'   => __( 'There are unsaved changes', 'cookiekit' ),
-				'copied'    => __( 'Copied', 'cookiekit' ),
-				'copyfail'  => __( 'Selected — copy with Ctrl+C', 'cookiekit' ),
-				'copy'      => __( 'Copy', 'cookiekit' ),
-				'contrast'  => __( 'Text / background contrast', 'cookiekit' ),
-				'aa_ok'     => __( 'Passes AA', 'cookiekit' ),
-				'aa_fail'   => __( 'AA needs at least 4.5:1', 'cookiekit' ),
-				'nocalc'    => __( 'Contrast could not be calculated: enter the colours in #rrggbb format.', 'cookiekit' ),
-				'step'      => __( 'Step', 'cookiekit' ),
-				'next'      => __( 'Continue', 'cookiekit' ),
-				'panel_on'  => __( 'Show the preferences panel', 'cookiekit' ),
-				'panel_off' => __( 'Show the banner', 'cookiekit' ),
-				'sum_ads'   => __( 'Analytics and ad cookies are asked about', 'cookiekit' ),
-				'sum_an'    => __( 'Only analytics cookies are asked about', 'cookiekit' ),
-				'rm_title'  => __( 'Remove the “%s” cookie from the list?', 'cookiekit' ),
-				'confirm'   => __( 'DELETE', 'cookiekit' ),
+				'unsaved'       => __( 'There are unsaved changes', 'cookiekit' ),
+				'copied'        => __( 'Copied', 'cookiekit' ),
+				'copyfail'      => __( 'Selected — copy with Ctrl+C', 'cookiekit' ),
+				'copy'          => __( 'Copy', 'cookiekit' ),
+				'contrast'      => __( 'Text / background contrast', 'cookiekit' ),
+				'aa_ok'         => __( 'Passes AA', 'cookiekit' ),
+				'aa_fail'       => __( 'AA needs at least 4.5:1', 'cookiekit' ),
+				'nocalc'        => __( 'Contrast could not be calculated: enter the colours in #rrggbb format.', 'cookiekit' ),
+				'step'          => __( 'Step', 'cookiekit' ),
+				'next'          => __( 'Continue', 'cookiekit' ),
+				'panel_on'      => __( 'Show the preferences panel', 'cookiekit' ),
+				'panel_off'     => __( 'Show the banner', 'cookiekit' ),
+				'sum_ads'       => __( 'Analytics and ad cookies are asked about', 'cookiekit' ),
+				'sum_an'        => __( 'Only analytics cookies are asked about', 'cookiekit' ),
+				'rm_title'      => __( 'Remove the “%s” cookie from the list?', 'cookiekit' ),
+				'rm_desc'       => __( 'The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted.', 'cookiekit' ),
+				'rm_confirm'    => __( 'Remove from list', 'cookiekit' ),
+				'purge_title'   => __( 'Delete all consent records?', 'cookiekit' ),
+				'purge_desc'    => __( 'This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first.', 'cookiekit' ),
+				'purge_confirm' => __( 'Delete all records', 'cookiekit' ),
+				'cancel'        => __( 'Cancel', 'cookiekit' ),
+				'confirm'       => __( 'DELETE', 'cookiekit' ),
 			),
 		);
 		?>
@@ -189,31 +200,6 @@ final class AdminPage {
 
 	/** Kaydedildi / hata / eylem bildirimleri. */
 	private static function notices(): void {
-		$notes = array(
-			'cookie_added'   => array( 'ok', __( 'The cookie was added to the list.', 'cookiekit' ) ),
-			'cookie_removed' => array( 'ok', __( 'The cookie was removed from the list.', 'cookiekit' ) ),
-			'cookie_invalid' => array( 'err', __( 'The cookie could not be added: a name is required and the category must be valid.', 'cookiekit' ) ),
-			'cookie_limit'   => array( 'err', __( 'At most 40 custom cookies can be added.', 'cookiekit' ) ),
-			'purged'         => array( 'ok', __( 'All consent records were deleted.', 'cookiekit' ) ),
-			'purge_fail'     => array( 'err', __( 'Consent records could not be deleted: the table cannot be read.', 'cookiekit' ) ),
-			'update_checked' => array( 'ok', __( 'The update check was done.', 'cookiekit' ) ),
-			'update_is_off'  => array( 'err', __( 'The update check is off; no connection was made.', 'cookiekit' ) ),
-			'purge_confirm'  => array( 'err', __( 'Deletion was not confirmed: you must type DELETE in the box. No record was deleted.', 'cookiekit' ) ),
-		);
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız iletiyi seçer, beyaz liste.
-		$note = isset( $_GET['ck_note'] ) ? sanitize_key( (string) wp_unslash( $_GET['ck_note'] ) ) : '';
-		// Merkezi güncelleyicinin (AdminKit) "Check now" sonucu: checked | off.
-		$upd = \AdminKit\Core\Updater::note();
-		if ( null !== $upd ) {
-			$note = 'checked' === $upd ? 'update_checked' : 'update_is_off';
-		}
-		if ( isset( $notes[ $note ] ) ) {
-			$kind = 'ok' === $notes[ $note ][0] ? 'rbn-note--ok' : 'rbn-note--err';
-			$role = 'ok' === $notes[ $note ][0] ? 'status' : 'alert';
-			echo '<div class="rbn-note ' . esc_attr( $kind ) . '" role="' . esc_attr( $role ) . '">' . self::ico( 'ok' === $notes[ $note ][0] ? 'check' : 'alert' ) . '<div><p>' . esc_html( $notes[ $note ][1] ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$updated = ! empty( $_GET['settings-updated'] );
 		if ( self::$errs ) {
 			$h = '<div class="rbn-note rbn-note--err" id="ck-err" role="alert" tabindex="-1">' . self::ico( 'alert' ) . '<div><p><strong>'
 				. esc_html( sprintf( /* translators: %d: alan sayısı */ _n( 'Some changes were not saved: %d field needs fixing.', 'Some changes were not saved: %d fields need fixing.', count( self::$errs ), 'cookiekit' ), count( self::$errs ) ) )
@@ -222,8 +208,6 @@ final class AdminPage {
 				$h .= '<li>' . ( 'ck-tab' === $id ? '' : '<a href="#' . esc_attr( $id ) . '">' . esc_html( self::label_for( $id ) ) . '</a>: ' ) . esc_html( $msg ) . '</li>';
 			}
 			echo $h . '</ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		} elseif ( $updated ) {
-			echo '<div class="rbn-note rbn-note--ok" role="status">' . self::ico( 'check' ) . '<div><p><strong>' . esc_html__( 'Settings saved.', 'cookiekit' ) . '</strong> ' . esc_html__( 'If you use a page cache, clear the cache.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -466,7 +450,7 @@ final class AdminPage {
 		$csv = wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_csv' ), 'cookiekit_csv' );
 		echo '<div class="rbn-card__b ck-row"><p>' . esc_html__( 'Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept.', 'cookiekit' ) . '</p><div class="rbn-head__act"><a class="rbn-btn" href="' . esc_url( $csv ) . '">' . self::ico( 'down' ) . esc_html__( 'Export CSV', 'cookiekit' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		if ( $total ) {
-			echo '<button type="button" class="rbn-btn rbn-btn--danger" data-dialog="dlg-purge">' . self::ico( 'trash' ) . esc_html__( 'Delete records', 'cookiekit' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<button type="button" class="rbn-btn rbn-btn--danger" id="btn-purge-records">' . self::ico( 'trash' ) . esc_html__( 'Delete records', 'cookiekit' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></div>';
 		if ( null === $total ) {
@@ -672,8 +656,6 @@ final class AdminPage {
 		?>
 <dialog class="rbn-dlg ck-dlg--wide" id="dlg-prev"<?php echo $t; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-labelledby="dp-h"><form method="dialog"><div class="rbn-dlg__b"><h2 id="dp-h"><?php esc_html_e( 'Banner preview', 'cookiekit' ); ?></h2><div data-prev-slot="dialog"></div></div><div class="rbn-dlg__f"><button class="rbn-btn rbn-btn--pri"><?php esc_html_e( 'Close', 'cookiekit' ); ?></button></div></form></dialog>
 <dialog class="rbn-dlg" id="dlg-reset"<?php echo $t; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-labelledby="dr-h"><form method="dialog"><div class="rbn-dlg__b"><h2 id="dr-h"><?php esc_html_e( 'Reset the texts to default?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'The title, description and button labels return to the defaults. The site does not change until you save.', 'cookiekit' ); ?></p></div><div class="rbn-dlg__f"><button class="rbn-btn" value="iptal"><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button class="rbn-btn rbn-btn--pri" value="tamam" data-do="reset-texts"><?php esc_html_e( 'Reset to default', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="rbn-dlg" id="dlg-purge"<?php echo $t; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-labelledby="du-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_purge_log"><?php wp_nonce_field( 'cookiekit_purge_log' ); ?><div class="rbn-dlg__b"><h2 id="du-h"><?php esc_html_e( 'Delete all consent records?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'This cannot be undone. If you have records you must keep as proof under KVKK, download them as CSV first.', 'cookiekit' ); ?></p><label for="purge-t" class="rbn-label"><?php esc_html_e( 'Type DELETE to confirm', 'cookiekit' ); ?></label><input class="rbn-input" id="purge-t" name="confirm" autocomplete="off"></div><div class="rbn-dlg__f"><button type="button" class="rbn-btn" data-close><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button type="submit" class="rbn-btn rbn-btn--danger" id="purge-ok" disabled><?php esc_html_e( 'Delete all records', 'cookiekit' ); ?></button></div></form></dialog>
-<dialog class="rbn-dlg" id="dlg-rmcookie"<?php echo $t; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-labelledby="dc-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_remove"><input type="hidden" name="id" id="rm-id" value=""><?php wp_nonce_field( 'cookiekit_cookie_remove' ); ?><div class="rbn-dlg__b"><h2 id="dc-h"><?php esc_html_e( 'Remove the cookie from the list?', 'cookiekit' ); ?></h2><p><?php esc_html_e( 'The cookie is removed from the preferences panel and the policy table. The cookie itself on your site is not deleted.', 'cookiekit' ); ?></p></div><div class="rbn-dlg__f"><button type="button" class="rbn-btn" data-close><?php esc_html_e( 'Cancel', 'cookiekit' ); ?></button><button type="submit" class="rbn-btn rbn-btn--danger"><?php esc_html_e( 'Remove from list', 'cookiekit' ); ?></button></div></form></dialog>
 <dialog class="rbn-dlg" id="dlg-cookie"<?php echo $t; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-labelledby="dk-h"><form method="post" action="<?php echo $post; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><input type="hidden" name="action" value="cookiekit_cookie_add"><?php wp_nonce_field( 'cookiekit_cookie_add' ); ?><div class="rbn-dlg__b"><h2 id="dk-h"><?php esc_html_e( 'Add cookie', 'cookiekit' ); ?></h2>
 		<?php
 		$rows = array(
