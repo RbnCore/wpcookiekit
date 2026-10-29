@@ -172,7 +172,7 @@ final class AdminPage {
 			),
 		);
 		?>
-<main class="rbn-wrap" id="ck"<?php echo self::tone_attr(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-cfg="<?php echo esc_attr( (string) wp_json_encode( $cfg, JSON_UNESCAPED_UNICODE ) ); ?>">
+<div class="rbn-wrap" id="ck" role="region" aria-label="<?php echo esc_attr__( 'Cookies and Consent', 'cookiekit' ); ?>"<?php echo self::tone_attr(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-cfg="<?php echo esc_attr( (string) wp_json_encode( $cfg, JSON_UNESCAPED_UNICODE ) ); ?>">
 		<?php
 		echo self::sprite(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sabit SVG.
 		?>
@@ -205,7 +205,7 @@ final class AdminPage {
 			echo '</div>';
 		}
 		?>
-</main>
+</div>
 		<?php
 		self::dialogs( $wizard );
 	}
