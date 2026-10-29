@@ -5,7 +5,7 @@ Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
 Requires Plugins: adminkit
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,10 @@ KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, cons
 2. Under RBN Kit → Cookies and Consent (the General, Appearance, Texts, Cookies, Consent log, Integration and Help tabs), edit the categories, links, colours and texts; a 3-step wizard opens on first setup.
 
 == Changelog ==
+
+= 0.1.3 =
+* Updates are now done by the AdminKit core (one central updater, AdminKit 0.1.1 or newer; the runtime gate needs core API level 3). CookieKit's own updater and public-key copy are removed. The package check (SHA-256 and Ed25519 signature) is unchanged.
+* The "Check now" button and the update status stay on the Help tab; they now come from the central updater and follow the RBN Kit network setting.
 
 = 0.1.2 =
 * Menu: the screen now sits under the shared "RBN Kit" top-level menu (RBN Kit → Cookies and Consent); the old Settings address redirects to the new one.

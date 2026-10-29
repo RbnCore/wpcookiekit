@@ -16,7 +16,7 @@ final class Admin {
 
 	public const SLUG  = 'cookiekit';
 	public const TABS  = array( 'genel', 'gorunum', 'metinler', 'cerezler', 'kayitlar', 'entegrasyon', 'yardim' );
-	public const NOTES = array( 'cookie_added', 'cookie_removed', 'cookie_invalid', 'cookie_limit', 'purged', 'purge_fail', 'purge_confirm', 'update_checked', 'update_is_off' );
+	public const NOTES = array( 'cookie_added', 'cookie_removed', 'cookie_invalid', 'cookie_limit', 'purged', 'purge_fail', 'purge_confirm' );
 
 	/** Her form sekmesinin yazabildiği alan kümesi: kalanlar eski değerinden aynen taşınır. */
 	private const FORM_TABS = array( 'genel', 'gorunum', 'metinler', 'kurulum' );
