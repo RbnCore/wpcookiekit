@@ -51,7 +51,7 @@ Updates come from GitHub and appear on the Plugins page like any WordPress updat
 
 - **Source**: only `github.com/RbnCore/wpcookiekit` releases. The request is unauthenticated, times out after 5 seconds, is cached for 12 hours, and sends only `User-Agent: CookieKit/<version>`. If GitHub cannot be reached, no error is shown and the plugin keeps working.
 - **Verification is always on**: the package's SHA-256 digest (`.zip.sha256`) and its Ed25519 signature (`.zip.sig`, public key in `includes/update-pubkey.php`) are checked, and the zip must contain `cookiekit/` and `cookiekit.php`. If any check fails, the installation stops and the installed version stays as it was.
-- **Turning it off**: Follows the central RBN Kit network setting (RBN Kit → AdminKit → Modules → Network). When the central network setting is off, no request goes to GitHub. "Check now" skips the cache and asks immediately when enabled.
+- **Turning it off**: Follows the central RBN Kit network setting (RBN Kit → AdminKit → General → Network). When the central network setting is off, no request goes to GitHub. "Check now" skips the cache and asks immediately when enabled.
 - **Manual update**: upload the new `cookiekit-X.Y.Z.zip` with Plugins → Add New → Upload Plugin and choose *Replace current*. To roll back, install the previous zip the same way; settings and the log table are kept (the schema is additive).
 
 ## Privacy and external requests
