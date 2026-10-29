@@ -35,39 +35,16 @@ final class AdminPage {
 	}
 
 	private static function ico( string $id ): string {
-		return '<svg class="rbn-ico" aria-hidden="true"><use href="#i-' . esc_attr( $id ) . '"/></svg>';
+		return \AdminKit\Helpers\Icons::icon( $id );
 	}
 
-	private static function sprite(): string {
-		$paths = array(
-			'eye'   => '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
-			'check' => '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
-			'alert' => '<path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4.5M12 17.5v.01"/>',
-			'info'  => '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.01"/>',
-			'copy'  => '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>',
-			'plus'  => '<path d="M12 5v14M5 12h14"/>',
-			'trash' => '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
-			'down'  => '<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',
-			'desk'  => '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
-			'phone' => '<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
-			'sun'   => '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/>',
-			'moon'  => '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>',
-			'list'  => '<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
-			'chart' => '<path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-8"/>',
-			'rot'   => '<path d="M4 12a8 8 0 1 1 2.5 5.8M4 19v-5h5"/>',
-		);
-		$out = '<svg class="rbn-sr" width="0" height="0" aria-hidden="true" focusable="false">';
-		foreach ( $paths as $id => $d ) {
-			$out .= '<symbol id="i-' . $id . '" viewBox="0 0 24 24">' . $d . '</symbol>';
-		}
-		return $out . '</svg>';
+	private static function sprite(): void {
+		\AdminKit\Helpers\Icons::sprite();
 	}
 
 	/** Koyu ton: WP "Gece yarısı" şeması ya da koyu mod eklentisi (kit `data-tone="koyu"` ile koyulaşır). */
 	private static function tone_attr(): string {
-		$dark = 'midnight' === (string) get_user_option( 'admin_color' ) || defined( 'WP_DARK_MODE_VERSION' ) || defined( 'WP_DARK_MODE_PLUGIN_FILE' );
-		$tone = (string) apply_filters( 'cookiekit_tone', $dark ? 'koyu' : 'acik' );
-		return 'koyu' === $tone ? ' data-tone="koyu"' : '';
+		return \AdminKit\Helpers\Icons::tone_attr();
 	}
 
 	/** Alan hatası: <p> iletisi + aria bağı için kimlik. */
@@ -174,7 +151,7 @@ final class AdminPage {
 		?>
 <div class="rbn-wrap" id="ck" role="region" aria-label="<?php echo esc_attr__( 'Cookies and Consent', 'cookiekit' ); ?>"<?php echo self::tone_attr(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-cfg="<?php echo esc_attr( (string) wp_json_encode( $cfg, JSON_UNESCAPED_UNICODE ) ); ?>">
 		<?php
-		echo self::sprite(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sabit SVG.
+		self::sprite();
 		?>
 	<header class="rbn-head">
 		<div class="rbn-head__id">

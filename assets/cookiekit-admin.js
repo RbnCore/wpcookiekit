@@ -3,8 +3,9 @@
 	'use strict';
 	var d = document, wrap = d.getElementById('ck');
 	if (!wrap) { return; }
-	var $ = function (s, r) { return (r || d).querySelector(s); };
-	var $$ = function (s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); };
+	var u = window.RbnUi || {};
+	var $ = u.$ || function (s, r) { return (r || d).querySelector(s); };
+	var $$ = u.$$ || function (s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); };
 	var cfg = {};
 	try { cfg = JSON.parse(wrap.getAttribute('data-cfg') || '{}'); } catch (e) { cfg = {}; }
 	var I = cfg.i18n || {};
