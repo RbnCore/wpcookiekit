@@ -56,16 +56,7 @@ final class Admin {
 
 	/** Yan menüde RBN Kit altına kaydolur; `Menu` yardımcısı RbnKitMenu üzerinden menüyü kurar. */
 	public static function menu(): void {
-		\AdminKit\Helpers\Menu::add(
-			array(
-				'slug'       => self::SLUG,
-				'title'      => __( 'Cookies and Consent', 'cookiekit' ),
-				'menu_title' => __( 'Cookies and Consent', 'cookiekit' ),
-				'cap'        => 'manage_options',
-				'callback'   => array( AdminPage::class, 'render' ),
-				'version'    => COOKIEKIT_VERSION,
-			)
-		);
+		\AdminKit\Helpers\Menu::add( array( 'slug' => self::SLUG, 'title' => __( 'Cookies and Consent', 'cookiekit' ), 'menu_title' => __( 'Cookies and Consent', 'cookiekit' ), 'cap' => 'manage_options', 'callback' => array( AdminPage::class, 'render' ), 'version' => COOKIEKIT_VERSION ) );
 	}
 
 	/** Ekran kimliği (rbn-kit_page_cookiekit); menü kurulduktan sonra okunur. */
