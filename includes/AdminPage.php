@@ -190,7 +190,6 @@ final class AdminPage {
 			)
 		);
 		?>
-	<hr class="wp-header-end rbn-sr">
 		<?php
 		self::notices();
 		if ( $wizard ) {
