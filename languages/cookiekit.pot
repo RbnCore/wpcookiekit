@@ -218,10 +218,6 @@ msgstr ""
 msgid "at the start of the page, with a 500 ms update wait"
 msgstr ""
 
-#: includes/Updater.php:440
-msgid "Automatic updates"
-msgstr ""
-
 #: includes/AdminPage.php:647
 msgid "Back"
 msgstr ""
@@ -284,10 +280,6 @@ msgstr ""
 
 #: includes/AdminPage.php:689
 msgid "Category"
-msgstr ""
-
-#: includes/Updater.php:445
-msgid "Check now"
 msgstr ""
 
 #: includes/AdminPage.php:543
@@ -649,10 +641,6 @@ msgstr ""
 msgid "Increase the revision on save"
 msgstr ""
 
-#: includes/Updater.php:437
-msgid "Installed version"
-msgstr ""
-
 #: includes/AdminPage.php:32
 msgid "Integration"
 msgstr ""
@@ -683,10 +671,6 @@ msgstr ""
 
 #: includes/AdminPage.php:268
 msgid "last 30 days"
-msgstr ""
-
-#: includes/Updater.php:439
-msgid "Last check"
 msgstr ""
 
 #: includes/AdminPage.php:503
@@ -731,10 +715,6 @@ msgstr ""
 
 #: includes/AdminPage.php:339
 msgid "Needed for the site to work and to remember the choice; cannot be turned off."
-msgstr ""
-
-#: includes/Updater.php:434
-msgid "never"
 msgstr ""
 
 #: includes/AdminPage.php:481
@@ -1230,10 +1210,6 @@ msgstr ""
 msgid "The update check was done."
 msgstr ""
 
-#: includes/Updater.php:441
-msgid "The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent."
-msgstr ""
-
 #: includes/AdminPage.php:378
 msgid "Theme colours"
 msgstr ""
@@ -1302,20 +1278,12 @@ msgstr ""
 msgid "Turn the banner on or off across the whole site."
 msgstr ""
 
-#: includes/Updater.php:440
-msgid "Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page."
-msgstr ""
-
 #: includes/AdminPage.php:679
 msgid "Type DELETE to confirm"
 msgstr ""
 
 #: includes/AdminPage.php:618
 msgid "Update"
-msgstr ""
-
-#: includes/Updater.php:442
-msgid "Update checks follow the RBN Kit network setting."
 msgstr ""
 
 #: includes/AdminPage.php:537

@@ -46,13 +46,13 @@ register_deactivation_hook( __FILE__, array( \Cookiekit\Log::class, 'deactivate'
 
 /**
  * Çalışma zamanı kapısı (cekirdek.md §6):
- * AdminKit API >= 3 zorunludur (merkezi güncelleyici). Karşılanmazsa eklenti kancalarını eklemeden güvenle kapanır
+ * AdminKit API >= 4 zorunludur (merkezi güncelleyici + ortak güncelleme kartı). Karşılanmazsa eklenti kancalarını eklemeden güvenle kapanır
  * ve yönetimde uyarı gösterir.
  */
 add_action(
 	'plugins_loaded',
 	static function (): void {
-		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 3 || ! class_exists( 'AdminKit\Core\Core' ) || ! class_exists( 'AdminKit\Core\Settings' ) ) {
+		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 4 || ! class_exists( 'AdminKit\Core\Core' ) || ! class_exists( 'AdminKit\Core\Settings' ) ) {
 			add_action(
 				'admin_notices',
 				static function (): void {

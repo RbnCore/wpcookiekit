@@ -670,21 +670,7 @@ final class AdminPage {
 		echo '</ul></div></section>';
 
 		self::card_open( 'y4', __( 'Update', 'cookiekit' ), esc_html__( 'New versions come from the official releases on GitHub.', 'cookiekit' ) );
-		echo '<div class="rbn-card__b">' . self::update_card() . '</div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- update_card() çıktısı kaçışlıdır.
-	}
-
-	/** "Update" kartının gövdesi: durumu merkezi güncelleyiciden (AdminKit) okur; denetim ve doğrulama orada yapılır. */
-	private static function update_card(): string {
-		$st   = \AdminKit\Core\Updater::status( 'cookiekit' );
-		$last = $st['checked_at'] > 0 ? esc_html( wp_date( 'd.m.Y H:i', $st['checked_at'] ) ) : esc_html__( 'never', 'cookiekit' );
-		$html = '<dl class="ck-dl"><dt>' . esc_html__( 'Installed version', 'cookiekit' ) . '</dt><dd>' . esc_html( COOKIEKIT_VERSION ) . '</dd>'
-			. '<dt>' . esc_html__( 'Status', 'cookiekit' ) . '</dt><dd>' . \AdminKit\Core\Updater::state_html( $st ) . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- state_html() kaçışlıdır.
-			. '<dt>' . esc_html__( 'Last check', 'cookiekit' ) . '</dt><dd>' . $last . '</dd>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<dt>' . esc_html__( 'Automatic updates', 'cookiekit' ) . '</dt><dd>' . esc_html__( 'Turned on or off with the “Enable auto-updates” link on the CookieKit row in the Plugins page.', 'cookiekit' ) . '</dd></dl>'
-			. '<p class="rbn-help">' . esc_html__( 'The update package is verified with its SHA-256 digest and Ed25519 signature before installation; a package that cannot be verified is not installed. Only a standard GET request is sent; your site address or user information is not sent.', 'cookiekit' ) . '</p>'
-			. '<p class="rbn-help"><a href="' . esc_url( admin_url( 'admin.php?page=adminkit#adminkit-network' ) ) . '">' . esc_html__( 'Update checks follow the RBN Kit network setting.', 'cookiekit' ) . '</a></p>';
-		$form = \AdminKit\Core\Updater::check_form( 'cookiekit', Admin::page_url( array( 'tab' => 'yardim' ) ), esc_html__( 'Check now', 'cookiekit' ) );
-		return '' === $form ? $html : $html . '<div class="rbn-form-actions">' . $form . '</div>';
+		echo '<div class="rbn-card__b">' . \AdminKit\Kit\UpdateCard::render( 'cookiekit', array( 'return_url' => Admin::page_url( array( 'tab' => 'yardim' ) ) ) ) . '</div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- UpdateCard kaçışlı çıktı verir.
 	}
 
 	// ───────────────────────── SİHİRBAZ ─────────────────────────
