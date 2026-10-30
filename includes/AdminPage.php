@@ -369,7 +369,7 @@ final class AdminPage {
 		self::form_open( 'metinler' );
 		echo '<div class="ck-split"><div>';
 		self::card_open( 'm1', __( 'Banner text', 'cookiekit' ), esc_html__( 'Write short and clear: visitors should understand what is asked at a glance.', 'cookiekit' ) );
-		echo '<div class="rbn-card__b"><div class="rbn-field"><div class="ck-l"><label for="t-title">' . esc_html__( 'Title', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 80 characters.', 'cookiekit' ) . '</p></div><div class="ck-c"><input class="rbn-input" id="t-title" name="' . esc_attr( self::OPT . '[title]' ) . '" value="' . esc_attr( (string) $s['title'] ) . '" maxlength="80" data-count="80"><p class="ck-counter" aria-hidden="true"></p></div></div>'
+		echo '<div class="rbn-card__b"><div class="rbn-field"><div class="ck-l"><label for="t-title">' . esc_html__( 'Title', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 80 characters.', 'cookiekit' ) . '</p></div><div class="ck-c"><input class="rbn-input" type="text" id="t-title" name="' . esc_attr( self::OPT . '[title]' ) . '" value="' . esc_attr( (string) $s['title'] ) . '" maxlength="80" data-count="80"><p class="ck-counter" aria-hidden="true"></p></div></div>'
 			. '<div class="rbn-field"><div class="ck-l"><label for="t-desc">' . esc_html__( 'Description', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 500 characters. Say which cookies are used and why.', 'cookiekit' ) . '</p></div><div class="ck-c"><textarea class="rbn-textarea" id="t-desc" name="' . esc_attr( self::OPT . '[desc]' ) . '" rows="4" maxlength="500" data-count="500">' . esc_textarea( (string) $s['desc'] ) . '</textarea><p class="ck-counter" aria-hidden="true"></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		self::card_open( 'm2', __( 'Button labels', 'cookiekit' ), esc_html__( 'Accept and Reject keep equal visibility; only their text changes.', 'cookiekit' ) );
@@ -380,7 +380,7 @@ final class AdminPage {
 			array( 't-prefs', 'prefs', __( 'Preferences button', 'cookiekit' ), __( 'Opens the category panel. At most 30 characters.', 'cookiekit' ), 30 ),
 			array( 't-save', 'save', __( 'Save choice button', 'cookiekit' ), __( 'The button at the bottom of the panel. At most 40 characters.', 'cookiekit' ), 40 ),
 		) as $f ) {
-			echo '<div class="rbn-field"><div class="ck-l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="rbn-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-c"><input class="rbn-input" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( (string) $s[ $f[1] ] ) . '" maxlength="' . (int) $f[4] . '"></div></div>';
+			echo '<div class="rbn-field"><div class="ck-l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="rbn-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-c"><input class="rbn-input" type="text" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( (string) $s[ $f[1] ] ) . '" maxlength="' . (int) $f[4] . '"></div></div>';
 		}
 		echo '</div></section>';
 

@@ -185,10 +185,12 @@ final class Admin {
 		}
 
 		if ( 'metinler' === $tab ) {
-			foreach ( array( 'title' => 80, 'desc' => 500, 'accept' => 30, 'reject' => 30, 'prefs' => 30, 'save' => 40 ) as $key => $max ) {
+			foreach ( array( 'title' => 80, 'accept' => 30, 'reject' => 30, 'prefs' => 30, 'save' => 40 ) as $key => $max ) {
 				$text        = sanitize_text_field( (string) ( $in[ $key ] ?? '' ) );
 				$out[ $key ] = '' === $text ? $def[ $key ] : mb_substr( $text, 0, $max );
 			}
+			$desc        = sanitize_textarea_field( (string) ( $in['desc'] ?? '' ) );
+			$out['desc'] = '' === $desc ? $def['desc'] : mb_substr( $desc, 0, 500 );
 		}
 
 		if ( 'metinler' === $tab || 'kurulum' === $tab ) {

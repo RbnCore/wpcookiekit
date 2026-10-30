@@ -9,6 +9,7 @@
 .cookiekit-b__txt{flex:1 1 20rem;min-width:0}
 .cookiekit-b p,.cookiekit-m p{margin:0 0 .5rem}
 .cookiekit-title{font-weight:700;font-size:1.0625rem}
+.cookiekit-desc{white-space:pre-line}
 .cookiekit-links{display:flex;flex-wrap:wrap;gap:.25rem 1rem;margin:0}
 .cookiekit-links a,.cookiekit-m a{color:var(--cookiekit-ac);display:inline-flex;align-items:center;min-height:2.75rem}
 .cookiekit-btns{display:flex;flex-wrap:wrap;gap:.5rem;flex:0 0 auto;max-width:100%}
