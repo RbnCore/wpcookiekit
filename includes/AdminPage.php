@@ -164,22 +164,18 @@ final class AdminPage {
 		<?php
 		self::sprite();
 		?>
-	<header class="rbn-head">
-		<div class="rbn-head__id">
-			<h1>CookieKit</h1>
-			<span class="rbn-chip"><?php echo esc_html( sprintf( /* translators: %s: sürüm */ __( 'Version %s', 'cookiekit' ), COOKIEKIT_VERSION ) ); ?></span>
-			<?php if ( $on ) : ?>
-				<span class="rbn-chip rbn-chip--ok"><span class="rbn-dot" aria-hidden="true"></span><?php esc_html_e( 'Active', 'cookiekit' ); ?></span>
-			<?php else : ?>
-				<span class="rbn-chip rbn-chip--warn"><span class="rbn-dot" aria-hidden="true"></span><?php esc_html_e( 'Off — the banner is not shown', 'cookiekit' ); ?></span>
-			<?php endif; ?>
-		</div>
-		<?php if ( ! $wizard ) : ?>
-		<div class="rbn-head__act">
-			<button type="button" class="rbn-btn" data-dialog="dlg-prev"><?php echo self::ico( 'eye' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Preview the banner', 'cookiekit' ); ?></button>
-		</div>
-		<?php endif; ?>
-	</header>
+	<?php
+		echo \AdminKit\Helpers\Header::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Header::render() kaçışlar.
+			array(
+				'name'    => 'CookieKit',
+				'version' => COOKIEKIT_VERSION,
+				'status'  => $on
+					? array( 'label' => __( 'Active', 'cookiekit' ), 'tone' => 'ok' )
+					: array( 'label' => __( 'Off — the banner is not shown', 'cookiekit' ), 'tone' => 'warn' ),
+				'actions' => $wizard ? array() : array( array( 'label' => __( 'Preview the banner', 'cookiekit' ), 'icon' => 'eye', 'data' => array( 'dialog' => 'dlg-prev' ) ) ),
+			)
+		);
+		?>
 	<hr class="wp-header-end rbn-sr">
 		<?php
 		self::notices();
@@ -448,7 +444,7 @@ final class AdminPage {
 		}
 		self::card_open( 'k1', __( 'Consent decisions', 'cookiekit' ), '' );
 		$csv = wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_csv' ), 'cookiekit_csv' );
-		echo '<div class="rbn-card__b ck-row"><p>' . esc_html__( 'Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept.', 'cookiekit' ) . '</p><div class="rbn-head__act"><a class="rbn-btn" href="' . esc_url( $csv ) . '">' . self::ico( 'down' ) . esc_html__( 'Export CSV', 'cookiekit' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="rbn-card__b ck-row"><p>' . esc_html__( 'Records are deleted automatically after 12 months. The raw IP is not stored; only a hash with a daily-rotating salt is kept.', 'cookiekit' ) . '</p><div class="ck-row__act"><a class="rbn-btn" href="' . esc_url( $csv ) . '">' . self::ico( 'down' ) . esc_html__( 'Export CSV', 'cookiekit' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		if ( $total ) {
 			echo '<button type="button" class="rbn-btn rbn-btn--danger" id="btn-purge-records">' . self::ico( 'trash' ) . esc_html__( 'Delete records', 'cookiekit' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}

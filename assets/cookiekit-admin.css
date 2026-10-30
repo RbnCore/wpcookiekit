@@ -22,6 +22,7 @@
 .ck-counter{margin:var(--rbn-s1) 0 0;text-align:right;color:var(--rbn-muted);font-size:var(--rbn-fs-sm)}
 .ck-row{display:flex;flex-wrap:wrap;gap:var(--rbn-s3);justify-content:space-between;align-items:flex-start;margin:0 0 var(--rbn-s3)}
 .ck-row>p{margin:0;max-width:42rem;color:var(--rbn-muted)}
+.ck-row__act{display:flex;flex-wrap:wrap;gap:var(--rbn-s2)}
 .ck-pick{margin-top:var(--rbn-s2);max-width:22rem}
 
 /* ── Renk seçici ── */
