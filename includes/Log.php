@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Cookiekit;
 
+use AdminKit\Helpers\Db;
 defined( 'ABSPATH' ) || exit;
 
 final class Log {
@@ -87,8 +88,7 @@ final class Log {
 
 	public static function insert( int $mask, int $revision, string $ip, string $ua, string $path ): bool {
 		global $wpdb;
-		$ok = $wpdb->insert(
-			self::table(),
+		$ok = Db::insert( self::table(),
 			array(
 				'created_at' => gmdate( 'Y-m-d H:i:s' ),
 				'revision'   => $revision,
@@ -98,8 +98,7 @@ final class Log {
 				'ua_hash'    => self::ua_digest( $ua ),
 				'path'       => $path,
 			),
-			array( '%s', '%d', '%d', '%s', '%s', '%s', '%s' )
-		);
+			array( '%s', '%d', '%d', '%s', '%s', '%s', '%s' ) );
 		return false !== $ok;
 	}
 
@@ -107,7 +106,7 @@ final class Log {
 	public static function purge(): int {
 		global $wpdb;
 		$limit = gmdate( 'Y-m-d H:i:s', strtotime( self::KEEP ) );
-		$n     = $wpdb->query( $wpdb->prepare( 'DELETE FROM ' . self::table() . ' WHERE created_at < %s', $limit ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
+		$n     = Db::query( 'DELETE FROM ' . self::table() . ' WHERE created_at < %s', array( $limit ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
 		return (int) $n;
 	}
 
@@ -124,7 +123,7 @@ final class Log {
 			$where = $wpdb->prepare( ' WHERE created_at >= %s', gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ) );
 		}
 		$prev = $wpdb->suppress_errors( true );
-		$rows = $wpdb->get_results( 'SELECT action, COUNT(*) AS n FROM ' . self::table() . $where . ' GROUP BY action', ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $where prepare() çıktısı.
+		$rows = Db::get_results( 'SELECT action, COUNT(*) AS n FROM ' . self::table() . $where . ' GROUP BY action', array(), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $where prepare() çıktısı.
 		$fail = '' !== (string) $wpdb->last_error;
 		$wpdb->suppress_errors( $prev );
 		if ( $fail || ! is_array( $rows ) ) {
@@ -144,7 +143,7 @@ final class Log {
 	public static function count(): ?int {
 		global $wpdb;
 		$prev = $wpdb->suppress_errors( true );
-		$n    = $wpdb->get_var( 'SELECT COUNT(*) FROM ' . self::table() ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- girdi yok.
+		$n    = Db::get_var( 'SELECT COUNT(*) FROM ' . self::table() ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- girdi yok.
 		$fail = '' !== (string) $wpdb->last_error;
 		$wpdb->suppress_errors( $prev );
 		return $fail || null === $n ? null : (int) $n;
@@ -157,16 +156,14 @@ final class Log {
 	 */
 	public static function recent( int $limit, int $offset ): array {
 		global $wpdb;
-		return (array) $wpdb->get_results(
-			$wpdb->prepare( 'SELECT id, created_at, revision, action, categories, ip_hash, path FROM ' . self::table() . ' ORDER BY id DESC LIMIT %d OFFSET %d', max( 1, $limit ), max( 0, $offset ) ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
-			ARRAY_A
-		);
+		return (array) Db::get_results( 'SELECT id, created_at, revision, action, categories, ip_hash, path FROM ' . self::table() . ' ORDER BY id DESC LIMIT %d OFFSET %d', array( max( 1, $limit ), max( 0, $offset ) ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
+			ARRAY_A );
 	}
 
 	/** Tüm onay kayıtlarını siler (tabloyu değil, satırları). Silinen satır sayısını döndürür. */
 	public static function delete_all(): int {
 		global $wpdb;
-		return (int) $wpdb->query( 'DELETE FROM ' . self::table() ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- girdi yok.
+		return (int) Db::query( 'DELETE FROM ' . self::table() ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- girdi yok.
 	}
 
 	/**
@@ -176,9 +173,7 @@ final class Log {
 	 */
 	public static function export_rows( int $limit = 100000 ): array {
 		global $wpdb;
-		return (array) $wpdb->get_results(
-			$wpdb->prepare( 'SELECT id, created_at, revision, action, categories, ip_hash, ua_hash, path FROM ' . self::table() . ' ORDER BY id DESC LIMIT %d', $limit ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
-			ARRAY_A
-		);
+		return (array) Db::get_results( 'SELECT id, created_at, revision, action, categories, ip_hash, ua_hash, path FROM ' . self::table() . ' ORDER BY id DESC LIMIT %d', array( $limit ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- tablo adı sabit.
+			ARRAY_A );
 	}
 }

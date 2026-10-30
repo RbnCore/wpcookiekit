@@ -9,6 +9,10 @@ declare(strict_types=1);
 
 namespace Cookiekit;
 
+use AdminKit\Core\Security\Guard;
+use AdminKit\Core\Security\Host;
+use AdminKit\Core\Security\RateLimit;
+
 defined( 'ABSPATH' ) || exit;
 
 final class Rest {
@@ -28,7 +32,7 @@ final class Rest {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( self::class, 'handle' ),
-				'permission_callback' => '__return_true', // Herkese açık, ama yalnız izinli alanlar + hız sınırı.
+				'permission_callback' => Guard::public_route( 'anonymous visitor consent: allow-listed fields only, same-origin, rate limited' ), // Herkese açık, ama yalnız izinli alanlar + hız sınırı.
 				'args'                => array(
 					'c' => array(
 						'required'          => true,
@@ -68,29 +72,16 @@ final class Rest {
 		 * @param string $ip REMOTE_ADDR değeri.
 		 */
 		$ip = (string) apply_filters( 'cookiekit_client_ip', $ip );
-		return filter_var( $ip, FILTER_VALIDATE_IP ) ? $ip : '0.0.0.0';
+		return Host::is_ip( $ip ) ? $ip : '0.0.0.0';
 	}
 
 	/** IP başına dakikada RATE_LIMIT istek; aşılırsa true. */
 	private static function limited( string $ip ): bool {
-		$key   = substr( Log::ip_digest( $ip ), 0, 20 );
-		$state = \AdminKit\Core\Cache::get( 'cookiekit.rate', $key );
-		$now   = time();
-		if ( ! is_array( $state ) || ( $now - (int) $state[1] ) >= MINUTE_IN_SECONDS ) {
-			\AdminKit\Core\Cache::set( 'cookiekit.rate', $key, array( 1, $now ), MINUTE_IN_SECONDS );
-			return false;
-		}
-		if ( (int) $state[0] >= self::RATE_LIMIT ) {
-			return true;
-		}
-		\AdminKit\Core\Cache::set( 'cookiekit.rate', $key, array( (int) $state[0] + 1, (int) $state[1] ), max( 1, MINUTE_IN_SECONDS - ( $now - (int) $state[1] ) ) );
-		return false;
+		return RateLimit::too_many( Log::ip_digest( $ip ), self::RATE_LIMIT );
 	}
 
 	public static function handle( \WP_REST_Request $request ) {
-		// Başka bir sitenin tarayıcıdan çağırmasını engelle (Origin varsa bu siteyle aynı olmalı).
-		$origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? esc_url_raw( wp_unslash( (string) $_SERVER['HTTP_ORIGIN'] ) ) : '';
-		if ( '' !== $origin && wp_parse_url( $origin, PHP_URL_HOST ) !== wp_parse_url( home_url(), PHP_URL_HOST ) ) {
+		if ( ! Guard::same_origin() ) {
 			return new \WP_Error( 'cookiekit_origin', __( 'Forbidden origin.', 'cookiekit' ), array( 'status' => 403 ) );
 		}
 		if ( ! Settings::get( 'enabled' ) || ! Settings::get( 'log' ) ) {

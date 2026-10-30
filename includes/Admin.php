@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace Cookiekit;
 
+use AdminKit\Core\Security\Host;
+
+use AdminKit\Core\Security\Guard;
+
 defined( 'ABSPATH' ) || exit;
 
 final class Admin {
@@ -114,8 +118,8 @@ final class Admin {
 			return 0 === strpos( $value, '//' ) ? null : '/' . ltrim( sanitize_text_field( $value ), '/' );
 		}
 		$clean = esc_url_raw( $value, array( 'http', 'https' ) );
-		$host  = (string) wp_parse_url( $clean, PHP_URL_HOST );
-		$mine  = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+		$host  = Host::host( $clean );
+		$mine  = Host::host( home_url() );
 		return '' !== $clean && '' !== $host && 0 === strcasecmp( $host, $mine ) ? $clean : null;
 	}
 
@@ -216,14 +220,6 @@ final class Admin {
 		return $out;
 	}
 
-	/** Eylem yetkisi + nonce; yetkisizse 403. */
-	private static function guard( string $nonce_action ): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
-		}
-		check_admin_referer( $nonce_action );
-	}
-
 	/** Post-Redirect-Get: URL'den parametreleri temizler ve Toast::flash'a taşır. */
 	public static function handle_redirect_notices(): void {
 		if ( ! isset( $_GET['page'] ) || self::SLUG !== $_GET['page'] ) {
@@ -270,7 +266,7 @@ final class Admin {
 	}
 
 	public static function wizard_skip(): void {
-		self::guard( 'cookiekit_wizard_skip' );
+		Guard::admin_action( 'cookiekit_wizard_skip', 'manage_options' );
 		$all                = Settings::all();
 		$all['wizard_done'] = 1;
 		self::$trusted = true;
@@ -280,7 +276,7 @@ final class Admin {
 	}
 
 	public static function cookie_add(): void {
-		self::guard( 'cookiekit_cookie_add' );
+		Guard::admin_action( 'cookiekit_cookie_add', 'manage_options' );
 		$list = Cookies::custom();
 		if ( count( $list ) >= Cookies::CUSTOM_MAX ) {
 			self::back( 'cerezler', 'cookie_limit' );
@@ -303,7 +299,7 @@ final class Admin {
 	}
 
 	public static function cookie_remove(): void {
-		self::guard( 'cookiekit_cookie_remove' );
+		Guard::admin_action( 'cookiekit_cookie_remove', 'manage_options' );
 		$id   = isset( $_POST['id'] ) ? preg_replace( '/[^a-f0-9]/', '', (string) wp_unslash( $_POST['id'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$left = array();
 		foreach ( Cookies::custom() as $row ) {
@@ -316,7 +312,7 @@ final class Admin {
 	}
 
 	public static function purge_log(): void {
-		self::guard( 'cookiekit_purge_log' );
+		Guard::admin_action( 'cookiekit_purge_log', 'manage_options' );
 		$confirm = isset( $_POST['confirm'] ) ? trim( (string) wp_unslash( $_POST['confirm'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( mb_strtoupper( __( 'DELETE', 'cookiekit' ), 'UTF-8' ) !== mb_strtoupper( $confirm, 'UTF-8' ) && 'SIL' !== strtoupper( $confirm ) ) {
 			self::back( 'kayitlar', 'purge_confirm' );
@@ -327,10 +323,7 @@ final class Admin {
 
 	/** Canlı önizleme sayfası (iframe): gerçek cookiekit.css/js, günlüksüz, tıklanamaz. */
 	public static function preview(): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission for this action.', 'cookiekit' ), '', array( 'response' => 403 ) );
-		}
-		check_admin_referer( 'cookiekit_preview' );
+		Guard::admin_action( 'cookiekit_preview', 'manage_options' );
 		nocache_headers();
 		header( 'Content-Type: text/html; charset=utf-8' );
 		header( 'X-Robots-Tag: noindex' );
@@ -340,10 +333,7 @@ final class Admin {
 	}
 
 	public static function csv(): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html( __( 'You do not have permission.', 'cookiekit' ) ), '', array( 'response' => 403 ) );
-		}
-		check_admin_referer( 'cookiekit_csv' );
+		Guard::admin_action( 'cookiekit_csv', 'manage_options' );
 		nocache_headers();
 		header( 'Content-Type: text/csv; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename="' . __( 'cookiekit-consent-log', 'cookiekit' ) . '-' . gmdate( 'Ymd-His' ) . '.csv"' );
