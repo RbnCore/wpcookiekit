@@ -1283,7 +1283,7 @@ msgid "Type DELETE to confirm"
 msgstr ""
 
 #: includes/AdminPage.php:618
-msgid "Update"
+msgid "Updates"
 msgstr ""
 
 #: includes/AdminPage.php:537

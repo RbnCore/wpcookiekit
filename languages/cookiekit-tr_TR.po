@@ -1240,8 +1240,8 @@ msgid "Type DELETE to confirm"
 msgstr "Onaylamak için SİL yazın"
 
 #: includes/AdminPage.php:613
-msgid "Update"
-msgstr "Güncelleme"
+msgid "Updates"
+msgstr "Güncellemeler"
 
 #: includes/AdminPage.php:532
 msgid "Update on choice"

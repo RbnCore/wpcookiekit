@@ -669,7 +669,7 @@ final class AdminPage {
 		}
 		echo '</ul></div></section>';
 
-		self::card_open( 'y4', __( 'Update', 'cookiekit' ), esc_html__( 'New versions come from the official releases on GitHub.', 'cookiekit' ) );
+		self::card_open( 'y4', __( 'Updates', 'cookiekit' ), esc_html__( 'New versions come from the official releases on GitHub.', 'cookiekit' ) );
 		echo '<div class="rbn-card__b">' . \AdminKit\Kit\UpdateCard::render( 'cookiekit', array( 'return_url' => Admin::page_url( array( 'tab' => 'yardim' ) ) ) ) . '</div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- UpdateCard kaçışlı çıktı verir.
 	}
 
