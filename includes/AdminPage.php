@@ -49,25 +49,30 @@ final class AdminPage {
 
 	/** Alan hatası: <p> iletisi + aria bağı için kimlik. */
 	private static function err_msg( string $id ): string {
-		if ( ! isset( self::$errs[ $id ] ) ) {
-			return '';
-		}
-		return '<p class="rbn-field__err" id="' . esc_attr( $id ) . '-e">' . self::ico( 'alert' ) . '<span>' . esc_html( self::$errs[ $id ] ) . '</span></p>';
+		return isset( self::$errs[ $id ] ) ? \AdminKit\Core\Settings\Form::error( $id, self::$errs[ $id ], self::ico( 'alert' ) ) : '';
 	}
 
 	private static function inv( string $id ): string {
-		return isset( self::$errs[ $id ] ) ? ' aria-invalid="true" aria-describedby="' . esc_attr( $id ) . '-e"' : '';
+		return \AdminKit\Core\Settings\Form::invalid_attr( $id, self::$errs );
 	}
 
 	private static function field_class( string $id ): string {
-		return 'rbn-field' . ( isset( self::$errs[ $id ] ) ? ' rbn-field--err' : '' );
+		return \AdminKit\Core\Settings\Form::field_class( $id, self::$errs );
 	}
 
 	/** Anahtar satırı (role=switch onay kutusu). */
-	private static function sw( string $key, string $title, string $help, string $hid, string $extra = '' ): string {
-		$on = ! empty( self::$s[ $key ] );
-		return '<label class="rbn-switch ck-sw"><input type="checkbox" role="switch" name="' . esc_attr( self::OPT . '[' . $key . ']' ) . '" value="1"' . checked( $on, true, false ) . ' aria-describedby="' . esc_attr( $hid ) . '"' . $extra . '>'
-			. '<span class="rbn-switch__x" aria-hidden="true"></span><span class="ck-sw__t"><b>' . esc_html( $title ) . '</b><span class="rbn-help" id="' . esc_attr( $hid ) . '">' . esc_html( $help ) . '</span></span></label>';
+	private static function sw( string $key, string $title, string $help, string $hid ): string {
+		return \AdminKit\Core\Settings\Form::switch(
+			array(
+				'name'        => self::OPT . '[' . $key . ']',
+				'on'          => ! empty( self::$s[ $key ] ),
+				'title'       => $title,
+				'help'        => $help,
+				'help_id'     => $hid,
+				'label_class' => 'rbn-switch ck-sw',
+				'text_class'  => 'ck-sw__t',
+			)
+		);
 	}
 
 	/** @return array<string,string> yol => başlık. */
@@ -85,12 +90,21 @@ final class AdminPage {
 		return $out;
 	}
 
-	private static function page_select( string $id, string $name, string $current, string $label ): string {
-		$h = '<select class="rbn-select" id="' . esc_attr( $id ) . '"' . ( '' !== $name ? ' name="' . esc_attr( $name ) . '"' : '' ) . '><option value="">' . esc_html__( '— Select —', 'cookiekit' ) . '</option>';
+	private static function page_select( string $id, string $name, string $current ): string {
+		$options = array();
 		foreach ( self::pages( $current ) as $path => $title ) {
-			$h .= '<option value="' . esc_attr( $path ) . '"' . selected( $current, $path, false ) . '>' . esc_html( $title . ' (' . $path . ')' ) . '</option>';
+			$options[ $path ] = $title . ' (' . $path . ')';
 		}
-		return $h . '</select>';
+		return \AdminKit\Core\Settings\Form::select(
+			array(
+				'class'   => 'rbn-select',
+				'id'      => $id,
+				'name'    => $name,
+				'value'   => $current,
+				'empty'   => __( '— Select —', 'cookiekit' ),
+				'options' => $options,
+			)
+		);
 	}
 
 	private static function is_wizard(): bool {
@@ -270,9 +284,7 @@ final class AdminPage {
 
 	/** Form açılışı: seçenek grubu + gizli sekme alanı. */
 	private static function form_open( string $tab ): void {
-		echo '<form method="post" action="options.php" data-savebar novalidate>';
-		settings_fields( 'cookiekit_group' );
-		echo '<input type="hidden" name="' . esc_attr( self::OPT . '[_tab]' ) . '" value="' . esc_attr( $tab ) . '">';
+		echo \AdminKit\Core\Settings\Form::open( Settings::GROUP, array( 'form_field' => self::OPT . '[_tab]', 'form' => $tab ) );
 	}
 
 	private static function form_close(): void {
@@ -298,15 +310,51 @@ final class AdminPage {
 
 		self::card_open( 'g2', __( 'Cookie categories', 'cookiekit' ), esc_html__( 'Which categories should visitors be asked about? Turn off a category you do not use.', 'cookiekit' ) );
 		echo '<div class="rbn-card__b">'
-			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Necessary', 'cookiekit' ) . '</span></div><div class="ck-c"><label class="rbn-switch ck-sw"><input type="checkbox" role="switch" checked disabled aria-describedby="h-nec"><span class="rbn-switch__x" aria-hidden="true"></span><span class="ck-sw__t"><b>' . esc_html__( 'Always on', 'cookiekit' ) . '</b><span class="rbn-help" id="h-nec">' . esc_html__( 'Needed for the site to work and to remember the choice; cannot be turned off.', 'cookiekit' ) . '</span></span></label></div></div>'
+			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Necessary', 'cookiekit' ) . '</span></div><div class="ck-c">'
+			. \AdminKit\Core\Settings\Form::switch(
+				array(
+					'on'          => true,
+					'disabled'    => true,
+					'title'       => __( 'Always on', 'cookiekit' ),
+					'help'        => __( 'Needed for the site to work and to remember the choice; cannot be turned off.', 'cookiekit' ),
+					'help_id'     => 'h-nec',
+					'label_class' => 'rbn-switch ck-sw',
+					'text_class'  => 'ck-sw__t',
+				)
+			) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '</div></div>'
 			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Analytics', 'cookiekit' ) . '</span></div><div class="ck-c">' . self::sw( 'show_analytics', __( 'Ask about analytics cookies', 'cookiekit' ), __( 'For measurement tools such as Google Analytics.', 'cookiekit' ), 'h-an' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Advertising', 'cookiekit' ) . '</span></div><div class="ck-c">' . self::sw( 'show_ads', __( 'Ask about advertising cookies', 'cookiekit' ), __( 'For AdSense and Google advertising partners. Turn off if the site has no ads.', 'cookiekit' ), 'h-ad' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			. '</div></section>';
 
 		self::card_open( 'g3', __( 'Consent duration and re-consent', 'cookiekit' ), sprintf( /* translators: %d: revizyon */ esc_html__( 'Current revision: %s. When the revision changes, all visitors are asked for consent again.', 'cookiekit' ), '<strong>' . (int) $s['revision'] . '</strong>' ) );
 		echo '<div class="rbn-card__b"><div class="' . esc_attr( self::field_class( 'f-days' ) ) . '"><div class="ck-l"><label for="f-days">' . esc_html__( 'Consent validity period', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'Between 30 and 395 days. Default 180.', 'cookiekit' ) . '</p></div>'
-			. '<div class="ck-c"><span class="ck-unit"><input class="rbn-input rbn-input--s" type="number" inputmode="numeric" id="f-days" name="' . esc_attr( self::OPT . '[days]' ) . '" value="' . esc_attr( (string) (int) $s['days'] ) . '" min="30" max="395"' . self::inv( 'f-days' ) . '><span>' . esc_html__( 'days', 'cookiekit' ) . '</span></span>' . self::err_msg( 'f-days' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Re-consent', 'cookiekit' ) . '</span></div><div class="ck-c"><label class="rbn-switch ck-sw"><input type="checkbox" role="switch" name="' . esc_attr( self::OPT . '[bump_revision]' ) . '" value="1" aria-describedby="h-rev"><span class="rbn-switch__x" aria-hidden="true"></span><span class="ck-sw__t"><b>' . esc_html__( 'Increase the revision on save', 'cookiekit' ) . '</b><span class="rbn-help" id="h-rev">' . esc_html__( 'Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards.', 'cookiekit' ) . '</span></span></label></div></div>'
+			. '<div class="ck-c"><span class="ck-unit">' . \AdminKit\Core\Settings\Form::input(
+				array(
+					'type'      => 'number',
+					'class'     => 'rbn-input rbn-input--s',
+					'id'        => 'f-days',
+					'name'      => self::OPT . '[days]',
+					'value'     => (string) (int) $s['days'],
+					'min'       => 30,
+					'max'       => 395,
+					'inputmode' => 'numeric',
+					'invalid'   => isset( self::$errs['f-days'] ),
+				)
+			) . '<span>' . esc_html__( 'days', 'cookiekit' ) . '</span></span>' . self::err_msg( 'f-days' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="rbn-field"><div class="ck-l"><span>' . esc_html__( 'Re-consent', 'cookiekit' ) . '</span></div><div class="ck-c">'
+			. \AdminKit\Core\Settings\Form::switch(
+				array(
+					'name'        => self::OPT . '[bump_revision]',
+					'on'          => false,
+					'title'       => __( 'Increase the revision on save', 'cookiekit' ),
+					'help'        => __( 'Turn on if you changed the categories or the cookie list. If you use a cache, clear it afterwards.', 'cookiekit' ),
+					'help_id'     => 'h-rev',
+					'label_class' => 'rbn-switch ck-sw',
+					'text_class'  => 'ck-sw__t',
+				)
+			) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '</div></div>'
 			. '</div></section>';
 
 		self::card_open( 'g4', __( 'Records and data', 'cookiekit' ), esc_html__( 'Keep consent decisions as proof (KVKK). The raw IP is not stored; records are deleted automatically after 12 months.', 'cookiekit' ) );
@@ -350,7 +398,19 @@ final class AdminPage {
 			$pic = sanitize_hex_color( $v ) ? $v : $c[3];
 			echo '<div class="' . esc_attr( self::field_class( $c[0] ) ) . ' ck-color-i"><label for="' . esc_attr( $c[0] ) . '">' . esc_html( $c[2] ) . '</label><div class="ck-color">'
 				. '<input type="color" value="' . esc_attr( $pic ) . '" data-pair="' . esc_attr( $c[0] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: renk adı */ __( '%s colour picker', 'cookiekit' ), $c[2] ) ) . '">'
-				. '<input class="rbn-input rbn-input--mono" id="' . esc_attr( $c[0] ) . '" type="text" name="' . esc_attr( self::OPT . '[' . $c[1] . ']' ) . '" value="' . esc_attr( $v ) . '" placeholder="' . esc_attr( $c[3] ) . '" maxlength="7" data-hex' . self::inv( $c[0] ) . '></div>' . self::err_msg( $c[0] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				. \AdminKit\Core\Settings\Form::input(
+					array(
+						'type'        => 'text',
+						'class'       => 'rbn-input rbn-input--mono',
+						'id'          => $c[0],
+						'name'        => self::OPT . '[' . $c[1] . ']',
+						'value'       => $v,
+						'placeholder' => $c[3],
+						'maxlength'   => 7,
+						'invalid'     => isset( self::$errs[ $c[0] ] ),
+						'attrs'       => array( 'data-hex' => true ),
+					)
+				) . '</div>' . self::err_msg( $c[0] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div><div class="rbn-note rbn-note--ok" id="contrast" role="status">' . self::ico( 'check' ) . '<div><p>' . esc_html__( 'Text / background contrast: —', 'cookiekit' ) . '</p></div></div></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
@@ -365,8 +425,30 @@ final class AdminPage {
 		self::form_open( 'metinler' );
 		echo '<div class="ck-split"><div>';
 		self::card_open( 'm1', __( 'Banner text', 'cookiekit' ), esc_html__( 'Write short and clear: visitors should understand what is asked at a glance.', 'cookiekit' ) );
-		echo '<div class="rbn-card__b"><div class="rbn-field"><div class="ck-l"><label for="t-title">' . esc_html__( 'Title', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 80 characters.', 'cookiekit' ) . '</p></div><div class="ck-c"><input class="rbn-input" type="text" id="t-title" name="' . esc_attr( self::OPT . '[title]' ) . '" value="' . esc_attr( (string) $s['title'] ) . '" maxlength="80" data-count="80"><p class="ck-counter" aria-hidden="true"></p></div></div>'
-			. '<div class="rbn-field"><div class="ck-l"><label for="t-desc">' . esc_html__( 'Description', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 500 characters. Say which cookies are used and why.', 'cookiekit' ) . '</p></div><div class="ck-c"><textarea class="rbn-textarea" id="t-desc" name="' . esc_attr( self::OPT . '[desc]' ) . '" rows="4" maxlength="500" data-count="500">' . esc_textarea( (string) $s['desc'] ) . '</textarea><p class="ck-counter" aria-hidden="true"></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="rbn-card__b"><div class="rbn-field"><div class="ck-l"><label for="t-title">' . esc_html__( 'Title', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 80 characters.', 'cookiekit' ) . '</p></div><div class="ck-c">'
+			. \AdminKit\Core\Settings\Form::input(
+				array(
+					'type'      => 'text',
+					'class'     => 'rbn-input',
+					'id'        => 't-title',
+					'name'      => self::OPT . '[title]',
+					'value'     => (string) $s['title'],
+					'maxlength' => 80,
+					'attrs'     => array( 'data-count' => '80' ),
+				)
+			) . '<p class="ck-counter" aria-hidden="true"></p></div></div>'
+			. '<div class="rbn-field"><div class="ck-l"><label for="t-desc">' . esc_html__( 'Description', 'cookiekit' ) . '</label><p class="rbn-help">' . esc_html__( 'At most 500 characters. Say which cookies are used and why.', 'cookiekit' ) . '</p></div><div class="ck-c">'
+			. \AdminKit\Core\Settings\Form::textarea(
+				array(
+					'class'     => 'rbn-textarea',
+					'id'        => 't-desc',
+					'name'      => self::OPT . '[desc]',
+					'value'     => (string) $s['desc'],
+					'rows'      => 4,
+					'maxlength' => 500,
+					'attrs'     => array( 'data-count' => '500' ),
+				)
+			) . '<p class="ck-counter" aria-hidden="true"></p></div></div></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		self::card_open( 'm2', __( 'Button labels', 'cookiekit' ), esc_html__( 'Accept and Reject keep equal visibility; only their text changes.', 'cookiekit' ) );
 		echo '<div class="rbn-card__b">';
@@ -376,7 +458,17 @@ final class AdminPage {
 			array( 't-prefs', 'prefs', __( 'Preferences button', 'cookiekit' ), __( 'Opens the category panel. At most 30 characters.', 'cookiekit' ), 30 ),
 			array( 't-save', 'save', __( 'Save choice button', 'cookiekit' ), __( 'The button at the bottom of the panel. At most 40 characters.', 'cookiekit' ), 40 ),
 		) as $f ) {
-			echo '<div class="rbn-field"><div class="ck-l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="rbn-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-c"><input class="rbn-input" type="text" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( (string) $s[ $f[1] ] ) . '" maxlength="' . (int) $f[4] . '"></div></div>';
+			echo '<div class="rbn-field"><div class="ck-l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="rbn-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-c">'
+				. \AdminKit\Core\Settings\Form::input(
+					array(
+						'type'      => 'text',
+						'class'     => 'rbn-input',
+						'id'        => $f[0],
+						'name'      => self::OPT . '[' . $f[1] . ']',
+						'value'     => (string) $s[ $f[1] ],
+						'maxlength' => (int) $f[4],
+					)
+				) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></section>';
 
@@ -390,7 +482,7 @@ final class AdminPage {
 			echo '<div class="' . esc_attr( self::field_class( $f[0] ) ) . '"><div class="ck-l"><label for="' . esc_attr( $f[0] ) . '">' . esc_html( $f[2] ) . '</label><p class="rbn-help">' . esc_html( $f[3] ) . '</p></div><div class="ck-c">'
 				. '<input class="rbn-input" id="' . esc_attr( $f[0] ) . '" name="' . esc_attr( self::OPT . '[' . $f[1] . ']' ) . '" value="' . esc_attr( $v ) . '" maxlength="300"' . self::inv( $f[0] ) . '>' . self::err_msg( $f[0] )
 				. '<p class="rbn-help"><label for="' . esc_attr( $f[0] ) . 'p" class="rbn-sr">' . esc_html__( 'Pick from the page list', 'cookiekit' ) . '</label>'
-				. str_replace( '<option value="">' . esc_html__( '— Select —', 'cookiekit' ) . '</option>', '<option value="">' . esc_html__( 'Pick from the page list…', 'cookiekit' ) . '</option>', str_replace( 'class="rbn-select"', 'class="rbn-select ck-pick" data-fill="' . esc_attr( $f[0] ) . '"', self::page_select( $f[0] . 'p', '', '', $f[2] ) ) )
+				. str_replace( '<option value="">' . esc_html__( '— Select —', 'cookiekit' ) . '</option>', '<option value="">' . esc_html__( 'Pick from the page list…', 'cookiekit' ) . '</option>', str_replace( 'class="rbn-select"', 'class="rbn-select ck-pick" data-fill="' . esc_attr( $f[0] ) . '"', self::page_select( $f[0] . 'p', '', '' ) ) )
 				. '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></section>';
@@ -602,9 +694,17 @@ final class AdminPage {
 		$ads  = ! empty( $s['show_ads'] ) || empty( $s['wizard_done'] );
 		echo '<section id="wizard" aria-labelledby="wiz-h"><div class="ck-wiz"><div class="ck-wiz__top"><p id="wiz-n">' . esc_html__( 'Setup', 'cookiekit' ) . '</p><a class="rbn-btn rbn-btn--link" href="' . esc_url( $skip ) . '">' . esc_html__( 'Skip for now', 'cookiekit' ) . '</a></div>';
 		echo '<ol class="ck-stepper" aria-label="' . esc_attr__( 'Setup steps', 'cookiekit' ) . '"><li data-st="1"><b>1</b><span>' . esc_html__( 'Site type', 'cookiekit' ) . '</span></li><li data-st="2"><b>2</b><span>' . esc_html__( 'Text and links', 'cookiekit' ) . '</span></li><li data-st="3"><b>3</b><span>' . esc_html__( 'Preview and activate', 'cookiekit' ) . '</span></li></ol>';
-		echo '<form class="rbn-card" id="wiz-form" method="post" action="options.php">';
-		settings_fields( 'cookiekit_group' );
-		echo '<input type="hidden" name="' . esc_attr( self::OPT . '[_tab]' ) . '" value="kurulum">';
+		echo \AdminKit\Core\Settings\Form::open(
+			Settings::GROUP,
+			array(
+				'class'     => 'rbn-card',
+				'id'        => 'wiz-form',
+				'savebar'   => false,
+				'novalidate' => false,
+				'form_field' => self::OPT . '[_tab]',
+				'form'      => 'kurulum',
+			)
+		);
 		// 1
 		echo '<div data-wstep="1"><div class="rbn-card__h"><h2 id="wiz-h">' . esc_html__( 'Which cookies does your site use?', 'cookiekit' ) . '</h2><p>' . esc_html__( 'Show only the categories you really use; an unused category is an unnecessary question for visitors.', 'cookiekit' ) . '</p></div><div class="rbn-card__b"><fieldset class="ck-opts ck-opts--wide"><legend class="rbn-sr">' . esc_html__( 'Site type', 'cookiekit' ) . '</legend>';
 		foreach ( array(
@@ -616,8 +716,8 @@ final class AdminPage {
 		echo '</fieldset><p class="rbn-help ck-hint">' . esc_html__( 'The necessary-cookie category is always shown. You can change this later in the General tab.', 'cookiekit' ) . '</p></div></div>';
 		// 2
 		echo '<div data-wstep="2"><div class="rbn-card__h"><h2>' . esc_html__( 'Choose your policy pages', 'cookiekit' ) . '</h2><p>' . esc_html__( 'The banner links to these pages. If you do not have the page yet, leave it empty; no link is shown.', 'cookiekit' ) . '</p></div><div class="rbn-card__b">'
-			. '<div class="rbn-field"><div class="ck-l"><label for="t-priv">' . esc_html__( 'Privacy Policy page', 'cookiekit' ) . '</label></div><div class="ck-c">' . self::page_select( 't-priv', self::OPT . '[privacy_url]', (string) $s['privacy_url'], '' ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			. '<div class="rbn-field"><div class="ck-l"><label for="t-cook">' . esc_html__( 'Cookie Policy page', 'cookiekit' ) . '</label></div><div class="ck-c">' . self::page_select( 't-cook', self::OPT . '[cookie_url]', (string) $s['cookie_url'], '' ) . '<p class="rbn-help">' . esc_html__( 'Tip: show the cookie table by adding the [cookiekit_cerez_listesi] shortcode to the Cookie Policy page.', 'cookiekit' ) . '</p></div></div></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="rbn-field"><div class="ck-l"><label for="t-priv">' . esc_html__( 'Privacy Policy page', 'cookiekit' ) . '</label></div><div class="ck-c">' . self::page_select( 't-priv', self::OPT . '[privacy_url]', (string) $s['privacy_url'] ) . '</div></div>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			. '<div class="rbn-field"><div class="ck-l"><label for="t-cook">' . esc_html__( 'Cookie Policy page', 'cookiekit' ) . '</label></div><div class="ck-c">' . self::page_select( 't-cook', self::OPT . '[cookie_url]', (string) $s['cookie_url'] ) . '<p class="rbn-help">' . esc_html__( 'Tip: show the cookie table by adding the [cookiekit_cerez_listesi] shortcode to the Cookie Policy page.', 'cookiekit' ) . '</p></div></div></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// 3
 		echo '<div data-wstep="3"><div class="rbn-card__h"><h2>' . esc_html__( 'Preview and go live', 'cookiekit' ) . '</h2><p>' . esc_html__( 'The banner goes live when you activate it.', 'cookiekit' ) . '</p></div><div class="rbn-card__b"><div data-prev-slot="wiz" data-compact></div><ul class="ck-sum"><li>' . self::ico( 'check' ) . '<span id="w-sum1">' . esc_html__( 'Analytics and ad cookies are asked about', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . esc_html__( 'Google Consent Mode v2: default “denied”', 'cookiekit' ) . '</span></li><li>' . self::ico( 'check' ) . '<span>' . ( ! empty( $s['log'] ) ? esc_html__( 'Consent decisions are recorded (the raw IP is not stored)', 'cookiekit' ) : esc_html__( 'Consent decisions are not recorded (log is off)', 'cookiekit' ) ) . '</span></li></ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="rbn-card__foot rbn-card__foot--split ck-wiz__f"><button type="button" class="rbn-btn" id="wiz-back" hidden>' . esc_html__( 'Back', 'cookiekit' ) . '</button><div><button type="button" class="rbn-btn rbn-btn--pri" id="wiz-next" hidden>' . esc_html__( 'Continue', 'cookiekit' ) . '</button><button type="submit" class="rbn-btn rbn-btn--pri" id="wiz-finish">' . esc_html__( 'Activate and finish', 'cookiekit' ) . '</button></div></div></form></div></section>';

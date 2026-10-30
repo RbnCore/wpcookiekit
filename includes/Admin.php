@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Cookiekit;
 
-use AdminKit\Core\Security\Host;
-
 use AdminKit\Core\Security\Guard;
 
 defined( 'ABSPATH' ) || exit;
@@ -22,13 +20,7 @@ final class Admin {
 	public const TABS  = array( 'genel', 'gorunum', 'metinler', 'cerezler', 'kayitlar', 'entegrasyon', 'yardim' );
 	public const NOTES = array( 'cookie_added', 'cookie_removed', 'cookie_invalid', 'cookie_limit', 'purged', 'purge_fail', 'purge_confirm' );
 
-	/** Her form sekmesinin yazabildiği alan kümesi: kalanlar eski değerinden aynen taşınır. */
-	private const FORM_TABS = array( 'genel', 'gorunum', 'metinler', 'kurulum' );
-
 	private static string $hook = '';
-
-	/** Eklentinin kendi güvenilir yazımı (wizard_skip): sekme kümesi aranmaz. */
-	private static bool $trusted = false;
 
 	public static function init(): void {
 		if ( ! is_admin() ) {
@@ -70,19 +62,8 @@ final class Admin {
 	}
 
 	public static function register(): void {
-		// Seçenek yoksa update_option sanitize'ı iki kez çağırır; ilk kayıt filtre kurulmadan yapılır.
-		if ( false === get_option( Settings::OPTION ) ) {
-			add_option( Settings::OPTION, Settings::defaults() );
-		}
-		register_setting(
-			'cookiekit_group',
-			Settings::OPTION,
-			array(
-				'type'              => 'array',
-				'sanitize_callback' => array( self::class, 'sanitize' ),
-				'default'           => Settings::defaults(),
-			)
-		);
+		// Şema + form kümesi motorun kaydındadır; burada yalnız `options.php` rotası bağlanır.
+		\AdminKit\Core\Settings::register_option( Settings::SLUG, Settings::GROUP );
 	}
 
 	/** Yönetim CSS/JS'i YALNIZ ayar sayfasında yüklenir. */
@@ -99,125 +80,6 @@ final class Admin {
 		};
 		wp_enqueue_style( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.css', array( 'rbn-admin-ui' ), $ver( 'assets/cookiekit-admin.css' ) );
 		wp_enqueue_script( 'cookiekit-admin', COOKIEKIT_URL . 'assets/cookiekit-admin.js', array( 'rbn-admin-ui' ), $ver( 'assets/cookiekit-admin.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
-	}
-
-	/**
-	 * Yalnız aynı site içi yol ya da aynı alan adlı http(s) adres. Geçersizse null.
-	 *
-	 * @param mixed $value Ham değer.
-	 */
-	public static function url_clean( $value ): ?string {
-		$value = trim( (string) $value );
-		if ( '' === $value ) {
-			return '';
-		}
-		if ( strlen( $value ) > 300 || false !== strpos( $value, '\\' ) || preg_match( '/[\x00-\x1f\x7f]/', $value ) ) {
-			return null;
-		}
-		if ( 0 === strpos( $value, '/' ) ) {
-			return 0 === strpos( $value, '//' ) ? null : '/' . ltrim( sanitize_text_field( $value ), '/' );
-		}
-		$clean = esc_url_raw( $value, array( 'http', 'https' ) );
-		$host  = Host::host( $clean );
-		$mine  = Host::host( home_url() );
-		return '' !== $clean && '' !== $host && 0 === strcasecmp( $host, $mine ) ? $clean : null;
-	}
-
-	private static function fail( string $id, string $message ): void {
-		add_settings_error( Settings::OPTION, $id, $message, 'error' );
-	}
-
-	/**
-	 * Gizli `_tab` hangi alan kümesini içeriyorsa yalnız onları işler; kalanı eski değerinden taşır.
-	 *
-	 * @param mixed $input Formdan gelen ham değer.
-	 * @return array<string,mixed>
-	 */
-	public static function sanitize( $input ): array {
-		$old = Settings::all();
-		if ( self::$trusted ) {
-			return is_array( $input ) ? $input : $old;
-		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return $old;
-		}
-		$in  = is_array( $input ) ? $input : array();
-		$tab = isset( $in['_tab'] ) ? sanitize_key( (string) $in['_tab'] ) : '';
-		if ( ! in_array( $tab, self::FORM_TABS, true ) ) {
-			self::fail( 'ck-tab', __( 'The form was not recognised; no setting was changed.', 'cookiekit' ) );
-			return $old;
-		}
-		$def = Settings::defaults();
-		$out = $old;
-		// Sekme formuna ancak kurulum bittikten (ya da atlandıktan) sonra ulaşılır: kayıt, sihirbazın bittiği anlamına gelir.
-		$out['wizard_done'] = 1;
-
-		if ( 'genel' === $tab ) {
-			foreach ( array( 'enabled', 'show_analytics', 'show_ads', 'log', 'delete_on_uninstall' ) as $flag ) {
-				$out[ $flag ] = empty( $in[ $flag ] ) ? 0 : 1;
-			}
-			$days_raw    = isset( $in['days'] ) ? trim( (string) $in['days'] ) : (string) $old['days'];
-			$days        = absint( $days_raw );
-			$out['days'] = min( 395, max( 30, $days ) );
-			if ( ! ctype_digit( $days_raw ) || $days !== $out['days'] ) {
-				self::fail( 'f-days', __( 'The duration must be between 30 and 395 days; the value was corrected.', 'cookiekit' ) );
-			}
-			$out['revision'] = (int) $old['revision'] + ( empty( $in['bump_revision'] ) ? 0 : 1 );
-		}
-
-		if ( 'gorunum' === $tab ) {
-			$pos             = isset( $in['position'] ) ? sanitize_key( (string) $in['position'] ) : '';
-			$out['position'] = in_array( $pos, Settings::POSITIONS, true ) ? $pos : $old['position'];
-			$colors          = array(
-				'color_accent' => 'c-ac',
-				'color_bg'     => 'c-bg',
-				'color_text'   => 'c-fg',
-			);
-			foreach ( $colors as $key => $id ) {
-				$raw = trim( (string) ( $in[ $key ] ?? '' ) );
-				if ( '' === $raw ) {
-					$out[ $key ] = '';
-					continue;
-				}
-				$hex = sanitize_hex_color( $raw );
-				if ( $hex ) {
-					$out[ $key ] = $hex;
-				} else {
-					self::fail( $id, __( 'Enter a valid colour (e.g. #0b5fff); the old value was kept.', 'cookiekit' ) );
-				}
-			}
-		}
-
-		if ( 'metinler' === $tab ) {
-			foreach ( array( 'title' => 80, 'accept' => 30, 'reject' => 30, 'prefs' => 30, 'save' => 40 ) as $key => $max ) {
-				$text        = sanitize_text_field( (string) ( $in[ $key ] ?? '' ) );
-				$out[ $key ] = '' === $text ? $def[ $key ] : mb_substr( $text, 0, $max );
-			}
-			$desc        = sanitize_textarea_field( (string) ( $in['desc'] ?? '' ) );
-			$out['desc'] = '' === $desc ? $def['desc'] : mb_substr( $desc, 0, 500 );
-		}
-
-		if ( 'metinler' === $tab || 'kurulum' === $tab ) {
-			foreach ( array( 'privacy_url' => 't-priv', 'cookie_url' => 't-cook' ) as $key => $id ) {
-				$clean = self::url_clean( $in[ $key ] ?? '' );
-				if ( null === $clean ) {
-					self::fail( $id, __( 'The address must start with “/” (a path on this site) or with this site\'s http(s) address; the old value was kept.', 'cookiekit' ) );
-				} else {
-					$out[ $key ] = $clean;
-				}
-			}
-		}
-
-		if ( 'kurulum' === $tab ) {
-			$tur = isset( $in['_tur'] ) ? sanitize_key( (string) $in['_tur'] ) : '';
-			if ( in_array( $tur, array( 'reklam', 'analiz' ), true ) ) {
-				$out['show_analytics'] = 1;
-				$out['show_ads']       = 'reklam' === $tur ? 1 : 0;
-			}
-			$out['enabled']     = 1;
-			$out['wizard_done'] = 1;
-		}
-		return $out;
 	}
 
 	/** Post-Redirect-Get: URL'den parametreleri temizler ve Toast::flash'a taşır. */
@@ -267,11 +129,7 @@ final class Admin {
 
 	public static function wizard_skip(): void {
 		Guard::admin_action( 'cookiekit_wizard_skip', 'manage_options' );
-		$all                = Settings::all();
-		$all['wizard_done'] = 1;
-		self::$trusted = true;
-		update_option( Settings::OPTION, $all );
-		self::$trusted = false;
+		\AdminKit\Core\Settings::set( Settings::SLUG, 'wizard_done', 1 );
 		self::back( 'genel' );
 	}
 

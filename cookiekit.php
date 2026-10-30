@@ -52,7 +52,7 @@ register_deactivation_hook( __FILE__, array( \Cookiekit\Log::class, 'deactivate'
 add_action(
 	'plugins_loaded',
 	static function (): void {
-		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 3 || ! class_exists( 'AdminKit\Core\Core' ) ) {
+		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 3 || ! class_exists( 'AdminKit\Core\Core' ) || ! class_exists( 'AdminKit\Core\Settings' ) ) {
 			add_action(
 				'admin_notices',
 				static function (): void {
@@ -115,6 +115,8 @@ function cookiekit_boot(): void {
 	}
 
 	load_plugin_textdomain( 'cookiekit', false, dirname( plugin_basename( COOKIEKIT_FILE ) ) . '/languages' );
+	// Ayar şeması AdminKit ayar motoruna kaydolur (tek motor, eklenti yalnız şemayı bildirir).
+	\Cookiekit\Settings::register();
 	\Cookiekit\Log::maybe_upgrade();
 	\Cookiekit\Frontend::init();
 	\Cookiekit\Rest::init();
