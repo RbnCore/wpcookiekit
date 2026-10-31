@@ -39,7 +39,7 @@ Turkish WordPress publishers and agencies that need a cookie consent banner with
 ## Installation
 
 1. Install and activate **AdminKit** first; CookieKit cannot be activated without it.
-2. Download `cookiekit-0.1.2.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
+2. Download `cookiekit-0.1.4.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
 3. In WordPress go to **Plugins → Add New → Upload Plugin**, choose the zip, install and activate. Activation creates the `{prefix}cookiekit_log` table and schedules the daily cleanup.
 4. Open **RBN Kit → Cookies and Consent**, enter your policy links, categories and texts. The three-step wizard opens on first setup.
 5. If a page cache plugin is active, clear the cache once. The banner is drawn with JavaScript, so a cached page must contain the new markup.
@@ -76,7 +76,7 @@ The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN
 
 ## Version and license
 
-- Version 0.1.2
+- Version 0.1.4
 - License: GPL-2.0-or-later (see [LICENSE](LICENSE) and [NOTICE](NOTICE))
 - Text domain: `cookiekit`
 

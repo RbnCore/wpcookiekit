@@ -3,7 +3,7 @@
  * Plugin Name:       CookieKit — Cookie and Consent Manager
  * Plugin URI:        https://github.com/RbnCore/wpcookiekit
  * Description:       KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, consent log and a script-blocking API. Connects to GitHub only to check for updates (can be turned off in the settings).
- * Version:           0.1.3
+ * Version:           0.1.4
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  adminkit
@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'COOKIEKIT_VERSION', '0.1.3' );
+define( 'COOKIEKIT_VERSION', '0.1.4' );
 define( 'COOKIEKIT_FILE', __FILE__ );
 define( 'COOKIEKIT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'COOKIEKIT_URL', plugin_dir_url( __FILE__ ) );
