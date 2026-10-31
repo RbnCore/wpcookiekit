@@ -71,6 +71,9 @@ final class AdminPage {
 				'help_id'     => $hid,
 				'label_class' => 'rbn-switch ck-sw',
 				'text_class'  => 'ck-sw__t',
+				// Anında anahtar: yol şemada bool/flag ise kendiliğinden işaretlenir (Form::instant).
+				'kit'         => Settings::SLUG,
+				'path'        => $key,
 			)
 		);
 	}
