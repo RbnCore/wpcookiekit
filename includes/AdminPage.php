@@ -185,6 +185,8 @@ final class AdminPage {
 		echo \AdminKit\Helpers\Header::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Header::render() kaçışlar.
 			array(
 				'name'    => 'CookieKit',
+				'title'        => (string) ( $names[ $tab ] ?? '' ),
+				'title_hidden' => true,
 				'version' => COOKIEKIT_VERSION,
 				'status'  => $on
 					? array( 'label' => __( 'Active', 'cookiekit' ), 'tone' => 'ok' )
