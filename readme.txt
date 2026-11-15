@@ -32,6 +32,7 @@ KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, cons
 == Changelog ==
 
 = 0.1.4 =
+* Change: save errors, the consent log warnings appear in the AdminKit notification bell and dialog instead of boxes on the page.
 * New: Settings take effect as soon as you change them on the screens that offer it (no Save button needed).
 * Settings export and import now has transfer flags per section, so a site address field is not copied to another site.
 * The settings screens use the shared AdminKit settings engine; the plugin's own sanitize and URL-cleaning copies are removed.

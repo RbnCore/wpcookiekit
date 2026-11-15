@@ -53,6 +53,7 @@ add_action(
 	'plugins_loaded',
 	static function (): void {
 		if ( ! defined( 'ADMINKIT_CORE_API' ) || ADMINKIT_CORE_API < 4 || ! class_exists( 'AdminKit\Core\Core' ) || ! class_exists( 'AdminKit\Core\Settings' ) ) {
+			// rbn-notice-fallback: AdminKit (the bell) is not there.
 			add_action(
 				'admin_notices',
 				static function (): void {
@@ -89,6 +90,7 @@ add_action(
 							$link
 						);
 					}
+					// rbn-notice-fallback: AdminKit (the bell) is not there.
 					printf( '<div class="notice notice-error"><p>%s</p></div>', wp_kses_post( $msg ) );
 				}
 			);

@@ -1469,3 +1469,12 @@ msgstr "Sayfalama"
 
 msgid "Forbidden origin."
 msgstr "Yetkisiz kaynak."
+
+msgid "Some changes were not saved. Open the notifications bell for the list."
+msgstr "Bazı değişiklikler kaydedilmedi. Liste için bildirim zilini açın."
+
+msgid "The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working. To recreate the table, deactivate and reactivate the plugin."
+msgstr "Özet sayılar gösterilemiyor; ziyaretçi tarafı etkilenmez ve bant çalışmaya devam eder. Tabloyu yeniden oluşturmak için eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "New decisions are not stored; to keep proof (KVKK), turn the log on in the General tab, Records and data section."
+msgstr "Yeni kararlar saklanmıyor; kanıt tutmak (KVKK) için kaydı Genel sekmesindeki Kayıtlar ve veriler bölümünden açın."

@@ -176,6 +176,7 @@ final class AdminPage {
 				'confirm'       => __( 'DELETE', 'cookiekit' ),
 			),
 		);
+		self::notices( $tab, $stats );
 		?>
 <div class="rbn-wrap" id="ck" role="region" aria-label="<?php echo esc_attr__( 'Cookies and Consent', 'cookiekit' ); ?>"<?php echo self::tone_attr(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-cfg="<?php echo esc_attr( (string) wp_json_encode( $cfg, JSON_UNESCAPED_UNICODE ) ); ?>">
 		<?php
@@ -196,7 +197,7 @@ final class AdminPage {
 		);
 		?>
 		<?php
-		self::notices();
+		echo self::error_focus(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed markup.
 		if ( $wizard ) {
 			self::wizard();
 		} else {
@@ -212,17 +213,49 @@ final class AdminPage {
 		self::dialogs( $wizard );
 	}
 
-	/** Kaydedildi / hata / eylem bildirimleri. */
-	private static function notices(): void {
-		if ( self::$errs ) {
-			$h = '<div class="rbn-note rbn-note--err" id="ck-err" role="alert" tabindex="-1">' . self::ico( 'alert' ) . '<div><p><strong>'
-				. esc_html( sprintf( /* translators: %d: alan sayısı */ _n( 'Some changes were not saved: %d field needs fixing.', 'Some changes were not saved: %d fields need fixing.', count( self::$errs ), 'cookiekit' ), count( self::$errs ) ) )
-				. '</strong></p><ul>';
-			foreach ( self::$errs as $id => $msg ) {
-				$h .= '<li>' . ( 'ck-tab' === $id ? '' : '<a href="#' . esc_attr( $id ) . '">' . esc_html( self::label_for( $id ) ) . '</a>: ' ) . esc_html( $msg ) . '</li>';
-			}
-			echo $h . '</ul></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	/**
+	 * Save errors go to the AdminKit bell (WPRJ-948). The field errors stay at their fields; the one screen-reader line below
+	 * keeps the old behaviour: the page script focuses it and marks the save bar as changed.
+	 */
+	private static function notices( string $tab, array $stats ): void {
+		if ( ! self::is_wizard() && empty( $stats['ok'] ) ) {
+			\AdminKit\Helpers\Notices::add(
+				'cookiekit-log-unreadable',
+				'error',
+				__( 'The consent log table could not be read.', 'cookiekit' ),
+				array(
+					'plugin' => 'CookieKit',
+					'body'   => __( 'The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working. To recreate the table, deactivate and reactivate the plugin.', 'cookiekit' ),
+					'links'  => array( array( 'label' => __( 'Help → Troubleshooting', 'cookiekit' ), 'url' => Admin::page_url( array( 'tab' => 'yardim' ) ), 'primary' => true ) ),
+				)
+			);
 		}
+		if ( 'kayitlar' === $tab && ! self::is_wizard() && empty( self::$s['log'] ) ) {
+			\AdminKit\Helpers\Notices::add(
+				'cookiekit-log-off',
+				'warning',
+				__( 'The consent log is off.', 'cookiekit' ),
+				array(
+					'plugin' => 'CookieKit',
+					'body'   => __( 'New decisions are not stored; to keep proof (KVKK), turn the log on in the General tab, Records and data section.', 'cookiekit' ),
+					'links'  => array( array( 'label' => __( 'General → Records and data', 'cookiekit' ), 'url' => Admin::page_url( array( 'tab' => 'genel' ) ), 'primary' => true ) ),
+				)
+			);
+		}
+		if ( ! self::$errs ) {
+			return;
+		}
+		$lines = array();
+		foreach ( self::$errs as $id => $msg ) {
+			$lines[] = esc_html( ( 'ck-tab' === $id ? '' : self::label_for( (string) $id ) . ': ' ) . $msg );
+		}
+		$title = sprintf( /* translators: %d: number of fields. */ _n( 'Some changes were not saved: %d field needs fixing.', 'Some changes were not saved: %d fields need fixing.', count( self::$errs ), 'cookiekit' ), count( self::$errs ) );
+		\AdminKit\Helpers\Notices::add( 'cookiekit-saveerr', 'error', $title, array( 'plugin' => 'CookieKit', 'items' => $lines ) );
+	}
+
+	/** The screen-reader line the page script focuses after a failed save. */
+	private static function error_focus(): string {
+		return self::$errs ? '<p class="rbn-sr" id="ck-err" role="alert" tabindex="-1">' . esc_html__( 'Some changes were not saved. Open the notifications bell for the list.', 'cookiekit' ) . '</p>' : '';
 	}
 
 	private static function label_for( string $id ): string {
@@ -250,9 +283,6 @@ final class AdminPage {
 			array( 'r', __( 'Reject', 'cookiekit' ), (string) round( $pct( $st['r'] ) ), true, sprintf( __( '%d decisions · necessary only', 'cookiekit' ), $st['r'] ) ),
 			array( 'c', __( 'Custom choice', 'cookiekit' ), (string) round( $pct( $st['c'] ) ), true, sprintf( __( '%d decisions', 'cookiekit' ), $st['c'] ) ),
 		);
-		if ( ! $ok ) {
-			echo '<div class="rbn-note rbn-note--err" role="alert">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'The consent log table could not be read.', 'cookiekit' ) . '</strong> ' . esc_html__( 'The summary numbers cannot be shown; the visitor side is not affected and the banner keeps working.', 'cookiekit' ) . '</p><p><a href="' . esc_url( Admin::page_url( array( 'tab' => 'yardim' ) ) ) . '">' . esc_html__( 'Help → Troubleshooting', 'cookiekit' ) . '</a> · ' . esc_html__( 'To recreate the table, deactivate and reactivate the plugin.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
 		echo '<ul class="rbn-stats" aria-label="' . esc_attr__( 'Summary of the last 30 days', 'cookiekit' ) . '">';
 		foreach ( $cards as $i => $c ) {
 			echo '<li class="rbn-stat"><p class="rbn-stat__k">' . ( '' !== $c[0] ? '<span class="ck-key ck-key--' . esc_attr( $c[0] ) . '" aria-hidden="true"></span>' : '' ) . esc_html( $c[1] ) . '</p>';
@@ -534,9 +564,6 @@ final class AdminPage {
 		$page = isset( $_GET['kp'] ) ? max( 1, absint( wp_unslash( $_GET['kp'] ) ) ) : 1;
 		if ( null !== $total && $total > 0 ) {
 			$page = min( $page, (int) ceil( $total / $per ) );
-		}
-		if ( empty( self::$s['log'] ) ) {
-			echo '<div class="rbn-note rbn-note--warn">' . self::ico( 'alert' ) . '<div><p><strong>' . esc_html__( 'The consent log is off.', 'cookiekit' ) . '</strong> ' . esc_html__( 'New decisions are not stored; to keep proof (KVKK), turn it on under', 'cookiekit' ) . ' <a href="' . esc_url( Admin::page_url( array( 'tab' => 'genel' ) ) ) . '">' . esc_html__( 'General → Records and data', 'cookiekit' ) . '</a> ' . esc_html__( 'section.', 'cookiekit' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		self::card_open( 'k1', __( 'Consent decisions', 'cookiekit' ), '' );
 		$csv = wp_nonce_url( admin_url( 'admin-post.php?action=cookiekit_csv' ), 'cookiekit_csv' );
