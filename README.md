@@ -7,7 +7,7 @@ CookieKit adds a cookie banner and a preferences panel to WordPress for the Turk
 CookieKit does not work without the **AdminKit** plugin. Its header declares `Requires Plugins: adminkit`.
 
 - On WordPress 6.5 and later, WordPress refuses to activate CookieKit while AdminKit is missing or inactive.
-- A second check runs on every request: without AdminKit, or with an AdminKit older than core API level 1, CookieKit adds no hook, prints nothing on the site and shows one admin notice with a link to activate AdminKit (when it is installed) or to download and install it.
+- A second check runs on every request: without AdminKit, or with an AdminKit older than core API level 4, CookieKit adds no hook, prints nothing on the site and shows one admin notice with a link to activate AdminKit (when it is installed) or to download and install it.
 - Install and activate **AdminKit first**, then CookieKit.
 
 AdminKit supplies the RBN Kit menu, the admin interface kit, the cache groups `cookiekit.rate` and `cookiekit.updates`, and the network switch that decides whether CookieKit may ask GitHub for updates.
@@ -39,7 +39,7 @@ Turkish WordPress publishers and agencies that need a cookie consent banner with
 ## Installation
 
 1. Install and activate **AdminKit** first; CookieKit cannot be activated without it.
-2. Download `cookiekit-0.1.4.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
+2. Download `cookiekit-0.1.5.zip` from [Releases](https://github.com/RbnCore/wpcookiekit/releases) and compare its SHA-256 with the `.zip.sha256` asset.
 3. In WordPress go to **Plugins → Add New → Upload Plugin**, choose the zip, install and activate. Activation creates the `{prefix}cookiekit_log` table and schedules the daily cleanup.
 4. Open **RBN Kit → Cookies and Consent**, enter your policy links, categories and texts. The three-step wizard opens on first setup.
 5. If a page cache plugin is active, clear the cache once. The banner is drawn with JavaScript, so a cached page must contain the new markup.
@@ -50,7 +50,7 @@ Turkish WordPress publishers and agencies that need a cookie consent banner with
 Updates come from GitHub and appear on the Plugins page like any WordPress update; automatic updates are supported as well.
 
 - **Source**: only `github.com/RbnCore/wpcookiekit` releases. The request is unauthenticated, times out after 5 seconds, is cached for 12 hours, and sends only `User-Agent: CookieKit/<version>`. If GitHub cannot be reached, no error is shown and the plugin keeps working.
-- **Verification is always on**: the package's SHA-256 digest (`.zip.sha256`) and its Ed25519 signature (`.zip.sig`, public key in `includes/update-pubkey.php`) are checked, and the zip must contain `cookiekit/` and `cookiekit.php`. If any check fails, the installation stops and the installed version stays as it was.
+- **Verification is always on**: the package's SHA-256 digest (`.zip.sha256`) and its Ed25519 signature (`.zip.sig`) are checked by the AdminKit updater, and the zip must contain `cookiekit/` and `cookiekit.php`. If any check fails, the installation stops and the installed version stays as it was.
 - **Turning it off**: Follows the central RBN Kit network setting (RBN Kit → AdminKit → General → Network). When the central network setting is off, no request goes to GitHub. "Check now" skips the cache and asks immediately when enabled.
 - **Manual update**: upload the new `cookiekit-X.Y.Z.zip` with Plugins → Add New → Upload Plugin and choose *Replace current*. To roll back, install the previous zip the same way; settings and the log table are kept (the schema is additive).
 
@@ -76,7 +76,7 @@ The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN
 
 ## Version and license
 
-- Version 0.1.4
+- Version 0.1.5
 - License: GPL-2.0-or-later (see [LICENSE](LICENSE) and [NOTICE](NOTICE))
 - Text domain: `cookiekit`
 

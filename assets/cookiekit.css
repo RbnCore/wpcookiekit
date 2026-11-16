@@ -1,4 +1,4 @@
-/*! CookieKit 0.1.2 */
+/*! CookieKit 0.1.5 */
 :root{--cookiekit-bg:var(--fm-bg-surface,#fff);--cookiekit-fg:var(--fm-text,#1b1b1f);--cookiekit-bd:var(--fm-border-strong,#6b6b73);--cookiekit-ac:var(--fm-accent,#0b5fff);--cookiekit-h:0px}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--cookiekit-bg:var(--fm-bg-surface,#1c1c21);--cookiekit-fg:var(--fm-text,#f2f2f5);--cookiekit-bd:var(--fm-border-strong,#9a9aa5);--cookiekit-ac:var(--fm-accent,#8ab0ff)}}
 :root[data-theme=dark]{--cookiekit-bg:var(--fm-bg-surface,#1c1c21);--cookiekit-fg:var(--fm-text,#f2f2f5);--cookiekit-bd:var(--fm-border-strong,#9a9aa5);--cookiekit-ac:var(--fm-accent,#8ab0ff)}
@@ -11,12 +11,15 @@
 .cookiekit-title{font-weight:700;font-size:1.0625rem}
 .cookiekit-desc{white-space:pre-line}
 .cookiekit-links{display:flex;flex-wrap:wrap;gap:.25rem 1rem;margin:0}
-.cookiekit-links a,.cookiekit-m a{color:var(--cookiekit-ac);display:inline-flex;align-items:center;min-height:2.75rem}
+.cookiekit-links a,.cookiekit-m a{color:var(--cookiekit-fg);text-decoration:underline;text-underline-offset:.2em;display:inline-flex;align-items:center;min-height:2.75rem}
 .cookiekit-btns{display:flex;flex-wrap:wrap;gap:.5rem;flex:0 0 auto;max-width:100%}
 .cookiekit-btn,.cookiekit-open{min-height:2.75rem;min-width:2.75rem;padding:0 1rem;white-space:nowrap;border:2px solid var(--cookiekit-fg);border-radius:.5rem;background:var(--cookiekit-bg);color:var(--cookiekit-fg);font-family:inherit;font-size:1rem;font-weight:600;line-height:1;cursor:pointer}
 .cookiekit-btn{flex:1 1 auto}
 @media(max-width:639px){.cookiekit-btns{flex:1 1 100%}.cookiekit-btn{padding:0 .5rem}}
 .cookiekit-btn:hover,.cookiekit-open:hover{background:var(--cookiekit-fg);color:var(--cookiekit-bg)}
+/* Tema çıplak button[type=button]{color:#fff} yazsa bile düğme yazısı okunur kalır (WPRJ-939): özgüllük tema kuralından yüksek. */
+.cookiekit-b .cookiekit-btn,.cookiekit-m .cookiekit-btn{background:var(--cookiekit-bg);color:var(--cookiekit-fg)}
+.cookiekit-b .cookiekit-btn:hover,.cookiekit-m .cookiekit-btn:hover{background:var(--cookiekit-fg);color:var(--cookiekit-bg)}
 .cookiekit-b :focus-visible,.cookiekit-m :focus-visible,.cookiekit-open:focus-visible{outline:3px solid var(--cookiekit-ac);outline-offset:2px}
 @media(min-width:640px){
 .cookiekit-b--bottom-left,.cookiekit-b--bottom-right{left:1rem;right:auto;bottom:1rem;width:26rem;max-width:calc(100% - 2rem);border:1px solid var(--cookiekit-bd);border-radius:.75rem}
@@ -43,5 +46,7 @@
 .cookiekit-table{width:100%;min-width:36rem;border-collapse:collapse;font-size:.9375rem}
 .cookiekit-table th,.cookiekit-table td{padding:.5rem;border-bottom:1px solid currentColor;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 .cookiekit-open{background:transparent;color:inherit;border-color:currentColor}
+button.cookiekit-open[data-cookiekit-open]{background:transparent;color:inherit}
+button.cookiekit-open[data-cookiekit-open]:hover{background:var(--cookiekit-fg);color:var(--cookiekit-bg)}
 @media(prefers-reduced-motion:no-preference){.cookiekit-b,.cookiekit-m{animation:cookiekit-in .2s ease-out}}
 @keyframes cookiekit-in{from{opacity:0}}
