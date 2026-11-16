@@ -2,7 +2,7 @@
 Contributors: rbnbilisim
 Tags: cookie consent, kvkk, gdpr, consent mode, cookies
 Requires at least: 6.5
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 8.1
 Requires Plugins: adminkit
 Stable tag: 0.1.5
@@ -32,11 +32,12 @@ KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, cons
 == Changelog ==
 
 = 0.1.5 =
-* Change: save errors appear in the AdminKit notification bell and dialog instead of a box on the page.
+* Change: save errors and consent log warnings ("consent log cannot be read" / "consent log is off") appear in the AdminKit notification bell and dialog instead of boxes on the page.
 * Fix: Banner and dialog buttons stay readable when the theme styles bare `button` elements with a white text colour.
 * Fix: Banner links use the text colour with an underline (the default blue accent failed the readability gate).
 
 = 0.1.4 =
+* Requirement: AdminKit core API level 4 (AdminKit 0.1.2 or newer) is now required.
 * New: Settings take effect as soon as you change them on the screens that offer it (no Save button needed).
 * Settings export and import now has transfer flags per section, so a site address field is not copied to another site.
 * The settings screens use the shared AdminKit settings engine; the plugin's own sanitize and URL-cleaning copies are removed.
@@ -48,7 +49,7 @@ KVKK-compliant cookie banner and preferences panel, Google Consent Mode v2, cons
 * Turkish translation updated; the old redirect bridge, the old updater option and unused strings are removed.
 
 = 0.1.3 =
-* Updates are now done by the AdminKit core (one central updater, AdminKit 0.1.1 or newer; the runtime gate needs core API level 3). CookieKit's own updater and public-key copy are removed. The package check (SHA-256 and Ed25519 signature) is unchanged.
+* Updates are now done by the AdminKit core (one central updater, AdminKit 0.1.2 or newer; the runtime gate needs core API level 4). CookieKit's own updater and public-key copy are removed. The package check (SHA-256 and Ed25519 signature) is unchanged.
 * The "Check now" button and the update status stay on the Help tab; they now come from the central updater and follow the RBN Kit network setting.
 
 = 0.1.2 =

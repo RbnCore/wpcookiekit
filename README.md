@@ -83,8 +83,7 @@ The settings screen is **RBN Kit → Cookies and Consent**, under the shared RBN
 ## Development notes
 
 - This repository is the plugin folder itself; release packages are a git archive of the repository root with the `cookiekit/` prefix.
-- Structure: `cookiekit.php` holds the header and constants; `includes/` holds the admin screens, the front end (banner, consent mode, shortcodes), the consent log, the REST endpoint and the updater; `assets/` holds the front-end and admin CSS/JS; `templates/admin/` holds admin templates; `languages/` holds the `.pot` and the Turkish translation.
-- The updater is a self-contained class: copy it to another plugin by changing the constants (repository, plugin file, slug, option prefix). It offers updates through WordPress's own `update_plugins_github.com` filter and never runs on the front end.
+- Structure: `cookiekit.php` holds the header and constants; `includes/` holds the admin screens, the front end (banner, consent mode, shortcodes), the consent log, and the REST endpoint; `assets/` holds the front-end and admin CSS/JS; `templates/admin/` holds admin templates; `languages/` holds the `.pot` and the Turkish translation.
 - The signing key is never in the repository or in the package, and release tooling lives in the project tree outside this repository.
 
 ## Links
